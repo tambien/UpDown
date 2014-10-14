@@ -10,7 +10,7 @@ require.config({
 	},
 });
 
-require(["jquery", "Tone/core/Transport", "controller/Conductor", "visuals/ScrollIndicator", 
+require(["jquery", "Tone/core/Transport", "controller/Conductor", "visuals/Main", 
 	"score/Bass", "score/Voice", "interface/Scroll", "effect/Main"],
  function($, Transport, Conductor){
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
