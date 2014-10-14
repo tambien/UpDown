@@ -16,7 +16,9 @@ require(["jquery", "Tone/core/Transport", "controller/Conductor", "visuals/Scrol
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
 	console.log("%c↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑", coloring);
 	console.log("%c↑      UP/DOWN      ↑", coloring);
-	console.log("%c↓ © Yotam Mann 2014 ↓", coloring);
+	console.log("%c↑        2014       ↑", coloring);
+	console.log("%c↓     Yotam Mann    ↓", coloring);
+	console.log("%c↓  Sarah Rothberg   ↓", coloring);
 	console.log("%c↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓", coloring);
 
 
