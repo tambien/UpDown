@@ -70,7 +70,9 @@ function(MultiSampler, Mediator, Preset, Conductor, Master){
 				multiSamler.set(Preset.stepwise.get(position));
 				multiSamler.set(Preset.smooth.get(position));
 			}
-			multiSamler.triggerAttackRelease(name,  multiSamler.toSeconds(duration) - 0.3, time);
+			multiSamler.triggerAttackRelease(name,  
+				multiSamler.toSeconds(duration) - multiSamler.toSeconds("16n"), 
+				time);
 		}
 	};
 });
