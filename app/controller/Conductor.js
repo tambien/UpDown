@@ -135,8 +135,14 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 
 	Conductor.prototype.updateLoop = function() {
 		if (this.currentSection !== this.nextSection){
+			if (this.nextSection >= 2 && this.currentSection < 2){
+				Mediator.deferSend("half", 1);
+			} else if (this.nextSection < 2 && this.currentSection >= 2){
+				Mediator.deferSend("half", 0);
+			}
 			this.currentSection = this.nextSection;
 			this.setLoopEnd(this.currentSection);
+			Mediator.deferSend("section", this.currentSection);
 		}
 		//update the chords if necessary
 		this.updateChords(this.currentSection);
