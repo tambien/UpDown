@@ -43,11 +43,13 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 	var BassNote = function(scene, onended){
 		var preset = BassPreset.get(Scroll.getPosition());
 		var object = new THREE.Mesh( geometry, material);
-		object.scale.set(1, preset.startSize, preset.startSize);
-		object.position.y = -50;
+		var initialSize = 0.001;
+		var initialY = -30;
+		object.scale.set(1, initialSize, initialSize);
+		object.position.y = initialY;
 		scene.add(object);
-		var tween = new TWEEN.Tween({y : -50, rotation : 0, size : preset.startSize})
-			.to({y : 200, rotation : preset.rotation, size : preset.endSize}, preset.duration)
+		var tween = new TWEEN.Tween({y : initialY, rotation : 0, size : preset.startSize})
+			.to({y : 50, rotation : preset.rotation, size : preset.endSize}, preset.duration)
 			.onUpdate(function(){
 				object.position.y = this.y;
 				object.rotation.x = this.rotation;
@@ -58,10 +60,18 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 				object = null;
 				scene = null;
 				tween = null;
+				attack = null;
 				if (onended) {
 					onended();
 				}
+			});
+		var attack = new TWEEN.Tween({size : initialSize})
+			.to({size : preset.startSize}, 300)
+			.onUpdate(function(){
+				object.scale.set(1, this.size, this.size);	
 			})
+			.easing( TWEEN.Easing.Elastic.Out)
+			.chain(tween)
 			.start();
 	};
 
