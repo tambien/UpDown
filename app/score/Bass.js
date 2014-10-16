@@ -1,4 +1,4 @@
-define(["channel/Bass", "controller/Conductor"], function(Bass, Conductor){
+define(["channel/Bass", "controller/Conductor", "controller/Mediator"], function(Bass, Conductor, Mediator){
 
 	var bassSynth = [
 
@@ -33,5 +33,6 @@ define(["channel/Bass", "controller/Conductor"], function(Bass, Conductor){
 	Conductor.parseScore(bassSynth, function(time, note, chordName){
 		var chordNote = chordNotes[Conductor.getChord()];
 		Bass.triggerAttackRelease(chordNote[0], "4n", time);
+		Mediator.deferSend("bass");
 	});
 });

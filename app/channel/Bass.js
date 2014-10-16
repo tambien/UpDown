@@ -1,5 +1,5 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/component/Filter", 
-	"controller/Mediator", "preset/Bass", "controller/Conductor"], 
+	"controller/Mediator", "preset/BassSound", "controller/Conductor"], 
 function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
 
 	var lowpass = new Filter({

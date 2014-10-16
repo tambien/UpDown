@@ -70,7 +70,12 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 			if (typeof propA === "number"){
 				ret[attr] = TERP.scale(amount, propA, propB, exponent); 
 			} else if (Array.isArray(propA)){
-				ret[attr] = TERP.scaleArray(amount, propA, propB, exponent); 
+				var len = propA.length;
+				var retArr = new Array(len);
+				for (var i = 0; i < len; i++){
+					retArr[i] = TERP.scale(amount, propA[i], propB[i], exponent); 
+				}
+				ret[attr] = retArr; 
 			} else if (typeof propA === "object"){
 				ret[attr] = this.interpolateBetweenObjects(amount, propA, propB, exponent);
 			}

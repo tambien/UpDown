@@ -4,8 +4,9 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  background-color: black;
-  font-family: monospace; }
+  background-color: white;
+  font-family: monospace;
+  overflow: hidden; }
 
 #ScrollIndicator {
   width: 100%;
@@ -13,11 +14,11 @@
   position: absolute;
   top: 50%;
   left: 0px;
-  background-color: white;
+  background-color: #aaaaaa;
   transition: top 0.25s; }
 
 #TransportPosition {
-  color: white;
+  color: #aaaaaa;
   position: absolute;
   left: 10px;
   bottom: 10px; }

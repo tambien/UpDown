@@ -6,8 +6,22 @@ require.config({
 		"jquery" : "../deps/jquery-2.1.1.min",
 		"jquery.mousewheel" : "../deps/jquery.mousewheel",
 		"TERP" : "https://rawgit.com/tambien/TERP/master/TERP",
-		"Tone" : "../../Tone.js/Tone"
+		"Tone" : "../../Tone.js/Tone",
+		"THREE" : "../deps/three.min",
+		"TWEEN" : "../deps/tween.min",
+		"Stats" : "../deps/Stats"
 	},
+	shim : {
+		"THREE" : {
+			exports : "THREE"
+		},
+		"TWEEN" : {
+			exports : "TWEEN"
+		},
+		"Stats" : {
+			exports : "Stats"
+		}
+	}
 });
 
 require(["jquery", "Tone/core/Transport", "controller/Conductor", "visuals/Main", 

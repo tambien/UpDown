@@ -30,6 +30,16 @@ define(function(){
 			for(var i = 0; i < this._events[event].length; i++){
 				this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
 			}
+		},
+		deferSend	: function(event /* , args... */){
+			this._events = this._events || {};
+			if( event in this._events === false  )	return;
+			var self = this;
+			setTimeout(function(){
+				for(var i = 0; i < self._events[event].length; i++){
+					self._events[event][i].apply(self, Array.prototype.slice.call(arguments, 1));
+				}
+			}, 1);
 		}
 	};
 
