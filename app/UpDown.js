@@ -9,7 +9,8 @@ require.config({
 		"Tone" : "../../Tone.js/Tone",
 		"THREE" : "../deps/three.min",
 		"TWEEN" : "../deps/tween.min",
-		"Stats" : "../deps/Stats"
+		"Stats" : "../deps/Stats",
+		"requestAnimationFrame" : "../deps/requestAnimationFrame"
 	},
 	shim : {
 		"THREE" : {

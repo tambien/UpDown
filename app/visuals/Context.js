@@ -1,4 +1,4 @@
-define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats"], function(THREE, Window, jquery, TWEEN, Stats){
+define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats", "requestAnimationFrame"], function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame){
 
 	/**
 	 *  the threejs context
