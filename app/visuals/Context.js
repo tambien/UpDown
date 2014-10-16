@@ -1,4 +1,5 @@
-define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats", "requestAnimationFrame"], function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame){
+define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats", "requestAnimationFrame", "controller/Mediator"], 
+function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 
 	/**
 	 *  the threejs context
@@ -11,7 +12,7 @@ define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats", "requestAnimati
 		this.renderer.setClearColor( 0xffffff );
 		this.renderer.setSize(Window.width(), Window.height());
 		Window.container.append(this.renderer.domElement);
-		window.camera = this.camera;
+		// window.camera = this.camera;
 
 		//camera positioning
 		this.camera.position.setZ(-100);
@@ -33,6 +34,25 @@ define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats", "requestAnimati
 		//add light
 		// this.backgroundShape();
 		this.animate();
+
+		Mediator.route("half", this.flipCamera.bind(this));
+	};
+
+	Context.prototype.flipCamera = function(half){
+		if (this.tween){
+			this.tween.stop();
+		}
+		var self = this;
+		this.tween = new TWEEN.Tween({rotation : this.camera.rotation.z})
+			.to({rotation : Math.PI * half}, 300)
+			.onUpdate(function(){
+				self.camera.rotation.z = this.rotation;
+			})
+			.onComplete(function(){
+				self.tween = null;
+			})
+			.easing( TWEEN.Easing.Quadratic.InOut)
+			.start();
 	};
 
 	Context.prototype.backgroundShape = function(){
