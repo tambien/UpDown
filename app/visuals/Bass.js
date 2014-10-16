@@ -64,7 +64,8 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 				if (onended) {
 					onended();
 				}
-			});
+			})
+			.easing( TWEEN.Easing.Linear.None);
 		var attack = new TWEEN.Tween({size : initialSize})
 			.to({size : preset.startSize}, 300)
 			.onUpdate(function(){
