@@ -22,3 +22,27 @@
   position: absolute;
   left: 10px;
   bottom: 10px; }
+
+#FrameContainer {
+  position: absolute;
+  height: 240%;
+  top: 50%;
+  left: 50%;
+  margin-left: -320px;
+  margin-top: -120%;
+  width: 640px; }
+  #FrameContainer .Frame {
+    height: calc(100% / 3);
+    left: 10%;
+    width: 80%;
+    top: 0px;
+    position: absolute;
+    position: absolute;
+    z-index: 1000; }
+    #FrameContainer .Frame #Content {
+      height: 80%;
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      top: 10%;
+      background-color: #aaaaaa; }

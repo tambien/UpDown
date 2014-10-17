@@ -18,14 +18,14 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 	 *  @type {Number}
 	 */
 	var scrollingSeconds = 5;
-	var scrollingDivisor = scrollingSeconds * 20000;
+	var scrollingDivisor = scrollingSeconds * 5000;
 
-	var maxDelta = 1500;
+	var maxDelta = 500;
 
 	$("#Container").on("mousewheel", function(e){
 		e.preventDefault();
 		needsUpdate = true;
-		var deltaY = e.deltaY;
+		var deltaY = -e.deltaY;
 		if (deltaY > 0){
 			deltaY = Math.min(maxDelta, deltaY);
 		} else {
@@ -39,6 +39,7 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 			console.log("BOTTOM");
 			scrollPosition = 0.0;
 		}
+		Mediator.send("rawscroll", scrollPosition);
 	});
 
 	Mediator.route("slowUpdate", function(updateRate){

@@ -25,3 +25,39 @@
 	left: 10px;
 	bottom: 10px;
 }
+
+#FrameContainer {
+
+	$FrameHeight : 80%;
+	$FrameWidth: 640px;
+	$FrameCount : 3;
+
+	position: absolute;
+	height: $FrameHeight * $FrameCount;
+	top: 50%;
+	left: 50%;
+	margin-left: -$FrameWidth/2;
+	margin-top: - ($FrameHeight * $FrameCount) / 2;
+	width: $FrameWidth;
+
+
+	.Frame {
+		height: calc(100% / #{$FrameCount});
+		left: 10%;
+		width: 80%;
+		top: 0px;
+		// transition: translate 0.1s;
+		position: absolute;
+		position: absolute;
+		z-index: 1000;
+
+		#Content {
+			height: 80%;
+			position: absolute;
+			left: 10%;
+			width: 80%;
+			top: 10%;
+			background-color: #aaaaaa;
+		}
+	}
+}

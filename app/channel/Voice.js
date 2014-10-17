@@ -73,6 +73,7 @@ function(MultiSampler, Mediator, Preset, Conductor, Master){
 			multiSamler.triggerAttackRelease(name,  
 				multiSamler.toSeconds(duration) - multiSamler.toSeconds("16n"), 
 				time);
+			Mediator.deferSend("voice");
 		}
 	};
 });

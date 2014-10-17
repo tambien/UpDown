@@ -1,4 +1,5 @@
-define(["visuals/ScrollIndicator", "visuals/Bass"], function(ScrollIndicator, BassVisuals){
+define(["visuals/ScrollIndicator", "visuals/Bass", "interface/Frame"], 
+function(ScrollIndicator, BassVisuals, Frame){
 	
 	var bassVis = new BassVisuals();
 });
