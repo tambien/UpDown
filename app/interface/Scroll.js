@@ -32,12 +32,12 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 			deltaY = Math.max(-maxDelta, deltaY);
 		}
 		scrollPosition -= deltaY / scrollingDivisor;
-		if (scrollPosition >= 1){
+		if (scrollPosition >= 0.999){
 			console.log("TOPPPPP");
 			scrollPosition = 0.999;
-		} else if (scrollPosition <= 0){
+		} else if (scrollPosition <= 0.001){
 			console.log("BOTTOM");
-			scrollPosition = 0.0;
+			scrollPosition = 0.001;
 		}
 		Mediator.send("rawscroll", scrollPosition);
 	});
