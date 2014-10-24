@@ -55,5 +55,5 @@ function(Scroll, Window, $, Mediator){
 		});	
 	};
 
-	return new FrameController();
+	// return new FrameController();
 });

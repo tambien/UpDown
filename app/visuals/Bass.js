@@ -24,7 +24,7 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 	
 	var material = new THREE.MeshLambertMaterial({
 		transparent: true,
-		opacity : 0.9,
+		opacity : 0.1,
 		blending: THREE.SubtractiveBlending,
 		// blending: THREE.MultiplyBlending,
 		depthTest : false,
