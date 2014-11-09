@@ -23,6 +23,9 @@ function(MultiSampler, Mediator, Preset, Conductor, Master){
 		"filter" : {
 			"type" : "lowpass",
 			"rolloff" : -48,
+		},
+		"filterEnvelope" : {
+			"exponent" : 2
 		}
 	});
 

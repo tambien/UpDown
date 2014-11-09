@@ -1,15 +1,23 @@
-define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP"], function(Mediator, Context, Window, TERP){
+define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "preset/PianoVisuals"], 
+	function(Mediator, Context, Window, TERP, Preset){
 
 	"use strict";
+
+	var position = 0.5;
 
 	var PianoVisuals = function(parameters){
 		Mediator.route("piano", this.note.bind(this));
 	};
 
 	PianoVisuals.prototype.note = function(vals){
+		var preset = Preset.get(position);
+		var minSpeed = preset.minSpeed;
+		var maxSpeed = preset.maxSpeed;
+		var width = preset.size;
 		for (var i = 0; i < vals.length; i++){
-			var speed = TERP.scale(vals[i], 250, 800, 1500, 2000);
-			new PianoNote(Context.background, speed, TERP.scale(i, 0, vals.length, -10, 10));
+			var speed = TERP.scale(vals[i], 250, 800, minSpeed, maxSpeed);
+			var offset = TERP.scale(i, 0, vals.length, -10, 10);
+			new PianoNote(Context.background, speed, offset, width);
 		}
 	};
 
@@ -29,13 +37,20 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP"], f
 
 	var geometry = new THREE.PlaneGeometry(20, 3, 32);
 
-	var PianoNote = function(scene, speed, offset){
+	Mediator.route("scroll", function(pos){
+		position = pos;
+		var preset = Preset.get(pos); 
+		var color = preset.color;
+		material.color.setRGB(color[0], color[1], color[2]);
+	});
+
+	var PianoNote = function(scene, speed, offset, width){
 		// var preset = BassPreset.get(Scroll.getPosition());
 		var object = new THREE.Mesh( geometry, material);
-		var angle = (Window.width() / Window.height());
+		var angle = (Window.height() / Window.width());
 		object.rotation.z = -angle * (Math.PI / 4);
-		var startX = -40;
-		var endX = 40;
+		var startX = -70;
+		var endX = 70;
 		//y = mx + b
 		var startY = -(startX * angle + offset);
 		var endY = -(endX * angle + offset);

@@ -77,15 +77,15 @@ define(["preset/Interpolator"], function(Interpolator){
 			},
 			"filterEnvelope" : {
 				"sustain" : 0.4,
-				"min" : 200,
-				"max" : 10000
+				"min" : 400,
+				"max" : 4600
 			},
 			"filter" : {
-				"Q" : 8
+				"Q" : 10
 			}
 		},
-		/*//middle
-		{
+		//middle
+		/*{
 			"envelope" : {
 				"sustain" : 0.5
 			},
@@ -106,7 +106,7 @@ define(["preset/Interpolator"], function(Interpolator){
 			"filterEnvelope" : {
 				"sustain" : 1,
 				"min" : 20,
-				"max" : 2300
+				"max" : 2000
 			},
 			"filter" : {
 				"Q" : 5

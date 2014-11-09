@@ -7,7 +7,18 @@ define(["controller/Mediator", "TERP", "interface/Window"], function(Mediator, T
 
 	Mediator.route("scroll", function(position){
 		var top = TERP.scale(position, Window.height() - indicatorHeight, 0);
-		indicator.css("top", top);
+		if (position > 0.5){
+			indicator.css({
+				"top" : top,
+				"background-color" : "#00ffff"
+			});
+
+		} else {
+			indicator.css({
+				"top" : top,
+				"background-color" : "#ff00ff"
+			});			
+		}
 	});
 	
 });

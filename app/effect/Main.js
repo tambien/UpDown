@@ -10,7 +10,8 @@ define(["Tone/effect/JCReverb", "Tone/core/Bus"], function(Reverb){
 	// 		reverb.toMaster();
 	// 	},
 	// });
-	// reverb = new Reverb(0.4);
-	// reverb.receive("reverb");
-	// reverb.toMaster();
+	reverb = new Reverb(0.4);
+	window.reverb = reverb;
+	reverb.receive("reverb");
+	reverb.toMaster();
 });

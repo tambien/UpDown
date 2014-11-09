@@ -20,15 +20,15 @@ define(["channel/Piano", "controller/Conductor", "controller/Mediator", "Tone/co
 	];
 
 	var chordNotes = {
-		"Dm" : ["C4", "D4", "F4", "A4"],
-		"A7" : ["C#4", "E4", "G4", "A4"],
-		"C7" : ["C4", "E4", "F#4", "A#4"],
-		"Fmaj" : ["C4", "D4", "F4", "A4"],
-		"D7" : ["F#4", "A#4", "C5", "E5"],
-		"Gmaj" : ["F#4", "A4", "B4", "D5"],
-		"Cmaj" : ["G4", "B4", "C5", "E5"],
+		"Dm" : ["D4", "F4", "C4", "A4"],
+		"A7" : ["G4", "C#4", "A4", "E4"],
+		"C7" : ["C4", "A#4", "E4", "F#4"],
+		"Fmaj" : [ "F4", "C4","D4", "A4"],
+		"D7" : ["C5", "F#4", "E5", "A#4"],
+		"Gmaj" : ["A4","D5", "F#4",  "B4"],
+		"Cmaj" : ["G4", "C5", "E5", "B4"],
 	};
-
+	
 	//convert them to frequencies
 	for (var chord in chordNotes){
 		var arr = chordNotes[chord];

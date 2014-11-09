@@ -21,7 +21,8 @@
     position: absolute;
     top: calc(50% - 5px);
     right: 1px;
-    background-color: rgba(0, 225, 255, 0.9);
+    background-color: #00ffff;
+    opacity: 0.9;
     transition: top 0.25s; }
 
 #TransportPosition {
