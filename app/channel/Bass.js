@@ -51,28 +51,24 @@ function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
 	});
 
 	monoSynth.chain(monoSynth, lowpass, highpass, compressor, Master);
-	monoSynth.setVolume(-25);	
+	monoSynth.setVolume(-34);	
 
-	window.bassSynth = monoSynth;
-
-	// EVENTS //
-
+	var hasChanged = false;
 	var position = 0.5;
-	var wasChangedd = false;
-
 	Mediator.route("scroll", function(pos){
-		wasChangedd = true;
 		position = pos;
+		hasChanged = true;
 	});
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
-			if (wasChangedd){
-				wasChangedd = false;
+			if (hasChanged){
+				hasChanged = false;
 				monoSynth.set(Preset.stepwise.get(position));
 				monoSynth.set(Preset.smooth.get(position));
 			}
 			monoSynth.triggerAttackRelease(note, duration, time);
-		}
+		},
+		output : monoSynth
 	};
 });

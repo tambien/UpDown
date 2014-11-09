@@ -1,9 +1,16 @@
-define(["Tone/effect/JCReverb", "Tone/core/Bus"], function(JCReverb){
+define(["Tone/effect/JCReverb", "Tone/core/Bus"], function(Reverb){
 
-	var reverb = new JCReverb(0.6);
-	reverb.receive("reverb");
-	reverb.toMaster();
+	var reverb;
 
-	window.reverb = reverb;
-	
+	// var reverb = new Reverb({
+	// 	url : "./audio/IR.wav",
+	// 	onload : function(){
+	// 		console.log("wave loaded");
+	// 		reverb.receive("reverb");
+	// 		reverb.toMaster();
+	// 	},
+	// });
+	// reverb = new Reverb(0.4);
+	// reverb.receive("reverb");
+	// reverb.toMaster();
 });

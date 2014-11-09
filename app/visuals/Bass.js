@@ -11,7 +11,7 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 	};
 
 	BassVisuals.prototype.note = function(){
-		new BassNote(Context.scene);
+		new BassNote(Context.background);
 	};
 
 	BassVisuals.prototype.dispose = function(){
@@ -32,7 +32,7 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 		color : 0x00ff00
 	});
 
-	var geometry = new THREE.BoxGeometry( 100, 10, 10);
+	var geometry = new THREE.BoxGeometry( 200, 10, 10, 1, 1);
 
 	Mediator.route("scroll", function(position){
 		var preset = BassPreset.get(position); 

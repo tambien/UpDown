@@ -1,21 +1,20 @@
-define(["preset/Interpolator"], function(Interpolator){
+define(["preset/Interpolator", "channel/Bass"], function(Interpolator, Bass){
 
 	var BassSynthStep = new Interpolator([
-		//bottom
+		//top
 		{
 			"oscillator" : {
-				"type" : "pwm",
-				"modulationFrequency" : 0.07
+				"type" : "triangle",
 			},
 			"envelope" : {
-				"attack" : "16n",
-				"decay" : "8n",
-				"release" : "4n"
+				"attack" : "128n",
+				"decay" : "4n",
+				"release" : "2n"
 			},
 			"filterEnvelope" : {
-				"attack" : "16n",
-				"decay" : "16n",
-				"release" : "8n",
+				"attack" : "32n",
+				"decay" : "32n",
+				"release" : "4n",
 			},
 		},
 		//middle
@@ -34,40 +33,26 @@ define(["preset/Interpolator"], function(Interpolator){
 				"release" : "4t",
 			},
 		},
-		//top
+		//bottom
 		{
 			"oscillator" : {
-				"type" : "triangle",
+				"type" : "pwm",
+				"modulationFrequency" : 0.07
 			},
 			"envelope" : {
-				"attack" : "128n",
-				"decay" : "4n",
-				"release" : "2n"
+				"attack" : "16n",
+				"decay" : "8n",
+				"release" : "4n"
 			},
 			"filterEnvelope" : {
-				"attack" : "32n",
-				"decay" : "32n",
-				"release" : "4n",
+				"attack" : "16n",
+				"decay" : "16n",
+				"release" : "8n",
 			},
-		}
+		},
 	], "step");
 
 	var BassSynthSmooth = new Interpolator([
-		//bottom
-		{
-			"envelope" : {
-				"sustain" : 0.2,
-			},
-			"filterEnvelope" : {
-				"sustain" : 0.5,
-				"min" : 20,
-				"max" : 4000
-			},
-			"filter" : {
-				"Q" : 10,
-				"gain" : 7,
-			}
-		},
 		//top
 		{
 			"envelope" : {
@@ -82,7 +67,22 @@ define(["preset/Interpolator"], function(Interpolator){
 				"Q" : 30,
 				"gain" : 6,
 			}
-		}
+		},
+		//bottom
+		{
+			"envelope" : {
+				"sustain" : 0.05,
+			},
+			"filterEnvelope" : {
+				"sustain" : 0.5,
+				"min" : 20,
+				"max" : 4000
+			},
+			"filter" : {
+				"Q" : 12,
+				"gain" : 7,
+			}
+		},
 	], "smooth", 2);
 
 	return {

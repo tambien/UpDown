@@ -33,10 +33,10 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 		}
 		scrollPosition -= deltaY / scrollingDivisor;
 		if (scrollPosition >= 0.999){
-			console.log("TOPPPPP");
+			// console.log("TOPPPPP");
 			scrollPosition = 0.999;
 		} else if (scrollPosition <= 0.001){
-			console.log("BOTTOM");
+			// console.log("BOTTOM");
 			scrollPosition = 0.001;
 		}
 		Mediator.send("rawscroll", scrollPosition);
@@ -47,6 +47,10 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 			Mediator.send("scroll", scrollPosition, updateRate);
 			needsUpdate = false;
 		}
+	});
+
+	Mediator.route("start", function(updateRate){
+		Mediator.send("scroll", scrollPosition, updateRate);
 	});
 
 	window.setScroll = function(position){

@@ -1,7 +1,11 @@
-define(["visuals/ScrollIndicator", "visuals/Bass", "interface/Frame", "visuals/Voice"], 
-function(ScrollIndicator, BassVisuals, Frame, VoiceVisuals){
+define(["visuals/Bass", "visuals/Voice", "visuals/Pictures", "visuals/Piano"], 
+function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals){
 	
-	var bassVis = new BassVisuals();
+	var bassVis = new BassVisuals(); 
 
 	var voiceVis = new VoiceVisuals();
+
+	var pianoVis = new PianoVisuals();
+
+	// var pics = new Pictures();
 });

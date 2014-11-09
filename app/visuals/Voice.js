@@ -12,7 +12,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 		color : 0xff0f00
 	});
 
-	var geometry = new THREE.SphereGeometry(10, 250, 250);
+	var geometry = new THREE.SphereGeometry(10, 32, 32);
 
 	Mediator.route("scroll", function(position){
 		var preset = VoicePreset.get(position); 
@@ -26,7 +26,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 	var VoiceVisuals = function(){
 		this.object = new THREE.Mesh( geometry, material);
 		this.object.scale.set(0.001, 0.001, 0.001);
-		Context.scene.add(this.object);
+		Context.background.add(this.object);
 		Mediator.route("voice", this.note.bind(this));
 	};
 

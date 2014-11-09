@@ -47,43 +47,40 @@ function(MultiSampler, Mediator, Preset, Conductor, Master){
 	// CONECTIONS //
 
 	multiSamler.toMaster();
-	multiSamler.setVolume(8);
-	multiSamler.send("reverb", 0.4);
+	multiSamler.setVolume(0);
+	multiSamler.send("reverb", 0.3);
 
-
-	// EVENTS //
-
+	var hasChanged = false;
 	var position = 0.5;
-	var wasChangedd = false;
-
 	Mediator.route("scroll", function(pos){
-		wasChangedd = true;
 		position = pos;
+		hasChanged = true;
 	});
 
-	window.voice = multiSamler;
 	
 	return {
 		triggerAttackRelease : function(name, duration, time){
-			if (wasChangedd){
-				wasChangedd = false;
+			if (hasChanged){
+				hasChanged = false;
 				multiSamler.set(Preset.stepwise.get(position));
 				multiSamler.set(Preset.smooth.get(position));
 			}
+			var noteDur = multiSamler.toSeconds(duration);
 			multiSamler.triggerAttackRelease(name,  
-				multiSamler.toSeconds(duration) - multiSamler.toSeconds("16n"), 
+				noteDur - multiSamler.toSeconds("16n"), 
 				time);
 			if (name === "some_down" || name === "some_up"){
 				setTimeout(function(){
-					Mediator.deferSend("voice");
+					Mediator.deferSend("voice", name, noteDur);
 				}, 400);
 			} else if (name === "down_down"){
 				setTimeout(function(){
-					Mediator.deferSend("voice");
+					Mediator.deferSend("voice", name, noteDur);
 				}, 200);
 			} else {
-				Mediator.deferSend("voice");
+				Mediator.deferSend("voice", name, noteDur);
 			}
-		}
+		},
+		output : multiSamler
 	};
 });

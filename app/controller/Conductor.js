@@ -50,6 +50,8 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		Transport.setInterval(this.updateLoop.bind(this), "3m");
 		this.parseScore(chordChanges, this.chordChange.bind(this));
 		Mediator.route("scroll", this.setTempo.bind(this));
+		Mediator.route("start", this.start.bind(this));
+		Mediator.route("stop", this.stop.bind(this));
 		this.setTempo(this.progress);
 	};
 
@@ -191,7 +193,16 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		this.setLoopStart(this.nextSection);
 		this.setLoopEnd(this.nextSection);
 		this.chordNumber = this.nextSection;
+		if (this.nextSection >= 2){
+			Mediator.deferSend("half", 1);
+		} else if (this.nextSection < 2){
+			Mediator.deferSend("half", 0);
+		}
 		Transport.start("+0.2", (this.nextSection * 3).toString() + ":0");
+	};
+
+	Conductor.prototype.stop = function(){
+		Transport.stop();
 	};
 
 	 return new Conductor();

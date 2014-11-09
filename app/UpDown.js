@@ -5,7 +5,7 @@ require.config({
 		"domReady" : "../deps/domReady",
 		"jquery" : "../deps/jquery-2.1.1.min",
 		"jquery.mousewheel" : "../deps/jquery.mousewheel",
-		"TERP" : "https://rawgit.com/tambien/TERP/master/TERP",
+		"TERP" : "../deps/TERP",
 		"Tone" : "../../Tone.js/Tone",
 		"THREE" : "../deps/three.min",
 		"TWEEN" : "../deps/tween.min",
@@ -25,9 +25,9 @@ require.config({
 	}
 });
 
-require(["jquery", "Tone/core/Transport", "controller/Conductor", "visuals/Main", 
-	"score/Bass", "score/Voice", "interface/Scroll", "effect/Main"],
- function($, Transport, Conductor){
+require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main", 
+	"score/Main", "interface/Main", "effect/Main", "channel/Main"],
+ function($, Transport, Mediator){
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
 	console.log("%c↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑", coloring);
 	console.log("%c↑      UP/DOWN      ↑", coloring);
@@ -39,10 +39,16 @@ require(["jquery", "Tone/core/Transport", "controller/Conductor", "visuals/Main"
 
 	$("#Container").one("mousedown touchstart", function(e){
 		console.log("starting");
-		Conductor.start();
+		Mediator.send("start");
 	});
 
-	Transport.setInterval(function(){
+	$(document).keydown(function(e){
+		if (e.keyCode === 32){ //space bar
+			Mediator.send("stop");
+		}
+	});
+
+	setInterval(function(){
 		$("#TransportPosition").text(Transport.getTransportTime());
-	}, "4n");
+	}, 400);
 });
