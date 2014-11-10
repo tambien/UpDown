@@ -20,7 +20,7 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 	var scrollingSeconds = 5;
 	var scrollingDivisor = scrollingSeconds * 5000;
 
-	var maxDelta = 500;
+	var maxDelta = 100;
 
 	$("#Container").on("mousewheel", function(e){
 		e.preventDefault();

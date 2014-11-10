@@ -51,7 +51,6 @@ function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
 	});
 
 	monoSynth.chain(monoSynth, lowpass, highpass, compressor, Master);
-	monoSynth.setVolume(-34);	
 
 	var hasChanged = false;
 	var position = 0.5;

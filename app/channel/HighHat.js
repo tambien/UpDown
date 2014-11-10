@@ -1,6 +1,7 @@
 define(["Tone/instrument/NoiseSynth", "controller/Mediator",
- "preset/HighHatSound", "controller/Conductor", "Tone/core/Master", "Tone/core/Transport", "Tone/effect/Distortion"], 
-function(NoiseSynth, Mediator, Preset, Conductor, Master, Transport, Distortion){
+ "preset/HighHatSound", "controller/Conductor", "Tone/core/Master", "Tone/core/Transport", 
+ "Tone/effect/Distortion", "Tone/component/PanVol"], 
+function(NoiseSynth, Mediator, Preset, Conductor, Master, Transport, Distortion, PanVol){
 
 	var dist = new Distortion(60);
 

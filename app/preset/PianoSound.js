@@ -23,7 +23,7 @@ define(["preset/Interpolator"], function(Interpolator){
 		},
 		//bottom
 		{
-			"volume" : -20,
+			"volume" : -10,
 			"oscillator" : {
 				"type" : "pwm",
 				"modulationFrequency" : 0.7

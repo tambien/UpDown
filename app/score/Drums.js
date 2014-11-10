@@ -19,11 +19,11 @@ function(HighHat, Conductor, Mediator, Kick){
 	//3-5 : eighth notes
 	for (measure = 3; measure <= 5; measure++){
 		for (beat = 0; beat < 4; beat++){
-			for (eighth = 0; eighth < 2; eighth++){
-				if (beat === 1 && eighth === 0){
+			for (sixteenth = 0; sixteenth < 4; sixteenth++){
+				if (beat === 1 && sixteenth === 0){
 
 				} else {
-					sixteenth = eighth * 2;
+					// sixteenth = eighth * 2;
 					highhat.push(measure + ":" + beat +":"+sixteenth);
 				}
 			}

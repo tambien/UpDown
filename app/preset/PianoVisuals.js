@@ -17,8 +17,8 @@ define(["preset/Interpolator"], function(Interpolator){
 		},
 		//bottom
 		{
-			"minSpeed" : 1000,
-			"maxSpeed" : 1600,
+			"minSpeed" : 2000,
+			"maxSpeed" : 3000,
 			"color" : [1, 0.2, 0],
 			"size" : 1
 		},

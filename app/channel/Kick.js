@@ -5,7 +5,7 @@ function(NoiseSynth, Mediator, Preset, Conductor, Master, Compressor){
 	var comp = new Compressor({
 		"attack" : 0.001,
 		"release" : 0.001,
-		"threshold" : -14,
+		"threshold" : -16,
 		"ratio" : 10
 	});
 

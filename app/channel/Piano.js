@@ -10,7 +10,6 @@ function(MonoSynth, Master, PolySynth, PanVol, Mediator, Preset){
 	panner.toMaster();
 
 	panner.setPan(0.2);
-	panner.setVolume(-12);
 
 	panner.send("reverb", 0.1);
 
@@ -51,6 +50,6 @@ function(MonoSynth, Master, PolySynth, PanVol, Mediator, Preset){
 			}
 			monoSynth.triggerAttackRelease(note, duration, time);
 		},
-		output : monoSynth
+		output : panner
 	};
 });
