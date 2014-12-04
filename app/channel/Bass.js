@@ -50,7 +50,7 @@ function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
 		}
 	});
 
-	monoSynth.chain(monoSynth, lowpass, highpass, compressor, Master);
+	monoSynth.chain(lowpass, highpass, compressor, Master);
 
 	var hasChanged = false;
 	var position = 0.5;
@@ -66,6 +66,7 @@ function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
 				monoSynth.set(Preset.stepwise.get(position));
 				monoSynth.set(Preset.smooth.get(position));
 			}
+			//add some randomness in the duration
 			monoSynth.triggerAttackRelease(note, duration, time);
 		},
 		output : monoSynth
