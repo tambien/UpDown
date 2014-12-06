@@ -1,6 +1,6 @@
-define(["preset/Interpolator"], function(Interpolator){
+define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var BassVizSmooth = new Interpolator([
+	var BassVizSmoothData = [
 		//top
 		{
 			"rotation" : -1,
@@ -28,7 +28,12 @@ define(["preset/Interpolator"], function(Interpolator){
 			"endSize" : 1,
 			"attackTime" : 700,
 		},
-	], "smooth");
+	];
+	
+	GUI.addPreset("Bass Visuals", BassVizSmoothData);
+
+	var BassVizSmooth = new Interpolator(BassVizSmoothData, "smooth");
+
 
 	return BassVizSmooth;
 });

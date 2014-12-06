@@ -7,7 +7,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	 *  @param {Array.<Object>} presetarray
 	 */
 	var Interpolator = function(presetarray, type, exponent){
-		this.presetarray = presetarray.reverse();
+		this.presetarray = presetarray.slice(0).reverse();
 		this.exponent = exponent || 1;
 		this.type = type || "smooth";
 		if (this.presetarray.length < 2){
@@ -26,6 +26,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	 */
 	Interpolator.prototype.get = function(position){
 		if (this.type === "smooth"){
+			position *= (this.presetarray.length - 1);
 			var posA = Math.floor(position);
 			var posB = Math.ceil(position);
 			var amount = position - posA;

@@ -1,6 +1,6 @@
-define(["preset/Interpolator", "channel/Bass"], function(Interpolator, Bass){
+define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(Interpolator, Bass, GUI){
 
-	var BassSynthStep = new Interpolator([
+	var BassSynthStepData = [
 		//top
 		{
 			"oscillator" : {
@@ -50,9 +50,9 @@ define(["preset/Interpolator", "channel/Bass"], function(Interpolator, Bass){
 				"release" : "8n",
 			},
 		},
-	], "step");
+	];
 
-	var BassSynthSmooth = new Interpolator([
+	var BassSynthSmoothData = [
 		//top
 		{
 			"envelope" : {
@@ -83,7 +83,12 @@ define(["preset/Interpolator", "channel/Bass"], function(Interpolator, Bass){
 				"gain" : 7,
 			}
 		},
-	], "smooth", 2);
+	];
+
+	GUI.addPreset("Bass Synth Smooth", BassSynthSmoothData);
+
+	var BassSynthStep = new Interpolator(BassSynthStepData, "step");
+	var BassSynthSmooth = new Interpolator(BassSynthSmoothData, "smooth", 2);
 
 	return {
 		stepwise : BassSynthStep,

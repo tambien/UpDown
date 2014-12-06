@@ -10,11 +10,15 @@ require.config({
 		"THREE" : "../deps/three.min",
 		"TWEEN" : "../deps/tween.min",
 		"Stats" : "../deps/Stats",
-		"requestAnimationFrame" : "../deps/requestAnimationFrame"
+		"requestAnimationFrame" : "../deps/requestAnimationFrame",
+		"dat" : "../deps/dat.gui"
 	},
 	shim : {
 		"THREE" : {
 			exports : "THREE"
+		},
+		"dat" : {
+			exports : "dat"
 		},
 		"TWEEN" : {
 			exports : "TWEEN"
