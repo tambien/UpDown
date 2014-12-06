@@ -4,8 +4,8 @@ function(Bass, Piano, Voice, HH, Kick, GUI){
 	var volumes = {
 		Bass : -34,
 		Piano : -18,
-		Voice : 0,
-		HH : -62,
+		Voice : -3,
+		HH : -15,
 		Kick : -12
 	};
 
@@ -15,24 +15,18 @@ function(Bass, Piano, Voice, HH, Kick, GUI){
 	HH.output.setVolume(volumes.HH);
 	Kick.output.setVolume(volumes.Kick);
 
-	GUI.addSlider("Channels", "Bass Volume", volumes.Bass, -100, 0, function(val){
-		Bass.output.setVolume(val);
-	});
+	var folderName = "Levels (db)";
 
-	GUI.addSlider("Channels", "Piano Volume", volumes.Piano, -100, 0, function(val){
-		Piano.output.setVolume(val);
-	});
+	GUI.addVolumeSlider(folderName, "Bass Volume", Bass.output);
 
-	GUI.addSlider("Channels", "Voice Volume",volumes.Voice, -100, 0, function(val){
-		Voice.output.setVolume(val);
-	});
+	GUI.addVolumeSlider(folderName, "Piano Volume", Piano.output);
 
-	GUI.addSlider("Channels", "HH Volume", volumes.HH, -100, 0, function(val){
-		HH.output.setVolume(val);
-	});
+	GUI.addVolumeSlider(folderName, "Voice Volume", Voice.output);
 
-	GUI.addSlider("Channels", "Kick Volume", volumes.Kick, -100, 0, function(val){
-		Kick.output.setVolume(val);
-	});
+	GUI.addVolumeSlider(folderName, "HH Volume", HH.output);
+
+	GUI.addVolumeSlider(folderName, "Kick Volume", Kick.output);
+
+	// GUI.addButton(folderName)
 	
 });
