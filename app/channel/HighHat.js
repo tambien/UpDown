@@ -1,11 +1,11 @@
 define(["Tone/instrument/NoiseSynth", "controller/Mediator",
  "preset/HighHatSound", "controller/Conductor", "Tone/core/Master", "Tone/core/Transport", 
- "Tone/effect/Distortion", "Tone/component/PanVol"], 
-function(NoiseSynth, Mediator, Preset, Conductor, Master, Transport, Distortion, PanVol){
+ "Tone/component/Filter", "Tone/component/PanVol", "interface/GUI"], 
+function(NoiseSynth, Mediator, Preset, Conductor, Master, Transport, Filter, PanVol, GUI){
 
-	var dist = new Distortion(60);
+	var synth = new NoiseSynth();
 
-	var synth = new NoiseSynth({
+	GUI.addTone("High Hat", "synth", synth, {
 		"noise" : {
 			"type" : "white"
 		},
@@ -32,15 +32,29 @@ function(NoiseSynth, Mediator, Preset, Conductor, Master, Transport, Distortion,
 		}
 	});
 
+	var filt = new Filter();
+
+	GUI.addTone("High Hat", "filter", filt, {
+		"frequency" : 8500,
+		"type" : "highpass",
+		"Q" : 4,
+	});
+
 
 	// CONECTIONS //
 
-	synth.connect(dist);
-	dist.toMaster();
-	synth.send("reverb", 0.5);
+	synth.connect(filt);
+	filt.toMaster();
 
-	window.highhat = synth;
+	//reverb
+	var revAmount = synth.send("reverb", synth.dbToGain(-50));
 
+	GUI.addSlider("High Hat", "reverb", -50, -100, 0, function(val){
+		revAmount.gain.value = filt.dbToGain(val);
+	});
+
+
+	//scroll tracking
 	var hasChanged = false;
 	var position = 0.5;
 	Mediator.route("scroll", function(pos){
