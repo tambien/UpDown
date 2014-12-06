@@ -1,39 +1,22 @@
-define(["preset/Interpolator"], function(Interpolator){
+define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var KickSmooth = new Interpolator([
-		//top
+	var KickData = 
+	[
 		{
-			"filter" : {
-				"Q" : 10,
-			},
-			"envelope" : {
-				"attack" : 0.005,
-				"decay" : 0.2,
-			},
-			"filterEnvelope" : {
-				"attack" : 0.006,
-				"decay" : 0.1,
-				"min" : 20,
-				"max" : 350,
+			"ampEnv": {
+				"decay": 0.27
 			}
 		},
-		//bottom
 		{
-			"filter" : {
-				"Q" : 4,
-			},
-			"envelope" : {
-				"attack" : 0.04,
-				"decay" : 0.1,
-			},
-			"filterEnvelope" : {
-				"attack" : 0.004,
-				"decay" : 0.1,
-				"min" : 10,
-				"max" : 500,
+			"ampEnv": {
+				"decay": 4.4
 			}
-		},
-	], "smooth", 2);
+		}
+	]
+
+	var KickSmooth = new Interpolator(KickData, "smooth");
+
+	GUI.addPreset("Kick Smooth", KickData);
 
 	return KickSmooth;
 });
