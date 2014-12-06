@@ -1,4 +1,4 @@
-define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
+define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GUI){
 
 	var BassVizSmoothData = [
 		//top
