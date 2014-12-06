@@ -20,7 +20,7 @@ define(["dat"], function(dat){
 		//add an print button
 		topFolder.add({
 			"print" : function(){
-				console.log(JSON.stringify(presets, undefined, 4));
+				console.log(JSON.stringify(presets, undefined, "\t"));
 			}
 		}, "print");
 	}
