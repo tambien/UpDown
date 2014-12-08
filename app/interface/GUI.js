@@ -18,6 +18,16 @@ define(["dat"], function(dat){
 			.onChange(onchange);
 	}
 
+	function addSignal(folderName, title, signal){
+		var folder = getFolder(folderName, GUI);
+		var obj = {};
+		obj[title] = current;
+		folder.add(obj, title)
+			.onChange(function(val){
+				signal.setValue(val);
+			});
+	}
+
 	function addCheckbox(folderName, title, current, onchange){
 		var folder = getFolder(folderName, GUI);
 		var obj = {};
@@ -28,8 +38,8 @@ define(["dat"], function(dat){
 
 	function addVolumeSlider(folderName, title, vol, min, max){
 		var folder = getFolder(folderName, GUI);
-		min = min || -70;
-		max = max || 0;
+		min = min || -40;
+		max = max || 6;
 		var obj = {};
 		var currentValue = vol.gainToDb(vol.output.gain.value);
 		obj[title] = currentValue;
@@ -109,6 +119,7 @@ define(["dat"], function(dat){
 		addTone : addTone,
 		addVolumeSlider : addVolumeSlider,
 		addCheckbox : addCheckbox,
-		addObject : addObject
+		addObject : addObject,
+		addSignal : addSignal
 	};
 });
