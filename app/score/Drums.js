@@ -1,5 +1,5 @@
-define(["channel/HighHat", "controller/Conductor", "controller/Mediator", "channel/Kick"], 
-function(HighHat, Conductor, Mediator, Kick){
+define(["channel/HighHat", "controller/Conductor", "controller/Mediator", "channel/Kick", "channel/Snare"], 
+function(HighHat, Conductor, Mediator, Kick, Snare){
 
 	//generate highhat patterns
 	var highhat = [];
@@ -67,6 +67,23 @@ function(HighHat, Conductor, Mediator, Kick){
 		["11:0", "G1"], ["11:1", "G1"], ["11:2", "G1"], ["11:3", "G1"], 
 	];
 
+	var snare = [
+		["0:1"], ["0:3"], 
+		["1:1"], ["1:3"], 
+		["2:1"], ["2:3"], 
+
+		["3:1"], ["3:3"], 
+		["4:1"], ["4:3"], 
+		["5:1"], ["5:3"], 
+
+		["6:1"], ["6:2:2"], 
+		["7:1"], ["7:2:2"], 
+		["8:1"], ["8:2:2"], 
+
+		["9:1"],   ["9:2:2"],  ["9:3:1"], 
+		["10:1"], ["10:2:2"], ["10:3:1"], 
+		["11:1"], ["11:2:2"], ["11:3:1"], 
+	];
 
 	Conductor.parseScore(highhat, function(time, note, chordName){
 		HighHat.triggerAttackRelease("8n", time);
@@ -76,5 +93,10 @@ function(HighHat, Conductor, Mediator, Kick){
 	Conductor.parseScore(kick, function(time, note, chordName){
 		Kick.triggerAttackRelease("8n", time, note);
 		Mediator.deferSend("kick");
+	});
+
+	Conductor.parseScore(snare, function(time){
+		Snare.triggerAttack(time);
+		Mediator.deferSend("snare");
 	});
 });
