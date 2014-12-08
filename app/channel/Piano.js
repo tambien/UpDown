@@ -1,6 +1,6 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/instrument/PolySynth", 
-	"Tone/component/PanVol", "controller/Mediator", "preset/PianoSound"], 
-function(MonoSynth, Master, PolySynth, PanVol, Mediator, Preset){
+	"Tone/component/PanVol", "preset/PianoSound"], 
+function(MonoSynth, Master, PolySynth, PanVol, Preset){
 
 	"use strict";
 
@@ -34,20 +34,12 @@ function(MonoSynth, Master, PolySynth, PanVol, Mediator, Preset){
 		}
 	});
 
-	var hasChanged = false;
-	var position = 0.5;
-	Mediator.route("scroll", function(pos){
-		position = pos;
-		hasChanged = true;
-	});
+	var monoSynthSet = monoSynth.set.bind(monoSynth);
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
-			if (hasChanged){
-				hasChanged = false;
-				monoSynth.set(Preset.stepwise.get(position));
-				monoSynth.set(Preset.smooth.get(position));
-			}
+			Preset.stepwise.update(monoSynthSet);
+			Preset.smooth.update(monoSynthSet);
 			monoSynth.triggerAttackRelease(note, duration, time);
 		},
 		output : panner

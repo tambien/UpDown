@@ -53,35 +53,28 @@ function(MultiSampler, Mediator, Preset, Conductor, Master){
 	multiSamler.setVolume(0);
 	multiSamler.send("reverb", 0.3);
 
-	var hasChanged = false;
-	var position = 0.5;
-	Mediator.route("scroll", function(pos){
-		position = pos;
-		hasChanged = true;
-	});
-
+	var multiSamlerSet = multiSamler.set.bind(multiSamler);
 	
 	return {
 		triggerAttackRelease : function(name, duration, time){
-			if (hasChanged){
-				hasChanged = false;
-				multiSamler.set(Preset.stepwise.get(position));
-				multiSamler.set(Preset.smooth.get(position));
-			}
-			var noteDur = multiSamler.toSeconds(duration);
-			multiSamler.triggerAttackRelease(name,  
-				noteDur - multiSamler.toSeconds("16n"), 
-				time);
-			if (name === "some_down" || name === "some_up"){
-				setTimeout(function(){
+			if (Conductor.hasVoice()){
+				Preset.stepwise.update(multiSamlerSet);
+				Preset.smooth.update(multiSamlerSet);
+				var noteDur = multiSamler.toSeconds(duration);
+				multiSamler.triggerAttackRelease(name,  
+					noteDur - multiSamler.toSeconds("16n"), 
+					time);
+				if (name === "some_down" || name === "some_up"){
+					setTimeout(function(){
+						Mediator.deferSend("voice", name, noteDur);
+					}, 400);
+				} else if (name === "down_down"){
+					setTimeout(function(){
+						Mediator.deferSend("voice", name, noteDur);
+					}, 200);
+				} else {
 					Mediator.deferSend("voice", name, noteDur);
-				}, 400);
-			} else if (name === "down_down"){
-				setTimeout(function(){
-					Mediator.deferSend("voice", name, noteDur);
-				}, 200);
-			} else {
-				Mediator.deferSend("voice", name, noteDur);
+				}
 			}
 		},
 		output : multiSamler

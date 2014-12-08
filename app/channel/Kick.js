@@ -51,14 +51,12 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 		"attack": 0.035
 	};
 	GUI.addObject("Kick", "Freq Env", kickFreqEnv);
+
+	var ampEnvSet = ampEnv.set.bind(ampEnv);
 	
 	return {
 		triggerAttackRelease : function(duration, time, note){
-			if (hasChanged){
-				hasChanged = false;
-				var preset = Preset.get(position);
-				ampEnv.set(preset.ampEnv);
-			}
+			Preset.update(ampEnvSet);
 			ampEnv.triggerAttack(time);
 			//the frequency ramp
 			var freq = oscillator.noteToFrequency(note);

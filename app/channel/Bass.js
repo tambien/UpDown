@@ -1,6 +1,6 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/component/Filter", 
-	"controller/Mediator", "preset/BassSound", "controller/Conductor"], 
-function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
+	"preset/BassSound", "controller/Conductor"], 
+function(MonoSynth, Master, Filter, Preset, Conductor){
 
 	var lowpass = new Filter({
 		"frequency" : 400, 
@@ -52,20 +52,13 @@ function(MonoSynth, Master, Filter, Mediator, Preset, Conductor){
 
 	monoSynth.chain(lowpass, highpass, compressor, Master);
 
-	var hasChanged = false;
-	var position = 0.5;
-	Mediator.route("scroll", function(pos){
-		position = pos;
-		hasChanged = true;
-	});
+	//the callback to set the new values
+	var setFunction = monoSynth.set.bind(monoSynth);
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
-			if (hasChanged){
-				hasChanged = false;
-				monoSynth.set(Preset.stepwise.get(position));
-				monoSynth.set(Preset.smooth.get(position));
-			}
+			Preset.stepwise.update(setFunction);
+			Preset.smooth.update(setFunction);
 			//add some randomness in the duration
 			monoSynth.triggerAttackRelease(note, duration, time);
 		},
