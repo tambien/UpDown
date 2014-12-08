@@ -68,7 +68,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 				scene = null;
 				tween = null;
 			})
-			.easing( TWEEN.Easing.Linear.None)
+			.easing( TWEEN.Easing.Quadratic.Out )
 			.start();
 	};
 
