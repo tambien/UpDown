@@ -47,6 +47,11 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		 */
 		this.progress = 0.5;
 
+		/**
+		 *  the number of times the voice has repeated
+		 */
+		this.voiceNumber = -1;
+
 		Transport.setInterval(this.updateLoop.bind(this), "3m");
 		this.parseScore(chordChanges, this.chordChange.bind(this));
 		Mediator.route("scroll", this.setTempo.bind(this));
@@ -127,6 +132,8 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		Transport.setBpm(bpm, rampSpeed / 1000);
 		//set the section based on the loop
 		var section = Math.floor(position * 4);
+		section = Math.min(section, 4);
+		section = Math.max(section, 0);
 		if (this.nextSection !== section){
 			this.nextSection = section;
 			this.setLoopStart(section);
@@ -135,17 +142,24 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		Transport.setSwing(TERP.map(position, 0, 1, 0.3, 0));
 	};
 
+	Conductor.prototype.hasVoice = function(){
+		return this.voiceNumber !== 0;
+	};
+
 	Conductor.prototype.updateLoop = function() {
 		if (this.currentSection !== this.nextSection){
 			if (this.nextSection >= 2 && this.currentSection < 2){
+				this.voiceNumber = 0;
 				Mediator.deferSend("half", 1);
 			} else if (this.nextSection < 2 && this.currentSection >= 2){
 				Mediator.deferSend("half", 0);
+				this.voiceNumber = 0;
 			}
 			this.currentSection = this.nextSection;
 			this.setLoopEnd(this.currentSection);
 			Mediator.deferSend("section", this.currentSection);
 		}
+		this.voiceNumber = (this.voiceNumber + 1) % 3;
 		//update the chords if necessary
 		this.updateChords(this.currentSection);
 	};
