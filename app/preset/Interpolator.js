@@ -13,18 +13,18 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 		if (this.presetarray.length < 2){
 			throw new Error("Interpolator needs more than 1 argument in the array");
 		}
-
-		// Mediator.route("scroll", this._onupdate.bind(this));
 		//start at 50%
-		// this._onupdate(0.5);
+		this._hasChanged = true;
+		this.position = 0.5;
+		Mediator.route("scroll", this._onupdate.bind(this));
 	};
 
 	/**
 	 *  given a position between 0-1, returns the interpolated object
-	 *  @param  {number} position
 	 *  @return {Object}          the interpolated values
 	 */
-	Interpolator.prototype.get = function(position){
+	Interpolator.prototype.get = function(){
+		var position = this.position;
 		if (this.type === "smooth"){
 			position *= (this.presetarray.length - 1);
 			var posA = Math.floor(position);
@@ -41,16 +41,21 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	 *  interpolate between the two nearest objects
 	 *  sets the results to the value
 	 */
-	Interpolator.prototype._onupdate = function(position){
-		/*if (this.type === "smooth" || this.type === "exponential"){
-			var posA = Math.floor(position);
-			var posB = Math.ceil(position);
-			var amount = position - posA;
-			this.value = this.interpolateBetweenObjects(amount, this.presetarray[posA], this.presetarray[posB], this.exponent);
-		} else if (this.type === "step"){
-			var pos = Math.floor(position * this.presetarray.length);
-			this.value = this.presetarray[pos];
-		}*/
+	Interpolator.prototype._onupdate = function(pos){
+		this._hasChanged = true;
+		this.position = pos;
+	};
+
+	/**
+	 *  if the value has changed, invoke the callback func
+	 *  with the new preset value
+	 *  @param  {function} func 
+	 */
+	Interpolator.prototype.update = function(func, force){
+		if (this._hasChanged || force){
+			this._hasChanged = false;
+			func(this.get(this.position));
+		}
 	};
 
 	/**
