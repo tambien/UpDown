@@ -42,25 +42,27 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 
 	// CONECTIONS //
 
-	synth.connect(filt);
-	filt.toMaster();
+	synth.chain(filt, Master);
 
 	//Effects
 	var effectLevels = {
 		"reverb" : -50,
-		"side" : -50
+		"side" : 0,
+		"mid" : -50,
 	};
 
 	var revAmount = filt.send("reverb", synth.dbToGain(effectLevels.reverb));
-	var sideAmount = filt.send("side", synth.dbToGain(effectLevels.side));
 
 	GUI.addSlider("High Hat", "reverb", effectLevels.reverb, -100, 0, function(val){
 		revAmount.gain.value = filt.dbToGain(val);
 	});
 
-	GUI.addSlider("High Hat", "side", effectLevels.side, -100, 0, function(val){
-		sideAmount.gain.value = filt.dbToGain(val);
-	});
+	//velocity scalar
+	var minVelocity = 0.36;
+
+	// GUI.addSlider("High Hat", "min", minVelocity, 0, 1, function(val){
+	// 	minVelocity = val;
+	// });
 
 
 	//return obj
@@ -70,12 +72,10 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 	return {
 		triggerAttackRelease : function(duration, time){
 			Preset.update(function(pres){
-				preset = pres;
 				synth.set(pres);
 			});
-			//add a little randomness to the decay
-			synth.envelope.decay = preset.envelope.decay * TERP.scale(Math.random(), 0.8, 1.2);
-			synth.triggerAttack(time);
+			//add a little randomness to the velocity
+			synth.triggerAttack(time, TERP.scale(Math.random(), minVelocity, 1));
 		},
 		output : synth
 	};

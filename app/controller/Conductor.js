@@ -216,7 +216,11 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 	};
 
 	Conductor.prototype.stop = function(){
-		Transport.stop();
+		if (Transport.state === "paused"){
+			Transport.start();
+		} else {
+			Transport.pause();
+		}
 	};
 
 	 return new Conductor();

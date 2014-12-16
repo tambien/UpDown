@@ -40,6 +40,7 @@ function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 
 		//listen for events
 		Mediator.route("half", this.flipCamera.bind(this));
+		Window.resize(this.resize.bind(this));
 
 		//start animating
 		this.step = 0;
@@ -62,6 +63,12 @@ function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 			})
 			.easing( TWEEN.Easing.Quadratic.InOut)
 			.start();
+	};
+
+	Context.prototype.resize = function(width, height){
+		this.camera.aspect = width / height;
+		this.camera.updateProjectionMatrix();
+		this.renderer.setSize( width, height);
 	};
 
 	Context.prototype.createGrid = function(){

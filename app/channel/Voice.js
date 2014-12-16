@@ -1,6 +1,7 @@
 define(["Tone/instrument/MultiSampler", "controller/Mediator",
- "preset/Voice", "controller/Conductor", "Tone/core/Master", "effect/Main"], 
-function(MultiSampler, Mediator, Preset, Conductor, Master){
+ "preset/Voice", "controller/Conductor", "Tone/core/Master", 
+ "effect/Main", "interface/GUI"], 
+function(MultiSampler, Mediator, Preset, Conductor, Master, Effects, GUI){
 
 	var audioFolder = "./audio/";
 
@@ -50,8 +51,18 @@ function(MultiSampler, Mediator, Preset, Conductor, Master){
 	// CONECTIONS //
 
 	multiSamler.toMaster();
-	multiSamler.setVolume(0);
-	multiSamler.send("reverb", 0.3);
+
+	// EFFECTS //
+
+	var effectLevels = {
+		"reverb" : -10
+	};
+
+	var revAmount = multiSamler.send("reverb", multiSamler.dbToGain(effectLevels.reverb));
+
+	GUI.addSlider("Voice", "reverb", effectLevels.reverb, -60, 0, function(val){
+		revAmount.gain.value = multiSamler.dbToGain(val);
+	});
 
 	var multiSamlerSet = multiSamler.set.bind(multiSamler);
 	

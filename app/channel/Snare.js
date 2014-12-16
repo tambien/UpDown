@@ -32,9 +32,9 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 	});
 
 	//reverb
-	var revAmount = comp.send("reverb", noise.dbToGain(-37));
+	var revAmount = comp.send("reverb", noise.dbToGain(-32));
 
-	GUI.addSlider("Snare", "reverb", -37, -100, 0, function(val){
+	GUI.addSlider("Snare", "reverb", -32, -100, 0, function(val){
 		revAmount.gain.value = comp.dbToGain(val);
 	});
 
@@ -44,7 +44,7 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 		triggerAttack : function(time){
 			Preset.update(function(pres){
 				ampEnv.set(pres.ampEnv);
-			}, true);
+			});
 			ampEnv.triggerAttack(time);
 		},
 		output : noise,

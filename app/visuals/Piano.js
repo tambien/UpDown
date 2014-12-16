@@ -49,8 +49,8 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 		var object = new THREE.Mesh( geometry, material);
 		var angle = (Window.height() / Window.width());
 		object.rotation.z = -angle * (Math.PI / 4);
-		var startX = -70;
-		var endX = 70;
+		var startX = -Window.width() * 0.07;
+		var endX = Window.width() * 0.07;
 		//y = mx + b
 		var startY = -(startX * angle + offset);
 		var endY = -(endX * angle + offset);

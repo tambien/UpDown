@@ -1,89 +1,98 @@
-define(["preset/Interpolator"], function(Interpolator){
+define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var PianoSynthStep = new Interpolator([
-		//top
+	var pianoStepData = 
+	[
 		{
-			"volume" : -6,
-			"oscillator" : {
-				"type" : "triangle",
-			},
-			"envelope" : {
-				"release" : "16n"
-			},
+			"velocity": 0.5,
+			"oscillator": {
+				"type": "triangle"
+			}
 		},
-		//middle
 		{
-			"volume" : 0,
-			"oscillator" : {
-				"type" : "sine",
-			},
-			"envelope" : {
-				"release" : "8n"
-			},
+			"velocity": 1,
+			"oscillator": {
+				"type": "sine"
+			}
 		},
-		//bottom
 		{
-			"volume" : -10,
-			"oscillator" : {
-				"type" : "pwm",
-				"modulationFrequency" : 0.7
-			},
-			"envelope" : {
-				"release" : "2n"
-			},
-		},
-	], "step");
+			"velocity": 0.13,
+			"oscillator": {
+				"type": "pwm",
+				"modulationFrequency": 0.7
+			}
+		}
+	];
 
-	var PianoSmooth = new Interpolator([
-		//top
+	var pianoSmoothData = 
+	[
 		{
-			"envelope" : {
-				"attack" : 0.01,
-				"decay" : 0.01,
-				"sustain" : 1,
+			"vibrato": {
+				"delay": 0.195,
+				"amount": 0.3
 			},
-			"filterEnvelope" : {
-				"attack" : 0.01,
-				"decay" : 0.0,
-				"sustain" : 1,
-				"release" : 0.5,
-				"min" : 20000,
-				"max" : 20000
+			"envelope": {
+				"attack": 0.039,
+				"decay": 0.023,
+				"sustain": 1,
+				"release": 0.05
+			},
+			"filterEnvelope": {
+				"attack": 0.098,
+				"decay": 0,
+				"sustain": 1,
+				"release": 0.08,
+				"min": 3000,
+				"max": 16000
 			}
 		},
-		//middle
 		{
-			"envelope" : {
-				"attack" : 0.04,
-				"decay" : 0.01,
-				"sustain" : 0.5,
+			"vibrato": {
+				"delay": 0.001,
+				"amount": 0.5
 			},
-			"filterEnvelope" : {
-				"attack" : 0.07,
-				"decay" : 0.1,
-				"sustain" : 1,
-				"release" : 0.4,
-				"min" : 2000,
-				"max" : 10000
+			"envelope": {
+				"attack": 0.234,
+				"decay": 0.018,
+				"sustain": 0.69,
+				"release": 0.76
+			},
+			"filterEnvelope": {
+				"attack": 0.63,
+				"decay": 0.7,
+				"sustain": 0.1,
+				"release": 1.79,
+				"min": 1900,
+				"max": 100
 			}
 		},
-		//bottom
 		{
-			"envelope" : {
-				"attack" : 0.5,
-				"decay" : 0.01,
-				"sustain" : 0.8,
+			"vibrato": {
+				"delay": 0.446,
+				"amount": 1
 			},
-			"filterEnvelope" : {
-				"attack" : 0.7,
-				"decay" : 0.2,
-				"sustain" : 0.3,
-				"release" : 3,
-				"min" : 2000,
-				"max" : 20000
+			"envelope": {
+				"attack": 0.31,
+				"decay": 0.031,
+				"sustain": 0.64,
+				"release": 3.3
+			},
+			"filterEnvelope": {
+				"attack": 0.7,
+				"decay": 0.2,
+				"sustain": 0.3,
+				"release": 3,
+				"min": 2000,
+				"max": 20000
 			}
-		},
-	], "smooth", 1);
+		}
+	];
+
+	var PianoSynthStep = new Interpolator(pianoStepData, "step");
+
+	var PianoSmooth = new Interpolator(pianoSmoothData, "smooth");
+
+	GUI.addPreset("Piano Smooth", pianoSmoothData);
+	GUI.addPreset("Piano Step", pianoStepData);
 
 	return {
 		stepwise : PianoSynthStep,

@@ -12,7 +12,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"decay": 4.4
 			}
 		}
-	]
+	];
 
 	var KickSmooth = new Interpolator(KickData, "smooth");
 

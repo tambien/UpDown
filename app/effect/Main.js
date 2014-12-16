@@ -1,17 +1,12 @@
-define(["Tone/effect/JCReverb", "Tone/core/Bus"], function(Reverb){
+define(["Tone/effect/JCReverb", "Tone/core/Bus", "Tone/effect/StereoWidener", "interface/GUI", "Tone/effect/AutoPanner"], 
+	function(Reverb, Bus, StereoWidener, GUI, AutoPanner){
 
-	var reverb;
-
-	// var reverb = new Reverb({
-	// 	url : "./audio/IR.wav",
-	// 	onload : function(){
-	// 		console.log("wave loaded");
-	// 		reverb.receive("reverb");
-	// 		reverb.toMaster();
-	// 	},
-	// });
-	reverb = new Reverb(0.4);
-	window.reverb = reverb;
+	//reverb
+	var reverb = new Reverb();
 	reverb.receive("reverb");
 	reverb.toMaster();
+
+	GUI.addTone("Effects", "Reverb", reverb, {
+		"roomSize" : 0.4
+	});
 });

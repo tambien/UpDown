@@ -16,6 +16,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 		//start at 50%
 		this._hasChanged = true;
 		this.position = 0.5;
+		this._stepWisePosition = 0;
 		Mediator.route("scroll", this._onupdate.bind(this));
 	};
 
@@ -31,10 +32,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 			var posB = Math.ceil(position);
 			var amount = position - posA;
 			return this.interpolateBetweenObjects(amount, this.presetarray[posA], this.presetarray[posB], this.exponent);
-		} else if (this.type === "step"){
-			var pos = Math.floor(position * this.presetarray.length);
-			return this.presetarray[pos];
-		}
+		} 
 	};
 
 	/**
@@ -54,7 +52,15 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	Interpolator.prototype.update = function(func, force){
 		if (this._hasChanged || force){
 			this._hasChanged = false;
-			func(this.get(this.position));
+			if (this.type === "step"){
+				var pos = Math.floor(this.position * this.presetarray.length);
+				if (this._stepWisePosition !== pos){
+					this._stepWisePosition = pos;
+					func(this.presetarray[pos]);
+				}
+			} else {
+				func(this.get(this.position));
+			}
 		}
 	};
 

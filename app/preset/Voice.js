@@ -1,8 +1,53 @@
-define(["preset/Interpolator"], function(Interpolator){
+define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
+
 
 	var downSampleDuration = "32n";
 
-	var VoiceStepWise = new Interpolator([
+	var VoiceSmoothData = 
+	[
+		{
+			"envelope": {
+				"sustain": 0.3
+			},
+			"filterEnvelope": {
+				"sustain": 0.4,
+				"min": 470,
+				"max": 5500
+			},
+			"filter": {
+				"Q": 10
+			}
+		},
+		{
+			"envelope": {
+				"sustain": 0.9
+			},
+			"filterEnvelope": {
+				"sustain": 1,
+				"min": 330,
+				"max": 8700
+			},
+			"filter": {
+				"Q": 1.2
+			}
+		},
+		{
+			"envelope": {
+				"sustain": 0.3
+			},
+			"filterEnvelope": {
+				"sustain": 1,
+				"min": 171,
+				"max": 2400
+			},
+			"filter": {
+				"Q": 6.2
+			}
+		}
+	];
+
+	var VoiceStepWiseData = 
+	[
 		//up
 		{
 			"player" : {
@@ -67,52 +112,12 @@ define(["preset/Interpolator"], function(Interpolator){
 				"release" : "2n",
 			}
 		},
-	], "step");
+	];
 
-	var VoiceSmooth = new Interpolator([
-		//up
-		{
-			"envelope" : {
-				"sustain" : 0.3
-			},
-			"filterEnvelope" : {
-				"sustain" : 0.4,
-				"min" : 400,
-				"max" : 4600
-			},
-			"filter" : {
-				"Q" : 10
-			}
-		},
-		//middle
-		/*{
-			"envelope" : {
-				"sustain" : 0.5
-			},
-			"filterEnvelope" : {
-				"sustain" : 1,
-				"min" : 200,
-				"max" : 4000
-			},
-			"filter" : {
-				"Q" : 3
-			}
-		},*/
-		//down
-		{
-			"envelope" : {
-				"sustain" : 0.8
-			},
-			"filterEnvelope" : {
-				"sustain" : 1,
-				"min" : 20,
-				"max" : 2000
-			},
-			"filter" : {
-				"Q" : 5
-			}
-		},
-	], "smooth", 2);
+	var VoiceStepWise = new Interpolator(VoiceStepWiseData, "step");
+
+	var VoiceSmooth = new Interpolator(VoiceSmoothData, "smooth");
+	GUI.addPreset("Voice Smooth", VoiceSmoothData);
 
 	return {
 		stepwise : VoiceStepWise,

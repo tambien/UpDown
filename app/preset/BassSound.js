@@ -1,97 +1,90 @@
 define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(Interpolator, Bass, GUI){
 
-	var BassSynthStepData = [
-		//top
+	var BassSynthSmoothData = 
+	[
 		{
-			"oscillator" : {
-				"type" : "triangle",
+			"volume": -7.5,
+			"synth": {
+				"envelope": {
+					"attack": 0.085,
+					"decay": 0.2,
+					"sustain": 0.4,
+					"release": 0.077
+				},
+				"filterEnvelope": {
+					"attack": 0.002,
+					"decay": 0.201,
+					"sustain": 0.01,
+					"release": 0.13,
+					"min": 120,
+					"max": 4800
+				},
+				"filter": {
+					"Q": 3.4
+				}
 			},
-			"envelope" : {
-				"attack" : "128n",
-				"decay" : "4n",
-				"release" : "2n"
-			},
-			"filterEnvelope" : {
-				"attack" : "32n",
-				"decay" : "32n",
-				"release" : "4n",
-			},
+			"osc2": {
+				"volume": -28
+			}
 		},
-		//middle
 		{
-			"oscillator" : {
-				"type" : "square",
+			"volume": -2,
+			"synth": {
+				"envelope": {
+					"attack": 0.1,
+					"decay": 0.45,
+					"sustain": 0.06,
+					"release": 0.83
+				},
+				"filterEnvelope": {
+					"attack": 0.096,
+					"decay": 0.31,
+					"sustain": 0.19,
+					"release": 0.03,
+					"min": 70,
+					"max": 6500
+				},
+				"filter": {
+					"Q": 5.2
+				}
 			},
-			"envelope" : {
-				"attack" : "32n",
-				"decay" : "8n",
-				"release" : "2t"
-			},
-			"filterEnvelope" : {
-				"attack" : "16n",
-				"decay" : "32n",
-				"release" : "4t",
-			},
-		},
-		//bottom
-		{
-			"oscillator" : {
-				"type" : "pwm",
-				"modulationFrequency" : 0.07
-			},
-			"envelope" : {
-				"attack" : "16n",
-				"decay" : "8n",
-				"release" : "4n"
-			},
-			"filterEnvelope" : {
-				"attack" : "16n",
-				"decay" : "16n",
-				"release" : "8n",
-			},
-		},
+			"osc2": {
+				"volume": -3
+			}
+		}
 	];
 
-	var BassSynthSmoothData = [
-		//top
+	var BassSynthStepData = 
+	[
 		{
-			"envelope" : {
-				"sustain" : 0.3,
-			},
-			"filterEnvelope" : {
-				"sustain" : 0.05,
-				"min" : 120,
-				"max" : 8000
-			},
-			"filter" : {
-				"Q" : 30,
-				"gain" : 6,
+			"osc2" : {
+				"type" : "sawtooth",
 			}
 		},
-		//bottom
 		{
-			"envelope" : {
-				"sustain" : 0.05,
-			},
-			"filterEnvelope" : {
-				"sustain" : 0.5,
-				"min" : 20,
-				"max" : 4000
-			},
-			"filter" : {
-				"Q" : 12,
-				"gain" : 7,
+			"osc2" : {
+				"type" : "triangle",
 			}
 		},
+		{
+			"osc2" : {
+				"type" : "triangle",
+			}
+		},
+		{
+			"osc2" : {
+				"type" : "triangle",
+			}
+		}
 	];
 
 	GUI.addPreset("Bass Synth Smooth", BassSynthSmoothData);
 
+	var BassSynthSmooth = new Interpolator(BassSynthSmoothData, "smooth");
 	var BassSynthStep = new Interpolator(BassSynthStepData, "step");
-	var BassSynthSmooth = new Interpolator(BassSynthSmoothData, "smooth", 2);
 
 	return {
-		stepwise : BassSynthStep,
-		smooth : BassSynthSmooth
+		smooth : BassSynthSmooth,
+		step : BassSynthStep
 	};
 });
