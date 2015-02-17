@@ -704,7 +704,7 @@ dat.controllers.NumberController = (function (Controller, common) {
         this.__impliedStep = 1; // What are we, psychics?
       } else {
         // Hey Doug, check this out.
-        this.__impliedStep = Math.pow(10, Math.floor(Math.log(Math.abs(this.initialValue))/Math.LN10))/10;
+        this.__impliedStep = Math.pow(10, Math.floor(Math.log(this.initialValue)/Math.LN10))/10;
       }
 
     } else {
@@ -952,7 +952,7 @@ dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, 
 
     this.__background = document.createElement('div');
     this.__foreground = document.createElement('div');
-    
+    this.__expScale = 1;
 
 
     dom.bind(this.__background, 'mousedown', onMouseDown);
@@ -976,7 +976,7 @@ dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, 
       var width = dom.getWidth(_this.__background);
       
       _this.setValue(
-      	map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
+      	map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max, _this.__expScale)
       );
 
       return false;
@@ -1016,18 +1016,31 @@ dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, 
 
         updateDisplay: function() {
           var pct = (this.getValue() - this.__min)/(this.__max - this.__min);
+          pct = Math.pow(pct, 1 / this.__expScale);
           this.__foreground.style.width = pct*100+'%';
           return NumberControllerSlider.superclass.prototype.updateDisplay.call(this);
+        },
+        /**
+         * make the values scale exponentially
+         *
+         * @returns {dat.controllers.NumberController} this
+         */
+        log : function(scaling) {
+          this.__expScale = scaling || 2;
+          return this;
         }
-
       }
 
 
 
   );
 
-	function map(v, i1, i2, o1, o2) {
-		return o1 + (o2 - o1) * ((v - i1) / (i2 - i1));
+	function map(v, i1, i2, o1, o2, e) {
+    var norm = (v - i1) / (i2 - i1);
+    norm = Math.max(norm, 0);
+    norm = Math.min(norm, 1);
+    norm = Math.pow(norm, e);
+		return o1 + (o2 - o1) * norm;
 	}
 
   return NumberControllerSlider;
@@ -1084,10 +1097,10 @@ dat.controllers.FunctionController = (function (Controller, dom, common) {
           if (this.__onChange) {
             this.__onChange.call(this);
           }
+          this.getValue().call(this.object);
           if (this.__onFinishChange) {
             this.__onFinishChange.call(this, this.getValue());
           }
-          this.getValue().call(this.object);
         }
       }
 
@@ -2031,6 +2044,48 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
 
         },
 
+         /**
+         * @param object
+         * @param property
+         * @returns {dat.controllers.ColorController} The new controller that was added.
+         * @instance
+         */
+        addSignal: function(object, property, min, max) {
+
+          return add(
+              this,
+              object,
+              property,
+              {
+                signal: true,
+                factoryArgs: Array.prototype.slice.call(arguments, 2)
+              }
+          );
+
+        },
+
+        /**
+         * @param object
+         * @param property
+         * @returns {dat.controllers.FunctionController} The new controller that was added.
+         * @instance
+         */
+        addButton: function(name, callback) {
+
+          var object = {};
+          object[name] = callback;
+
+          return add(
+              this,
+              object,
+              name,
+              {
+                factoryArgs: Array.prototype.slice.call(arguments, 2)
+              }
+          );
+
+        },
+
         /**
          * @param controller
          * @instance
@@ -2039,7 +2094,7 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
 
           // TODO listening?
           this.__ul.removeChild(controller.__li);
-          this.__controllers.slice(this.__controllers.indexOf(controller), 1);
+          this.__controllers.splice(this.__controllers.indexOf(controller), 1);
           var _this = this;
           common.defer(function() {
             _this.onResize();
@@ -2297,15 +2352,20 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
       throw new Error("Object " + object + " has no property \"" + property + "\"");
     }
 
-    var controller;
+    var controller, factoryArgs;
 
     if (params.color) {
 
       controller = new ColorController(object, property);
 
+    } else if (params.signal){
+
+      factoryArgs = [object[property],"value"].concat(params.factoryArgs);
+      controller = controllerFactory.apply(gui, factoryArgs);
+
     } else {
 
-      var factoryArgs = [object,property].concat(params.factoryArgs);
+      factoryArgs = [object,property].concat(params.factoryArgs);
       controller = controllerFactory.apply(gui, factoryArgs);
 
     }
@@ -2320,7 +2380,11 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
 
     var name = document.createElement('span');
     dom.addClass(name, 'property-name');
-    name.innerHTML = controller.property;
+    if (params.signal){
+      name.innerHTML = property;
+    } else {
+      name.innerHTML = controller.property;
+    }
 
     var container = document.createElement('div');
     container.appendChild(name);
@@ -2932,10 +2996,11 @@ dat.controllers.StringController = (function (Controller, dom, common) {
     
 
     function onChange() {
-      _this.setValue(_this.__input.value);
+      // _this.setValue(_this.__input.value);
     }
 
     function onBlur() {
+      _this.setValue(_this.__input.value);
       if (_this.__onFinishChange) {
         _this.__onFinishChange.call(_this, _this.getValue());
       }
@@ -3556,7 +3621,8 @@ dat.utils.requestAnimationFrame = (function () {
    * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
    */
 
-  return window.webkitRequestAnimationFrame ||
+  return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.oRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
@@ -3579,7 +3645,8 @@ dat.dom.CenteredDiv = (function (dom, common) {
       display: 'none',
       zIndex: '1000',
       opacity: 0,
-      WebkitTransition: 'opacity 0.2s linear'
+      WebkitTransition: 'opacity 0.2s linear',
+      transition: 'opacity 0.2s linear'
     });
 
     dom.makeFullscreen(this.backgroundElement);
@@ -3591,7 +3658,8 @@ dat.dom.CenteredDiv = (function (dom, common) {
       display: 'none',
       zIndex: '1001',
       opacity: 0,
-      WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear'
+      WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear',
+      transition: 'transform 0.2s ease-out, opacity 0.2s linear'
     });
 
 
@@ -3609,8 +3677,6 @@ dat.dom.CenteredDiv = (function (dom, common) {
   CenteredDiv.prototype.show = function() {
 
     var _this = this;
-    
-
 
     this.backgroundElement.style.display = 'block';
 

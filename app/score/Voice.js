@@ -24,7 +24,7 @@ define(["channel/Voice", "controller/Conductor"], function(Voice, Conductor){
 		} else {
 			noteGroup = "up";
 		}
-		var voiceName = word+"_"+noteGroup;
+		var voiceName = noteGroup+"."+word;
 		Voice.triggerAttackRelease(voiceName, duration, time);
 	});
 });

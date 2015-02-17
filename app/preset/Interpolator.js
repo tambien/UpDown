@@ -6,10 +6,8 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	 *  the array of presets to interpolate between
 	 *  @param {Array.<Object>} presetarray
 	 */
-	var Interpolator = function(presetarray, type, exponent){
+	var Interpolator = function(presetarray, name, GUI){
 		this.presetarray = presetarray.slice(0).reverse();
-		this.exponent = exponent || 1;
-		this.type = type || "smooth";
 		if (this.presetarray.length < 2){
 			throw new Error("Interpolator needs more than 1 argument in the array");
 		}
@@ -18,6 +16,10 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 		this.position = 0.5;
 		this._stepWisePosition = 0;
 		Mediator.route("scroll", this._onupdate.bind(this));
+		//add it to the gui
+		if (GUI && GUI.addPreset){
+			GUI.addPreset(name, presetarray);
+		}
 	};
 
 	/**
@@ -26,13 +28,11 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	 */
 	Interpolator.prototype.get = function(){
 		var position = this.position;
-		if (this.type === "smooth"){
-			position *= (this.presetarray.length - 1);
-			var posA = Math.floor(position);
-			var posB = Math.ceil(position);
-			var amount = position - posA;
-			return this.interpolateBetweenObjects(amount, this.presetarray[posA], this.presetarray[posB], this.exponent);
-		} 
+		position *= (this.presetarray.length - 1);
+		var posA = Math.floor(position);
+		var posB = Math.ceil(position);
+		var amount = position - posA;
+		return this.interpolateBetweenObjects(amount, this.presetarray[posA], this.presetarray[posB]);
 	};
 
 	/**
@@ -52,15 +52,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	Interpolator.prototype.update = function(func, force){
 		if (this._hasChanged || force){
 			this._hasChanged = false;
-			if (this.type === "step"){
-				var pos = Math.floor(this.position * this.presetarray.length);
-				if (this._stepWisePosition !== pos){
-					this._stepWisePosition = pos;
-					func(this.presetarray[pos]);
-				}
-			} else {
-				func(this.get(this.position));
-			}
+			func(this.get(this.position));
 		}
 	};
 
@@ -73,23 +65,25 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	 *  @param  {Object} B 
 	 *  @return {Object}  
 	 */
-	Interpolator.prototype.interpolateBetweenObjects = function(amount, A, B, exponent){
+	Interpolator.prototype.interpolateBetweenObjects = function(amount, A, B){
 		var ret = {};
 		for (var attr in A){
 			//interpolate between the two
 			var propA = A[attr];
 			var propB = B[attr];
 			if (typeof propA === "number"){
-				ret[attr] = TERP.scale(amount, propA, propB, exponent); 
+				ret[attr] = TERP.scale(amount, propA, propB); 
 			} else if (Array.isArray(propA)){
 				var len = propA.length;
 				var retArr = new Array(len);
 				for (var i = 0; i < len; i++){
-					retArr[i] = TERP.scale(amount, propA[i], propB[i], exponent); 
+					retArr[i] = TERP.scale(amount, propA[i], propB[i]); 
 				}
 				ret[attr] = retArr; 
 			} else if (typeof propA === "object"){
-				ret[attr] = this.interpolateBetweenObjects(amount, propA, propB, exponent);
+				ret[attr] = this.interpolateBetweenObjects(amount, propA, propB);
+			} else {
+				ret[attr] = amount < 0.5 ? propA : propB;
 			}
 		}
 		return ret;

@@ -11,27 +11,20 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare){
 		Snare : -5,
 	};
 
-	Bass.output.setVolume(volumes.Bass);
-	Piano.output.setVolume(volumes.Piano);
-	Voice.output.setVolume(volumes.Voice);
-	HH.output.setVolume(volumes.HH);
-	Kick.output.setVolume(volumes.Kick);
-	Snare.output.setVolume(volumes.Snare);
+	Bass.volume.value = volumes.Bass;
+	Piano.volume.value = volumes.Piano;
+	Voice.volume.value = volumes.Voice;
+	HH.volume.value = volumes.HH;
+	Kick.volume.value = volumes.Kick;
+	Snare.volume.value = volumes.Snare;
 
-	var folderName = "Levels (db)";
-
-	GUI.addVolumeSlider(folderName, "Bass Volume", Bass.output);
-
-	GUI.addVolumeSlider(folderName, "Piano Volume", Piano.output);
-
-	GUI.addVolumeSlider(folderName, "Voice Volume", Voice.output);
-
-	GUI.addVolumeSlider(folderName, "HH Volume", HH.output);
-
-	GUI.addVolumeSlider(folderName, "Kick Volume", Kick.output);
-
-	GUI.addVolumeSlider(folderName, "Snare Volume", Snare.output);
-
-	// GUI.addButton(folderName)
-	
+	if (USE_GUI){
+		var folder = GUI.getFolder("Levels (db)");
+		GUI.addVolumeSlider(folder, "Bass Volume", Bass.volume);
+		GUI.addVolumeSlider(folder, "Piano Volume", Piano.volume);
+		GUI.addVolumeSlider(folder, "Voice Volume", Voice.volume);
+		GUI.addVolumeSlider(folder, "HH Volume", HH.volume);
+		GUI.addVolumeSlider(folder, "Kick Volume", Kick.volume);
+		GUI.addVolumeSlider(folder, "Snare Volume", Snare.volume);	
+	}
 });

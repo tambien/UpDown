@@ -1,31 +1,11 @@
 define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var pianoStepData = 
-	[
+	return new Interpolator([
 		{
 			"velocity": 0.5,
 			"oscillator": {
 				"type": "triangle"
-			}
-		},
-		{
-			"velocity": 1,
-			"oscillator": {
-				"type": "sine"
-			}
-		},
-		{
-			"velocity": 0.13,
-			"oscillator": {
-				"type": "pwm",
-				"modulationFrequency": 0.7
-			}
-		}
-	];
-
-	var pianoSmoothData = 
-	[
-		{
+			},
 			"vibrato": {
 				"delay": 0.195,
 				"amount": 0.3
@@ -46,6 +26,10 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			}
 		},
 		{
+			"velocity": 0.7,
+			"oscillator": {
+				"type": "sawtooth"
+			},
 			"vibrato": {
 				"delay": 0.001,
 				"amount": 0.5
@@ -66,6 +50,10 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			}
 		},
 		{
+			"velocity": 0.2,
+			"oscillator": {
+				"type": "pwm"
+			},
 			"vibrato": {
 				"delay": 0.446,
 				"amount": 1
@@ -85,17 +73,5 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"max": 20000
 			}
 		}
-	];
-
-	var PianoSynthStep = new Interpolator(pianoStepData, "step");
-
-	var PianoSmooth = new Interpolator(pianoSmoothData, "smooth");
-
-	GUI.addPreset("Piano Smooth", pianoSmoothData);
-	GUI.addPreset("Piano Step", pianoStepData);
-
-	return {
-		stepwise : PianoSynthStep,
-		smooth : PianoSmooth
-	};
+	], "Piano Preset", GUI);
 });

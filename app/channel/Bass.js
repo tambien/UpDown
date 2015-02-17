@@ -3,26 +3,20 @@ define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/component/Filter"
 	"Tone/component/LFO", "Tone/signal/Expr", "Tone/source/Oscillator"], 
 function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Expr, Oscillator){
 
-	var filter = new Filter();
-	GUI.addTone("Bass", "filter", filter, 
-	 {
-	 	"frequency": 940,
-	 	"type": "lowpass",
-	 	"Q": 1.5
-	 });
+	var filter = new Filter({
+		"frequency": 940,
+		"type": "lowpass",
+		"Q": 1.5
+	});
 
-	var compressor = new Compressor();
-	GUI.addTone("Bass", "Compressor", compressor, 
-	 {
+	var compressor = new Compressor({
 	 	"threshold": -24,
 	 	"attack": 0.0102,
 	 	"release": 0.2,
 	 	"ratio": 3.6
-	 });
+	});
 
-	var monoSynth = new MonoSynth();
-	GUI.addTone("Bass", "synth", monoSynth, 
-	 {
+	var monoSynth = new MonoSynth({
 		"oscillator": {
 			"type": "triangle"
 		},
@@ -46,7 +40,7 @@ function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Exp
 			"Q" : 4,
 		}
 	});
-
+	
 	var lfo = new Oscillator({
 		"frequency" : "4n",
 	 	"type" : "square"
@@ -54,14 +48,12 @@ function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Exp
 
 	var expr = new Expr("if(gt0($0), 0.5, 1) * $1");
 
-	var osc2 = new Oscillator();
-	GUI.addTone("Bass", "osc2", osc2, 
-	{
+	var osc2 = new Oscillator({
 		"type": "sawtooth",
 		"volume": -20,
 		"frequency": 0
 	});
-	osc2.start();
+	osc2.sync();
 	osc2.connect(monoSynth.envelope);
 
 	monoSynth.chain(filter, compressor, Master);
@@ -71,21 +63,25 @@ function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Exp
 	lfo.sync();
 	lfo.syncFrequency();
 
-	//the callback to set the new values
-	var setFunction = monoSynth.set.bind(monoSynth);
+	//GUI
+	if (USE_GUI){
+		var bassFolder = GUI.getFolder("Bass");
+		window.synth = monoSynth;
+		GUI.addTone2(bassFolder, "filter", filter).listen();
+		GUI.addTone2(bassFolder, "compressor", compressor);
+		GUI.addTone2(bassFolder, "synth", monoSynth).listen();
+		GUI.addTone2(bassFolder, "osc2", osc2, ["type"]).listen();
+	}
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
-			Preset.smooth.update(function(preset){
+			Preset.update(function(preset){
 				monoSynth.set(preset.synth);
 				osc2.set(preset.osc2);
 			}, true);
-			Preset.step.update(function(preset){
-				osc2.set(preset.osc2);
-			});
 			//add some randomness in the duration
 			monoSynth.triggerAttackRelease(note, duration, time);
 		},
-		output : monoSynth
+		volume : monoSynth.volume
 	};
 });

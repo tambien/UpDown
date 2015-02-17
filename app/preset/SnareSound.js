@@ -1,7 +1,6 @@
 define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var SnareSoundSmooth = 
-	[
+	return new Interpolator([
 		{
 			"ampEnv": {
 				"attack": 0.0007,
@@ -14,10 +13,5 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"decay": 0.108
 			}
 		}
-	];
-
-	GUI.addPreset("Snare Sound Smooth", SnareSoundSmooth);
-	var SnareSmooth = new Interpolator(SnareSoundSmooth, "smooth");
-
-	return SnareSmooth;
+	], "Snare Preset", GUI);
 });

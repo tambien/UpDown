@@ -57,7 +57,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		Mediator.route("scroll", this.setTempo.bind(this));
 		Mediator.route("start", this.start.bind(this));
 		Mediator.route("stop", this.stop.bind(this));
-		this.setTempo(this.progress);
+		this.setTempo(this.progress, 0);
 	};
 
 
@@ -127,6 +127,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 	};
 
 	Conductor.prototype.setTempo = function(position, rampSpeed){
+		rampSpeed = rampSpeed || 0;
 		this.progress = position;
 		var bpm = TERP.map(position, 0, 1, 55, 130, 1);
 		Transport.setBpm(bpm, rampSpeed / 1000);

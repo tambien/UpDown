@@ -1,39 +1,30 @@
 define(["Tone/instrument/NoiseSynth", "preset/HighHatSound", 
 	"controller/Conductor", "Tone/core/Master", "Tone/core/Transport", 
- "Tone/component/Filter", "Tone/component/PanVol", "interface/GUI", "TERP"], 
-function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, TERP){
+ "Tone/component/Filter", "Tone/component/PanVol", "interface/GUI", "TERP", "Tone/signal/Signal"], 
+function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, TERP, Signal){
 
 	var synth = new NoiseSynth({
 		"envelope" : {
 			"sustain" : 0.0,
+			"attack" : 0.005,
+			"decay" : 0.1,
 		},
 		"filterEnvelope" : {
 			"sustain" : 0,
-		}
-	});
-
-	GUI.addTone("High Hat", "synth", synth, {
-		"noise" : {
-			"type" : "white"
+			"min": 13000,
+			"max": 3900,
+			"exponent" : 2
 		},
 		"filter" : {
 			"type" : "highpass",
 			"rolloff" : -12
 		},
-		"envelope" : {
-			"attack" : 0.005,
-			"decay" : 0.1,
+		"noise" : {
+			"type" : "white"
 		},
-		"filterEnvelope" : {
-			"min": 13000,
-			"max": 3900,
-			"exponent" : 2
-		}
 	});
 
-	var filt = new Filter();
-
-	GUI.addTone("High Hat", "filter", filt, {
+	var filt = new Filter( {
 		"frequency" : 8500,
 		"type" : "highpass",
 		"Q" : 4,
@@ -51,24 +42,21 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 		"mid" : -50,
 	};
 
-	var revAmount = filt.send("reverb", synth.dbToGain(effectLevels.reverb));
+	var revAmount = filt.send("reverb");
+	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+	reverbControl.value = effectLevels.reverb; // OPTIMIZE
 
-	GUI.addSlider("High Hat", "reverb", effectLevels.reverb, -100, 0, function(val){
-		revAmount.gain.value = filt.dbToGain(val);
-	});
-
+	// GUI
+	if (USE_GUI){
+		var hhFolder = GUI.getFolder("High Hat");
+		GUI.addTone2(hhFolder, "synth", synth).listen();
+		GUI.addTone2(hhFolder, "filter", filt).listen();
+		hhFolder.add(reverbControl, "value", -100, 1).name("reverb");
+	}
+	
 	//velocity scalar
 	var minVelocity = 0.36;
 
-	// GUI.addSlider("High Hat", "min", minVelocity, 0, 1, function(val){
-	// 	minVelocity = val;
-	// });
-
-
-	//return obj
-
-	var preset = Preset.get();
-	
 	return {
 		triggerAttackRelease : function(duration, time){
 			Preset.update(function(pres){
@@ -77,6 +65,6 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 			//add a little randomness to the velocity
 			synth.triggerAttack(time, TERP.scale(Math.random(), minVelocity, 1));
 		},
-		output : synth
+		volume : synth.volume
 	};
 });

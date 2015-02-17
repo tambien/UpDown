@@ -1,16 +1,14 @@
 define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter", 
-	"Tone/component/AmplitudeEnvelope", "interface/GUI", "preset/SnareSound", "Tone/component/Compressor"], 
-	function(Noise, Master, Filter, AmplitudeEnvelope, GUI, Preset, Compressor){
+	"Tone/component/AmplitudeEnvelope", "interface/GUI", "preset/SnareSound", 
+	"Tone/component/Compressor", "Tone/signal/Signal"], 
+	function(Noise, Master, Filter, AmplitudeEnvelope, GUI, Preset, Compressor, Signal){
 
-	var noise = new Noise();
-	noise.start();
-	GUI.addTone("Snare", "noise", noise, {
+	var noise = new Noise({
 		"type" : "pink"
 	});
+	noise.sync();
 
-	var comp = new Compressor();
-
-	GUI.addTone("Snare", "Compressor", comp, {
+	var comp = new Compressor({
 		"attack": 0.001,
 		"release": 0.05,
 		"threshold": -44,
@@ -19,24 +17,31 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 
 	var filter = new Filter({
 		"type" : "highpass",
-	});
-	GUI.addTone("Snare", "filter", filter, {
 		"Q": 4,
 		"rolloff" : -24,
 		"frequency": 510
 	});
-
-
+	
 	var ampEnv = new AmplitudeEnvelope({
 		"sustain" : 0,
 	});
 
 	//reverb
-	var revAmount = comp.send("reverb", noise.dbToGain(-32));
+	var revAmount = comp.send("reverb");
 
-	GUI.addSlider("Snare", "reverb", -32, -100, 0, function(val){
-		revAmount.gain.value = comp.dbToGain(val);
-	});
+	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+	reverbControl.value = -50; // OPTIMIZE
+
+
+	// GUI
+	if (USE_GUI){
+		var snareFolder = GUI.getFolder("Snare");
+		GUI.addTone2(snareFolder, "compressor", comp).listen();
+		GUI.addTone2(snareFolder, "filter", filter).listen();
+		GUI.addTone2(snareFolder, "envelope", ampEnv).listen();
+		GUI.addTone2(snareFolder, "noise", noise);
+		snareFolder.add(reverbControl, "value", -100, 1).name("reverb");
+	}
 
 	noise.chain(ampEnv, filter, comp, Master);
 
@@ -47,7 +52,7 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 			});
 			ampEnv.triggerAttack(time);
 		},
-		output : noise,
+		volume : noise.volume
 	};
 	
 });

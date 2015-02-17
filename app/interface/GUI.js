@@ -1,8 +1,11 @@
-define(["dat"], function(dat){
+define(["dat", "Tone/signal/Signal", "Tone/core/Tone", "Tone/source/Oscillator", 
+	"Tone/source/OmniOscillator", "Tone/source/Noise", "Tone/component/Filter", "Tone/instrument/PolySynth"], 
+	function(dat, Signal, Tone, Oscillator, OmniOscillator, Noise, Filter, PolySynth){
 
 	var GUI = new dat.GUI();
 
 	function getFolder(folder, parent){
+		parent = parent || GUI;
 		if (parent.__folders[folder]){
 			return parent.__folders[folder];
 		} else {		
@@ -10,49 +13,77 @@ define(["dat"], function(dat){
 		}
 	}
 
-	function addSlider(folderName, title, current, min, max, onchange){
-		var folder = getFolder(folderName, GUI);
-		var obj = {};
-		obj[title] = current;
-		folder.add(obj, title, min, max)
-			.onChange(onchange);
+	function addTone2(folder, name, tone, attributes){
+		var topLevel = getFolder(name, folder);
+		attributes = attributes || Object.keys(tone.get());
+		var controllers = [];
+		for (var i = 0; i < attributes.length; i++){
+			var attr = attributes[i];
+			if (tone[attr] instanceof Signal || tone[attr] instanceof AudioParam) {
+				controllers.push(topLevel.addSignal(tone, attr));
+			} else if (tone[attr] instanceof Tone){
+				controllers = controllers.concat(addTone2(topLevel, attr, tone[attr]).controllers);
+			} else if (attr === "type"){
+				controllers.push(addTypeDropDown(topLevel, tone));
+			} else {
+				controllers.push(topLevel.add(tone, attr));
+			}
+		}
+		return {
+			listen : function(){
+				for (var i = 0 ; i < controllers.length; i++){
+					controllers[i].listen();
+				}
+			},
+			controllers : controllers
+		};
 	}
 
+	function addTypeDropDown(folder, tone){
+		if (tone instanceof OmniOscillator){
+			return folder.add(tone, "type", ["sine", "square", "triangle", "sawtooth", "pwm", "pulse"]);
+		} else if (tone instanceof Oscillator){
+			return folder.add(tone, "type", ["sine", "square", "triangle", "sawtooth"]);
+		} else if (tone instanceof Filter){
+			return folder.add(tone, "type", ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "notch", "allpass", "peaking"]);
+		} else if (tone instanceof Noise){
+			return folder.add(tone, "type", ["brown", "white", "pink"]);
+		}
+	}
+
+	// function addSlider(folder, node, attr, min, max, onchange){
+	// 	var guid = getFolder(folder, title);
+	// 	if ()
+	// }
+
 	function addSignal(folderName, title, signal){
-		var folder = getFolder(folderName, GUI);
+		/*var folder = getFolder(folderName, GUI);
 		var obj = {};
 		obj[title] = current;
 		folder.add(obj, title)
 			.onChange(function(val){
 				signal.setValue(val);
-			});
+			});*/
 	}
 
-	function addCheckbox(folderName, title, current, onchange){
-		var folder = getFolder(folderName, GUI);
+	function addCheckbox(folder, title, current, onchange){
 		var obj = {};
 		obj[title] = current;
 		folder.add(obj, title)
 			.onChange(onchange);
 	}
 
-	function addVolumeSlider(folderName, title, vol, min, max){
-		var folder = getFolder(folderName, GUI);
+	function addVolumeSlider(folder, title, vol, min, max){
 		min = min || -40;
 		max = max || 6;
-		var obj = {};
-		var currentValue = vol.gainToDb(vol.output.gain.value);
-		obj[title] = currentValue;
-		folder.add(obj, title, min, max)
-			.onChange(function(val){
-				vol.setVolume(val);
-			});
-		addCheckbox(folderName, "mute", false, function(muted){
+		var currentValue = vol.value;
+		folder.add(vol, "value", min, max).name(title);
+		addCheckbox(folder, "mute", false, function(muted){
 			if (muted){
-				vol.setVolume(-1000);
+				currentValue = vol.value;
+				vol.value = -1000;
 			} else {
-				var preVolume = obj[title];
-				vol.setVolume(preVolume);
+				vol.value = currentValue;
 			}
 		});
 	}
@@ -62,7 +93,7 @@ define(["dat"], function(dat){
 	}
 
 	function addTone(folderName, name, tone, initial){
-		var topLevel = getFolder(folderName, GUI);
+		/*var topLevel = getFolder(folderName, GUI);
 		addSubTone(name, topLevel, tone, initial);
 		//add an print button
 		var folder = getFolder(name, topLevel);
@@ -72,21 +103,18 @@ define(["dat"], function(dat){
 			}
 		}, "print");
 		//set the values initially
-		tone.set(initial);
+		tone.set(initial);*/
 	}
 
-	function addObject(folderName, name, obj, onchange){
-		var topLevel = getFolder(folderName, GUI);
-		var folder = getFolder(name, topLevel);
+
+	function addObject(folder, name, obj){
+		var topLevel = getFolder(name, folder);
 		for (var param in obj){
-			var gui = folder.add(obj, param);
-			if (typeof onchange === "function"){
-				gui.onChange(onchange);
-			}
+			var gui = topLevel.add(obj, param);
 		}
 	}
 
-	function addSubTone(folderName, parent, tone, obj){
+	/*function addSubTone(folderName, parent, tone, obj){
 		var folder = getFolder(folderName, parent);
 		for (var param in obj){
 			var val = obj[param];
@@ -110,13 +138,15 @@ define(["dat"], function(dat){
 					}());
 			}
 		}
-	}
+	}*/
 
 	return {
 		GUI : GUI,
-		addSlider : addSlider,
+		getFolder : getFolder,
+		addSlider : function(){},
 		addDropDown : addDropDown,
 		addTone : addTone,
+		addTone2 : addTone2,
 		addVolumeSlider : addVolumeSlider,
 		addCheckbox : addCheckbox,
 		addObject : addObject,

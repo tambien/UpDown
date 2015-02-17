@@ -1,23 +1,26 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/instrument/PolySynth", 
-	"Tone/component/PanVol", "preset/PianoSound", "Tone/component/LFO", "interface/GUI"], 
-function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI){
+	"Tone/component/PanVol", "preset/PianoSound", "Tone/component/LFO", "interface/GUI", 
+	"Tone/signal/Signal"], 
+function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal){
 
 	"use strict";
 
-	var monoSynth = new PolySynth(4, MonoSynth);
+	var monoSynth = new PolySynth(4, MonoSynth, {
+		"envelope" : {
+			"attack" : 0.1
+		}
+	});
 	var panner = new PanVol();
 	monoSynth.chain(panner, Master);
 
-	panner.setPan(0.2);
+	panner.pan.value = 0.2;
 
 	var vibrato = new LFO("32n", -40, 40);
-	var vibratoAmount = MonoSynth.prototype.context.createGain();
-	vibrato.connect(vibratoAmount);
 	vibrato.sync();
 	//connect it to each of the voices
 	for (var i = 0; i < monoSynth.voices.length; i++){
 		var voice = monoSynth.voices[i];
-		vibratoAmount.connect(voice.detune);
+		vibrato.connect(voice.detune);
 	}
 
 	// effects
@@ -26,44 +29,46 @@ function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI){
 		"autoPanner" : -30,
 	};
 
-	var revAmount = panner.send("reverb", panner.dbToGain(effectLevels.reverb));
+	var revAmount = panner.send("reverb");
+	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+	reverbControl.value = effectLevels.reverb; // OPTIMIZE
 
-	GUI.addSlider("Piano", "reverb", effectLevels.reverb, -60, 0, function(val){
-		revAmount.gain.value = panner.dbToGain(val);
-	});
-
+	//GUI
+	if (USE_GUI){
+		var pianoFolder = GUI.getFolder("Piano");
+		// GUI.addTone2(pianoFolder, "synth", monoSynth).listen();
+		GUI.addTone2(pianoFolder, "vibrato", vibrato).listen();
+		pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
+	}
 
 	//return
 	var velocity = 1;
 	var vibratoParams = {};
-	var oscChanged = true;
-	var stepPreset = Preset.stepwise.get();
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
-			Preset.smooth.update(function(pre){
+			Preset.update(function(pre){
+				if (monoSynth.voices[0].oscillator.type !== pre.oscillator.type){
+					//duck the volume for a second
+					var now = monoSynth.now();
+					monoSynth.output.gain.setValueAtTime(1, now);
+					monoSynth.output.gain.linearRampToValueAtTime(0, now + 0.01);
+					monoSynth.output.gain.setValueAtTime(0, time);
+					monoSynth.output.gain.linearRampToValueAtTime(1, time + 0.1);
+				}
 				monoSynth.set(pre);
+				if (pre.oscillator.type === "pwm"){
+					monoSynth.set({
+						"modulationFrequency" : 0.7
+					});
+				}
 				vibratoParams = pre.vibrato;
-			});
-			Preset.stepwise.update(function(pre){
-				//fade it out here for a split second as the oscillator changes
 				velocity = pre.velocity;
-				oscChanged = true;
-				stepPreset = pre;
-			});
-			vibratoAmount.gain.setValueAtTime(0, time);
-			vibratoAmount.gain.linearRampToValueAtTime(vibratoParams.amount, time + vibratoParams.amount);
+			}, true);
+			vibrato.amplitude.setValueAtTime(0, time);
+			vibrato.amplitude.linearRampToValueAtTime(vibratoParams.amount, time + vibratoParams.amount);
 			monoSynth.triggerAttackRelease(note, duration, time, velocity);
-			if (oscChanged){
-				oscChanged = false;
-				var now = monoSynth.now();
-				monoSynth.output.gain.setValueAtTime(1, now);
-				monoSynth.output.gain.linearRampToValueAtTime(0, now + 0.01);
-				monoSynth.output.gain.setValueAtTime(0, time);
-				monoSynth.output.gain.linearRampToValueAtTime(1, time + 0.1);
-				monoSynth.set(stepPreset);
-			}
 		},
-		output : panner
+		volume : panner.volume
 	};
 });

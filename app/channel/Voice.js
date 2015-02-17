@@ -1,26 +1,28 @@
-define(["Tone/instrument/MultiSampler", "controller/Mediator",
+define(["Tone/instrument/Sampler", "controller/Mediator",
  "preset/Voice", "controller/Conductor", "Tone/core/Master", 
- "effect/Main", "interface/GUI"], 
-function(MultiSampler, Mediator, Preset, Conductor, Master, Effects, GUI){
+ "effect/Main", "interface/GUI", "Tone/instrument/PolySynth"], 
+function(Sampler, Mediator, Preset, Conductor, Master, Effects, GUI, PolySynth){
 
 	var audioFolder = "./audio/";
 
-	var multiSamler = new MultiSampler({
-		"some_down" : audioFolder+"down/some.mp3",
-		"times_down" : audioFolder+"down/times.mp3",
-		"i_down" : audioFolder+"down/i.mp3",
-		"look_down" : audioFolder+"down/look.mp3",
-		"down_down" : audioFolder+"down/down.mp3",
-		"some_up" : audioFolder+"up/some.mp3",
-		"times_up" : audioFolder+"up/times.mp3",
-		"i_up" : audioFolder+"up/i.mp3",
-		"look_up" : audioFolder+"up/look.mp3",
-		"up_up" : audioFolder+"up/up.mp3",
-	}, function(){
-		console.log("loaded");
-	});
-
-	multiSamler.set({
+	var multiSamler = new PolySynth(3, Sampler, {
+		"A" : {
+			"down" : {
+				"some" : audioFolder+"down/some.mp3",
+				"times" : audioFolder+"down/times.mp3",
+				"i" : audioFolder+"down/i.mp3",
+				"look" : audioFolder+"down/look.mp3",
+				"down" : audioFolder+"down/down.mp3",
+			},
+			"up" : {
+				"some" : audioFolder+"up/some.mp3",
+				"times" : audioFolder+"up/times.mp3",
+				"i" : audioFolder+"up/i.mp3",
+				"look" : audioFolder+"up/look.mp3",
+				"up" : audioFolder+"up/up.mp3",
+			}
+		},
+	}, {
 		"filter" : {
 			"type" : "lowpass",
 			"rolloff" : -48,
@@ -30,22 +32,44 @@ function(MultiSampler, Mediator, Preset, Conductor, Master, Effects, GUI){
 		}
 	});
 
-
 	// SETUP //
 
 	//set special loop points for the somes
-	var sampleDuration = "32n";
-	multiSamler.samples.some_down.player.setLoopPoints(0.804, "0.804+"+sampleDuration);
-	multiSamler.samples.times_down.player.setLoopPoints(0.536, "0.536+"+sampleDuration);
-	multiSamler.samples.i_down.player.setLoopPoints(0.188, "0.188+"+sampleDuration);
-	multiSamler.samples.look_down.player.setLoopPoints(0.107, "0.107+"+sampleDuration);
-	multiSamler.samples.down_down.player.setLoopPoints(1.179, "01.179+"+sampleDuration);
-	//up
-	multiSamler.samples.some_up.player.setLoopPoints(0.777, "0.777+"+sampleDuration);
-	multiSamler.samples.times_up.player.setLoopPoints(0.375, "0.375+"+sampleDuration);
-	multiSamler.samples.i_up.player.setLoopPoints(0.536, "0.536+"+sampleDuration);
-	multiSamler.samples.look_up.player.setLoopPoints(0.268, "0.268+"+sampleDuration);
-	multiSamler.samples.up_up.player.setLoopPoints(0.723, "0.723+"+sampleDuration);
+	
+
+	var loopPoints = {
+		"A.down.some" : 0.804,
+		"A.down.times" : 0.536,
+		"A.down.i" : 0.188,
+		"A.down.look" : 0.107,
+		"A.down.down" : 1.179,
+		"A.up.some" : 0.777,
+		"A.up.times" : 0.375,
+		"A.up.i" : 0.536,
+		"A.up.look" : 0.268,
+		"A.up.up" : 0.723,
+	};
+	// multiSamler.samples.some_down.player.setLoopPoints(0.804, "0.804+"+sampleDuration);
+	// multiSamler.samples.times_down.player.setLoopPoints(0.536, "0.536+"+sampleDuration);
+	// multiSamler.samples.i_down.player.setLoopPoints(0.188, "0.188+"+sampleDuration);
+	// multiSamler.samples.look_down.player.setLoopPoints(0.107, "0.107+"+sampleDuration);
+	// multiSamler.samples.down_down.player.setLoopPoints(1.179, "01.179+"+sampleDuration);
+	// //up
+	// multiSamler.samples.some_up.player.setLoopPoints(0.777, "0.777+"+sampleDuration);
+	// multiSamler.samples.times_up.player.setLoopPoints(0.375, "0.375+"+sampleDuration);
+	// multiSamler.samples.i_up.player.setLoopPoints(0.536, "0.536+"+sampleDuration);
+	// multiSamler.samples.look_up.player.setLoopPoints(0.268, "0.268+"+sampleDuration);
+	// multiSamler.samples.up_up.player.setLoopPoints(0.723, "0.723+"+sampleDuration);
+
+	function setLoopPoints(time){
+		var sampleDuration = "+32n";
+		multiSamler.set({
+			"player" : {
+				"loopStart" : time,
+				"loopEnd" : time + sampleDuration
+			}
+		});
+	}
 
 
 	// CONECTIONS //
@@ -68,18 +92,23 @@ function(MultiSampler, Mediator, Preset, Conductor, Master, Effects, GUI){
 	
 	return {
 		triggerAttackRelease : function(name, duration, time){
+			var section = "A.";
 			if (Conductor.hasVoice()){
-				Preset.stepwise.update(multiSamlerSet);
-				Preset.smooth.update(multiSamlerSet);
+				Preset.update(function(pre){
+					multiSamler.set(pre);
+				});
 				var noteDur = multiSamler.toSeconds(duration);
-				multiSamler.triggerAttackRelease(name,  
+				//set the loop points
+				setLoopPoints(loopPoints[section+name]);
+
+				multiSamler.triggerAttackRelease(section+name,  
 					noteDur - multiSamler.toSeconds("16n"), 
 					time);
-				if (name === "some_down" || name === "some_up"){
+				if (name === "down.some" || name === "up.some"){
 					setTimeout(function(){
 						Mediator.deferSend("voice", name, noteDur);
 					}, 400);
-				} else if (name === "down_down"){
+				} else if (name === "down.down"){
 					setTimeout(function(){
 						Mediator.deferSend("voice", name, noteDur);
 					}, 200);
@@ -88,6 +117,6 @@ function(MultiSampler, Mediator, Preset, Conductor, Master, Effects, GUI){
 				}
 			}
 		},
-		output : multiSamler
+		volume : multiSamler.volume
 	};
 });

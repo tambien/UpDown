@@ -1,7 +1,6 @@
 define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var HHSmoothPreset = 
-	[
+	return new Interpolator([
 		{
 			"filter": {
 				"Q": 7.1
@@ -28,10 +27,5 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"decay": 0.12
 			}
 		}
-	];
-
-	GUI.addPreset("High Hat Smooth", HHSmoothPreset);
-	var HighHatSmooth = new Interpolator(HHSmoothPreset, "smooth");
-
-	return HighHatSmooth;
+	], "High Hat Preset", GUI);
 });

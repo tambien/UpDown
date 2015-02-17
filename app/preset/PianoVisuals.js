@@ -1,6 +1,6 @@
 define(["preset/Interpolator"], function(Interpolator){
 
-	var PianoVisSmooth = new Interpolator([
+	return new Interpolator([
 		//top
 		{
 			"minSpeed" : 1000,
@@ -22,7 +22,5 @@ define(["preset/Interpolator"], function(Interpolator){
 			"color" : [1, 0.2, 0],
 			"size" : 1
 		},
-	], "smooth");
-
-	return PianoVisSmooth;
+	], "Piano Visuals");
 });

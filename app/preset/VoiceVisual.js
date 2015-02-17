@@ -1,6 +1,6 @@
 define(["preset/Interpolator"], function(Interpolator){
 
-	var VoiceVizSmooth = new Interpolator([
+	return new Interpolator([
 		//top
 		{
 			"attackTime" : 100,
@@ -19,7 +19,5 @@ define(["preset/Interpolator"], function(Interpolator){
 			"attackTime" : 300,
 			"color" : [0.6, 0.6, 0],
 		},
-	], "smooth");
-
-	return VoiceVizSmooth;
+	], "Voice Visuals");
 });

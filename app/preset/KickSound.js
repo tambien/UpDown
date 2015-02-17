@@ -1,7 +1,6 @@
 define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	var KickData = 
-	[
+	return new Interpolator([
 		{
 			"ampEnv": {
 				"decay": 0.27
@@ -12,11 +11,5 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"decay": 4.4
 			}
 		}
-	];
-
-	var KickSmooth = new Interpolator(KickData, "smooth");
-
-	GUI.addPreset("Kick Smooth", KickData);
-
-	return KickSmooth;
+	], "Kick Sound", GUI);
 });

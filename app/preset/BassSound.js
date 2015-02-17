@@ -1,7 +1,6 @@
 define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(Interpolator, Bass, GUI){
 
-	var BassSynthSmoothData = 
-	[
+	return new Interpolator([
 		{
 			"volume": -7.5,
 			"synth": {
@@ -24,7 +23,8 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 				}
 			},
 			"osc2": {
-				"volume": -28
+				"volume": -28,
+				"type" : "sawtooth",
 			}
 		},
 		{
@@ -49,42 +49,9 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 				}
 			},
 			"osc2": {
+				"type" : "triangle",
 				"volume": -3
 			}
 		}
-	];
-
-	var BassSynthStepData = 
-	[
-		{
-			"osc2" : {
-				"type" : "sawtooth",
-			}
-		},
-		{
-			"osc2" : {
-				"type" : "triangle",
-			}
-		},
-		{
-			"osc2" : {
-				"type" : "triangle",
-			}
-		},
-		{
-			"osc2" : {
-				"type" : "triangle",
-			}
-		}
-	];
-
-	GUI.addPreset("Bass Synth Smooth", BassSynthSmoothData);
-
-	var BassSynthSmooth = new Interpolator(BassSynthSmoothData, "smooth");
-	var BassSynthStep = new Interpolator(BassSynthStepData, "step");
-
-	return {
-		smooth : BassSynthSmooth,
-		step : BassSynthStep
-	};
+	], "Bass Preset", GUI);
 });
