@@ -26,16 +26,20 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 	 */
 	
 	var material = new THREE.MeshBasicMaterial({
-		transparent: true,
-		opacity : 0.2,
-		side: THREE.DoubleSide,
-		blending: THREE.SubtractiveBlending,
-		// blending: THREE.NormalBlending,
+		transparent: transparent,
+		opacity: opacity,
+		blending : THREE[ blending ],
+		blendSrc : THREE[ blendSrc ],
+		blendDst : THREE[ blendDst ],
+		blendEquation : THREE[ blendEq ],
 		depthTest : false,
-		color : 0xff0f00
+		depthWrite : false,
+		side: THREE.DoubleSide,
+		color : 0xff0f00,
+		emissive : 0x000000
 	});
 
-	var geometry = new THREE.PlaneGeometry(20, 3, 32);
+	var geometry = new THREE.PlaneBufferGeometry(20, 3, 32);
 
 	Mediator.route("scroll", function(pos){
 		position = pos;
@@ -49,18 +53,20 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 		var object = new THREE.Mesh( geometry, material);
 		var angle = (Window.height() / Window.width());
 		object.rotation.z = -angle * (Math.PI / 4);
-		var startX = -Window.width() * 0.07;
-		var endX = Window.width() * 0.07;
+		var startX = -Window.width() * 0.08;
+		var endX = Window.width() * 0.09;
 		//y = mx + b
 		var startY = -(startX * angle + offset);
 		var endY = -(endX * angle + offset);
 		object.position.x = startX;
 		object.position.y = startY;
 		scene.add(object);
-		var tween = new TWEEN.Tween({x : startX, y : startY})
-			.to({x : endX, y : endY}, speed)
+		var tween = new TWEEN.Tween({x : startX, y : startY, scaleX : 1})
+			.to({x : endX, y : endY, scaleX : 2}, speed)
 			.onUpdate(function(){
 				object.position.set(this.x, this.y, 0);	
+				object.scale.setX(this.scaleX);
+				object.scale.setY(1 / this.scaleX);
 			})
 			.onComplete(function(){
 				scene.remove(object);
@@ -68,7 +74,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 				scene = null;
 				tween = null;
 			})
-			.easing( TWEEN.Easing.Quadratic.Out )
+			.easing( TWEEN.Easing.Quartic.Out )
 			.start();
 	};
 

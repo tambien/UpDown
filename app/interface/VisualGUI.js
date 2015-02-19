@@ -1,6 +1,9 @@
 define(["dat"], function(dat){
 
-	var VISUALS = new dat.GUI();
+	var VISUALS;
+	if (USE_GUI){
+		 VISUALS = new dat.GUI();
+	}
 
 	function makeFolder(title, parent){
 		return parent.addFolder(title);

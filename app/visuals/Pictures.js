@@ -1,5 +1,5 @@
-define(["visuals/Context", "THREE", "TERP", "controller/Mediator", "TWEEN"], 
-	function(Context, THREE, TERP, Mediator, TWEEN){
+define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"], 
+	function(Context, TERP, Mediator, TWEEN){
 
 	"use strict";
 

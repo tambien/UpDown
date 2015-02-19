@@ -1,5 +1,13 @@
-define(["THREE", "interface/Window", "jquery", "TWEEN", "Stats", "requestAnimationFrame", "controller/Mediator"], 
-function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
+var blendSrc = "SrcColorFactor";
+var blendDst = "DstColorFactor";
+var blendEq = "SubtractEquation";
+var blending = "CustomBlending";
+var opacity = 0.1;
+var transparent = true;
+
+define(["interface/Window", "jquery", "TWEEN", "Stats", "requestAnimationFrame", 
+	"controller/Mediator", "shader/ColorShift", "shader/Noise"], 
+function(Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator, ColorShiftShader, NoiseShader){
 
 	/**
 	 *  the threejs context
@@ -9,9 +17,12 @@ function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 		this.scene = new THREE.Scene();
 		// this.scene.fog = new THREE.FogExp2( 0xffffff, 0.0025);
 		this.renderer = new THREE.WebGLRenderer({
-			precision : "lowp"
+			precision : "lowp",
+			alpha : false,
+			premultipliedAlpha: false
 		});
-		this.renderer.setClearColor( 0xffffff );
+		this.renderer.setClearColor( 0x000000 , 0);
+		// this.renderer.setClearColor( 0xffffff , 0);
 		this.renderer.setSize(Window.width(), Window.height());
 		Window.container.append(this.renderer.domElement);
 
@@ -21,8 +32,13 @@ function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 
 		this.scene.add( new THREE.AmbientLight( 0x222222 ) );
 		this.light = new THREE.PointLight( 0xffffff );
-		this.light.position.copy( this.camera.position );
+		this.light.position.setX(-100);
+		this.light.position.setY(-100);
+		this.light.position.setZ(-100);
+		this.light.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
 		this.scene.add( this.light );
+
+		window.light = this.light;
 
 		// this.createGrid();
 
@@ -42,8 +58,12 @@ function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 		Mediator.route("half", this.flipCamera.bind(this));
 		Window.resize(this.resize.bind(this));
 
+		//the background shapes for testing
+		// this.backgroundShape();
+		this.addComposer();
+		// ^^^^^^^^^^^^^^^
+
 		//start animating
-		this.step = 0;
 		this.animate();
 	};
 
@@ -91,50 +111,79 @@ function(THREE, Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator){
 
 	};
 
+	// var src = [ "ZeroFactor", "OneFactor", "SrcAlphaFactor", "OneMinusSrcAlphaFactor", "DstAlphaFactor", "OneMinusDstAlphaFactor", "DstColorFactor", "OneMinusDstColorFactor", "SrcAlphaSaturateFactor" ];
+	// var dst = [ "ZeroFactor", "OneFactor", "SrcColorFactor", "OneMinusSrcColorFactor", "SrcAlphaFactor", "OneMinusSrcAlphaFactor", "DstAlphaFactor", "OneMinusDstAlphaFactor" ];
+	// var equations = ["AddEquation", "SubtractEquation", "ReverseSubtractEquation"];
+
 	Context.prototype.backgroundShape = function(){
 
-		var material = new THREE.MeshNormalMaterial({
-			transparent: true,
-			opacity: 0.5,
-			blending: THREE.NormalBlending,
+		var boxMaterial = new THREE.MeshNormalMaterial({
+			transparent: transparent,
+			opacity: opacity,
+			blending : THREE[ blending ],
+			blendSrc : THREE[ blendSrc ],
+			blendDst : THREE[ blendDst ],
+			blendEquation : THREE[ blendEq ],
 			depthTest : false,
+			depthWrite : false,
 			color : 0x00ff00
 		});
 		// material.depthTest = false;
-		this.square = new THREE.Mesh( new THREE.BoxGeometry( 100, 10, 10), material);
+		this.square = new THREE.Mesh( new THREE.BoxGeometry( 100, 10, 10), boxMaterial);
 		this.square.geometry.computeVertexNormals();
-		this.background.add(this.square);
+		this.scene.add(this.square);
 
 		var sphereMaterial = new THREE.MeshBasicMaterial({
-			transparent: true,
-			blending: THREE.SubtractiveBlending,
+			transparent: transparent,
+			opacity: opacity,
+			blending : THREE[ blending ],
+			blendSrc : THREE[ blendSrc ],
+			blendDst : THREE[ blendDst ],
+			blendEquation : THREE[ blendEq ],
 			depthTest : false,
-			color : 0xff0000
+			depthWrite : false,
+			color : 0x0000ff
 		});
 		// material.depthTest = false;
 		this.sphere = new THREE.Mesh( new THREE.SphereGeometry( 25, 25, 25), sphereMaterial);
 		this.sphere.geometry.computeVertexNormals();
-		this.background.add(this.sphere);
+		this.scene.add(this.sphere);
 
 		var sphereMaterial2 = new THREE.MeshBasicMaterial({
-			transparent: true,
-			blending: THREE.SubtractiveBlending,
+			transparent: transparent,
+			opacity: opacity,
+			blending : THREE[ blending ],
+			blendSrc : THREE[ blendSrc ],
+			blendDst : THREE[ blendDst ],
+			blendEquation : THREE[ blendEq ],
 			depthTest : false,
-			color : 0x0000ff
+			depthWrite : false,
+			color : 0xff0000
 		});
 		// material.depthTest = false;
 		this.sphere = new THREE.Mesh( new THREE.SphereGeometry( 25, 25, 25), sphereMaterial2);
 		this.sphere.geometry.computeVertexNormals();
 		this.sphere.position.x += 20;
-		this.background.add(this.sphere);
+		this.scene.add(this.sphere);
 	};
 
 	Context.prototype.animate = function(time) {
 		requestAnimationFrame( this.animate.bind(this) );
-		this.step = 1;
-		this.renderer.render( this.scene, this.camera );
+		this.composer.render();
 		TWEEN.update(time);
 		this.stats.update();
+	};
+
+	Context.prototype.addComposer = function() {
+		this.composer = new THREE.EffectComposer( this.renderer );
+		this.composer.addPass( new THREE.RenderPass(  this.scene, this.camera ) );
+		var effect = new THREE.ShaderPass( ColorShiftShader );
+		effect.renderToScreen = true;
+		// var noise = new THREE.ShaderPass(NoiseShader);
+		this.composer.addPass( effect );
+		// this.composer.addPass( noise );
+
+		// window.noise = noise;
 	};
 
 	Context.prototype.dispose = function(){

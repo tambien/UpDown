@@ -46,6 +46,9 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			}
 		},
 		{
+			"player" : {
+				"loop" : true
+			},
 			"envelope": {
 				"sustain": 0.3,
 				"attack" : "64t",
@@ -62,9 +65,6 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			},
 			"filter": {
 				"Q": 6.2
-			},
-			"player" : {
-				"loop" : true
 			},
 		}
 	], "Voice Preset", GUI);

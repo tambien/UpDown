@@ -2,7 +2,10 @@ define(["dat", "Tone/signal/Signal", "Tone/core/Tone", "Tone/source/Oscillator",
 	"Tone/source/OmniOscillator", "Tone/source/Noise", "Tone/component/Filter", "Tone/instrument/PolySynth"], 
 	function(dat, Signal, Tone, Oscillator, OmniOscillator, Noise, Filter, PolySynth){
 
-	var GUI = new dat.GUI();
+	var GUI;
+	if (USE_GUI){
+		 GUI = new dat.GUI();
+	}
 
 	function getFolder(folder, parent){
 		parent = parent || GUI;

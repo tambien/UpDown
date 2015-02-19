@@ -3,14 +3,20 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 
 	"use strict";
 
-	var material = new THREE.MeshBasicMaterial({
-		transparent: true,
-		opacity : 0.9,
-		blending: THREE.SubtractiveBlending,
-		// blending: THREE.NormalBlending,
+	var material = new THREE.MeshLambertMaterial({
+		transparent: transparent,
+		opacity: opacity,
+		blending : THREE[ blending ],
+		blendSrc : THREE[ blendSrc ],
+		blendDst : THREE[ blendDst ],
+		blendEquation : THREE[ blendEq ],
 		depthTest : false,
-		color : 0xff0f00
+		depthWrite : false,
+		color : 0xff0f00,
+		emissive : 0xff0f00
 	});
+
+	window.material = material;
 
 	var geometry = new THREE.SphereGeometry(10, 32, 32);
 
@@ -18,6 +24,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 		var preset = VoicePreset.get(position); 
 		var color = preset.color;
 		material.color.setRGB(color[0], color[1], color[2]);
+		material.emissive.setRGB(color[0], color[1], color[2]);
 	});
 
 	/**

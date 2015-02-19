@@ -7,16 +7,13 @@ require.config({
 		"jquery.mousewheel" : "../deps/jquery.mousewheel",
 		"TERP" : "../deps/TERP",
 		"Tone" : "../../Tone.js/Tone",
-		"THREE" : "../deps/three.min",
 		"TWEEN" : "../deps/tween.min",
 		"Stats" : "../deps/Stats",
 		"requestAnimationFrame" : "../deps/requestAnimationFrame",
-		"dat" : "../deps/dat.gui"
+		"dat" : "../deps/dat.gui",
+		"THREE" : "../deps/three.min",
 	},
 	shim : {
-		"THREE" : {
-			exports : "THREE"
-		},
 		"dat" : {
 			exports : "dat"
 		},
@@ -25,6 +22,9 @@ require.config({
 		},
 		"Stats" : {
 			exports : "Stats"
+		},
+		"THREE" : {
+			exports : "THREE"
 		}
 	}
 });

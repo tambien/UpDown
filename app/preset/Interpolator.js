@@ -17,7 +17,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 		this._stepWisePosition = 0;
 		Mediator.route("scroll", this._onupdate.bind(this));
 		//add it to the gui
-		if (GUI && GUI.addPreset){
+		if (USE_GUI && GUI && GUI.addPreset){
 			GUI.addPreset(name, presetarray);
 		}
 	};

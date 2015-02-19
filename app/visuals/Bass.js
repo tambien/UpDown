@@ -23,13 +23,17 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 	 */
 	
 	var material = new THREE.MeshLambertMaterial({
-		transparent: true,
-		opacity : 0.1,
-		blending: THREE.SubtractiveBlending,
-		// blending: THREE.MultiplyBlending,
+		transparent: transparent,
+		opacity: opacity,
+		blending : THREE[ blending ],
+		blendSrc : THREE[ blendSrc ],
+		blendDst : THREE[ blendDst ],
+		blendEquation : THREE[ blendEq ],
 		depthTest : false,
+		depthWrite : false,
 		// wireframe : true,
-		color : 0x00ff00
+		color : 0x00ff00,
+		emissive : 0x000000
 	});
 
 	var geometry = new THREE.BoxGeometry( 200, 10, 10, 1, 1);
@@ -38,6 +42,7 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 		var preset = BassPreset.get(position); 
 		var color = preset.color;
 		material.color.setRGB(color[0], color[1], color[2]);
+		material.emissive.setRGB(color[0] - 0.5, color[1] - 0.5, color[2] - 0.5);
 	});
 
 	var BassNote = function(scene, onended){
