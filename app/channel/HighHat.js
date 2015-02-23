@@ -51,7 +51,7 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 		var hhFolder = GUI.getFolder("High Hat");
 		GUI.addTone2(hhFolder, "synth", synth).listen();
 		GUI.addTone2(hhFolder, "filter", filt).listen();
-		hhFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		// hhFolder.add(reverbControl, "value", -100, 1).name("reverb");
 	}
 	
 	//velocity scalar

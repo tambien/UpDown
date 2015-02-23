@@ -38,7 +38,7 @@ function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal){
 		var pianoFolder = GUI.getFolder("Piano");
 		// GUI.addTone2(pianoFolder, "synth", monoSynth).listen();
 		GUI.addTone2(pianoFolder, "vibrato", vibrato).listen();
-		pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		// pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
 	}
 
 	//return

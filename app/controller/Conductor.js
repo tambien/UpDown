@@ -130,7 +130,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		rampSpeed = rampSpeed || 0;
 		this.progress = position;
 		var bpm = TERP.map(position, 0, 1, 55, 130, 1);
-		Transport.setBpm(bpm, rampSpeed / 1000);
+		Transport.bpm.rampTo(bpm, rampSpeed / 1000);
 		//set the section based on the loop
 		var section = Math.floor(position * 4);
 		section = Math.min(section, 4);
@@ -140,7 +140,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 			this.setLoopStart(section);
 		}
 		//also update the swing
-		Transport.setSwing(TERP.map(position, 0, 1, 0.3, 0));
+		Transport.swing = TERP.map(position, 0, 1, 0.3, 0);
 	};
 
 	Conductor.prototype.hasVoice = function(){
@@ -170,7 +170,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 	 */
 	Conductor.prototype.setLoopStart = function(section){
 		// console.log("setting loop start", (section * 3).toString() + ":0");
-		Transport.setLoopStart((section * 3).toString() + ":0");
+		Transport.loopStart = (section * 3).toString() + ":0";
 	};
 
 	/**
@@ -179,7 +179,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 	Conductor.prototype.setLoopEnd = function(section){
 		var loopEndTime = (section * 3 + 3).toString() + ":0";
 		// console.log("setting loop end", loopEndTime);
-		Transport.setLoopEnd(loopEndTime);
+		Transport.loopEnd = loopEndTime;
 	};
 
 	/**

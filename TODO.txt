@@ -1,0 +1,8 @@
+Get rid of expr in Bass. 
+
+Make Piano visuals have width/length in preset controls. 
+	go slower at top.
+
+Add arpeggiator pattern. faster as the song gets slower
+
+B part. 

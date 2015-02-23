@@ -55,6 +55,6 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main",
 	});
 
 	setInterval(function(){
-		$("#TransportPosition").text(Transport.getTransportTime());
+		$("#TransportPosition").text(Transport.position);
 	}, 400);
 });
