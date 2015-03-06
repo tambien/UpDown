@@ -1,14 +1,15 @@
 define(["channel/Bass", "channel/Piano", "channel/Voice", "channel/HighHat", "channel/Kick", 
-	"interface/GUI", "channel/Snare"], 
-function(Bass, Piano, Voice, HH, Kick, GUI, Snare){
+	"interface/GUI", "channel/Snare", "channel/Arp"], 
+function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp){
 
 	var volumes = {
-		Bass : -11.6,
-		Piano : -26,
+		Bass : -15,
+		Piano : -32,
 		Voice : -8,
 		HH : -21,
-		Kick : -15,
-		Snare : -5,
+		Kick : -16,
+		Snare : -14,
+		Arp : -48
 	};
 
 	Bass.volume.value = volumes.Bass;
@@ -17,6 +18,7 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare){
 	HH.volume.value = volumes.HH;
 	Kick.volume.value = volumes.Kick;
 	Snare.volume.value = volumes.Snare;
+	Arp.volume.value = volumes.Arp;
 
 	if (USE_GUI){
 		var folder = GUI.getFolder("Levels (db)");
@@ -26,5 +28,6 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare){
 		GUI.addVolumeSlider(folder, "HH Volume", HH.volume);
 		GUI.addVolumeSlider(folder, "Kick Volume", Kick.volume);
 		GUI.addVolumeSlider(folder, "Snare Volume", Snare.volume);	
+		GUI.addVolumeSlider(folder, "Arp Volume", Arp.volume, -60, -20);	
 	}
 });

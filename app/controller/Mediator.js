@@ -1,4 +1,4 @@
-define(function(){
+define(["requestAnimationFrame"], function(requestAnimationFrame){
 	
 	/**
 	 * MicroEvent - to make any js object an event emitter (server or browser)
@@ -63,8 +63,14 @@ define(function(){
 		Mediator.send("presetUpdate", presetUpdateRate);
 	}
 
+	function update(){
+		requestAnimationFrame(update);
+		Mediator.send("update");
+	}
+
 	slowUpdateLoop();
 	presetUpdateLoop();
+	update();
 
 	return Mediator;
 });

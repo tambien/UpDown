@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/SnareWave", 
-	"TWEEN", "requestAnimationFrame", "interface/Window"], 
-	function(Context, Mediator, SnareMaterial, TWEEN, requestAnimationFrame, Window){
+	"TWEEN", "interface/Window"], 
+	function(Context, Mediator, SnareMaterial, TWEEN, Window){
 
 	"use strict";
 
@@ -22,6 +22,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 		this.time = SnareMaterial.uniforms.time;
 
 		Mediator.route("snare", this.note.bind(this));
+		Mediator.route("update", this.update.bind(this));
 		this.update();
 
 		window.snare = this;
@@ -47,7 +48,6 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 	};
 
 	SnareVisuals.prototype.update = function(){
-		requestAnimationFrame(this.update.bind(this));
 		if (this.amplitude.value > 0.0001){
 			this.time.value += 1;
 		}

@@ -5,9 +5,9 @@ var blending = "CustomBlending";
 var opacity = 0.1;
 var transparent = true;
 
-define(["interface/Window", "jquery", "TWEEN", "Stats", "requestAnimationFrame", 
+define(["interface/Window", "jquery", "TWEEN", "Stats", 
 	"controller/Mediator", "shader/ColorShift", "shader/Noise"], 
-function(Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator, ColorShiftShader, NoiseShader){
+function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 
 	/**
 	 *  the threejs context
@@ -56,6 +56,7 @@ function(Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator, ColorShi
 
 		//listen for events
 		Mediator.route("half", this.flipCamera.bind(this));
+		Mediator.route("update", this.animate.bind(this));
 		Window.resize(this.resize.bind(this));
 
 		//the background shapes for testing
@@ -168,7 +169,6 @@ function(Window, jquery, TWEEN, Stats, requestAnimationFrame, Mediator, ColorShi
 	};
 
 	Context.prototype.animate = function(time) {
-		requestAnimationFrame( this.animate.bind(this) );
 		this.composer.render();
 		TWEEN.update(time);
 		this.stats.update();

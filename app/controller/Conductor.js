@@ -130,8 +130,13 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		rampSpeed = rampSpeed || 0;
 		this.progress = position;
 		var bpm = TERP.map(position, 0, 1, 55, 130, 1);
-		Transport.bpm.rampTo(bpm, rampSpeed / 1000);
+		if (!rampSpeed){
+			Transport.bpm.value = bpm;
+		} else {
+			Transport.bpm.rampTo(bpm, rampSpeed / 1000);
+		}
 		//set the section based on the loop
+		position = Math.min(position, 0.99);
 		var section = Math.floor(position * 4);
 		section = Math.min(section, 4);
 		section = Math.max(section, 0);
@@ -140,7 +145,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 			this.setLoopStart(section);
 		}
 		//also update the swing
-		Transport.swing = TERP.map(position, 0, 1, 0.3, 0);
+		// Transport.swing = TERP.map(position, 0, 1, 0.2, 0);
 	};
 
 	Conductor.prototype.hasVoice = function(){

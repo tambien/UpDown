@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/KickWave", 
-	"TWEEN", "requestAnimationFrame", "interface/Window"], 
-	function(Context, Mediator, KickMaterial, TWEEN, requestAnimationFrame, Window){
+	"TWEEN", "interface/Window"], 
+	function(Context, Mediator, KickMaterial, TWEEN, Window){
 
 	"use strict";
 
@@ -30,6 +30,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 		window.height = KickMaterial.uniforms.height;
 
 		Mediator.route("kick", this.note.bind(this));
+		Mediator.route("update", this.update.bind(this));
 		this.update();
 	};
 
@@ -53,7 +54,6 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 	};
 
 	KickVisuals.prototype.update = function(){
-		requestAnimationFrame(this.update.bind(this));
 		if (this.amplitude.value > 0.0001){
 			this.time.value += 1;
 		}

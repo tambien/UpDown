@@ -1,7 +1,9 @@
 define(["Tone/instrument/NoiseSynth", "preset/HighHatSound", 
 	"controller/Conductor", "Tone/core/Master", "Tone/core/Transport", 
- "Tone/component/Filter", "Tone/component/PanVol", "interface/GUI", "TERP", "Tone/signal/Signal"], 
-function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, TERP, Signal){
+ "Tone/component/Filter", "Tone/component/PanVol", "interface/GUI", 
+ "TERP", "Tone/signal/Signal", "Tone/component/Panner", "Tone/component/Mono"], 
+function(NoiseSynth, Preset, Conductor, Master, Transport, 
+	Filter, PanVol, GUI, TERP, Signal, Panner, Mono){
 
 	var synth = new NoiseSynth({
 		"envelope" : {
@@ -30,10 +32,18 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 		"Q" : 4,
 	});
 
+	var mono = new Mono();
+	// var panner = new Panner({
+	// 	"frequency" : "2n",
+	// 	"type" : "square"
+	// });
+	// panner.start();
+	// panner.sync();
+
 
 	// CONECTIONS //
 
-	synth.chain(filt, Master);
+	synth.chain(filt, mono, Master);
 
 	//Effects
 	var effectLevels = {
@@ -51,7 +61,8 @@ function(NoiseSynth, Preset, Conductor, Master, Transport, Filter, PanVol, GUI, 
 		var hhFolder = GUI.getFolder("High Hat");
 		GUI.addTone2(hhFolder, "synth", synth).listen();
 		GUI.addTone2(hhFolder, "filter", filt).listen();
-		// hhFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		hhFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		// hhFolder.addSignal(panner, "pan", 0, 1);
 	}
 	
 	//velocity scalar

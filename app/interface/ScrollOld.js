@@ -20,37 +20,43 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 	var scrollingSeconds = 5;
 	var scrollingDivisor = scrollingSeconds * 5000;
 
+	var maxDelta = 100;
 
-	var innerScroll = $("<div>").attr("id", "InnerScroll").appendTo("#ScrollContainer");
-	var scroller = $("<div>").attr("id", "Scroller").appendTo(innerScroll);
-
-	var scrollSize = scroller.height();
-
-	//start it off at the right scroll position
-	innerScroll.scrollTop(scrollSize * 0.5);
-
-	var lastPosition = scrollSize * 0.5;
+	$("#Container").on("mousewheel", function(e){
+		e.preventDefault();
+		needsUpdate = true;
+		var deltaY = -e.deltaY;
+		if (deltaY > 0){
+			deltaY = Math.min(maxDelta, deltaY);
+		} else {
+			deltaY = Math.max(-maxDelta, deltaY);
+		}
+		scrollPosition -= deltaY / scrollingDivisor;
+		if (scrollPosition >= 0.999){
+			// console.log("TOPPPPP");
+			scrollPosition = 0.999;
+		} else if (scrollPosition <= 0.001){
+			// console.log("BOTTOM");
+			scrollPosition = 0.001;
+		}
+		Mediator.send("rawscroll", scrollPosition);
+	});
 
 	Mediator.route("slowUpdate", function(updateRate){
 		if (needsUpdate){
-			needsUpdate = false;
 			Mediator.send("scroll", scrollPosition, updateRate);
+			needsUpdate = false;
 		}
 	});
-	Mediator.route("update", function(){
-		var scrollTop = innerScroll.scrollTop();
-		if (scrollTop !== lastPosition){
-			lastPosition = scrollTop;
-			scrollPosition = 1 - scrollTop / scrollSize;
-			needsUpdate = true;
-			Mediator.send("rawscroll", scrollPosition);
-		}
-	});
-
 
 	Mediator.route("start", function(updateRate){
 		Mediator.send("scroll", scrollPosition, updateRate);
 	});
+
+	window.setScroll = function(position){
+		scrollPosition = position;
+		needsUpdate = true;
+	};
 
 	return {
 		/**

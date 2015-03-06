@@ -22,10 +22,6 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 					"Q": 3.4
 				}
 			},
-			"osc2": {
-				"volume": -28,
-				"type" : "sawtooth",
-			}
 		},
 		{
 			"volume": -2,
@@ -47,10 +43,6 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 				"filter": {
 					"Q": 5.2
 				}
-			},
-			"osc2": {
-				"type" : "triangle",
-				"volume": -3
 			}
 		}
 	], "Bass Preset", GUI);

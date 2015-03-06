@@ -1,7 +1,7 @@
 define(["Tone/instrument/Sampler", "controller/Mediator",
  "preset/Voice", "controller/Conductor", "Tone/core/Master", 
- "effect/Main", "interface/GUI", "Tone/instrument/PolySynth"], 
-function(Sampler, Mediator, Preset, Conductor, Master, Effects, GUI, PolySynth){
+ "effect/Main", "interface/GUI", "Tone/instrument/PolySynth", "Tone/signal/Signal"], 
+function(Sampler, Mediator, Preset, Conductor, Master, Effects, GUI, PolySynth, Signal){
 
 	var audioFolder = "./audio/";
 
@@ -79,16 +79,24 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects, GUI, PolySynth){
 	// EFFECTS //
 
 	var effectLevels = {
-		"reverb" : -10
+		"reverb" : -10,
+		"delay" : -10
 	};
 
-	var revAmount = multiSamler.send("reverb", multiSamler.dbToGain(effectLevels.reverb));
+	var reverbAmount = multiSamler.send("reverb");
+	var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
+	reverbControl.value = effectLevels.reverb; 
 
-	GUI.addSlider("Voice", "reverb", effectLevels.reverb, -60, 0, function(val){
-		revAmount.gain.value = multiSamler.dbToGain(val);
-	});
+	var delayAmount = multiSamler.send("delay");
+	var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+	delayControl.value = effectLevels.delay; 
 
-	var multiSamlerSet = multiSamler.set.bind(multiSamler);
+	//GUI
+	if (USE_GUI){
+		var voiceFolder = GUI.getFolder("Voice");
+		voiceFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		voiceFolder.add(delayControl, "value", -100, 1).name("delay");
+	}
 	
 	return {
 		triggerAttackRelease : function(name, duration, time){

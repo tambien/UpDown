@@ -43,7 +43,7 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main",
 	console.log("%c↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓", coloring);
 
 
-	$("#Container").one("mousedown touchstart", function(e){
+	$("#ScrollContainer").one("mousedown touchstart", function(e){
 		console.log("starting");
 		Mediator.send("start");
 	});

@@ -28,9 +28,13 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 
 	//reverb
 	var revAmount = comp.send("reverb");
+	var delayAmount = comp.send("delay");
 
 	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
 	reverbControl.value = -50; // OPTIMIZE
+
+	var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+	delayControl.value = -50; // OPTIMIZE
 
 
 	// GUI
@@ -41,6 +45,7 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 		GUI.addTone2(snareFolder, "envelope", ampEnv).listen();
 		GUI.addTone2(snareFolder, "noise", noise);
 		snareFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		snareFolder.add(delayControl, "value", -100, 1).name("delay");
 	}
 
 	noise.chain(ampEnv, filter, comp, Master);

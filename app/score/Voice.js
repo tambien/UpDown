@@ -2,7 +2,7 @@ define(["channel/Voice", "controller/Conductor"], function(Voice, Conductor){
 
 	var voiceScore = [
 
-		["0:0:2", "4n+8n", "some"], ["0:2", "4n", "times"],["0:3", "4n", "i"], 
+		["0:0:2", "4n+4t", "some"], ["0:2", "4n", "times"],["0:3", "4n", "i"], 
 		["1:0", "8n", "look"], ["1:0:2", "3 * 4n", "down"],
 		
 		["3:0:2", "4n+8n", "some"], ["3:2", "4n", "times"],["3:3", "4n", "i"], 

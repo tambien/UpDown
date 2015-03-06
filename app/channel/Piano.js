@@ -27,18 +27,25 @@ function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal){
 	var effectLevels = {
 		"reverb" : -16,
 		"autoPanner" : -30,
+		"delay" : -24
 	};
 
+	// OPTIMIZE // 
 	var revAmount = panner.send("reverb");
 	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
-	reverbControl.value = effectLevels.reverb; // OPTIMIZE
+	reverbControl.value = effectLevels.reverb; 
+
+	var delayAmount = panner.send("delay");
+	var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+	delayControl.value = effectLevels.delay; 
 
 	//GUI
 	if (USE_GUI){
 		var pianoFolder = GUI.getFolder("Piano");
 		// GUI.addTone2(pianoFolder, "synth", monoSynth).listen();
 		GUI.addTone2(pianoFolder, "vibrato", vibrato).listen();
-		// pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
+		pianoFolder.add(delayControl, "value", -100, 1).name("delay");
 	}
 
 	//return

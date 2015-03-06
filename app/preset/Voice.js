@@ -3,6 +3,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 	return new Interpolator([
 		{
 			"player" : {
+				"volume" : -6,
 				"loop" : false
 			},
 			"envelope": {
@@ -25,6 +26,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 		},
 		{
 			"player" : {
+				"volume" : -6,
 				"loop" : false
 			},
 			"envelope": {
@@ -47,6 +49,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 		},
 		{
 			"player" : {
+				"volume" : 3,
 				"loop" : true
 			},
 			"envelope": {

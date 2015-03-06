@@ -4,21 +4,22 @@ define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/component/Filter"
 function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Expr, Oscillator){
 
 	var filter = new Filter({
-		"frequency": 940,
+		"frequency": "G3",
 		"type": "lowpass",
 		"Q": 1.5
 	});
 
 	var compressor = new Compressor({
-	 	"threshold": -24,
+	 	"threshold": -12,
 	 	"attack": 0.0102,
-	 	"release": 0.2,
-	 	"ratio": 3.6
+	 	"release": 0.01,
+	 	"ratio": 4.6,
+	 	"knee" : 4
 	});
 
 	var monoSynth = new MonoSynth({
 		"oscillator": {
-			"type": "triangle"
+			"type": "sawtooth"
 		},
 		"envelope": {
 			"attack": 0.214,
@@ -41,43 +42,25 @@ function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Exp
 		}
 	});
 	
-	var lfo = new Oscillator({
-		"frequency" : "4n",
-	 	"type" : "square"
-	});
-
-	var expr = new Expr("if(gt0($0), 0.5, 1) * $1");
-
-	var osc2 = new Oscillator({
-		"type": "sawtooth",
-		"volume": -20,
-		"frequency": 0
-	});
-	osc2.sync();
-	osc2.connect(monoSynth.envelope);
+	var lfo = new LFO("8n", 0, 200);
+	lfo.connect(filter.frequency);
+	filter.frequency.value = "G2";
+	lfo.sync();
 
 	monoSynth.chain(filter, compressor, Master);
-	expr.connect(osc2.frequency);
-	lfo.connect(expr, 0, 0);
-	monoSynth.frequency.connect(expr, 0, 1);
-	lfo.sync();
-	lfo.syncFrequency();
 
 	//GUI
 	if (USE_GUI){
 		var bassFolder = GUI.getFolder("Bass");
-		window.synth = monoSynth;
 		GUI.addTone2(bassFolder, "filter", filter).listen();
 		GUI.addTone2(bassFolder, "compressor", compressor);
 		GUI.addTone2(bassFolder, "synth", monoSynth).listen();
-		GUI.addTone2(bassFolder, "osc2", osc2, ["type"]).listen();
 	}
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
 			Preset.update(function(preset){
 				monoSynth.set(preset.synth);
-				osc2.set(preset.osc2);
 			}, true);
 			//add some randomness in the duration
 			monoSynth.triggerAttackRelease(note, duration, time);

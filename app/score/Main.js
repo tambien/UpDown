@@ -1,3 +1,3 @@
-define(["score/Bass", "score/Piano", "score/Voice", "score/Drums"], function(Bass, Piano, Voice, Drums){
+define(["score/Bass", "score/Piano", "score/Voice", "score/Drums", "score/Arp"], function(Bass, Piano, Voice, Drums, Arp){
 	
 });
