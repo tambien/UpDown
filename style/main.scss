@@ -10,31 +10,55 @@
 	// background-image: url("http://www.mi2f.com/m/activity/images/coin-grid.gif");
 }
 
-
-#ScrollChannel {
-	$ScrollIndicatorHeight: 10px;
-	$ScrollIndicatorWidth: 7px;
-
-	width: $ScrollIndicatorWidth + 2px;
-	height: 100%;
+#ScrollContainer {
+	width: 100%;
 	position: absolute;
+	left: 0px;
 	top: 0px;
-	right: 0px;
-	// background-color: rgba(255, 0, 255, 0.1);
-	// border-left: 1px dotted black;
+	height: 100%;
+	z-index: 10000;
+	overflow: hidden;
 
-	#ScrollIndicator {
-		width: $ScrollIndicatorWidth;
-		height: $ScrollIndicatorHeight;
-		border-radius: 2px;
+	#InnerScroll {
+		height: 100%;
+		width: calc(100%);
+		overflow-y : scroll;
+
+		#Scroller {
+			height: 100000px;
+			width: 100%;
+		}
+	}
+
+	#Channel {
+		pointer-events: none;
+		$ScrollIndicatorHeight: 10px;
+		$ScrollIndicatorWidth: 17px;
+		background-color: blue;
+
+		width: $ScrollIndicatorWidth + 2px;
+		height: 100%;
 		position: absolute;
-		top: calc(50% - #{$ScrollIndicatorHeight / 2});
-		right: 1px;
-		background-color: #00ffff;
-		opacity: 0.9;
-		transition: top 0.25s;
+		top: 0px;
+		right: 0px;
+		background-color: rgba(255, 0, 255, 0.1);
+		border-left: 1px dotted black;
+
+		#Indicator {
+			width: $ScrollIndicatorWidth;
+			height: $ScrollIndicatorHeight;
+			border-radius: 2px;
+			position: absolute;
+			top: calc(50% - #{$ScrollIndicatorHeight / 2});
+			right: 1px;
+			background-color: #00ffff;
+			opacity: 0.9;
+			transition: top 0.25s;
+		}
 	}
 }
+
+
 
 
 #TransportPosition {

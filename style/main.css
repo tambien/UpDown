@@ -8,22 +8,41 @@
   font-family: monospace;
   overflow: hidden; }
 
-#ScrollChannel {
-  width: 9px;
-  height: 100%;
+#ScrollContainer {
+  width: 100%;
   position: absolute;
+  left: 0px;
   top: 0px;
-  right: 0px; }
-  #ScrollChannel #ScrollIndicator {
-    width: 7px;
-    height: 10px;
-    border-radius: 2px;
+  height: 100%;
+  z-index: 10000;
+  overflow: hidden; }
+  #ScrollContainer #InnerScroll {
+    height: 100%;
+    width: calc(100%);
+    overflow-y: scroll; }
+    #ScrollContainer #InnerScroll #Scroller {
+      height: 100000px;
+      width: 100%; }
+  #ScrollContainer #Channel {
+    pointer-events: none;
+    background-color: blue;
+    width: 19px;
+    height: 100%;
     position: absolute;
-    top: calc(50% - 5px);
-    right: 1px;
-    background-color: #00ffff;
-    opacity: 0.9;
-    transition: top 0.25s; }
+    top: 0px;
+    right: 0px;
+    background-color: rgba(255, 0, 255, 0.1);
+    border-left: 1px dotted black; }
+    #ScrollContainer #Channel #Indicator {
+      width: 17px;
+      height: 10px;
+      border-radius: 2px;
+      position: absolute;
+      top: calc(50% - 5px);
+      right: 1px;
+      background-color: #00ffff;
+      opacity: 0.9;
+      transition: top 0.25s; }
 
 #TransportPosition {
   color: #aaaaaa;
