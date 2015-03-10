@@ -1,4 +1,5 @@
-define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interface/Scroll"], function(Context, Mediator, BassPreset, Scroll){
+define(["visuals/Context", "controller/Mediator", "preset/BassVisual"], 
+function(Context, Mediator, BassPreset){
 
 	"use strict";
 
@@ -6,7 +7,6 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 	 *  the bass visuals singleton
 	 */
 	var BassVisuals = function(){
-
 		Mediator.route("bass", this.note.bind(this));
 	};
 
@@ -38,23 +38,27 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 
 	var geometry = new THREE.BoxGeometry( 200, 10, 10, 1, 1);
 
-	Mediator.route("scroll", function(position){
-		var preset = BassPreset.get(position); 
+	var startSize, endSize, rotation, duration;
+
+	BassPreset.onupdate(function(preset){
+		startSize = preset.startSize;
+		endSize = preset.endSize;
+		rotation = preset.rotation;
+		duration = preset.duration;
 		var color = preset.color;
 		material.color.setRGB(color[0], color[1], color[2]);
 		material.emissive.setRGB(color[0] - 0.5, color[1] - 0.5, color[2] - 0.5);
 	});
 
-	var BassNote = function(scene, onended){
-		var preset = BassPreset.get(Scroll.getPosition());
+	var BassNote = function(scene){
 		var object = new THREE.Mesh( geometry, material);
 		var initialSize = 0.001;
 		var initialY = -30;
 		object.scale.set(1, initialSize, initialSize);
 		object.position.y = initialY;
 		scene.add(object);
-		var tween = new TWEEN.Tween({y : initialY, rotation : 0, size : preset.startSize})
-			.to({y : 50, rotation : preset.rotation, size : preset.endSize}, preset.duration)
+		var tween = new TWEEN.Tween({y : initialY, rotation : 0, size : startSize})
+			.to({y : 50, rotation : rotation, size : endSize}, duration)
 			.onUpdate(function(){
 				object.position.y = this.y;
 				object.rotation.x = this.rotation;
@@ -66,13 +70,10 @@ define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "interfac
 				scene = null;
 				tween = null;
 				attack = null;
-				if (onended) {
-					onended();
-				}
 			})
 			.easing( TWEEN.Easing.Linear.None);
 		var attack = new TWEEN.Tween({size : initialSize})
-			.to({size : preset.startSize}, 300)
+			.to({size : startSize}, 300)
 			.onUpdate(function(){
 				object.scale.set(1, this.size, this.size);	
 			})

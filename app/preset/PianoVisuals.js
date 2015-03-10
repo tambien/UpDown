@@ -1,26 +1,27 @@
-define(["preset/Interpolator"], function(Interpolator){
+define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GUI){
 
 	return new Interpolator([
 		//top
 		{
-			"minSpeed" : 1000,
-			"maxSpeed" : 2000,
+			"minSpeed" : 1800,
 			"color" : [0.5, 0, 1],
-			"size" : 0.5
+			"width" : 1,
+			"length" : 3,
+			// "startingWidth" : 1
 		},
 		//middle
 		{
 			"minSpeed" : 1400,
-			"maxSpeed" : 2400,
 			"color" : [0.8, 0.4, 1],
-			"size" : 0.8
+			"width" : 0.7,
+			"length" : 4
 		},
 		//bottom
 		{
 			"minSpeed" : 2000,
-			"maxSpeed" : 3000,
 			"color" : [1, 0.2, 0],
-			"size" : 1
+			"width" : 0.2,
+			"length" : 6
 		},
-	], "Piano Visuals");
+	], "Piano Visuals", GUI);
 });

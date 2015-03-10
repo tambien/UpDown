@@ -32,18 +32,11 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 		"Q" : 4,
 	});
 
-	var mono = new Mono();
-	// var panner = new Panner({
-	// 	"frequency" : "2n",
-	// 	"type" : "square"
-	// });
-	// panner.start();
-	// panner.sync();
-
+	var panner = new Panner();
 
 	// CONECTIONS //
 
-	synth.chain(filt, mono, Master);
+	synth.chain(filt, panner, Master);
 
 	//Effects
 	var effectLevels = {
@@ -65,16 +58,15 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 		// hhFolder.addSignal(panner, "pan", 0, 1);
 	}
 	
-	//velocity scalar
-	var minVelocity = 0.36;
-
 	return {
-		triggerAttackRelease : function(duration, time){
+		triggerAttackRelease : function(duration, time, velocity, pan){
 			Preset.update(function(pres){
 				synth.set(pres);
 			});
-			//add a little randomness to the velocity
-			synth.triggerAttack(time, TERP.scale(Math.random(), minVelocity, 1));
+			//random pan
+			pan = TERP.scale(pan, 0.2, 0.8);
+			panner.pan.rampTo(pan, 0.01);
+			synth.triggerAttack(time, velocity);
 		},
 		volume : synth.volume
 	};

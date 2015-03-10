@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/SnareWave", 
-	"TWEEN", "interface/Window"], 
-	function(Context, Mediator, SnareMaterial, TWEEN, Window){
+	"TWEEN", "interface/Window", "preset/SnareVisuals"], 
+	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset){
 
 	"use strict";
 
@@ -25,6 +25,8 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 		Mediator.route("update", this.update.bind(this));
 		this.update();
 
+		Preset.onupdate(this.presetUpdate.bind(this));
+
 		window.snare = this;
 	};
 
@@ -32,7 +34,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 		var maxAmp = 1;
 		var amplitude = this.amplitude;
 		this.tween = new TWEEN.Tween({amp : maxAmp})
-			.to({amp: 0}, 400)
+			.to({amp: 0}, this.decayTime)
 			.onUpdate(function(){
 				amplitude.value = this.amp;
 			})
@@ -51,6 +53,13 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 		if (this.amplitude.value > 0.0001){
 			this.time.value += 1;
 		}
+	};
+
+	SnareVisuals.prototype.presetUpdate = function(pre){
+		this.decayTime = pre.decay;
+		var color = pre.color;
+		this.object.scale.setX(pre.width);
+		SnareMaterial.uniforms.color.value.setRGB(color[0], color[1], color[2]);
 	};
 
 	SnareVisuals.prototype.dispose = function(){

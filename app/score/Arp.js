@@ -38,10 +38,12 @@ define(["channel/Arp", "controller/Conductor", "controller/Mediator"], function(
 	};
 
 	Conductor.parseScore(arpSynth, function(time, duration){
-		var chordNote = chordNotes[Conductor.getChord()];
-		Arp.triggerAttackRelease(chordNote[noteIndex] + octave, duration, time);
-		noteIndex++;
-		Mediator.deferSend("arp", noteIndex);
-		noteIndex = noteIndex % 5;
+		if (Conductor.hasArp()){
+			var chordNote = chordNotes[Conductor.getChord()];
+			Arp.triggerAttackRelease(chordNote[noteIndex] + octave, duration, time);
+			noteIndex++;
+			Mediator.deferSend("arp", noteIndex);
+			noteIndex = noteIndex % 5;
+		}
 	});
 });

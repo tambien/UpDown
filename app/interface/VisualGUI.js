@@ -52,10 +52,12 @@ define(["dat"], function(dat){
 		obj[title] = colorCopy;
 		folder.addColor(obj, title)
 			.onChange(function(val){
-				var closedColor = color;
-				for (var i = 0; i < closedColor.length; i++){
-					closedColor[i] = 1 - val[i]/255;
-				}		
+				if (typeof val !== "string"){
+					var closedColor = color;
+					for (var i = 0; i < closedColor.length; i++){
+						closedColor[i] = 1 - val[i]/255;
+					}		
+				}
 			});
 	}
 

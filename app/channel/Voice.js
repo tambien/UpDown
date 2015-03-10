@@ -22,6 +22,22 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects, GUI, PolySynth, 
 				"up" : audioFolder+"up/up.mp3",
 			}
 		},
+		"B" : {
+			"down" : {
+				"some" : audioFolder+"down/some.mp3",
+				"times" : audioFolder+"down/times.mp3",
+				"i" : audioFolder+"down/i.mp3",
+				"look" : audioFolder+"down/look.mp3",
+				"down" : audioFolder+"down/down.mp3",
+			},
+			"up" : {
+				"some" : audioFolder+"up/some.mp3",
+				"times" : audioFolder+"up/times.mp3",
+				"i" : audioFolder+"up/i.mp3",
+				"look" : audioFolder+"up/look.mp3",
+				"up" : audioFolder+"up/up.mp3",
+			}
+		}
 	}, {
 		"filter" : {
 			"type" : "lowpass",
@@ -101,28 +117,26 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects, GUI, PolySynth, 
 	return {
 		triggerAttackRelease : function(name, duration, time){
 			var section = "A.";
-			if (Conductor.hasVoice()){
-				Preset.update(function(pre){
-					multiSamler.set(pre);
-				});
-				var noteDur = multiSamler.toSeconds(duration);
-				//set the loop points
-				setLoopPoints(loopPoints[section+name]);
+			Preset.update(function(pre){
+				multiSamler.set(pre);
+			});
+			var noteDur = multiSamler.toSeconds(duration);
+			//set the loop points
+			setLoopPoints(loopPoints[section+name]);
 
-				multiSamler.triggerAttackRelease(section+name,  
-					noteDur - multiSamler.toSeconds("16n"), 
-					time);
-				if (name === "down.some" || name === "up.some"){
-					setTimeout(function(){
-						Mediator.deferSend("voice", name, noteDur);
-					}, 400);
-				} else if (name === "down.down"){
-					setTimeout(function(){
-						Mediator.deferSend("voice", name, noteDur);
-					}, 200);
-				} else {
+			multiSamler.triggerAttackRelease(section+name,  
+				noteDur - multiSamler.toSeconds("16n"), 
+				time);
+			if (name === "down.some" || name === "up.some"){
+				setTimeout(function(){
 					Mediator.deferSend("voice", name, noteDur);
-				}
+				}, 400);
+			} else if (name === "down.down"){
+				setTimeout(function(){
+					Mediator.deferSend("voice", name, noteDur);
+				}, 200);
+			} else {
+				Mediator.deferSend("voice", name, noteDur);
 			}
 		},
 		volume : multiSamler.volume

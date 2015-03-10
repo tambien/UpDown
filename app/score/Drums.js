@@ -1,5 +1,6 @@
-define(["channel/HighHat", "controller/Conductor", "controller/Mediator", "channel/Kick", "channel/Snare"], 
-function(HighHat, Conductor, Mediator, Kick, Snare){
+define(["channel/HighHat", "controller/Conductor", "controller/Mediator", 
+	"channel/Kick", "channel/Snare", "TERP"], 
+function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
 
 	//generate highhat patterns
 	var highhat = [];
@@ -86,17 +87,25 @@ function(HighHat, Conductor, Mediator, Kick, Snare){
 	];
 
 	Conductor.parseScore(highhat, function(time, note, chordName){
-		HighHat.triggerAttackRelease("8n", time);
-		Mediator.deferSend("highhat");
+		if (Conductor.hasHH()){
+			var velocity = TERP.scale(Math.random(), 0.36, 1);
+			var pan = Math.random();
+			HighHat.triggerAttackRelease("8n", time, velocity, pan);
+			Mediator.deferSend("highhat", velocity, pan);
+		}
 	});
 
 	Conductor.parseScore(kick, function(time, note, chordName){
-		Kick.triggerAttackRelease("8n", time, note);
-		Mediator.deferSend("kick");
+		if (Conductor.hasKick()){
+			Kick.triggerAttackRelease("8n", time, note);
+			Mediator.deferSend("kick");
+		}
 	});
 
 	Conductor.parseScore(snare, function(time){
-		Snare.triggerAttack(time);
-		Mediator.deferSend("snare");
+		if (Conductor.hasSnare()){
+			Snare.triggerAttack(time);
+			Mediator.deferSend("snare");
+		}
 	});
 });

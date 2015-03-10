@@ -1,6 +1,7 @@
 define(["visuals/Bass", "visuals/Voice", "visuals/Pictures", "visuals/Piano", 
-	"visuals/Kick", "visuals/Snare", "visuals/Arp"], 
-function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, KickVisuals, SnareVisuals, ArpVisuals){
+	"visuals/Kick", "visuals/Snare", "visuals/Arp", "visuals/HighHat"], 
+function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, 
+	KickVisuals, SnareVisuals, ArpVisuals, HighHatVisuals){
 	
 	var bassVis = new BassVisuals(); 
 
@@ -15,4 +16,6 @@ function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, KickVisuals, SnareVi
 	var arpVis = new ArpVisuals();
 
 	var pics = new Pictures();
+
+	var hhVis = new HighHatVisuals();
 });

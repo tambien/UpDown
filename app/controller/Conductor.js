@@ -5,6 +5,8 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 	var chordChanges = [ ["0:0", 0], ["1:0", 1], ["3:0", 0], ["4:0", 1], ["6:0", 0], ["7:0", 1], ["9:0", 0], ["10:0", 1]];
 	var chordProgression = [["A7", "Dm"], ["C7", "Fmaj"], ["D7", "Gmaj"], ["Gmaj", "Cmaj"]];
 
+	// chordProgression.reverse();
+
 	/**
 	 *  the conductor leads the score
 	 *  it emits state events
@@ -48,11 +50,27 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		this.progress = 0.5;
 
 		/**
+		 *  the total number of loops which have passed
+		 */
+		this.measure = 0;
+
+		/**
 		 *  the number of times the voice has repeated
 		 */
 		this.voiceNumber = -1;
 
-		Transport.setInterval(this.updateLoop.bind(this), "3m");
+		/** 
+		 *  The movement of the piece A, B, or C
+		 */
+		this.movement = "A";
+
+		/**
+		 *  the position within the section
+		 */
+		this.sectionPosition = 0;
+
+		Transport.setInterval(this.updateLoop.bind(this), "1m");
+		Transport.setInterval(this.updateSection.bind(this), "3m");
 		this.parseScore(chordChanges, this.chordChange.bind(this));
 		Mediator.route("scroll", this.setTempo.bind(this));
 		Mediator.route("start", this.start.bind(this));
@@ -142,14 +160,16 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		section = Math.max(section, 0);
 		if (this.nextSection !== section){
 			this.nextSection = section;
-			this.setLoopStart(section);
 		}
 		//also update the swing
 		// Transport.swing = TERP.map(position, 0, 1, 0.2, 0);
 	};
 
-	Conductor.prototype.hasVoice = function(){
-		return this.voiceNumber !== 0;
+	Conductor.prototype.updateSection = function() {
+		this.measure++;
+		this.voiceNumber = (this.voiceNumber + 1) % 3;
+		//update the chords if necessary
+		this.updateChords(this.currentSection);
 	};
 
 	Conductor.prototype.updateLoop = function() {
@@ -162,12 +182,11 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 				this.voiceNumber = 0;
 			}
 			this.currentSection = this.nextSection;
+			this.setLoopStart(this.currentSection);
 			this.setLoopEnd(this.currentSection);
 			Mediator.deferSend("section", this.currentSection);
 		}
-		this.voiceNumber = (this.voiceNumber + 1) % 3;
-		//update the chords if necessary
-		this.updateChords(this.currentSection);
+		this.sectionPosition = (this.sectionPosition + 1) % 3;
 	};
 
 	/**
@@ -176,6 +195,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 	Conductor.prototype.setLoopStart = function(section){
 		// console.log("setting loop start", (section * 3).toString() + ":0");
 		Transport.loopStart = (section * 3).toString() + ":0";
+		Transport.position = (section * 3 + this.sectionPosition).toString() + ":0";
 	};
 
 	/**
@@ -185,6 +205,32 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note", "TERP"],
 		var loopEndTime = (section * 3 + 3).toString() + ":0";
 		// console.log("setting loop end", loopEndTime);
 		Transport.loopEnd = loopEndTime;
+	};
+
+	///////////////////////////////////////////////////////////////////////////
+	//  Instrument Control
+	///////////////////////////////////////////////////////////////////////////
+
+	Conductor.prototype.hasVoice = function(){
+		return this.voiceNumber !== 0;
+	};
+
+	Conductor.prototype.hasSnare = function(){
+		return true;
+		return this.measure > 4;
+	};
+
+	Conductor.prototype.hasKick = function(){
+		return true;
+		return this.measure > 3;
+	};
+
+	Conductor.prototype.hasHH = function(){
+		return this.measure > 2;
+	};
+
+	Conductor.prototype.hasArp = function(){
+		return this.measure > 5;
 	};
 
 	/**

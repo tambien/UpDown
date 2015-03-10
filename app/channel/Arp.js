@@ -18,7 +18,7 @@ function(MonoSynth, Master, GUI, Preset, Signal){
 
 	var effectLevels = {
 		"reverb" : -24,
-		"delay" : -16
+		"delay" : -5
 	};
 
 	var reverbAmount = monoSynth.send("reverb");

@@ -20,6 +20,7 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 		if (USE_GUI && GUI && GUI.addPreset){
 			GUI.addPreset(name, presetarray);
 		}
+		this._updateFunc = null;
 	};
 
 	/**
@@ -42,6 +43,9 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 	Interpolator.prototype._onupdate = function(pos){
 		this._hasChanged = true;
 		this.position = pos;
+		if (this._updateFunc !== null){
+			this._updateFunc(this.get(pos));
+		}
 	};
 
 	/**
@@ -54,6 +58,17 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 			this._hasChanged = false;
 			func(this.get(this.position));
 		}
+	};
+
+	/**
+	 *  when the value has changed, invoke the callback func
+	 *  with the new preset value
+	 *  @param  {function} func 
+	 */
+	Interpolator.prototype.onupdate = function(func){
+		this._updateFunc = func;
+		//call it initially
+		// this._updateFunc(this.get(this.position));
 	};
 
 	/**

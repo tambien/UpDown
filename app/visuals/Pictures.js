@@ -36,20 +36,6 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 		color: 0xff00ff
 	});
 
-	var rainMaterial = new THREE.SpriteMaterial({
-		transparent: false,
-		opacity : 1,
-		depthTest : false,
-		map: THREE.ImageUtils.loadTexture("./images/background/rain_1.png"),
-		side: THREE.DoubleSide,
-		blending : THREE[ "NormalBlending" ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
-		color: 0x777777
-	});
-
-	var geometry = new THREE.PlaneBufferGeometry(10, 10, 32);
 
 	// PICTURES
 
@@ -87,10 +73,9 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 			var pic = new THREE.Sprite(material);
 			var frame = new THREE.Sprite(frameMaterial);
 			frame.scale.set(1.2, 1.3, 1);
+			frame.rotateX(-0.4);
 			frame.position.setY(-0.1);
 			pic.add(frame);
-			// var rain = new THREE.Sprite(rainMaterial);
-			// pic.add(rain);
 			pic.position.setY((i * this.distance + increment) % 7);
 			this.pictures.add(pic);
 		}

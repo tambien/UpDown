@@ -19,12 +19,14 @@ define(["channel/Voice", "controller/Conductor"], function(Voice, Conductor){
 	var noteGroup = "up";
 
 	Conductor.parseScore(voiceScore, function(time, duration, word, section){
-		if (Conductor.getSection() < 2){
-			noteGroup = "down";
-		} else {
-			noteGroup = "up";
+		if (Conductor.hasVoice()){
+			if (Conductor.getSection() < 2){
+				noteGroup = "down";
+			} else {
+				noteGroup = "up";
+			}
+			var voiceName = noteGroup+"."+word;
+			Voice.triggerAttackRelease(voiceName, duration, time);
 		}
-		var voiceName = noteGroup+"."+word;
-		Voice.triggerAttackRelease(voiceName, duration, time);
 	});
 });

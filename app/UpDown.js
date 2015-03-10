@@ -50,9 +50,26 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main",
 
 	$(document).keydown(function(e){
 		if (e.keyCode === 32){ //space bar
+			e.preventDefault();
 			Mediator.send("stop");
 		}
 	});
+
+	var inFocus = true;
+
+	/*$(window).blur(function(){
+		if (Transport.state !== "paused" && inFocus){
+			Mediator.send("stop");
+		}
+		inFocus = false;
+	});
+
+	$(window).focus(function(){
+		if (Transport.state === "paused" && !inFocus){
+			Mediator.send("stop");
+		}
+		inFocus = true;
+	});*/
 
 	setInterval(function(){
 		$("#TransportPosition").text(Transport.position);

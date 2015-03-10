@@ -32,7 +32,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 	 */
 	var VoiceVisuals = function(){
 		this.object = new THREE.Mesh( geometry, material);
-		this.object.scale.set(0.001, 0.001, 0.001);
+		this.object.scale.set(0.01, 0.01, 0.01);
 		Context.background.add(this.object);
 		Mediator.route("voice", this.note.bind(this));
 	};
@@ -47,7 +47,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 		var currentSize = object.scale.x;
 		var maxSize = 3;
 		this.tween = new TWEEN.Tween({size : maxSize})
-			.to({size : 0.001}, preset.duration)
+			.to({size : 0.01}, preset.duration)
 			.easing( TWEEN.Easing.Quadratic.Out)
 			.onUpdate(function(){
 				object.scale.set(this.size, this.size, this.size);	

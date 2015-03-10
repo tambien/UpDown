@@ -29,6 +29,7 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 		//camera positioning
 		this.camera.position.setZ(-100);
 		this.camera.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
+		window.camera = this.camera;
 
 		this.scene.add( new THREE.AmbientLight( 0x222222 ) );
 		this.light = new THREE.PointLight( 0xffffff );

@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/KickWave", 
-	"TWEEN", "interface/Window"], 
-	function(Context, Mediator, KickMaterial, TWEEN, Window){
+	"TWEEN", "interface/Window", "preset/KickVisual"], 
+	function(Context, Mediator, KickMaterial, TWEEN, Window, Preset){
 
 	"use strict";
 
@@ -27,24 +27,23 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 
 		this.amplitude = KickMaterial.uniforms.amplitude;
 		this.time = KickMaterial.uniforms.time;
-		window.height = KickMaterial.uniforms.height;
 
 		Mediator.route("kick", this.note.bind(this));
 		Mediator.route("update", this.update.bind(this));
-		this.update();
+		Preset.onupdate(this.presetUpdate.bind(this));
 	};
 
 	KickVisuals.prototype.note = function(){
 		var maxAmp = 5;
 		var amplitude = this.amplitude;
 		this.tween = new TWEEN.Tween({amp : maxAmp})
-			.to({amp: 0}, 200)
+			.to({amp: 0}, 240)
 			.onUpdate(function(){
 				amplitude.value = this.amp;
 			})
 			.easing( TWEEN.Easing.Quadratic.Out );
 		var attack = new TWEEN.Tween({amp : amplitude.value})
-			.to({amp : maxAmp}, 20)
+			.to({amp : maxAmp}, 40)
 			.onUpdate(function(){
 				amplitude.value = this.amp;
 			})
@@ -61,6 +60,13 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 
 	KickVisuals.prototype.dispose = function(){
 		material.dispose();
+	};
+
+	KickVisuals.prototype.presetUpdate = function(pre){
+		this.object.scale.setX(pre.width);
+		this.object2.scale.setX(pre.width * 2);
+		var color = pre.color;
+		KickMaterial.uniforms.color.value.setRGB(color[0], color[1], color[2]);
 	};
 
 	return KickVisuals;
