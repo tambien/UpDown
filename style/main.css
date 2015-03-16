@@ -27,9 +27,8 @@
       height: 100000px;
       width: 100%; }
   #ScrollContainer #Channel {
-    pointer-events: none;
     background-color: blue;
-    width: 20px;
+    width: 24px;
     height: 100%;
     position: absolute;
     top: 0px;
@@ -37,7 +36,8 @@
     background-color: #00ff47;
     /*border-left: 1px dotted black;*/ }
     #ScrollContainer #Channel #Indicator {
-      width: 16px;
+      cursor: pointer;
+      width: 20px;
       height: 25px;
       border-radius: 2px;
       position: absolute;
@@ -45,16 +45,10 @@
       right: 2px;
       background-color: #f1ff27;
       opacity: 1; }
-  #ScrollContainer #Channel.Hover {
-    background-color: red; }
-    #ScrollContainer #Channel.Hover #Indicator {
-      background-color: #f1ffff; }
-    #ScrollContainer #Channel.Hover #Indicator.Click {
+    #ScrollContainer #Channel #Indicator:hover {
+      background-color: white; }
+    #ScrollContainer #Channel #Indicator.Dragging {
       background-color: black; }
-  #ScrollContainer #Channel.Top {
-    background-color: blue; }
-  #ScrollContainer #Channel.Top.Hover {
-    background-color: yellow; }
 
 #TransportPosition {
   color: #aaaaaa;

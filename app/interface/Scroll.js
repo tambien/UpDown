@@ -119,6 +119,12 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 			} else {
 				return TERP.scale(scrollPosition, 0, switchCenterPosition, 0, 0.5);
 			}
+		},
+		scrollTop : function(top){
+			if (top){
+				top *= scrollSize;
+			}
+			return innerScroll.scrollTop(top);
 		}
 	};
 });

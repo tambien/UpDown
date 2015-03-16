@@ -144,16 +144,13 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		"delay" : -10
 	};
 
-	var reverbAmount = volume.send("reverb");
-	var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
-	reverbControl.value = effectLevels.reverb; 
-
-	var delayAmount = volume.send("delay");
-	var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
-	delayControl.value = effectLevels.delay; 
+	var reverbAmount = volume.send("reverb", effectLevels.reverb);
+	var delayAmount = volume.send("delay", effectLevels.delay);
 
 	//GUI
 	if (Config.GUI){
+		var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
+		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
 		var voiceFolder = GUI.getFolder("Voice");
 		voiceFolder.add(reverbControl, "value", -100, 1).name("reverb");
 		voiceFolder.add(delayControl, "value", -100, 1).name("delay");

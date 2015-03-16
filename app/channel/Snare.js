@@ -26,19 +26,19 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 		"sustain" : 0,
 	});
 
-	//reverb
-	var revAmount = comp.send("reverb");
-	var delayAmount = comp.send("delay");
+	//effects
+	var effectLevels = {
+		"reverb" : -50,
+		"delay" : -30
+	};
 
-	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
-	reverbControl.value = -50; // OPTIMIZE
-
-	var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
-	delayControl.value = -30; // OPTIMIZE
-
+	var revAmount = comp.send("reverb", effectLevels.reverb);
+	var delayAmount = comp.send("delay", effectLevels.delay);
 
 	// GUI
 	if (Config.GUI){
+		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
 		var snareFolder = GUI.getFolder("Snare");
 		GUI.addTone2(snareFolder, "compressor", comp).listen();
 		GUI.addTone2(snareFolder, "filter", filter).listen();

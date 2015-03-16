@@ -1,4 +1,5 @@
-define(["controller/Mediator", "TERP", "interface/Window", "jquery"], function(Mediator, TERP, Window, $){
+define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/Scroll"], 
+	function(Mediator, TERP, Window, $, Scroll){
 
 	var scrollContainer = $("#ScrollContainer");
 	var scrollChannel = $("<div>", {"id" : "Channel"}).appendTo(scrollContainer);
@@ -8,39 +9,35 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery"], function(M
 	var indicatorHeight = indicator.height();
 
 	var channelWidth = scrollChannel.width();
+	var channelHeight = scrollChannel.height();
 
 	var inside = false;
 	var mousedown = false;
 	var ontop = false;
 
-	scrollContainer.on("mousemove", function(e){
-		if (Window.width() - e.clientX < channelWidth && !inside){
-			inside = true;
-			scrollChannel.addClass("Hover");
-			body.css({
-				"cursor" : "pointer"
-			});
-		} else if (Window.width() - e.clientX > channelWidth && inside){
-			inside = false;
-			scrollChannel.removeClass("Hover");
-			body.css({
-				"cursor" : "default"
-			});
+	var dragging = false;
+
+	Window.resize(function(){
+		channelHeight = scrollChannel.height();
+	});
+
+	indicator.on("mousedown touchdown", function(e){
+		e.preventDefault();
+		dragging = true;
+		indicator.addClass("Dragging");
+	});
+
+	scrollChannel.on("mouseup mouseleave touchend", function(e){
+		dragging = false;
+		indicator.removeClass("Dragging");
+	});
+
+	scrollChannel.on("mousemove touchmove", function(e){
+		e.preventDefault();
+		if (dragging){
+			var position = e.clientY / channelHeight;
+			Scroll.scrollTop(position);
 		}
-	});
-
-	scrollContainer.on("mousedown", function(e){
-		if (Window.width() - e.clientX < channelWidth && !mousedown){
-			mousedown = true;
-			indicator.addClass("Click");
-		} 
-	});
-
-	scrollContainer.on("mouseup", function(e){
-		if (mousedown){
-			mousedown = false;
-			indicator.removeClass("Click");
-		} 
 	});
 
 	Mediator.route("rawscroll", function(position){
@@ -48,13 +45,6 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery"], function(M
 		indicator.css({
 			"top" : top,
 		});
-		if (position >= 0.5 && !ontop){
-			ontop = true;
-			scrollChannel.addClass("Top");
-		} else if (position < 0.5 && ontop){
-			ontop = false;
-			scrollChannel.removeClass("Top");
-		}
 	});
 	
 });

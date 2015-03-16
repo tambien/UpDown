@@ -35,9 +35,8 @@
 	}
 
 	#Channel {
-		pointer-events: none;
 		$ScrollIndicatorHeight: 25px;
-		$ScrollIndicatorWidth: 16px;
+		$ScrollIndicatorWidth: 20px;
 		$RightMargin : 2px;
 		background-color: blue;
 
@@ -50,6 +49,7 @@
 		/*border-left: 1px dotted black;*/
 
 		#Indicator {
+			cursor: pointer;
 			width: $ScrollIndicatorWidth;
 			height: $ScrollIndicatorHeight;
 			border-radius: 2px;
@@ -59,26 +59,14 @@
 			background-color: rgb(241, 255, 39);
 			opacity: 1;
 		}
-	}
 
-	#Channel.Hover {
-		background-color: red;
-
-		#Indicator {
-			background-color: rgb(241, 255,255);		
+		#Indicator:hover {
+			background-color: white;
 		}
 
-		#Indicator.Click {
-			background-color: rgb(0, 0, 0);		
+		#Indicator.Dragging {
+			background-color: black;	
 		}
-	}
-
-	#Channel.Top {
-		background-color: blue;		
-	}
-
-	#Channel.Top.Hover {
-		background-color: yellow;		
 	}
 }
 

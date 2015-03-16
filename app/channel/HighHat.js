@@ -41,16 +41,13 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 	//Effects
 	var effectLevels = {
 		"reverb" : -50,
-		"side" : 0,
-		"mid" : -50,
 	};
 
-	var revAmount = filt.send("reverb");
-	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
-	reverbControl.value = effectLevels.reverb; // OPTIMIZE
+	var revAmount = filt.send("reverb", effectLevels.reverb);
 
 	// GUI
 	if (Config.GUI){
+		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
 		var hhFolder = GUI.getFolder("High Hat");
 		GUI.addTone2(hhFolder, "synth", synth).listen();
 		GUI.addTone2(hhFolder, "filter", filt).listen();

@@ -38,17 +38,13 @@ function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal, Mediato
 		"delay" : -24
 	};
 
-	// OPTIMIZE // 
-	var revAmount = panner.send("reverb");
-	var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
-	reverbControl.value = effectLevels.reverb; 
-
-	var delayAmount = panner.send("delay");
-	var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
-	delayControl.value = effectLevels.delay; 
+	var revAmount = panner.send("reverb", effectLevels.reverb);
+	var delayAmount = panner.send("delay", effectLevels.delay);
 
 	//GUI
 	if (Config.GUI){
+		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
 		var pianoFolder = GUI.getFolder("Piano");
 		// GUI.addTone2(pianoFolder, "synth", monoSynth).listen();
 		GUI.addTone2(pianoFolder, "vibrato", vibrato).listen();
