@@ -4,7 +4,7 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 		[
 			{
 				"synth": {
-					"portamento": 0.036,
+					"portamento": 0.003,
 					"oscillator": {
 						"modulationFrequency": 8.6
 					},
@@ -52,5 +52,5 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 					}
 				}
 			}
-		], "Arp Preset", GUI);
+		], "Arp Preset A", GUI);
 });

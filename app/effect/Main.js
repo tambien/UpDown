@@ -1,6 +1,6 @@
 define(["Tone/effect/JCReverb", "Tone/core/Bus", "interface/GUI", 
-	"effect/Delay", "util/Config", "effect/Master"], 
-	function(Reverb, Bus, GUI, Delay, Config, MasterEffects){
+	"effect/Delay", "util/Config", "effect/Master", "effect/Drums"], 
+	function(Reverb, Bus, GUI, Delay, Config, MasterEffects, Drums){
 
 	//reverb
 	if (!Config.MOBILE){

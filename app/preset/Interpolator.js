@@ -58,8 +58,8 @@ define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"],
 	 *  with the new preset value
 	 *  @param  {function} func 
 	 */
-	Interpolator.prototype.update = function(func, force){
-		if (this._hasChanged || force){
+	Interpolator.prototype.update = function(func){
+		if (this._hasChanged || Config.PRESET_UPDATE){
 			this._hasChanged = false;
 			func(this.get(this.position));
 		}
@@ -98,7 +98,6 @@ define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"],
 				var retArr = new Array(len);
 				var bTransition = Conductor.getBTransitionProgress();
 				var movement = Conductor.getMovement();
-				// if (Conductor.getMovement() === 1)
 				var i;
 				if (movement !== 1){
 					for (i = 0; i < len; i++){

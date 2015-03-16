@@ -18,7 +18,6 @@ function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals,
 
 		var hhVis = new HighHatVisuals();
 	}
-
+	
 	var pics = new Pictures();
-
 });

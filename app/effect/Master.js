@@ -24,22 +24,32 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 
 	//test if it's time to transition to the B section
 	Mediator.route("scroll", function(){
-		var bTransition = Conductor.getBTransitionProgress();
-		if (bTransition > 0 && Conductor.getMovement() === 0){
-			var filterFreq = TERP.scale(bTransition, 20000, 350, 0.5);
-			filter.frequency.rampTo(filterFreq, 0.25);
-		}
+		var movement = Conductor.getMovement();
+		if (movement === 0){
+			var bTransition = Conductor.getBTransitionProgress();
+			if (bTransition > 0){
+				var filterFreq = TERP.scale(bTransition, 20000, 350, 0.5);
+				filter.frequency.rampTo(filterFreq, 0.25);
+			}
+		} /*else if (movement === 2) {
+			var endTransition = Conductor.getEndTransitionProgress();
+			if (endTransition > 0){
+				var volume = TERP.scale(endTransition, 0, -100, 2);
+				Master.volume.rampTo(volume, 0.25);
+				//trigger the end of the song
+				if (endTransition >= 1){
+					Mediator.send("end");
+				}
+			} 
+		}*/
+
 	});
 
-	var stopped = false;
-	Mediator.route("stop", function(){
-		if (stopped){
-			stopped = false;
-			Master.unmute();
-		} else {
-			stopped = true;
-			Master.mute();
-		}
+	Mediator.route("pause", function(){
+		Master.mute();
+	});
+	Mediator.route("play", function(){
+		Master.unmute();
 	});
 
 	if (Config.GUI){

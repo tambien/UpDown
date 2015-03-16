@@ -1,6 +1,6 @@
 define(["visuals/Context", "TERP", "controller/Mediator", 
-	"TWEEN", "util/Config", "interface/Scroll"], 
-	function(Context, TERP, Mediator, TWEEN, Config, Scroll){
+	"TWEEN", "util/Config", "interface/Scroll", "preset/PictureFrame"], 
+	function(Context, TERP, Mediator, TWEEN, Config, Scroll, PictureFramePreset){
 
 	"use strict";
 
@@ -27,7 +27,27 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		color : 0xffffff
 	});
 
-	var radius = 10;
+	//make the frame canvas
+
+	var frameCanvas = $("<canvas>")[0];
+	var frameSize = 256;
+	var frameWidth = 16;
+	frameCanvas.width = frameSize;
+	frameCanvas.height = frameSize;
+	var frameContext = frameCanvas.getContext("2d");
+	frameContext.fillStyle = "#ffffff";
+	//top
+	frameContext.rect(0, 0, frameSize, frameWidth);
+	//bottom
+	frameContext.rect(0, frameSize  - frameWidth, frameSize, frameSize);
+	//left
+	frameContext.rect(0, 0, frameWidth, frameSize);
+	//right
+	frameContext.rect( frameSize - frameWidth, 0, frameSize, frameSize);
+	frameContext.fill();
+
+	var frameTexture = new THREE.Texture(frameCanvas);
+	frameTexture.needsUpdate = true;
 
 	var frameBlending = "AdditiveBlending";
 	if (Config.MOBILE){
@@ -38,16 +58,21 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		transparent: true,
 		opacity : 1,
 		depthTest : false,
-		map: THREE.ImageUtils.loadTexture("./images/frame_v02.png"),
+		map: frameTexture,
 		side: THREE.DoubleSide,
 		blending : THREE[ frameBlending ],
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
-		color: 0xff00ff
+		color: 0x000000
 	});
 
-	window.frameMaterial = frameMaterial;
+	PictureFramePreset.onupdate(function(pre){
+		if (!Config.MOBILE){
+			var color = pre.color;
+			frameMaterial.color.setRGB(color[0], color[1], color[2]);
+		}
+	});
 
 
 	// PICTURES
@@ -62,7 +87,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.scrollMultipler = 100;
 		this.previousPosition = 0.5;
 		this.pictureCount = 3;
-		this.distance = 1.4;
+		this.distance = 1.3;
 		this.modDistance = this.distance * this.pictureCount;
 
 		this.makePictures();
@@ -85,10 +110,9 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		for(var i = 0; i < pictureCount; i++){
 			var pic = new THREE.Sprite(material);
 			var frame = new THREE.Sprite(frameMaterial);
-			frame.scale.set(1.2, 1.3, 1);
-			frame.position.setY(-0.15);
+			frame.scale.set(1.2, 1.1, 1);
 			pic.add(frame);
-			pic.position.setY(((i * this.distance + increment) % (this.modDistance)) - this.distance);
+			pic.position.setY(((i * this.distance + increment) % (this.modDistance)) - this.distance + this.distance/5);
 			this.pictures.add(pic);
 		}
 		this.pictures.position.y = -Context.height / 2;
@@ -116,7 +140,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		for (var i = 0; i < children.length; i++){
 			var child = children[i];
 			var newY = i * distance + increment;
-			child.position.setY((newY % max) - distance);
+			child.position.setY((newY % max) - distance + distance/5);
 		}
 	};
 

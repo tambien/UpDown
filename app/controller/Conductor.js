@@ -72,27 +72,17 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.bDistance = 3;
+		this.bDistance = 4;
 
 		/**
-		 *  the measures till the b section
+		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.bMeasures = 20;
+		this.cDistance = 8;
 
 		/**
-		 *  the measures till the b section
+		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.cMeasures = this.bMeasures + 8;
-
-		/**
-		 * 	the time before the "B" section 
-		 */
-		this.BTime = "3m * "+(this.bMeasures).toString();
-
-		/**
-		 * 	the time before the "B" section 
-		 */
-		this.CTime = "3m * "+(this.cMeasures).toString();
+		this.endDistance = 12;
 
 		/** 
 		 *  The movement of the piece A, B, or C
@@ -110,14 +100,12 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		//trigger the B section
 		this.parseScore(chordChanges, this.chordChange.bind(this));
 		Mediator.route("scroll", this.setTempo.bind(this));
-		Mediator.route("start", this.start.bind(this));
-		Mediator.route("stop", this.stop.bind(this));
+		Mediator.route("firstScroll", this.start.bind(this));
+		Mediator.route("pause", this.pause.bind(this));
+		Mediator.route("play", this.play.bind(this));
+		Mediator.route("end", this.end.bind(this));
 		Mediator.route("switchDirection", this.switchDirection.bind(this));
 		this.setTempo(this.progress, 0);
-		//trigger the start of the b section
-		Transport.setTimeout(function(time){
-			Mediator.send("PreB", time);
-		}.bind(this), "3m * "+(this.bMeasures - 1).toString());
 	};
 
 
@@ -224,7 +212,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 			this._BStart(time);
 			this.setLoopStartSection();
 			this.setLoopEnd(this.currentSection);
-		} else if (this.loop === this.cMeasures){
+		} if (Scroll.getDistance() > this.cDistance && this.movement !== 2){
 			this._CStart(time);
 			this.setLoopStartSection();
 			this.setLoopEnd(this.currentSection);
@@ -311,19 +299,12 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 
 	var scrollIncrement = 0.1;
 
-	var vocalEntrance = false;
-
 	Conductor.prototype.hasVoice = function(){
 		if (Scroll.getDistance() > scrollIncrement * 5){
-			if (vocalEntrance){
-				if (this.movement === 1 && (this.measure === 1 || this.measure === 2)){
-					return true;
-				} else {
-					return this.voiceNumber !== 0;
-				}
-			} else if (this.measure % 3 === 1){
-				vocalEntrance = true;
+			if (this.movement === 1 && this.measure === 1){
 				return true;
+			} else {
+				return this.voiceNumber !== 0;
 			}
 		} else {
 			return false;
@@ -396,7 +377,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		} 
 	};
 
-	var transitionDistance = 0.5;
+	var transitionDistance = 1;
 
 	Conductor.prototype.getBTransitionProgress = function(){
 		var bDiff = this.bDistance - Scroll.getDistance();
@@ -407,8 +388,13 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		}
 	};
 
-	Conductor.prototype.getCTransitionProgress = function(){
-		
+	Conductor.prototype.getEndTransitionProgress = function(){
+		var endDiff = this.endDistance - Scroll.getDistance();
+		if (endDiff < transitionDistance * 2){
+			return TERP.map(endDiff, transitionDistance * 2, 0, 0, 1);
+		} else {
+			return 0;
+		}
 	};
 
 	/**
@@ -443,15 +429,19 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 			Mediator.deferSend("half", 0);
 		}
 		movement = this.movement % 2;
-		Transport.start("+0.2", (this.nextSection * 3 + movement * 12).toString() + ":0");
+		Transport.start("+4n", (this.nextSection * 3 + movement * 12).toString() + ":0");
 	};
 
-	Conductor.prototype.stop = function(){
-		if (Transport.state === "paused"){
-			Transport.start();
-		} else {
-			Transport.pause();
-		}
+	Conductor.prototype.pause = function(){
+		Transport.pause();
+	};
+
+	Conductor.prototype.play = function(){
+		Transport.start();
+	};
+
+	Conductor.prototype.end = function(){
+		Transport.stop();
 	};
 
 	 return new Conductor();

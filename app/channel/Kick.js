@@ -5,12 +5,12 @@ define(["Tone/source/Oscillator", "controller/Mediator",
 function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filter,
  AmplitudeEnvelope, ScaledEnvelope, Config){
 
-	var comp = new Compressor({
+	/*var comp = new Compressor({
 		"attack": 0.14,
 		"release": 0.98,
 		"threshold": -24,
 		"ratio": 4
-	});
+	});*/
 
 	var filter = new Filter({
 		"type" : "highpass",
@@ -33,7 +33,10 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 
 	// CONECTIONS //
 
-	oscillator.chain(ampEnv, filter, comp, Master);
+	// oscillator.chain(ampEnv, filter, comp, Master);
+	oscillator.chain(ampEnv, filter);
+
+	filter.send("drums");
 
 	var kickFreqEnv = {
 		"startMult": 10,
@@ -43,7 +46,7 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 	//GUI
 	if (Config.GUI){
 		var kickFolder = GUI.getFolder("Kick");
-		GUI.addTone2(kickFolder, "Compressor", comp);
+		// GUI.addTone2(kickFolder, "Compressor", comp);
 		GUI.addTone2(kickFolder, "Filter", filter);
 		GUI.addObject(kickFolder, "Freq Env", kickFreqEnv);
 	}

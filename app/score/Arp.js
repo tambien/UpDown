@@ -35,6 +35,16 @@ define(["channel/Arp", "controller/Conductor", "controller/Mediator", "util/Conf
 		arpSynth.push(["15m + " + i + " * " + subdivision5, subdivision5]);
 	}
 
+	var subdivision6 = "8t";
+	for (i = 0; i < 12 * 3; i++){
+		arpSynth.push(["18m + " + i + " * " + subdivision6, subdivision6]);
+	}
+
+	var subdivision7 = "4t";
+	for (i = 0; i < 6 * 3; i++){
+		arpSynth.push(["21m + " + i + " * " + subdivision7, subdivision7]);
+	}
+
 	var noteIndex = 0;
 
 	var octave = 5;

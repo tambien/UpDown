@@ -14,18 +14,237 @@
 	// background-image: url("http://www.mi2f.com/m/activity/images/coin-grid.gif");
 }
 
+@mixin translate($x, $y){
+	transform: translate3d($x, $y, 0);
+	-webkit-transform: translate3d($x, $y, 0);
+	-moz-transform: translate3d($x, $y, 0);
+}
+
+@mixin translateScale($x, $y, $scale){
+	transform: translate3d($x, $y, 0) scale($scale);
+	-webkit-transform: translate3d($x, $y, 0) scale($scale);
+	-moz-transform: translate3d($x, $y, 0) scale($scale);
+}
+
+#StartButton {
+
+	$StartButtonSize : 250px;
+	$ArrowSize : 150px;
+	$ArrowColor: white;
+
+	width: $StartButtonSize;
+	height: $StartButtonSize;
+	background-color: blue;
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	@include translate(-50%, 50%);
+	border-radius: 10px;
+
+	cursor: pointer;
+
+	#Triangle {
+		opacity: 1;
+		width: 0;
+		height: 0;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		@include translate(-50%, -50%);
+		border-top: $ArrowSize/2 solid transparent;
+		border-bottom: $ArrowSize/2 solid transparent;
+		border-left: $ArrowSize * 0.75 solid $ArrowColor;
+		font-size: 150px;
+	}
+
+	.PauseBar {
+		opacity: 0;
+		position: absolute;
+		height: $ArrowSize; 
+		width: $ArrowSize / 4;
+		top: 50%;
+		@include translate(-50%, -50%);
+		background-color: $ArrowColor;
+	}
+
+	#Pause0 {
+		left: 33%;
+	}
+
+	#Pause1 {
+		left: 66%;
+	}
+}
+
+#StartButton.Playing {
+	#Triangle {
+		opacity: 0;
+	}
+	.PauseBar {
+		opacity: 1;
+	}
+}
+
+#StartButton.Corner {
+	bottom: 10px;
+	left: 10px;
+	@include translateScale(-40%, 40%, 0.15);
+	transition: transform 0.2s, left 0.2s, bottom 0.2s;
+}
+
+#StartButton.MobileCorner {
+	top: 10px;
+	left: 10px;
+	@include translateScale(-40%, -40%, 0.15);
+	transition: transform 0.2s, left 0.2s, bottom 0.2s;
+}
+
+#StartButton:hover {
+	$ArrowColor: black;
+	background-color: green;
+	#Triangle {
+		border-left-color: $ArrowColor;
+	}
+	.PauseBar {
+		background-color: $ArrowColor;
+	}
+}
+
+#StartButton:hover:active {
+	$ArrowColor: white;
+	background-color: black;
+	#Triangle {
+		border-left-color: $ArrowColor;
+	}
+	.PauseBar {
+		background-color: $ArrowColor;
+	}
+}
+
+/**
+ *  LOADING
+ */
+#LoadingScreen {
+
+	$BarHeight : 70px;
+	$AccentColor: white;
+
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: blue;
+	z-index: 100;
+
+	#LoadingBar {
+
+		@include translate(-50%, -50%);
+		width: 60%;
+		height: $BarHeight;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border: 4px solid $AccentColor;
+
+		#Progress {
+			width: 20px;
+			height: 100%;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background-color: $AccentColor;
+		}
+	}
+}
+
+/**
+ *  SPLASH
+ */
+#SplashBackground {
+
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	z-index: 1000;
+	opacity: 1;
+
+	.SplashPage {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+
+		#Text {
+			color: white;
+			position: absolute;
+			font-family: monospace;
+			font-size: 40px;
+			text-align: center;
+			width: 80%;
+			left: 50%;
+			top: 50%;
+			height: auto;
+			@include translate(-50%, -50%);
+
+		}
+	}
+
+	#First {
+		background-color: rgb(30, 104, 187);
+	}
+
+	#Second {
+		background-color: rgb(72, 221, 119);
+	}
+}
+
+/**
+ *  PASSWORD SCREEN
+ */
+
+#PassWordScreen {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	z-index: 1000;
+
+	#Text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 200px;
+		height: 60px;
+		font-family: monospace;
+		font-size: 24px;
+		@include translate(-50%, -50%);
+	}
+}
+
+/**
+ *  SCROLL STUFF
+ */
+
 #ScrollContainer {
 	width: 100%;
 	position: absolute;
 	left: 0px;
 	top: 0px;
 	height: 100%;
-	z-index: 1000;
+	/*z-index: 0;*/
 	overflow: hidden;
 
 	#InnerScroll {
 		height: 100%;
-		width: calc(100%);
+		width: calc(100% + 20px);
 		overflow-y : scroll;
 
 		#Scroller {
@@ -35,7 +254,7 @@
 	}
 
 	#Channel {
-		$ScrollIndicatorHeight: 25px;
+		$ScrollIndicatorHeight: 30px;
 		$ScrollIndicatorWidth: 20px;
 		$RightMargin : 2px;
 		background-color: blue;

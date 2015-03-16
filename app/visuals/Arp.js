@@ -33,6 +33,8 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN",
 		this.object.position.setY(offsetY);
 		Context.background.add(this.object);
 		this.index = 0;
+		this.scaling = 1;
+		this.growth = 1;
 		this.squares = [];
 		for (var i = 0; i < 5; i++){
 			var square = new THREE.Mesh( geometry, material);
@@ -46,7 +48,7 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN",
 
 	ArpVisuals.prototype.note = function(){
 		var obj = this.squares[this.index];
-		var size = 1;
+		var size = this.scaling + (this.growth * (this.index + 1) / this.squares.length);
 		var tween = new TWEEN.Tween({size : size})
 			.to({size : 0.0001}, 100)
 			.onUpdate(function(){
@@ -85,6 +87,8 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN",
 			var y = Math.cos(angle) * rad;
 			square.position.set(x, y, 0);
 		}
+		this.scaling = pre.size;
+		this.growth = pre.growth;
 	};
 	
 

@@ -30,33 +30,13 @@ require.config({
 });
 
 require(["jquery", "Tone/core/Transport", "controller/Mediator", "util/Config", "Tone/core/Buffer", 
-	"visuals/Main", "score/Main", "interface/Main", "effect/Main", "channel/Main"],
+	"visuals/Main", "score/Main", "interface/Main", "effect/Main", "channel/Main", "interface/StartButton"],
  function($, Transport, Mediator, Config, Buffer){
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
-	console.log("%c↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑", coloring);
-	console.log("%c↑      UP/DOWN      ↑", coloring);
-	console.log("%c↑        2015       ↑", coloring);
-	console.log("%c↓     Yotam Mann    ↓", coloring);
-	console.log("%c↓  Sarah Rothberg   ↓", coloring);
-	console.log("%c↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓", coloring);
-
-
-	$("#ScrollContainer").one("mousedown touchstart", function(e){
-		e.preventDefault();
-		console.log("starting");
-		Mediator.send("start");
-	});
-
-	$(document).keydown(function(e){
-		if (e.keyCode === 32){ //space bar
-			e.preventDefault();
-			Mediator.send("stop");
-		}
-	});
-
-	Buffer.onload = function(){
-		console.log("loaded");
-	};
+	console.log("%c      UP/DOWN      ", coloring);
+	console.log("%c        2015       ", coloring);
+	console.log("%c     Yotam Mann    ", coloring);
+	console.log("%c  Sarah Rothberg   ", coloring);
 
 	var inFocus = true;
 
@@ -74,9 +54,21 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "util/Config", 
 		inFocus = true;
 	});*/
 
-	if (!Config.MOBILE){
+	if (Config.STATS){
 		setInterval(function(){
 			$("#TransportPosition").text(Transport.position);
 		}, 400);
+	}
+
+	var firstScroll = false;
+	Mediator.route("scroll", function(){
+		if (!firstScroll){
+			firstScroll = true;
+			Mediator.send("firstScroll");
+		}
+	});
+
+	if (!Config.PASSWORD){
+		Mediator.send("ready");
 	}
 });

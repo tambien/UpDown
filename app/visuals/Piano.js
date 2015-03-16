@@ -1,6 +1,6 @@
 define(["controller/Mediator", "visuals/Context", "interface/Window", 
-	"TERP", "preset/PianoVisuals", "controller/Conductor"], 
-	function(Mediator, Context, Window, TERP, Preset, Conductor){
+	"TERP", "preset/PianoVisuals", "controller/Conductor", "util/Config"], 
+	function(Mediator, Context, Window, TERP, Preset, Conductor, Config){
 
 	"use strict";
 
@@ -40,10 +40,6 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 
 	var minSpeed, maxSpeed, width, length;
 
-	Mediator.route("B", function(){
-		material.color.setRGB(1, 1, 1);
-	});
-
 	Preset.onupdate(function(pre){
 		if (Conductor.getMovement() !== 1){
 			var color = pre.color;
@@ -54,25 +50,35 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		width = pre.width;
 	});
 
+	var startX, startY, endX, endY, angle;
+	startX = -Context.width * 0.4;
+	endX = Context.width * 0.4;
+	startY = Context.height;
+	endY = -Context.height;
+	angle = Math.atan2(endY - startY, endX - startX);
+
+	Window.resize(function(){
+		startX = -Context.width * 0.4;
+		endX = Context.width * 0.4;
+		startY = Context.height;
+		endY = -Context.height;
+		angle = Math.atan2(endY - startY, endX - startX);
+	});
+
 	var PianoNote = function(scene, speed, offset, width, length){
 		// var preset = BassPreset.get(Scroll.getPosition());
 		var object = new THREE.Mesh( geometry, material);
-		var angle = (Window.height() / Window.width());
-		object.rotation.z = -angle * (Math.PI / 4);
-		var startX = -Window.width() * 0.08;
-		var endX = Window.width() * 0.12;
-		//y = mx + b
-		var startY = -(startX * angle + offset);
-		var endY = -(endX * angle + offset);
-		object.position.x = startX;
+		object.rotation.z = angle;
+		object.position.x = startX + offset;
 		object.position.y = startY;
 		object.scale.setX(length);
 		object.scale.setY(width);
 		scene.add(object);
-		var tween = new TWEEN.Tween({x : startX, y : startY})
-			.to({x : endX, y : endY}, speed)
+		var tween = new TWEEN.Tween({x : startX + offset, y : startY})
+			.to({x : endX + offset, y : endY}, speed)
 			.onUpdate(function(){
-				object.position.set(this.x, this.y, 0);	
+				object.position.setX(this.x);	
+				object.position.setY(this.y);	
 			})
 			.onComplete(function(){
 				scene.remove(object);
@@ -83,6 +89,57 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 			.easing( TWEEN.Easing.Quartic.Out )
 			.start();
 	};
+
+	/**
+	 *  Make a note on the first sustained chord
+	 */
+	var startKeys = [];
+	Mediator.route("start", function(){
+		if (!Config.MOBILE){
+			for (var i = 0; i < 4 ; i++){
+				var obj = new THREE.Mesh( geometry, material);
+				obj.position.x = TERP.scale(i, 0, 3, -10, 10);
+				obj.rotation.z = Math.PI / 2;
+				startKeys[i] = obj;
+				Context.background.add(obj);
+				animateInKey(obj);
+			}
+		}
+	});
+
+	function animateInKey(object){
+		var tween = new TWEEN.Tween({scale : 0.001})
+			.to({scale : Math.random() * 2 + 1.5}, 1500)
+			.onUpdate(function(){
+				object.scale.setX(this.scale);	
+			})
+			.onComplete(function(){
+				tween = null;
+			})
+			.easing( TWEEN.Easing.Elastic.Out)
+			.start();
+	}
+
+	function animateOutKey(object){
+		var currentScale = object.scale.x;
+		var tween = new TWEEN.Tween({scale : currentScale})
+			.to({scale : 0.001}, 200)
+			.onUpdate(function(){
+				object.scale.setX(this.scale);	
+			})
+			.onComplete(function(){
+				Context.background.remove(object);
+			})
+			.easing( TWEEN.Easing.Linear.None)
+			.start();
+	}
+
+	Mediator.route("firstScroll", function(){
+		for (var i = 0; i < startKeys.length ; i++){
+			var obj = startKeys[i];
+			animateOutKey(obj);
+		}
+	});
 
 	return PianoVisuals;
 });

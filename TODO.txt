@@ -1,8 +1,16 @@
-Get rid of expr in Bass. 
-
-Make Piano visuals have width/length in preset controls. 
+* Make Piano visuals have width/length in preset controls. 
 	go slower at top.
 
-Add arpeggiator pattern. faster as the song gets slower
+* Add B backgrounds
 
-B part. 
+* Optimize / performance / mobile
+
+* Splash/Loading
+
+* start
+
+* fix vocal entrances
+
+* optimize out panners on mobile. 
+
+* put some visuals on mobile

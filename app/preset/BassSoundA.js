@@ -45,5 +45,5 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 				}
 			}
 		}
-	], "Bass Preset", GUI);
+	], "Bass Preset A", GUI);
 });

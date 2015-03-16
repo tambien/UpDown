@@ -9,7 +9,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 	var volume = new Volume().toMaster();
 
-	var samplerA = new PolySynth(3, Sampler, {
+	var samplerA = new PolySynth(2, Sampler, {
 		"A" : {
 			"down" : {
 				"some" : audioFolder+"down/some.mp3",
@@ -36,7 +36,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		}
 	}).connect(volume);
 
-	var samplerB = new PolySynth(3, Sampler, {
+	var samplerB = new PolySynth(2, Sampler, {
 		"B" : {
 			"down" : {
 				"some" : audioFolder+"/B/G/some.mp3",
@@ -83,8 +83,6 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 
 	samplerB.volume.value = -4;
-	window.samplerB = samplerB;
-
 
 	// SETUP //
 
@@ -150,7 +148,9 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 	//GUI
 	if (Config.GUI){
 		var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
+		reverbControl.value = effectLevels.reverb;
 		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+		delayControl.value = effectLevels.delay;
 		var voiceFolder = GUI.getFolder("Voice");
 		voiceFolder.add(reverbControl, "value", -100, 1).name("reverb");
 		voiceFolder.add(delayControl, "value", -100, 1).name("delay");

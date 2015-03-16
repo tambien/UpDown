@@ -1,6 +1,6 @@
-define(["Tone/instrument/MonoSynth", "Tone/core/Master", "interface/GUI", "preset/ArpSound", 
-	"Tone/signal/Signal", "util/Config"], 
-function(MonoSynth, Master, GUI, Preset, Signal, Config){
+define(["Tone/instrument/MonoSynth", "Tone/core/Master", "interface/GUI", "preset/ArpSoundA", "preset/ArpSoundB", 
+	"Tone/signal/Signal", "util/Config", "controller/Conductor"], 
+function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor){
 
 	var monoSynth, volume;
 	if (!Config.MOBILE){
@@ -32,7 +32,7 @@ function(MonoSynth, Master, GUI, Preset, Signal, Config){
 			var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
 			var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
 			var arpFolder = GUI.getFolder("ARP");
-			GUI.addTone2(arpFolder, "synth", monoSynth).listen();
+			GUI.addTone2(arpFolder, "synth", monoSynth);
 			arpFolder.add(reverbControl, "value", -100, 1).name("reverb");
 			arpFolder.add(delayControl, "value", -100, 1).name("delay");
 		}
@@ -42,9 +42,15 @@ function(MonoSynth, Master, GUI, Preset, Signal, Config){
 	return {
 		triggerAttackRelease : function(note, duration, time){
 			if (!Config.MOBILE){
+				var Preset;
+				if (Conductor.getMovement() === 1){
+					Preset = PresetB;
+				} else {
+					Preset = PresetA;
+				}
 				Preset.update(function(preset){
 					monoSynth.set(preset.synth);
-				}, true);
+				});
 				//add some randomness in the duration
 				monoSynth.triggerAttackRelease(note, duration, time);
 			}

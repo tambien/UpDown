@@ -34,9 +34,11 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 
 	var panner = new Panner();
 
+	panner.send("drums");
+
 	// CONECTIONS //
 
-	synth.chain(filt, panner, Master);
+	synth.chain(filt, panner);
 
 	//Effects
 	var effectLevels = {
@@ -48,9 +50,10 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 	// GUI
 	if (Config.GUI){
 		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+		reverbControl.value = effectLevels.reverb;
 		var hhFolder = GUI.getFolder("High Hat");
-		GUI.addTone2(hhFolder, "synth", synth).listen();
-		GUI.addTone2(hhFolder, "filter", filt).listen();
+		GUI.addTone2(hhFolder, "synth", synth);
+		GUI.addTone2(hhFolder, "filter", filt);
 		hhFolder.add(reverbControl, "value", -100, 1).name("reverb");
 		// hhFolder.addSignal(panner, "pan", 0, 1);
 	}

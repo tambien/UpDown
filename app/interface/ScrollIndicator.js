@@ -46,5 +46,4 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 			"top" : top,
 		});
 	});
-	
 });

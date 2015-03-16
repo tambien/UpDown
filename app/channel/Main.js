@@ -3,13 +3,13 @@ define(["channel/Bass", "channel/Piano", "channel/Voice", "channel/HighHat", "ch
 function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 
 	var volumes = {
-		Bass : -15,
+		Bass : -10,
 		Piano : -32,
 		Voice : -5,
-		HH : -21,
+		HH : -23,
 		Kick : -16,
-		Snare : -14,
-		Arp : -48
+		Snare : -8,
+		Arp : -52
 	};
 
 	Bass.volume.value = volumes.Bass;
@@ -30,7 +30,7 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 			GUI.addVolumeSlider(folder, "HH Volume", HH.volume);
 			GUI.addVolumeSlider(folder, "Kick Volume", Kick.volume);
 			GUI.addVolumeSlider(folder, "Snare Volume", Snare.volume);	
-			GUI.addVolumeSlider(folder, "Arp Volume", Arp.volume, -60, -20);	
+			GUI.addVolumeSlider(folder, "Arp Volume", Arp.volume, -80, -30);	
 		}
 	}
 

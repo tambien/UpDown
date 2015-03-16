@@ -73,5 +73,5 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"max": 20000
 			}
 		}
-	], "Piano Preset", GUI);
+	], "Piano Preset A", GUI);
 });

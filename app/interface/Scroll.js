@@ -1,6 +1,9 @@
 define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "TERP"], 
 	function(ready, Mediator, Config, Window, TERP){
 
+	/**
+	 *  the total distance traveled by scrolling
+	 */
 	var scrollDistance = 0;
 
 	/**
@@ -33,6 +36,11 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	 */
 	var switchCenterPosition = 0.5;
 
+	/**
+	 *  indicates if scroll polling is started
+	 */
+	var started = false;
+
 
 	var innerScroll = $("<div>").attr("id", "InnerScroll").appendTo("#ScrollContainer");
 	var scroller = $("<div>").attr("id", "Scroller").appendTo(innerScroll);
@@ -64,20 +72,21 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 
 	Mediator.route("update", function(){
 		var scrollTop = innerScroll.scrollTop();
-		if (scrollTop !== lastPosition){
+		if (started && scrollTop !== lastPosition){
 			//the scroll distance
 			scrollDistance += Math.abs(lastPosition - scrollTop) / scrollSize;
 			//the loop position
 			scrollPosition = 1 - scrollTop / scrollSize;
 			var loopOffset = 0.05;
+			var loopOffsetMult = 1.5;
 			if (scrollTop < lastPosition && 
 					scrollDirection !== 1 && 
-					scrollPosition > loopOffset){
+					scrollPosition > loopOffset * loopOffsetMult){
 				scrollDirection = 1;
 				switchCenterPosition = scrollPosition;
 			} else if (scrollTop > lastPosition && 
 					scrollDirection !== -1 && 
-					scrollPosition < 1 - loopOffset){
+					scrollPosition < 1 - loopOffset * loopOffsetMult){
 				scrollDirection = -1;
 				switchCenterPosition = scrollPosition;
 			}
@@ -87,16 +96,20 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 				innerScroll.scrollTop((1 - scrollPosition) * scrollSize);
 			} else if (scrollTop === scrollSize - scrollHeight){
 				scrollPosition = loopOffset;
-				innerScroll.scrollTop((1 - scrollPosition) * scrollSize);
+				innerScroll.scrollTop((1 - scrollPosition) * (scrollSize - scrollHeight));
 			}
 			needsUpdate = true;
 			Mediator.send("rawscroll", scrollPosition);
+		} else if (!started){
+			innerScroll.scrollTop(lastPosition);
 		}
 	});
 
 
 	Mediator.route("start", function(updateRate){
-		Mediator.send("scroll", scrollPosition, updateRate);
+		setTimeout(function(){
+			started = true;
+		}, 100);
 	});
 
 	return {

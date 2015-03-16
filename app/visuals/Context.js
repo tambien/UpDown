@@ -1,8 +1,6 @@
-var USE_STATS = false;
-
 define(["interface/Window", "jquery", "TWEEN", "Stats", 
 	"controller/Mediator", "shader/ColorShift", "shader/Noise", "util/Config"], 
-function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Config){
+function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Config){
 
 	/**
 	 *  the threejs context
@@ -14,7 +12,7 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 		this.renderer = new THREE.WebGLRenderer({
 			precision : "lowp",
 			alpha : false,
-			premultipliedAlpha: false
+			// premultipliedAlpha: false
 		});
 		if (Config.MOBILE){
 			this.renderer.setClearColor( 0xffffff , 0);
@@ -27,7 +25,6 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 		//camera positioning
 		this.camera.position.setZ(-100);
 		this.camera.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
-		window.camera = this.camera;
 
 		this.scene.add( new THREE.AmbientLight( 0x222222 ) );
 		this.light = new THREE.PointLight( 0xffffff );
@@ -38,7 +35,7 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 		this.scene.add( this.light );
 
 		//the stats
-		if (USE_STATS){
+		if (Config.STATS){
 			this.stats = new Stats();
 			this.stats.setMode(0);
 			this.stats.domElement.style.position = 'absolute';
@@ -62,7 +59,11 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 		//drawing setup
 		this.transparent = true;
 		this.opacity = 0.7;
-		this.blending = THREE.CustomBlending;
+		if (Config.MOBILE){
+			this.blending = THREE.SubtractiveBlending;
+		} else {
+			this.blending = THREE.CustomBlending;
+		}
 		this.blendSrc = THREE.SrcColorFactor;
 		this.blendDst = THREE.DstColorFactor;
 		this.blendEq = THREE.SubtractEquation;
@@ -123,10 +124,6 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 		window.gridTexture = gridTexture;
 
 	};
-
-	// var src = [ "ZeroFactor", "OneFactor", "SrcAlphaFactor", "OneMinusSrcAlphaFactor", "DstAlphaFactor", "OneMinusDstAlphaFactor", "DstColorFactor", "OneMinusDstColorFactor", "SrcAlphaSaturateFactor" ];
-	// var dst = [ "ZeroFactor", "OneFactor", "SrcColorFactor", "OneMinusSrcColorFactor", "SrcAlphaFactor", "OneMinusSrcAlphaFactor", "DstAlphaFactor", "OneMinusDstAlphaFactor" ];
-	// var equations = ["AddEquation", "SubtractEquation", "ReverseSubtractEquation"];
 
 	Context.prototype.backgroundImage = function(){
 		var material = new THREE.SpriteMaterial({
@@ -207,7 +204,7 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 			this.renderer.render(this.scene, this.camera);
 		}
 		TWEEN.update(time);
-		if (USE_STATS){
+		if (Config.STATS){
 			this.stats.update();
 		}
 	};
@@ -216,7 +213,7 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, 
 		var vector = new THREE.Vector3(-1, -1, 1);
 		vector.unproject( this.camera );
 		var dir = vector.sub( this.camera.position ).normalize();
-		var distance = - camera.position.z / dir.z;
+		var distance = - this.camera.position.z / dir.z;
 		var pos = this.camera.position.clone().add( dir.multiplyScalar( distance ) );
 		this.width = Math.abs(vector.x * 2);
 		this.height = Math.abs(vector.y * 2);
