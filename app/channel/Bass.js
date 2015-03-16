@@ -1,7 +1,8 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/component/Filter", 
 	"preset/BassSound", "controller/Conductor", "interface/GUI", "Tone/component/Compressor", 
-	"Tone/component/LFO", "Tone/signal/Expr", "Tone/source/Oscillator"], 
-function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Expr, Oscillator){
+	"Tone/component/LFO", "Tone/signal/Expr", "Tone/source/Oscillator", "controller/Mediator", "util/Config"], 
+function(MonoSynth, Master, Filter, Preset, Conductor, GUI, 
+	Compressor, LFO, Expr, Oscillator, Mediator, Config){
 
 	var filter = new Filter({
 		"frequency": "G3",
@@ -47,10 +48,22 @@ function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Exp
 	filter.frequency.value = "G2";
 	lfo.sync();
 
-	monoSynth.chain(filter, compressor, Master);
+
+	var volume = filter.context.createGain();
+	var ampLFO = new LFO({
+		"frequency": "16n", 
+		"type": "triangle", 
+		"min" : 1,
+		"max" : 0
+	}).connect(volume.gain).sync();
+
+	ampLFO.amplitude.value = 0;
+
+		
+	monoSynth.chain(filter, volume, compressor, Master);
 
 	//GUI
-	if (USE_GUI){
+	if (Config.GUI){
 		var bassFolder = GUI.getFolder("Bass");
 		GUI.addTone2(bassFolder, "filter", filter).listen();
 		GUI.addTone2(bassFolder, "compressor", compressor);
@@ -58,12 +71,19 @@ function(MonoSynth, Master, Filter, Preset, Conductor, GUI, Compressor, LFO, Exp
 	}
 
 	return {
-		triggerAttackRelease : function(note, duration, time){
-			Preset.update(function(preset){
-				monoSynth.set(preset.synth);
-			}, true);
+		triggerAttackRelease : function(note, duration, time, velocity){
+			if (Conductor.getMovement() !== 1){
+				Preset.update(function(preset){
+					monoSynth.set(preset.synth);
+				});
+			} else {
+				//this is where preset b would go
+				Preset.update(function(preset){
+					monoSynth.set(preset.synth);
+				});
+			}
 			//add some randomness in the duration
-			monoSynth.triggerAttackRelease(note, duration, time);
+			monoSynth.triggerAttackRelease(note, duration, time, velocity);
 		},
 		volume : monoSynth.volume
 	};

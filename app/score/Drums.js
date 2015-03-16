@@ -50,6 +50,24 @@ function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
 		}
 	}
 
+	//12-14 : eighth notes
+	for (measure = 12; measure <= 14; measure++){
+		for (beat = 0; beat < 4; beat++){
+			for (sixteenth = 0; sixteenth < 4; sixteenth++){
+				highhat.push(measure + ":" + beat +":"+sixteenth);
+			}
+		}
+	}
+
+	//15-17 : eighth notes
+	for (measure = 15; measure <= 17; measure++){
+		for (beat = 0; beat < 4; beat++){
+			for (sixteenth = 0; sixteenth < 4; sixteenth++){
+				highhat.push(measure + ":" + beat +":"+sixteenth);
+			}
+		}
+	}
+
 	var kick = [
 		["0:0", "D1"], ["0:1 + 2*8t", "D1"], ["0:2", "D1"], 
 		["1:0", "D1"], ["1:1 + 2*8t", "D1"], ["1:2", "D1"], 
@@ -66,6 +84,15 @@ function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
 		["9:0", "G1"], ["9:1", "G1"], ["9:2", "G1"], ["9:3", "G1"], 
 		["10:0", "G1"], ["10:1", "G1"], ["10:2", "G1"], ["10:3", "G1"], 
 		["11:0", "G1"], ["11:1", "G1"], ["11:2", "G1"], ["11:3", "G1"], 
+
+		//B Part
+		["12:0", "G1"], ["12:1:3", "G1", 0.85], ["12:2", "G1", 0.9], ["12:3:1", "G1", 0.8], 
+		["13:0", "G1", 0.92], ["13:1:3", "G1", 0.7], ["13:2", "G1", 0.8], ["13:3:2", "G1", 0.6],
+		["14:0", "G1", 0.8], ["14:1:3", "G1", 0.85], ["14:2", "G1", 0.85], ["14:3:3", "G1", 0.92], 
+
+		["15:0", "D1"], ["15:0:3", "D1", 0.8], ["15:2", "D1", 0.8], ["15:2:3", "D1", 0.8], 
+		["16:0", "D1"], ["16:0:3", "D1", 0.8], ["16:2", "D1", 0.8], ["16:2:3", "D1", 0.8], 
+		["17:0", "D1"], ["17:0:3", "D1", 0.8], ["17:2", "D1", 0.8], ["17:2:3", "D1", 0.8], 
 	];
 
 	var snare = [
@@ -84,6 +111,14 @@ function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
 		["9:1"],   ["9:2:2"],  ["9:3:1"], 
 		["10:1"], ["10:2:2"], ["10:3:1"], 
 		["11:1"], ["11:2:2"], ["11:3:1"], 
+
+		["12:1"], ["12:2:2"], 
+		["13:1"], ["13:3:1"], 
+		["14:1"], ["14:2:2"], ["14:3:1"],
+
+		["15:1"], ["15:3"], 
+		["16:1"], ["16:3"], 
+		["17:1"], ["17:3"], 
 	];
 
 	Conductor.parseScore(highhat, function(time, note, chordName){
@@ -95,10 +130,12 @@ function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
 		}
 	});
 
-	Conductor.parseScore(kick, function(time, note, chordName){
+	Conductor.parseScore(kick, function(time, note, probability){
 		if (Conductor.hasKick()){
-			Kick.triggerAttackRelease("8n", time, note);
-			Mediator.deferSend("kick");
+			if (!probability || Math.random() < probability){
+				Kick.triggerAttackRelease("8n", time, note);
+				Mediator.deferSend("kick");
+			}
 		}
 	});
 

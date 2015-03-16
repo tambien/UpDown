@@ -29,11 +29,9 @@ require.config({
 	}
 });
 
-var USE_GUI = false;
-
-require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main", 
-	"score/Main", "interface/Main", "effect/Main", "channel/Main"],
- function($, Transport, Mediator){
+require(["jquery", "Tone/core/Transport", "controller/Mediator", "util/Config", "Tone/core/Buffer", 
+	"visuals/Main", "score/Main", "interface/Main", "effect/Main", "channel/Main"],
+ function($, Transport, Mediator, Config, Buffer){
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
 	console.log("%c↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑", coloring);
 	console.log("%c↑      UP/DOWN      ↑", coloring);
@@ -44,6 +42,7 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main",
 
 
 	$("#ScrollContainer").one("mousedown touchstart", function(e){
+		e.preventDefault();
 		console.log("starting");
 		Mediator.send("start");
 	});
@@ -54,6 +53,10 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main",
 			Mediator.send("stop");
 		}
 	});
+
+	Buffer.onload = function(){
+		console.log("loaded");
+	};
 
 	var inFocus = true;
 
@@ -71,7 +74,9 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "visuals/Main",
 		inFocus = true;
 	});*/
 
-	setInterval(function(){
-		$("#TransportPosition").text(Transport.position);
-	}, 400);
+	if (!Config.MOBILE){
+		setInterval(function(){
+			$("#TransportPosition").text(Transport.position);
+		}, 400);
+	}
 });

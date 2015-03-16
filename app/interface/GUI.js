@@ -1,9 +1,10 @@
 define(["dat", "Tone/signal/Signal", "Tone/core/Tone", "Tone/source/Oscillator", 
-	"Tone/source/OmniOscillator", "Tone/source/Noise", "Tone/component/Filter", "Tone/instrument/PolySynth"], 
-	function(dat, Signal, Tone, Oscillator, OmniOscillator, Noise, Filter, PolySynth){
+	"Tone/source/OmniOscillator", "Tone/source/Noise", "Tone/component/Filter", 
+	"Tone/instrument/PolySynth", "util/Config"], 
+	function(dat, Signal, Tone, Oscillator, OmniOscillator, Noise, Filter, PolySynth, Config){
 
 	var GUI;
-	if (USE_GUI){
+	if (Config.GUI){
 		 GUI = new dat.GUI();
 	}
 

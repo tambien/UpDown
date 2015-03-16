@@ -1,14 +1,14 @@
-define(["text!shader/kickwave.frag",  "text!shader/kickwave.vert"], 
-function(fragShader, vertShader){
+define(["text!shader/kickwave.frag",  "text!shader/kickwave.vert", "visuals/Context"], 
+function(fragShader, vertShader, Context){
 
 	return new THREE.ShaderMaterial({
 
-		transparent: transparent,
-		opacity: opacity,
-		blending : THREE[ blending ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		transparent: Context.transparent,
+		opacity: Context.opacity,
+		blending : Context.blending,
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
 		side: THREE.DoubleSide,

@@ -36,34 +36,51 @@
 
 	#Channel {
 		pointer-events: none;
-		$ScrollIndicatorHeight: 10px;
-		$ScrollIndicatorWidth: 17px;
+		$ScrollIndicatorHeight: 25px;
+		$ScrollIndicatorWidth: 16px;
+		$RightMargin : 2px;
 		background-color: blue;
 
-		width: $ScrollIndicatorWidth + 2px;
+		width: $ScrollIndicatorWidth + $RightMargin * 2;
 		height: 100%;
 		position: absolute;
 		top: 0px;
-		right: 0px;
-		background-color: rgba(255, 0, 255, 0.1);
-		border-left: 1px dotted black;
+		right: 0;
+		background-color: rgba(0, 255, 71, 1);
+		/*border-left: 1px dotted black;*/
 
 		#Indicator {
 			width: $ScrollIndicatorWidth;
 			height: $ScrollIndicatorHeight;
 			border-radius: 2px;
 			position: absolute;
-			top: calc(50% - #{$ScrollIndicatorHeight / 2});
-			right: 1px;
-			background-color: #00ffff;
-			opacity: 0.9;
-			transition: top 0.25s;
+			top: calc(50% - #{$ScrollIndicatorHeight / 2} - #{$RightMargin});
+			right: $RightMargin;
+			background-color: rgb(241, 255, 39);
+			opacity: 1;
 		}
 	}
+
+	#Channel.Hover {
+		background-color: red;
+
+		#Indicator {
+			background-color: rgb(241, 255,255);		
+		}
+
+		#Indicator.Click {
+			background-color: rgb(0, 0, 0);		
+		}
+	}
+
+	#Channel.Top {
+		background-color: blue;		
+	}
+
+	#Channel.Top.Hover {
+		background-color: yellow;		
+	}
 }
-
-
-
 
 #TransportPosition {
 	color: #aaaaaa;

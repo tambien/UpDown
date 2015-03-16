@@ -18,7 +18,7 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 		},
 		//bottom
 		{
-			"minSpeed" : 2000,
+			"minSpeed" : 4200,
 			"color" : [1, 0.2, 0],
 			"width" : 0.2,
 			"length" : 6

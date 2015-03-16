@@ -3,11 +3,11 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 	return new Interpolator([
 		{
 			"color" : [0.5, 0, 1],
-			"size" : 1,
+			"angle" : -Math.PI/2,
 		},
 		{
-			"color" : [0.5, 0, 1],
-			"size" : 1,
+			"color" : [1, 0.5, 0],
+			"angle" : 0,
 		},
 	], "Arp Visuals", GUI);
 });

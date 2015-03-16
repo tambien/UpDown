@@ -17,6 +17,14 @@ define(["channel/Piano", "controller/Conductor", "controller/Mediator", "Tone/co
 		["9:1", "4n + 8n"], ["9:3", "4n + 8n"], 
 		["10:1", "4n + 8n"], ["10:3", "4n + 8n"],
 		["11:1", "4n + 8n"], [ "11:3", "4n + 8n"],
+
+		["12:0", "8n"], ["12:1", "8n"], ["12:2", "8n"], ["12:3", "8n"],
+		["13:0", "8n"], ["13:1", "8n"], ["13:2", "8n"], ["13:3", "8n"],
+		["14:0", "8n"], ["14:1", "8n"], ["14:2", "8n"], ["14:3", "8n"],
+
+		["15:0:2", "8n"], ["15:1:2", "8n"], ["15:2:2", "8n"], ["15:3:2", "8n"], 
+		["16:0:2", "8n"], ["16:1:2", "8n"], ["16:2:2", "8n"], ["16:3:2", "8n"], 
+		["17:0:2", "8n"], ["17:1:2", "8n"], ["17:2:2", "8n"], ["17:3:2", "8n"], 
 	];
 
 	var chordNotes = {
@@ -38,8 +46,10 @@ define(["channel/Piano", "controller/Conductor", "controller/Mediator", "Tone/co
 	}
 
 	Conductor.parseScore(pianoNotes, function(time, duration){
-		var chord = chordNotes[Conductor.getChord()];
-		Piano.triggerAttackRelease(chord, duration, time);
-		Mediator.deferSend("piano", chord);
+		if (Conductor.hasPiano()){
+			var chord = chordNotes[Conductor.getChord()];
+			Piano.triggerAttackRelease(chord, duration, time);
+			Mediator.deferSend("piano", chord);
+		}
 	});
 });

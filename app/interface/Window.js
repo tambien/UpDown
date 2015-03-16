@@ -36,7 +36,6 @@ define(["jquery"], function($){
 		container : container,
 		resize : function(callback){
 			$(window).resize(debounce(function(){
-				console.log("resizing");
 				callback(width, height);
 			}, 500));
 		}

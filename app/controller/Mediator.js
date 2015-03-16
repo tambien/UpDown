@@ -1,4 +1,4 @@
-define(["requestAnimationFrame"], function(requestAnimationFrame){
+define(["requestAnimationFrame", "util/Config"], function(requestAnimationFrame, Config){
 	
 	/**
 	 * MicroEvent - to make any js object an event emitter (server or browser)
@@ -58,19 +58,22 @@ define(["requestAnimationFrame"], function(requestAnimationFrame){
 		Mediator.send("slowUpdate", slowUpdateRate);
 	}
 
-	function presetUpdateLoop(){
-		setTimeout(presetUpdateLoop, presetUpdateRate);
-		Mediator.send("presetUpdate", presetUpdateRate);
-	}
-
 	function update(){
 		requestAnimationFrame(update);
 		Mediator.send("update");
 	}
 
+	function mobileUpdate(){
+		setTimeout(mobileUpdate, 30);
+		Mediator.send("update");
+	}
+
 	slowUpdateLoop();
-	presetUpdateLoop();
-	update();
+	if (Config.MOBILE){
+		mobileUpdate();
+	} else {
+		update();
+	}
 
 	return Mediator;
 });

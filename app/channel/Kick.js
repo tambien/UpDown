@@ -1,8 +1,9 @@
 define(["Tone/source/Oscillator", "controller/Mediator",
  "preset/KickSound", "controller/Conductor", "Tone/core/Master", "Tone/component/Compressor", 
- "interface/GUI", "Tone/component/Filter", "Tone/component/AmplitudeEnvelope", "Tone/component/ScaledEnvelope"], 
+ "interface/GUI", "Tone/component/Filter", "Tone/component/AmplitudeEnvelope",
+  "Tone/component/ScaledEnvelope", "util/Config"], 
 function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filter,
- AmplitudeEnvelope, ScaledEnvelope){
+ AmplitudeEnvelope, ScaledEnvelope, Config){
 
 	var comp = new Compressor({
 		"attack": 0.14,
@@ -40,7 +41,7 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 	};
 
 	//GUI
-	if (USE_GUI){
+	if (Config.GUI){
 		var kickFolder = GUI.getFolder("Kick");
 		GUI.addTone2(kickFolder, "Compressor", comp);
 		GUI.addTone2(kickFolder, "Filter", filter);

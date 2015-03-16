@@ -1,15 +1,16 @@
-define(["visuals/Context", "controller/Mediator", "interface/Window", "TERP", "preset/HighHatVisual"],
- function(Context, Mediator, Window, TERP, Preset){
+define(["visuals/Context", "controller/Mediator", "interface/Window", 
+	"TERP", "preset/HighHatVisual", "controller/Conductor"],
+ function(Context, Mediator, Window, TERP, Preset, Conductor){
 
 	"use strict";
 
 	var material = new THREE.MeshBasicMaterial({
-		transparent: transparent,
+		transparent: Context.transparent,
 		opacity: 0.6,
-		blending : THREE[ blending ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		blending : Context.blending,
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
 		side: THREE.DoubleSide,
@@ -32,10 +33,16 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TERP", "p
 	var horizontalScale = 1;
 	var decayTime = 400;
 
+	Mediator.route("B", function(){
+		material.color.setRGB(1, 1, 1);
+	});
+
 	Preset.onupdate(function(pre){
 		horizontalScale = pre.width;
-		var color = pre.color;
-		material.color.setRGB(color[0], color[1], color[2]);
+		if (Conductor.getMovement() !== 1){
+			var color = pre.color;
+			material.color.setRGB(color[0], color[1], color[2]);
+		}
 		decayTime = pre.decay;
 	});
 

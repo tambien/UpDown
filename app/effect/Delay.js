@@ -1,16 +1,19 @@
-define(["Tone/core/Bus", "interface/GUI", "Tone/effect/PingPongDelay", "Tone/core/Transport", "controller/Mediator"], 
-	function(Bus, GUI, PingPongDelay, Transport, Mediator){
+define(["Tone/core/Bus", "interface/GUI", "Tone/effect/PingPongDelay", "Tone/core/Transport", 
+	"controller/Mediator", "util/Config"], 
+	function(Bus, GUI, PingPongDelay, Transport, Mediator, Config){
 
-	var delayTime = "16n";
-	var pingPong = new PingPongDelay(delayTime, 0.2).toMaster();
-	pingPong.receive("delay");
+	if (!Config.MOBILE){
+		var delayTime = "16n";
+		var pingPong = new PingPongDelay(delayTime, 0.2).toMaster();
+		pingPong.receive("delay");
 
-	Mediator.route("scroll", function(position){
-		pingPong.delayTime.rampTo("16n", 0.25);
-	});
+		Mediator.route("scroll", function(position){
+			pingPong.delayTime.rampTo("16n", 0.25);
+		});
 
-	if (USE_GUI){
-		var effectFolder = GUI.getFolder("Effect");
-		GUI.addTone2(effectFolder, "Delay", pingPong, ["feedback"]);
+		if (Config.GUI){
+			var effectFolder = GUI.getFolder("Effect");
+			GUI.addTone2(effectFolder, "Delay", pingPong, ["feedback"]);
+		}
 	}
 });

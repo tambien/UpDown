@@ -29,23 +29,32 @@
   #ScrollContainer #Channel {
     pointer-events: none;
     background-color: blue;
-    width: 19px;
+    width: 20px;
     height: 100%;
     position: absolute;
     top: 0px;
-    right: 0px;
-    background-color: rgba(255, 0, 255, 0.1);
-    border-left: 1px dotted black; }
+    right: 0;
+    background-color: #00ff47;
+    /*border-left: 1px dotted black;*/ }
     #ScrollContainer #Channel #Indicator {
-      width: 17px;
-      height: 10px;
+      width: 16px;
+      height: 25px;
       border-radius: 2px;
       position: absolute;
-      top: calc(50% - 5px);
-      right: 1px;
-      background-color: #00ffff;
-      opacity: 0.9;
-      transition: top 0.25s; }
+      top: calc(50% - 12.5px - 2px);
+      right: 2px;
+      background-color: #f1ff27;
+      opacity: 1; }
+  #ScrollContainer #Channel.Hover {
+    background-color: red; }
+    #ScrollContainer #Channel.Hover #Indicator {
+      background-color: #f1ffff; }
+    #ScrollContainer #Channel.Hover #Indicator.Click {
+      background-color: black; }
+  #ScrollContainer #Channel.Top {
+    background-color: blue; }
+  #ScrollContainer #Channel.Top.Hover {
+    background-color: yellow; }
 
 #TransportPosition {
   color: #aaaaaa;

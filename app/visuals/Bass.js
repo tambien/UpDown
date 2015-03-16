@@ -1,5 +1,5 @@
-define(["visuals/Context", "controller/Mediator", "preset/BassVisual"], 
-function(Context, Mediator, BassPreset){
+define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "controller/Conductor"], 
+function(Context, Mediator, BassPreset, Conductor){
 
 	"use strict";
 
@@ -23,12 +23,12 @@ function(Context, Mediator, BassPreset){
 	 */
 	
 	var material = new THREE.MeshLambertMaterial({
-		transparent: transparent,
-		opacity: opacity,
-		blending : THREE[ blending ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		transparent: Context.transparent,
+		opacity: Context.opacity,
+		blending : Context.blending,
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
 		// wireframe : true,
@@ -40,14 +40,21 @@ function(Context, Mediator, BassPreset){
 
 	var startSize, endSize, rotation, duration;
 
+	Mediator.route("B", function(){
+		material.color.setRGB(1, 1, 1);
+		material.emissive.setRGB(0.5, 0.5, 0.5);
+	});
+
 	BassPreset.onupdate(function(preset){
+		if (Conductor.getMovement() !== 1){
+			var color = preset.color;
+			material.color.setRGB(color[0], color[1], color[2]);
+			material.emissive.setRGB(color[0] - 0.5, color[1] - 0.5, color[2] - 0.5);
+		}
 		startSize = preset.startSize;
 		endSize = preset.endSize;
 		rotation = preset.rotation;
 		duration = preset.duration;
-		var color = preset.color;
-		material.color.setRGB(color[0], color[1], color[2]);
-		material.emissive.setRGB(color[0] - 0.5, color[1] - 0.5, color[2] - 0.5);
 	});
 
 	var BassNote = function(scene){

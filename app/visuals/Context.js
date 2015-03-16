@@ -1,13 +1,8 @@
-var blendSrc = "SrcColorFactor";
-var blendDst = "DstColorFactor";
-var blendEq = "SubtractEquation";
-var blending = "CustomBlending";
-var opacity = 0.1;
-var transparent = true;
+var USE_STATS = false;
 
 define(["interface/Window", "jquery", "TWEEN", "Stats", 
-	"controller/Mediator", "shader/ColorShift", "shader/Noise"], 
-function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
+	"controller/Mediator", "shader/ColorShift", "shader/Noise", "util/Config"], 
+function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Config){
 
 	/**
 	 *  the threejs context
@@ -21,8 +16,11 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 			alpha : false,
 			premultipliedAlpha: false
 		});
-		this.renderer.setClearColor( 0x000000 , 0);
-		// this.renderer.setClearColor( 0xffffff , 0);
+		if (Config.MOBILE){
+			this.renderer.setClearColor( 0xffffff , 0);
+		} else {
+			this.renderer.setClearColor( 0x000000 , 0);
+		}
 		this.renderer.setSize(Window.width(), Window.height());
 		Window.container.append(this.renderer.domElement);
 
@@ -39,17 +37,15 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 		this.light.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
 		this.scene.add( this.light );
 
-		window.light = this.light;
-
-		// this.createGrid();
-
 		//the stats
-		this.stats = new Stats();
-		this.stats.setMode(0);
-		this.stats.domElement.style.position = 'absolute';
-		this.stats.domElement.style.left = '0px';
-		this.stats.domElement.style.top = '0px';
-		Window.container.append(this.stats.domElement);
+		if (USE_STATS){
+			this.stats = new Stats();
+			this.stats.setMode(0);
+			this.stats.domElement.style.position = 'absolute';
+			this.stats.domElement.style.left = '0px';
+			this.stats.domElement.style.top = '0px';
+			Window.container.append(this.stats.domElement);
+		}
 		
 		//the background and foreground layers		
 		this.background = new THREE.Object3D();
@@ -60,14 +56,29 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 		Mediator.route("update", this.animate.bind(this));
 		Window.resize(this.resize.bind(this));
 
+		this.computeBounding();
+		Window.resize(this.computeBounding.bind(this));
+
+		//drawing setup
+		this.transparent = true;
+		this.opacity = 0.7;
+		this.blending = THREE.CustomBlending;
+		this.blendSrc = THREE.SrcColorFactor;
+		this.blendDst = THREE.DstColorFactor;
+		this.blendEq = THREE.SubtractEquation;
+
 		//the background shapes for testing
 		// this.backgroundShape();
-		this.addComposer();
-		// ^^^^^^^^^^^^^^^
+		// this.backgroundImage();
+		if (!Config.MOBILE){
+			this.addComposer();
+		}
 
 		//start animating
 		this.animate();
 	};
+
+	//drawing setup
 
 	Context.prototype.flipCamera = function(half){
 		if (this.tween){
@@ -117,15 +128,35 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 	// var dst = [ "ZeroFactor", "OneFactor", "SrcColorFactor", "OneMinusSrcColorFactor", "SrcAlphaFactor", "OneMinusSrcAlphaFactor", "DstAlphaFactor", "OneMinusDstAlphaFactor" ];
 	// var equations = ["AddEquation", "SubtractEquation", "ReverseSubtractEquation"];
 
+	Context.prototype.backgroundImage = function(){
+		var material = new THREE.SpriteMaterial({
+			transparent: true,
+			opacity : 1,
+			map: THREE.ImageUtils.loadTexture("./images/mountain.png"),
+			side: THREE.DoubleSide,
+			blending : THREE.SubtractiveBlending,
+			blendSrc : this.blendSrc,
+			blendDst : this.blendDst,
+			blendEquation : this.blendEq,
+			depthTest : false,
+			color : 0xffffff
+		});
+		var pic = new THREE.Sprite(material);
+		this.scene.add(pic);
+		pic.position.setZ(20);
+		pic.scale.set(100, 100, 1);
+		window.picture = pic;
+	};
+
 	Context.prototype.backgroundShape = function(){
 
 		var boxMaterial = new THREE.MeshNormalMaterial({
-			transparent: transparent,
-			opacity: opacity,
-			blending : THREE[ blending ],
-			blendSrc : THREE[ blendSrc ],
-			blendDst : THREE[ blendDst ],
-			blendEquation : THREE[ blendEq ],
+			transparent: this.transparent,
+			opacity: this.opacity,
+			blending : this.blending,
+			blendSrc : this.blendSrc,
+			blendDst : this.blendDst,
+			blendEquation : this.blendEq,
 			depthTest : false,
 			depthWrite : false,
 			color : 0x00ff00
@@ -136,12 +167,12 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 		this.scene.add(this.square);
 
 		var sphereMaterial = new THREE.MeshBasicMaterial({
-			transparent: transparent,
-			opacity: opacity,
-			blending : THREE[ blending ],
-			blendSrc : THREE[ blendSrc ],
-			blendDst : THREE[ blendDst ],
-			blendEquation : THREE[ blendEq ],
+			transparent: this.transparent,
+			opacity: this.opacity,
+			blending : this.blending,
+			blendSrc : this.blendSrc,
+			blendDst : this.blendDst,
+			blendEquation : this.blendEq,
 			depthTest : false,
 			depthWrite : false,
 			color : 0x0000ff
@@ -152,12 +183,12 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 		this.scene.add(this.sphere);
 
 		var sphereMaterial2 = new THREE.MeshBasicMaterial({
-			transparent: transparent,
-			opacity: opacity,
-			blending : THREE[ blending ],
-			blendSrc : THREE[ blendSrc ],
-			blendDst : THREE[ blendDst ],
-			blendEquation : THREE[ blendEq ],
+			transparent: this.transparent,
+			opacity: this.opacity,
+			blending : this.blending,
+			blendSrc : this.blendSrc,
+			blendDst : this.blendDst,
+			blendEquation : this.blendEq,
 			depthTest : false,
 			depthWrite : false,
 			color : 0xff0000
@@ -170,21 +201,34 @@ function(Window, jquery, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader){
 	};
 
 	Context.prototype.animate = function(time) {
-		this.composer.render();
+		if (!Config.MOBILE){
+			this.composer.render();
+		} else {
+			this.renderer.render(this.scene, this.camera);
+		}
 		TWEEN.update(time);
-		this.stats.update();
+		if (USE_STATS){
+			this.stats.update();
+		}
+	};
+
+	Context.prototype.computeBounding = function(){
+		var vector = new THREE.Vector3(-1, -1, 1);
+		vector.unproject( this.camera );
+		var dir = vector.sub( this.camera.position ).normalize();
+		var distance = - camera.position.z / dir.z;
+		var pos = this.camera.position.clone().add( dir.multiplyScalar( distance ) );
+		this.width = Math.abs(vector.x * 2);
+		this.height = Math.abs(vector.y * 2);
 	};
 
 	Context.prototype.addComposer = function() {
 		this.composer = new THREE.EffectComposer( this.renderer );
-		this.composer.addPass( new THREE.RenderPass(  this.scene, this.camera ) );
+		var renderPass = new THREE.RenderPass(  this.scene, this.camera );
+		this.composer.addPass( renderPass );
 		var effect = new THREE.ShaderPass( ColorShiftShader );
 		effect.renderToScreen = true;
-		// var noise = new THREE.ShaderPass(NoiseShader);
 		this.composer.addPass( effect );
-		// this.composer.addPass( noise );
-
-		// window.noise = noise;
 	};
 
 	Context.prototype.dispose = function(){

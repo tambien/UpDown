@@ -1,7 +1,7 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/instrument/PolySynth", 
 	"Tone/component/PanVol", "preset/PianoSound", "Tone/component/LFO", "interface/GUI", 
-	"Tone/signal/Signal"], 
-function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal){
+	"Tone/signal/Signal", "controller/Mediator", "controller/Conductor", "util/Config"], 
+function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal, Mediator, Conductor, Config){
 
 	"use strict";
 
@@ -10,12 +10,20 @@ function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal){
 			"attack" : 0.1
 		}
 	});
-	var panner = new PanVol();
-	monoSynth.chain(panner, Master);
 
+
+	var volume = monoSynth.context.createGain();
+	var ampLFO = new LFO("8t", 0, 1);
+	ampLFO.connect(volume.gain).sync();
+	ampLFO.amplitude.value = 0;
+
+	var panner = new PanVol();
 	panner.pan.value = 0.2;
 
+	monoSynth.chain(panner, volume, Master);
+
 	var vibrato = new LFO("32n", -40, 40);
+
 	vibrato.sync();
 	//connect it to each of the voices
 	for (var i = 0; i < monoSynth.voices.length; i++){
@@ -40,7 +48,7 @@ function(MonoSynth, Master, PolySynth, PanVol, Preset, LFO, GUI, Signal){
 	delayControl.value = effectLevels.delay; 
 
 	//GUI
-	if (USE_GUI){
+	if (Config.GUI){
 		var pianoFolder = GUI.getFolder("Piano");
 		// GUI.addTone2(pianoFolder, "synth", monoSynth).listen();
 		GUI.addTone2(pianoFolder, "vibrato", vibrato).listen();

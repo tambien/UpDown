@@ -1,21 +1,24 @@
 define(["visuals/Bass", "visuals/Voice", "visuals/Pictures", "visuals/Piano", 
-	"visuals/Kick", "visuals/Snare", "visuals/Arp", "visuals/HighHat"], 
+	"visuals/Kick", "visuals/Snare", "visuals/Arp", "visuals/HighHat", "util/Config", "interface/Scroll"], 
 function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, 
-	KickVisuals, SnareVisuals, ArpVisuals, HighHatVisuals){
-	
-	var bassVis = new BassVisuals(); 
+	KickVisuals, SnareVisuals, ArpVisuals, HighHatVisuals, Config, Scroll){
 
-	var voiceVis = new VoiceVisuals();
+	if (!Config.MOBILE){
+		var bassVis = new BassVisuals(); 
 
-	var pianoVis = new PianoVisuals();
+		var voiceVis = new VoiceVisuals();
 
-	var kickVis = new KickVisuals();
+		var pianoVis = new PianoVisuals();
 
-	var snareVis = new SnareVisuals();
+		var kickVis = new KickVisuals();
 
-	var arpVis = new ArpVisuals();
+		var snareVis = new SnareVisuals();
+
+		var arpVis = new ArpVisuals();
+
+		var hhVis = new HighHatVisuals();
+	}
 
 	var pics = new Pictures();
 
-	var hhVis = new HighHatVisuals();
 });

@@ -1,4 +1,5 @@
-define(["TERP", "controller/Mediator"], function(TERP, Mediator){
+define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"], 
+	function(TERP, Mediator, Conductor, Config){
 
 	"use strict";
 
@@ -17,10 +18,14 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 		this._stepWisePosition = 0;
 		Mediator.route("scroll", this._onupdate.bind(this));
 		//add it to the gui
-		if (USE_GUI && GUI && GUI.addPreset){
+		if (Config.GUI && GUI && GUI.addPreset){
 			GUI.addPreset(name, presetarray);
 		}
 		this._updateFunc = null;
+		Mediator.route("Movement", function(){
+			this._hasChanged = true;
+			this._onupdate(this.position);
+		}.bind(this));
 	};
 
 	/**
@@ -91,8 +96,21 @@ define(["TERP", "controller/Mediator"], function(TERP, Mediator){
 			} else if (Array.isArray(propA)){
 				var len = propA.length;
 				var retArr = new Array(len);
-				for (var i = 0; i < len; i++){
-					retArr[i] = TERP.scale(amount, propA[i], propB[i]); 
+				var bTransition = Conductor.getBTransitionProgress();
+				var movement = Conductor.getMovement();
+				// if (Conductor.getMovement() === 1)
+				var i;
+				if (movement !== 1){
+					for (i = 0; i < len; i++){
+						retArr[i] = TERP.scale(amount, propA[i], propB[i]); 
+					}
+					if (bTransition > 0 && movement === 0){
+						for (i = 0; i < len; i++){
+							retArr[i] = TERP.scale(bTransition, retArr[i], 1);
+						}
+					}
+				} else {
+					retArr = [1, 1, 1];
 				}
 				ret[attr] = retArr; 
 			} else if (typeof propA === "object"){

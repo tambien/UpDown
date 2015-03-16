@@ -1,5 +1,6 @@
-define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"], 
-	function(Context, TERP, Mediator, TWEEN){
+define(["visuals/Context", "TERP", "controller/Mediator", 
+	"TWEEN", "util/Config", "interface/Scroll"], 
+	function(Context, TERP, Mediator, TWEEN, Config, Scroll){
 
 	"use strict";
 
@@ -8,20 +9,30 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 
 	var texture = new THREE.Texture();
 
+	var blending = "SubtractiveBlending";
+	if (Config.MOBILE){
+		blending = "NormalBlending";
+	}
+
 	var material = new THREE.SpriteMaterial({
 		transparent: true,
 		opacity : 0.9,
 		map: texture,
 		side: THREE.DoubleSide,
-		blending : THREE[ "SubtractiveBlending" ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		blending : THREE[blending],
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		color : 0xffffff
 	});
 
 	var radius = 10;
+
+	var frameBlending = "AdditiveBlending";
+	if (Config.MOBILE){
+		frameBlending = "NormalBlending";
+	}
 
 	var frameMaterial = new THREE.SpriteMaterial({
 		transparent: true,
@@ -29,12 +40,14 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 		depthTest : false,
 		map: THREE.ImageUtils.loadTexture("./images/frame_v02.png"),
 		side: THREE.DoubleSide,
-		blending : THREE[ "AdditiveBlending" ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		blending : THREE[ frameBlending ],
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		color: 0xff00ff
 	});
+
+	window.frameMaterial = frameMaterial;
 
 
 	// PICTURES
@@ -48,8 +61,9 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 		this.images = [];
 		this.scrollMultipler = 100;
 		this.previousPosition = 0.5;
-
+		this.pictureCount = 3;
 		this.distance = 1.4;
+		this.modDistance = this.distance * this.pictureCount;
 
 		this.makePictures();
 
@@ -63,9 +77,8 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 
 	Pictures.prototype.makePictures = function() {
 		//make the pictures
-		var pictureCount = 5;
+		var pictureCount = this.pictureCount;
 		//make all of the images
-		var period = 25;
 		var scale = this.scale;
 		this.picDist = scale * pictureCount * 0.8;
 		var increment = this.previousPosition * this.scrollMultipler;
@@ -73,15 +86,14 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 			var pic = new THREE.Sprite(material);
 			var frame = new THREE.Sprite(frameMaterial);
 			frame.scale.set(1.2, 1.3, 1);
-			frame.rotateX(-0.4);
-			frame.position.setY(-0.1);
+			frame.position.setY(-0.15);
 			pic.add(frame);
-			pic.position.setY((i * this.distance + increment) % 7);
+			pic.position.setY(((i * this.distance + increment) % (this.modDistance)) - this.distance);
 			this.pictures.add(pic);
 		}
+		this.pictures.position.y = -Context.height / 2;
 		//picture original size 680 x 1163. 
 		this.pictures.scale.set(this.scale, this.scale * 1.71, 1);
-		this.pictures.position.y = -this.scale * 3;
 		window.object = this.pictures;
 		//and make the frames
 		Context.scene.add(this.pictures);
@@ -89,15 +101,13 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 
 	Pictures.prototype.scroll = function(position) {
 		//load the level
-		var level = Math.round(TERP.scale(position, -8, 8));
+		var level = Math.round(TERP.scale(Scroll.getDirectionPosition(), -8, 8));
 		if (this.level !== level){
 			this.load(level);
 		}
-		if(this.tween){
-			this.tween.stop();
-		}
+		//set the position of the individual frames
 		position = 1 - position;
-		var max = 7;
+		var max = this.modDistance;
 		var increment = (position * this.scrollMultipler);
 		var children = this.pictures.children;
 		var currentPos = this.previousPosition * this.scrollMultipler;
@@ -106,7 +116,7 @@ define(["visuals/Context", "TERP", "controller/Mediator", "TWEEN"],
 		for (var i = 0; i < children.length; i++){
 			var child = children[i];
 			var newY = i * distance + increment;
-			child.position.setY(newY % max);
+			child.position.setY((newY % max) - distance);
 		}
 	};
 

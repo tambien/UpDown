@@ -1,15 +1,16 @@
-define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN"],
- function(Context, Mediator, Window, TWEEN){
+define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN", 
+	"preset/ArpVisuals", "controller/Conductor"],
+ function(Context, Mediator, Window, TWEEN, Preset, Conductor){
 
 	"use strict";
 
 	var material = new THREE.MeshBasicMaterial({
-		transparent: transparent,
+		transparent: Context.transparent,
 		opacity: 0.6,
-		blending : THREE[ blending ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		blending : Context.blending,
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
 		side: THREE.DoubleSide,
@@ -17,44 +18,73 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN"],
 		emissive : 0x000000
 	});
 
-	var angle = Math.PI * 2 / 5;
-	var sideLen = 30;
-	var baseLen = 35.267;
+	var geometry = new THREE.PlaneBufferGeometry(3, 3, 2);
 
-	var geometry = new THREE.PlaneBufferGeometry(10, 10, 32);
+	var offsetX = 35;
+	var offsetY = -22;
+	var radius = 4;
+
 	/**
 	 *  the bass visuals singleton
 	 */
 	var ArpVisuals = function(){
-		this.object = new THREE.Mesh( geometry, material);
-		this.object.position.setX(35);
-		this.object.position.setY(-22);
-		this.angle = 0;
+		this.object = new THREE.Object3D();
+		this.object.position.setX(offsetX);
+		this.object.position.setY(offsetY);
 		Context.background.add(this.object);
-		var scale = 0.3;
-		this.object.scale.set(scale, scale, scale);
+		this.index = 0;
+		this.squares = [];
+		for (var i = 0; i < 5; i++){
+			var square = new THREE.Mesh( geometry, material);
+			square.scale.set(0.0001, 0.0001, 1);
+			this.squares.push(square);
+			this.object.add(square);
+		}
 		Mediator.route("arp", this.note.bind(this));
-		window.triangle = this.object;
+		Preset.onupdate(this.updatePreset.bind(this));
 	};
 
-	ArpVisuals.prototype.centerX = 35;
-
-	ArpVisuals.prototype.centerY = -22;
-
-	ArpVisuals.prototype.radius = 5;
-
 	ArpVisuals.prototype.note = function(){
-		this.angle += angle;
-		var x = Math.sin(this.angle) * this.radius + this.centerX;
-		var y = Math.cos(this.angle) * this.radius + this.centerY;
-		var obj = this.object;
-		this.tween = new TWEEN.Tween({x : this.object.position.x, y : this.object.position.y})
-			.to({x : x, y : y}, 100)
+		var obj = this.squares[this.index];
+		var size = 1;
+		var tween = new TWEEN.Tween({size : size})
+			.to({size : 0.0001}, 100)
 			.onUpdate(function(){
-				obj.position.set(this.x, this.y, 0);	
+				obj.scale.set(this.size, this.size, 1);
 			})
-			.easing( TWEEN.Easing.Quartic.Out )
+			.onComplete(function(){
+				obj = null;
+				tween = null;
+			})
+			.easing( TWEEN.Easing.Linear.None);
+		var attack = new TWEEN.Tween({size : 0.0001})
+			.to({size : size}, 60)
+			.onUpdate(function(){
+				obj.scale.set(this.size, this.size, 1);	
+			})
+			.easing( TWEEN.Easing.Elastic.Out)
+			.chain(tween)
 			.start();
+		this.index = (this.index + 1) % this.squares.length;
+	};
+
+	Mediator.route("B", function(){
+		material.color.setRGB(1, 1, 1);
+	});
+
+	ArpVisuals.prototype.updatePreset = function(pre){
+		if (Conductor.getMovement() !== 1){
+			var color = pre.color;
+			material.color.setRGB(color[0], color[1], color[2]);
+		}
+		var angle = pre.angle;
+		for (var i = 0; i < this.squares.length; i++){
+			var square = this.squares[i];
+			var rad = i * radius;
+			var x = Math.sin(angle) * rad;
+			var y = Math.cos(angle) * rad;
+			square.position.set(x, y, 0);
+		}
 	};
 	
 

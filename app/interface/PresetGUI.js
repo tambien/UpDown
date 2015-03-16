@@ -1,7 +1,7 @@
-define(["dat"], function(dat){
+define(["dat", "util/Config"], function(dat, Config){
 
 	var PRESETS;
-	if (USE_GUI){
+	if (Config.GUI){
 		 PRESETS = new dat.GUI();
 	}
 

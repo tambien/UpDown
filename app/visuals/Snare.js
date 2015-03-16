@@ -1,18 +1,20 @@
 define(["visuals/Context", "controller/Mediator", "shader/SnareWave", 
-	"TWEEN", "interface/Window", "preset/SnareVisuals"], 
-	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset){
+	"TWEEN", "interface/Window", "preset/SnareVisuals", "controller/Conductor"], 
+	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor){
 
 	"use strict";
 
 	var geometry = new THREE.PlaneBufferGeometry(1, 1, 2, 32);
+
+	var width = 0.001;
 
 	/**
 	 *  the bass visuals singleton
 	 */
 	var SnareVisuals = function(){
 
-		var objectScale = new THREE.Vector3(4, 75, 1);
-		var objectPosition = -Window.width() / 25;
+		var objectScale = new THREE.Vector3(width, 75, 1);
+		var objectPosition = -(Context.width / 2) * 0.76;
 		this.object = new THREE.Mesh( geometry, SnareMaterial);
 		Context.background.add(this.object);
 		this.object.scale.set(objectScale.x, objectScale.y, 1);
@@ -25,9 +27,9 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 		Mediator.route("update", this.update.bind(this));
 		this.update();
 
+		this.onscreen = false;
 		Preset.onupdate(this.presetUpdate.bind(this));
-
-		window.snare = this;
+		Window.resize(this.resize.bind(this));
 	};
 
 	SnareVisuals.prototype.note = function(){
@@ -47,6 +49,17 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 			.easing( TWEEN.Easing.Elastic.Out)
 			.chain(this.tween)
 			.start();
+		if (!this.onscreen){
+			this.onscreen = true;
+			var obj = this.object;
+			var tween = new TWEEN.Tween({width : 0.001})
+				.to({width: width}, 100)
+				.onUpdate(function(){
+					obj.scale.setX(this.width);
+				})
+				.easing( TWEEN.Easing.Quadratic.Out )
+				.start();
+		}
 	};
 
 	SnareVisuals.prototype.update = function(){
@@ -55,11 +68,25 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 		}
 	};
 
+	SnareVisuals.prototype.resize = function(){
+		var objectPosition = -(Context.width / 2) * 0.76;
+		this.object.position.setX(objectPosition);
+	};
+
+	Mediator.route("B", function(){
+		SnareMaterial.uniforms.color.value.setRGB(1, 1, 1);
+	});
+
 	SnareVisuals.prototype.presetUpdate = function(pre){
+		if (this.onscreen){
+			this.object.scale.setX(width);
+		}
+		if (Conductor.getMovement() !== 1){
+			var color = pre.color;
+			SnareMaterial.uniforms.color.value.setRGB(color[0], color[1], color[2]);
+		}
+		width = pre.width;
 		this.decayTime = pre.decay;
-		var color = pre.color;
-		this.object.scale.setX(pre.width);
-		SnareMaterial.uniforms.color.value.setRGB(color[0], color[1], color[2]);
 	};
 
 	SnareVisuals.prototype.dispose = function(){

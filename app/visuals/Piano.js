@@ -1,5 +1,6 @@
-define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "preset/PianoVisuals"], 
-	function(Mediator, Context, Window, TERP, Preset){
+define(["controller/Mediator", "visuals/Context", "interface/Window", 
+	"TERP", "preset/PianoVisuals", "controller/Conductor"], 
+	function(Mediator, Context, Window, TERP, Preset, Conductor){
 
 	"use strict";
 
@@ -22,12 +23,12 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 	 */
 	
 	var material = new THREE.MeshBasicMaterial({
-		transparent: transparent,
-		opacity: opacity,
-		blending : THREE[ blending ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		transparent: Context.transparent,
+		opacity: Context.opacity,
+		blending : Context.blending,
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
 		side: THREE.DoubleSide,
@@ -39,9 +40,15 @@ define(["controller/Mediator", "visuals/Context", "interface/Window", "TERP", "p
 
 	var minSpeed, maxSpeed, width, length;
 
+	Mediator.route("B", function(){
+		material.color.setRGB(1, 1, 1);
+	});
+
 	Preset.onupdate(function(pre){
-		var color = pre.color;
-		material.color.setRGB(color[0], color[1], color[2]);
+		if (Conductor.getMovement() !== 1){
+			var color = pre.color;
+			material.color.setRGB(color[0], color[1], color[2]);
+		}
 		minSpeed = pre.minSpeed;
 		length = pre.length;
 		width = pre.width;

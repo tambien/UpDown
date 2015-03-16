@@ -1,15 +1,15 @@
-define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interface/Scroll"], 
-	function(Context, Mediator, VoicePreset, Scroll){
+define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "controller/Conductor"], 
+	function(Context, Mediator, VoicePreset, Conductor){
 
 	"use strict";
 
 	var material = new THREE.MeshLambertMaterial({
-		transparent: transparent,
-		opacity: opacity,
-		blending : THREE[ blending ],
-		blendSrc : THREE[ blendSrc ],
-		blendDst : THREE[ blendDst ],
-		blendEquation : THREE[ blendEq ],
+		transparent: Context.transparent,
+		opacity: Context.opacity,
+		blending : Context.blending,
+		blendSrc : Context.blendSrc,
+		blendDst : Context.blendDst,
+		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
 		color : 0xff0f00,
@@ -20,11 +20,21 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 
 	var geometry = new THREE.SphereGeometry(10, 32, 32);
 
-	Mediator.route("scroll", function(position){
-		var preset = VoicePreset.get(position); 
-		var color = preset.color;
-		material.color.setRGB(color[0], color[1], color[2]);
-		material.emissive.setRGB(color[0], color[1], color[2]);
+	Mediator.route("B", function(){
+		material.color.setRGB(1, 1, 1);
+		material.emissive.setRGB(0.5, 0.5, 0.5);
+	});
+
+	var duration, attackTime;
+
+	VoicePreset.onupdate(function(preset){
+		if (Conductor.getMovement() !== 1){
+			var color = preset.color;
+			material.color.setRGB(color[0], color[1], color[2]);
+			material.emissive.setRGB(color[0], color[1], color[2]);
+		}
+		duration = preset.duration;
+		attackTime = preset.attackTime;
 	});
 
 	/**
@@ -38,7 +48,6 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 	};
 
 	VoiceVisuals.prototype.note = function(){
-		var preset = VoicePreset.get(Scroll.getPosition());
 		// new VoiceNote(Context.scene);
 		if (this.tween){
 			this.tween.stop();
@@ -47,13 +56,13 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "interfa
 		var currentSize = object.scale.x;
 		var maxSize = 3;
 		this.tween = new TWEEN.Tween({size : maxSize})
-			.to({size : 0.01}, preset.duration)
+			.to({size : 0.01}, duration)
 			.easing( TWEEN.Easing.Quadratic.Out)
 			.onUpdate(function(){
 				object.scale.set(this.size, this.size, this.size);	
 			});
 		var attack = new TWEEN.Tween({size : currentSize})
-			.to({size : maxSize}, preset.attackTime)
+			.to({size : maxSize}, attackTime)
 			.onUpdate(function(){
 				object.scale.set(this.size, this.size, this.size);	
 			})
