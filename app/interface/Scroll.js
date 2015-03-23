@@ -91,10 +91,10 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 				switchCenterPosition = scrollPosition;
 			}
 			lastPosition = scrollTop;
-			if (scrollTop === 0){
+			if (scrollTop <= 1){
 				scrollPosition = 1 - loopOffset;
 				innerScroll.scrollTop((1 - scrollPosition) * scrollSize);
-			} else if (scrollTop === scrollSize - scrollHeight){
+			} else if (scrollTop >= scrollSize - scrollHeight - 1){
 				scrollPosition = loopOffset;
 				innerScroll.scrollTop((1 - scrollPosition) * (scrollSize - scrollHeight));
 			}

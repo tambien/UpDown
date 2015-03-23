@@ -7,6 +7,8 @@ define(["jquery"], function($){
 		MOBILE : /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
 		PRESET_UPDATE : GUI,
 		STATS : false,
-		PASSWORD : true
+		PASSWORD : false,
+		SPLASH : true,
+		MIPMAP : THREE.NearestFilter
 	};
 });

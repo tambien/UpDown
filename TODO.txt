@@ -14,3 +14,13 @@
 * optimize out panners on mobile. 
 
 * put some visuals on mobile
+
+* frame is black coming out of B section
+
+* analytics
+
+* browser support tests / firefox warning
+
+* optimize kick frequency
+
+* Fix side margin of picture frame to resemble facebook layout better. 

@@ -60,7 +60,7 @@ function(Context, Mediator, BassPreset, Conductor){
 	var BassNote = function(scene){
 		var object = new THREE.Mesh( geometry, material);
 		var initialSize = 0.001;
-		var initialY = -30;
+		var initialY = -(Context.height / 2 - startSize * 3);
 		object.scale.set(1, initialSize, initialSize);
 		object.position.y = initialY;
 		scene.add(object);

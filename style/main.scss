@@ -2,16 +2,38 @@
 	z-index: 10000!important;
 }
 
+@mixin fontFamily {
+	font-family: "Courier New", monospace;
+}
+
+$blue : #1040FF;
+$green : #00ED00;
+$red : #F010FF;
+
+$ScrollIndicatorWidth: 20px;
+
 #Container {
-	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	background-color: white;
-	font-family: monospace;
+	@include fontFamily;
 	overflow: hidden;
 	// background-image: url("http://www.mi2f.com/m/activity/images/coin-grid.gif");
+	width: calc(100% - #{$ScrollIndicatorWidth} - 4px);
+
+	canvas {
+		$scaling : 1.5;
+		width: 100%/$scaling!important;
+		height: 100%/$scaling!important;
+		transform: scale($scaling);
+  		transform-origin: 0 0;
+  		-webkit-transform: scale($scaling);
+  		-webkit-transform-origin: 0 0;
+  		-moz-transform: scale($scaling);
+		-moz-transform-origin: 0 0;
+	}
 }
 
 @mixin translate($x, $y){
@@ -34,7 +56,7 @@
 
 	width: $StartButtonSize;
 	height: $StartButtonSize;
-	background-color: blue;
+	background-color: $blue;
 	position: absolute;
 	bottom: 50%;
 	left: 50%;
@@ -101,7 +123,7 @@
 
 #StartButton:hover {
 	$ArrowColor: black;
-	background-color: green;
+	background-color: $green;
 	#Triangle {
 		border-left-color: $ArrowColor;
 	}
@@ -134,7 +156,7 @@
 	left: 0px;
 	height: 100%;
 	width: 100%;
-	background-color: blue;
+	background-color: $blue;
 	z-index: 100;
 
 	#LoadingBar {
@@ -183,8 +205,8 @@
 		#Text {
 			color: white;
 			position: absolute;
-			font-family: monospace;
-			font-size: 40px;
+			@include fontFamily;
+			font-size: 36px;
 			text-align: center;
 			width: 80%;
 			left: 50%;
@@ -192,15 +214,22 @@
 			height: auto;
 			@include translate(-50%, -50%);
 
+			.arrow {
+				display: block;
+			}
+		}
+
+		#MobileDisclaimer {
+			font-size: 0.6em;
 		}
 	}
 
 	#First {
-		background-color: rgb(30, 104, 187);
+		background-color: $red;
 	}
 
 	#Second {
-		background-color: rgb(72, 221, 119);
+		background-color: $green;
 	}
 }
 
@@ -223,7 +252,7 @@
 		left: 50%;
 		width: 200px;
 		height: 60px;
-		font-family: monospace;
+		@include fontFamily;
 		font-size: 24px;
 		@include translate(-50%, -50%);
 	}
@@ -255,16 +284,14 @@
 
 	#Channel {
 		$ScrollIndicatorHeight: 30px;
-		$ScrollIndicatorWidth: 20px;
 		$RightMargin : 2px;
-		background-color: blue;
 
 		width: $ScrollIndicatorWidth + $RightMargin * 2;
 		height: 100%;
 		position: absolute;
 		top: 0px;
 		right: 0;
-		background-color: rgba(0, 255, 71, 1);
+		background-color: $red;
 		/*border-left: 1px dotted black;*/
 
 		#Indicator {
@@ -275,7 +302,7 @@
 			position: absolute;
 			top: calc(50% - #{$ScrollIndicatorHeight / 2} - #{$RightMargin});
 			right: $RightMargin;
-			background-color: rgb(241, 255, 39);
+			background-color: $green;
 			opacity: 1;
 		}
 

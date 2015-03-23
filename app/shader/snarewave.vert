@@ -1,5 +1,5 @@
-uniform float amplitude;
-uniform float time;
+uniform lowp float amplitude;
+uniform lowp float time;
 
 
 void main() {

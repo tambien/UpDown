@@ -11,7 +11,7 @@ function(fragShader, vertShader, Context){
 		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
-		side: THREE.DoubleSide,
+		// side: THREE.DoubleSide,
 		// wireframe : true,
 
 		uniforms: {

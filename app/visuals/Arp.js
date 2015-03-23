@@ -20,8 +20,8 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN",
 
 	var geometry = new THREE.PlaneBufferGeometry(3, 3, 2);
 
-	var offsetX = 35;
-	var offsetY = -22;
+	var offsetX = Context.width / 3;
+	var offsetY = -Context.height / 3;
 	var radius = 4;
 
 	/**

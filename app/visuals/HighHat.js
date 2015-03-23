@@ -11,9 +11,9 @@ define(["visuals/Context", "controller/Mediator", "interface/Window",
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
+		// side: THREE.DoubleSide,
 		depthTest : false,
 		depthWrite : false,
-		side: THREE.DoubleSide,
 		color : 0xf00a0a,
 		emissive : 0x000000
 	});
@@ -62,8 +62,8 @@ define(["visuals/Context", "controller/Mediator", "interface/Window",
 	 */
 	var HighHatNote = function(velocity, pan){
 		var object = new THREE.Mesh( geom, material);
-		object.position.setX(TERP.scale(pan, -8, 42));
-		object.position.setY(TERP.scale(Math.random(), 26, 0));
+		object.position.setX(TERP.scale(pan, -Context.width/6, Context.width/2.5));
+		object.position.setY(TERP.scale(Math.random(), Context.height/3, 0));
 		var scale = TERP.scale(velocity, 0.4, 1);
 		Context.background.add(object);
 		var tween = new TWEEN.Tween({scale : scale})

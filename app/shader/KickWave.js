@@ -9,14 +9,13 @@ function(fragShader, vertShader, Context){
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
+		// side: THREE.DoubleSide,
 		depthTest : false,
 		depthWrite : false,
-		side: THREE.DoubleSide,
 		// wireframe : true,
 
 		uniforms: {
 			"amplitude":   { type: "f", value: 0 },
-			"height":   { type: "f", value: 9 },
 			"time":   { type: "f", value: 0 },
 			"color" : { type: "c", value: new THREE.Color( 0xffaa00 ) }
 		},

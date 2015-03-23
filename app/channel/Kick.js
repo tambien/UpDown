@@ -31,7 +31,7 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 		"attack" : 0.0005
 	});
 
-	// CONECTIONS //
+	// CONECTIONS // 
 
 	// oscillator.chain(ampEnv, filter, comp, Master);
 	oscillator.chain(ampEnv, filter);

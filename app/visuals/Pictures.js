@@ -1,6 +1,6 @@
 define(["visuals/Context", "TERP", "controller/Mediator", 
-	"TWEEN", "util/Config", "interface/Scroll", "preset/PictureFrame"], 
-	function(Context, TERP, Mediator, TWEEN, Config, Scroll, PictureFramePreset){
+	"TWEEN", "util/Config", "interface/Scroll", "preset/PictureFrame", "interface/Window"], 
+	function(Context, TERP, Mediator, TWEEN, Config, Scroll, PictureFramePreset, Window){
 
 	"use strict";
 
@@ -8,6 +8,8 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	// MATERIALS
 
 	var texture = new THREE.Texture();
+	/*texture.magFilter = THREE.NearestFilter;
+	texture.minFilter = THREE.NearestMipMapNearestFilter;*/
 
 	var blending = "SubtractiveBlending";
 	if (Config.MOBILE){
@@ -18,7 +20,6 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		transparent: true,
 		opacity : 0.9,
 		map: texture,
-		side: THREE.DoubleSide,
 		blending : THREE[blending],
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
@@ -48,6 +49,8 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	var frameTexture = new THREE.Texture(frameCanvas);
 	frameTexture.needsUpdate = true;
+	frameTexture.magFilter = THREE.NearestFilter;
+	frameTexture.minFilter = THREE.NearestMipMapNearestFilter;
 
 	var frameBlending = "AdditiveBlending";
 	if (Config.MOBILE){
@@ -59,7 +62,6 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		opacity : 1,
 		depthTest : false,
 		map: frameTexture,
-		side: THREE.DoubleSide,
 		blending : THREE[ frameBlending ],
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
@@ -69,7 +71,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	PictureFramePreset.onupdate(function(pre){
 		if (!Config.MOBILE){
-			var color = pre.color;
+			var color = pre.frame;
 			frameMaterial.color.setRGB(color[0], color[1], color[2]);
 		}
 	});
@@ -79,7 +81,12 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	var Pictures = function(parameters){
 		this.pictures = new THREE.Object3D();
-		this.scale = 25;
+
+		if (!Config.MOBILE){
+			this.scale = Context.width / 2 - 4;
+		} else {
+			this.scale = Context.width - 8;
+		}
 
 		this.level = 0;
 		this.loader = new THREE.ImageLoader();		
@@ -87,7 +94,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.scrollMultipler = 100;
 		this.previousPosition = 0.5;
 		this.pictureCount = 3;
-		this.distance = 1.3;
+		this.distance = 0.8;
 		this.modDistance = this.distance * this.pictureCount;
 
 		this.makePictures();
@@ -98,6 +105,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		//setup the events
 		Mediator.route("rawscroll", this.scroll.bind(this));
 		Mediator.route("voice", this.setWord.bind(this));
+		Window.resize(this.resize.bind(this));
 	};
 
 	Pictures.prototype.makePictures = function() {
@@ -107,20 +115,31 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		var scale = this.scale;
 		this.picDist = scale * pictureCount * 0.8;
 		var increment = this.previousPosition * this.scrollMultipler;
+		var frameScaleY = 2;
+		var frameScaleX = 2;
 		for(var i = 0; i < pictureCount; i++){
 			var pic = new THREE.Sprite(material);
 			var frame = new THREE.Sprite(frameMaterial);
-			frame.scale.set(1.2, 1.1, 1);
+			frame.scale.set(frameScaleX, frameScaleY * 0.7, 1);
+			pic.scale.setX(1 / frameScaleX);
+			pic.scale.setY(1 / frameScaleY);
 			pic.add(frame);
-			pic.position.setY(((i * this.distance + increment) % (this.modDistance)) - this.distance + this.distance/5);
+			pic.position.setY(((i * this.distance + increment) % (this.modDistance)));
 			this.pictures.add(pic);
 		}
-		this.pictures.position.y = -Context.height / 2;
+		this.pictures.position.y = -Context.height / 3 - this.scale;
 		//picture original size 680 x 1163. 
 		this.pictures.scale.set(this.scale, this.scale * 1.71, 1);
 		window.object = this.pictures;
 		//and make the frames
 		Context.scene.add(this.pictures);
+	};
+
+	Pictures.prototype.resize = function(){
+		if (!Config.MOBILE){
+			this.scale = Context.width / 2 - 4;
+			this.pictures.scale.set(this.scale, this.scale * 1.71, 1);
+		} 
 	};
 
 	Pictures.prototype.scroll = function(position) {
@@ -140,7 +159,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		for (var i = 0; i < children.length; i++){
 			var child = children[i];
 			var newY = i * distance + increment;
-			child.position.setY((newY % max) - distance + distance/5);
+			child.position.setY((newY % max));
 		}
 	};
 
@@ -201,6 +220,8 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	Pictures.prototype.dispose = function(){
 			
 	};
+
+	Pictures.frameMaterial = frameMaterial;
 
 	return Pictures;
 });			

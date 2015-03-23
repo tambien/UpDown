@@ -11,7 +11,7 @@ require.config({
 		"Stats" : "../deps/Stats",
 		"requestAnimationFrame" : "../deps/requestAnimationFrame",
 		"dat" : "../deps/dat.gui",
-		"THREE" : "../deps/three.min",
+		"THREE" : "https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js"
 	},
 	shim : {
 		"dat" : {

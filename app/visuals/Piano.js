@@ -31,12 +31,12 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
-		side: THREE.DoubleSide,
+		// side: THREE.DoubleSide,
 		color : 0xff0f00,
 		emissive : 0x000000
 	});
 
-	var geometry = new THREE.PlaneBufferGeometry(10, 3, 32);
+	var geometry = new THREE.PlaneBufferGeometry(10, 3, 2, 2);
 
 	var minSpeed, maxSpeed, width, length;
 
@@ -71,7 +71,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		object.rotation.z = angle;
 		object.position.x = startX + offset;
 		object.position.y = startY;
-		object.scale.setX(length);
+		object.scale.setX(-length);
 		object.scale.setY(width);
 		scene.add(object);
 		var tween = new TWEEN.Tween({x : startX + offset, y : startY})
@@ -111,7 +111,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		var tween = new TWEEN.Tween({scale : 0.001})
 			.to({scale : Math.random() * 2 + 1.5}, 1500)
 			.onUpdate(function(){
-				object.scale.setX(this.scale);	
+				object.scale.setX(-this.scale);	
 			})
 			.onComplete(function(){
 				tween = null;
@@ -125,7 +125,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		var tween = new TWEEN.Tween({scale : currentScale})
 			.to({scale : 0.001}, 200)
 			.onUpdate(function(){
-				object.scale.setX(this.scale);	
+				object.scale.setX(-this.scale);	
 			})
 			.onComplete(function(){
 				Context.background.remove(object);

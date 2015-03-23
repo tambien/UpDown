@@ -4,7 +4,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 
 	"use strict";
 
-	var geometry = new THREE.PlaneBufferGeometry(1, 1, 4, 16);
+	var geometry = new THREE.PlaneBufferGeometry(1, 1, 2, 16);
 
 	var width = 0.001;
 
@@ -13,7 +13,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 	 */
 	var KickVisuals = function(){
 
-		var objectScale = new THREE.Vector3(width, 75, 1);
+		var objectScale = new THREE.Vector3(width, -Context.height, 1);
 		var objectPosition = -(Context.width / 2) * 0.66;
 
 		this.object = new THREE.Mesh( geometry, KickMaterial);

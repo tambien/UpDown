@@ -12,8 +12,12 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.renderer = new THREE.WebGLRenderer({
 			precision : "lowp",
 			alpha : false,
-			// premultipliedAlpha: false
+			premultipliedAlpha: false,
+			stencil : false,
 		});
+		this.renderer.autoClearStencil = false;
+		// this.renderer.sortObjects = false;
+
 		if (Config.MOBILE){
 			this.renderer.setClearColor( 0xffffff , 0);
 		} else {
@@ -47,6 +51,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		//the background and foreground layers		
 		this.background = new THREE.Object3D();
 		this.scene.add(this.background);
+		this.background.position.setZ(-1);
 
 		//listen for events
 		Mediator.route("half", this.flipCamera.bind(this));
@@ -87,13 +92,15 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		}
 		var self = this;
 		this.tween = new TWEEN.Tween({rotation : this.background.rotation.z})
-			.to({rotation : Math.PI * (1 - half)}, 300)
+			.to({rotation : Math.PI * (1 - half)}, 500)
 			.onUpdate(function(){
 				self.background.rotation.z = this.rotation;
-				self.background.rotation.y = this.rotation;
+				self.background.rotation.x = this.rotation * 2;
 			})
 			.onComplete(function(){
 				self.tween = null;
+				self.flipped = half;
+				Mediator.send("flipped", half);
 			})
 			.easing( TWEEN.Easing.Quadratic.InOut)
 			.start();
@@ -142,7 +149,6 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.scene.add(pic);
 		pic.position.setZ(20);
 		pic.scale.set(100, 100, 1);
-		window.picture = pic;
 	};
 
 	Context.prototype.backgroundShape = function(){

@@ -13,7 +13,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 	 */
 	var SnareVisuals = function(){
 
-		var objectScale = new THREE.Vector3(width, 75, 1);
+		var objectScale = new THREE.Vector3(width, -Context.height, 1);
 		var objectPosition = -(Context.width / 2) * 0.76;
 		this.object = new THREE.Mesh( geometry, SnareMaterial);
 		Context.background.add(this.object);

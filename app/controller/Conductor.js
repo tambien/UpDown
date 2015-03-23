@@ -429,7 +429,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 			Mediator.deferSend("half", 0);
 		}
 		movement = this.movement % 2;
-		Transport.start("+4n", (this.nextSection * 3 + movement * 12).toString() + ":0");
+		Transport.start("+8n", (this.nextSection * 3 + movement * 12).toString() + ":0");
 	};
 
 	Conductor.prototype.pause = function(){
