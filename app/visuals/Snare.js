@@ -14,7 +14,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 	var SnareVisuals = function(){
 
 		var objectScale = new THREE.Vector3(width, -Context.height, 1);
-		var objectPosition = -(Context.width / 2) * 0.76;
+		var objectPosition = -(Context.pictureWidth / 2 + 2 * Context.sidebarWidth / 3) + 1;
 		this.object = new THREE.Mesh( geometry, SnareMaterial);
 		Context.background.add(this.object);
 		this.object.scale.set(objectScale.x, objectScale.y, 1);
@@ -35,10 +35,16 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 	SnareVisuals.prototype.note = function(){
 		var maxAmp = 1;
 		var amplitude = this.amplitude;
+		if (this.tween){
+			this.tween.stop();
+		}
 		this.tween = new TWEEN.Tween({amp : maxAmp})
 			.to({amp: 0}, this.decayTime)
 			.onUpdate(function(){
 				amplitude.value = this.amp;
+			})
+			.onComplete(function(){
+				amplitude = null;	
 			})
 			.easing( TWEEN.Easing.Quadratic.Out );
 		var attack = new TWEEN.Tween({amp : amplitude.value})
@@ -57,6 +63,9 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 				.onUpdate(function(){
 					obj.scale.setX(this.width);
 				})
+				.onComplete(function(){
+					tween = null;
+				})
 				.easing( TWEEN.Easing.Quadratic.Out )
 				.start();
 		}
@@ -69,7 +78,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 	};
 
 	SnareVisuals.prototype.resize = function(){
-		var objectPosition = -(Context.width / 2) * 0.76;
+		var objectPosition = -(Context.pictureWidth / 2 + 2 * Context.sidebarWidth / 3) + 1;
 		this.object.position.setX(objectPosition);
 	};
 

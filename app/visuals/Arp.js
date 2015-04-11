@@ -64,6 +64,9 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN",
 			.onUpdate(function(){
 				obj.scale.set(this.size, this.size, 1);	
 			})
+			.onComplete(function(){
+				attack = null;
+			})
 			.easing( TWEEN.Easing.Elastic.Out)
 			.chain(tween)
 			.start();

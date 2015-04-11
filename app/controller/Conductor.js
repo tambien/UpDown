@@ -72,17 +72,17 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.bDistance = 4;
+		this.bDistance = 6;
 
 		/**
-		 *  the distance you have to scroll to arrive at the b section
+		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 8;
+		this.cDistance = 9;
 
 		/**
-		 *  the distance you have to scroll to arrive at the b section
+		 *  the distance you have to scroll to arrive at the end
 		 */
-		this.endDistance = 12;
+		this.endDistance = 18;
 
 		/** 
 		 *  The movement of the piece A, B, or C
@@ -377,7 +377,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		} 
 	};
 
-	var transitionDistance = 1;
+	var transitionDistance = 1.5;
 
 	Conductor.prototype.getBTransitionProgress = function(){
 		var bDiff = this.bDistance - Scroll.getDistance();
@@ -429,7 +429,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 			Mediator.deferSend("half", 0);
 		}
 		movement = this.movement % 2;
-		Transport.start("+8n", (this.nextSection * 3 + movement * 12).toString() + ":0");
+		Transport.start("+4n", (this.nextSection * 3 + movement * 12).toString() + ":0");
 	};
 
 	Conductor.prototype.pause = function(){
@@ -444,5 +444,9 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		Transport.stop();
 	};
 
-	 return new Conductor();
+	Conductor.prototype.isPaused = function(){
+		return Transport.state === "paused";
+	};
+
+	return new Conductor();
 });

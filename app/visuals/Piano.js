@@ -123,9 +123,9 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 	function animateOutKey(object){
 		var currentScale = object.scale.x;
 		var tween = new TWEEN.Tween({scale : currentScale})
-			.to({scale : 0.001}, 200)
+			.to({scale : -0.001}, 400)
 			.onUpdate(function(){
-				object.scale.setX(-this.scale);	
+				object.scale.setX(this.scale);	
 			})
 			.onComplete(function(){
 				Context.background.remove(object);

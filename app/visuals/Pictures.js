@@ -30,7 +30,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	//make the frame canvas
 
-	var frameCanvas = $("<canvas>")[0];
+	/*var frameCanvas = $("<canvas>")[0];
 	var frameSize = 256;
 	var frameWidth = 16;
 	frameCanvas.width = frameSize;
@@ -50,26 +50,38 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	var frameTexture = new THREE.Texture(frameCanvas);
 	frameTexture.needsUpdate = true;
 	frameTexture.magFilter = THREE.NearestFilter;
-	frameTexture.minFilter = THREE.NearestMipMapNearestFilter;
+	frameTexture.minFilter = THREE.NearestMipMapNearestFilter;*/
 
-	var frameBlending = "AdditiveBlending";
+	var frameBlending = "CustomBlending";
 	if (Config.MOBILE){
 		frameBlending = "NormalBlending";
 	}
 
-	var frameMaterial = new THREE.SpriteMaterial({
-		transparent: true,
-		opacity : 1,
-		depthTest : false,
-		map: frameTexture,
-		blending : THREE[ frameBlending ],
+	var frameMaterial = new THREE.MeshBasicMaterial({
+		transparent: Context.transparent,
+		opacity: 0.2,
+		blending : THREE[frameBlending],
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
-		color: 0x000000
+		depthTest : false,
+		depthWrite : false,
+		// side: THREE.DoubleSide,
+		color : 0xff0f00,
 	});
 
-	PictureFramePreset.onupdate(function(pre){
+
+	var frameGeometry = new THREE.PlaneBufferGeometry(1, 1, 2, 2);
+
+	//set the initial values
+	var pre = PictureFramePreset.get();
+	if (!Config.MOBILE){
+		var color = pre.frame;
+		frameMaterial.color.setRGB(color[0], color[1], color[2]);
+	}
+
+	Mediator.route("scroll", function(){
+		var pre = PictureFramePreset.get();
 		if (!Config.MOBILE){
 			var color = pre.frame;
 			frameMaterial.color.setRGB(color[0], color[1], color[2]);
@@ -83,7 +95,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.pictures = new THREE.Object3D();
 
 		if (!Config.MOBILE){
-			this.scale = Context.width / 2 - 4;
+			this.scale = Context.pictureWidth;
 		} else {
 			this.scale = Context.width - 8;
 		}
@@ -94,7 +106,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.scrollMultipler = 100;
 		this.previousPosition = 0.5;
 		this.pictureCount = 3;
-		this.distance = 0.8;
+		this.distance = 1.4;
 		this.modDistance = this.distance * this.pictureCount;
 
 		this.makePictures();
@@ -115,31 +127,56 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		var scale = this.scale;
 		this.picDist = scale * pictureCount * 0.8;
 		var increment = this.previousPosition * this.scrollMultipler;
-		var frameScaleY = 2;
+		var frameScaleY = 2 * 1.71;
 		var frameScaleX = 2;
+		var frameTopMargin = 0.65;
+		var frameWidth = 0.1;
+		var frameLeftMargin = 0.915;
 		for(var i = 0; i < pictureCount; i++){
 			var pic = new THREE.Sprite(material);
-			var frame = new THREE.Sprite(frameMaterial);
-			frame.scale.set(frameScaleX, frameScaleY * 0.7, 1);
-			pic.scale.setX(1 / frameScaleX);
-			pic.scale.setY(1 / frameScaleY);
+			//make the frame
+			var frame = new THREE.Object3D();
+			//top
+			var top = new THREE.Mesh(frameGeometry, frameMaterial);
+			top.position.y = frameTopMargin;
+			top.scale.setX(frameScaleX);
+			top.scale.setY(frameWidth);
+			frame.add(top);
+			//left
+			var left = new THREE.Mesh(frameGeometry, frameMaterial);
+			left.position.x = frameLeftMargin;
+			left.scale.setX(frameWidth * 1.71);
+			left.scale.setY(frameTopMargin * 2 - frameWidth);
+			frame.add(left);
+			//right
+			var right = new THREE.Mesh(frameGeometry, frameMaterial);
+			right.position.x = -frameLeftMargin;
+			right.scale.setX(frameWidth * 1.71);
+			right.scale.setY(frameTopMargin * 2 - frameWidth);
+			frame.add(right);
+			//bottom
+			var bottom = new THREE.Mesh(frameGeometry, frameMaterial);
+			bottom.position.y = -frameTopMargin;
+			bottom.scale.setX(frameScaleX);
+			bottom.scale.setY(frameWidth);
+			frame.add(bottom);
+			frame.scale.setX(-1);
+			pic.scale.setX(0.5);
+			pic.scale.setY(0.5 * 1.71);
 			pic.add(frame);
 			pic.position.setY(((i * this.distance + increment) % (this.modDistance)));
 			this.pictures.add(pic);
 		}
 		this.pictures.position.y = -Context.height / 3 - this.scale;
 		//picture original size 680 x 1163. 
-		this.pictures.scale.set(this.scale, this.scale * 1.71, 1);
+		this.pictures.scale.set(this.scale, this.scale, 1);
 		window.object = this.pictures;
 		//and make the frames
-		Context.scene.add(this.pictures);
+		Context.layer2.add(this.pictures);
 	};
 
 	Pictures.prototype.resize = function(){
-		if (!Config.MOBILE){
-			this.scale = Context.width / 2 - 4;
-			this.pictures.scale.set(this.scale, this.scale * 1.71, 1);
-		} 
+		this.pictures.scale.set(this.scale, this.scale, 1);
 	};
 
 	Pictures.prototype.scroll = function(position) {

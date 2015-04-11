@@ -24,7 +24,8 @@ $ScrollIndicatorWidth: 20px;
 	width: calc(100% - #{$ScrollIndicatorWidth} - 4px);
 
 	canvas {
-		$scaling : 1.5;
+		opacity: 0;
+		$scaling : 1;
 		width: 100%/$scaling!important;
 		height: 100%/$scaling!important;
 		transform: scale($scaling);
@@ -33,6 +34,10 @@ $ScrollIndicatorWidth: 20px;
   		-webkit-transform-origin: 0 0;
   		-moz-transform: scale($scaling);
 		-moz-transform-origin: 0 0;
+		transition: opacity 0.25s;
+		-webkit-transition: opacity 0.25s;
+		-moz-transition: opacity 0.25s;
+		-o-transition: opacity 0.25s;
 	}
 }
 
@@ -40,12 +45,14 @@ $ScrollIndicatorWidth: 20px;
 	transform: translate3d($x, $y, 0);
 	-webkit-transform: translate3d($x, $y, 0);
 	-moz-transform: translate3d($x, $y, 0);
+	-o-transform: translate3d($x, $y, 0);
 }
 
 @mixin translateScale($x, $y, $scale){
 	transform: translate3d($x, $y, 0) scale($scale);
 	-webkit-transform: translate3d($x, $y, 0) scale($scale);
 	-moz-transform: translate3d($x, $y, 0) scale($scale);
+	-o-transform: translate3d($x, $y, 0) scale($scale);
 }
 
 #StartButton {
@@ -112,6 +119,9 @@ $ScrollIndicatorWidth: 20px;
 	left: 10px;
 	@include translateScale(-40%, 40%, 0.15);
 	transition: transform 0.2s, left 0.2s, bottom 0.2s;
+	-webkit-transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
+	-moz-transition: -moz-transform 0.2s, left 0.2s, bottom 0.2s;
+	-o-transition: -o-transform 0.2s, left 0.2s, bottom 0.2s;
 }
 
 #StartButton.MobileCorner {
@@ -119,6 +129,9 @@ $ScrollIndicatorWidth: 20px;
 	left: 10px;
 	@include translateScale(-40%, -40%, 0.15);
 	transition: transform 0.2s, left 0.2s, bottom 0.2s;
+	-webkit-transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
+	-moz-transition: -moz-transform 0.2s, left 0.2s, bottom 0.2s;
+	-o-transition: -o-transform 0.2s, left 0.2s, bottom 0.2s;
 }
 
 #StartButton:hover {
@@ -357,4 +370,17 @@ $ScrollIndicatorWidth: 20px;
 			background-color: #aaaaaa;
 		}
 	}
+}
+
+#NoSupport {
+	@include fontFamily;
+	width: 80%;
+	left: 10%;
+	position: absolute;
+	top: 40%;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 48px;
 }

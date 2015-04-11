@@ -1,15 +1,7 @@
-define(["visuals/Context","controller/Mediator", "util/Config", "interface/Window", "preset/PictureFrame"], 
-	function(Context, Mediator, Config, Window, PicturePreset){
+define(["visuals/Context","controller/Mediator", "util/Config", "interface/Window", "preset/PictureFrame", "visuals/Frame"], 
+	function(Context, Mediator, Config, Window, PicturePreset, Frame){
 
 	"use strict";
-
-	Mediator.route("scroll", function(){
-		var preset = PicturePreset.get();
-		var frame = preset.frame;
-		var accent = preset.accent;
-		materialA.color.setRGB(frame[0], frame[1], frame[2]);
-		materialB.color.setRGB(accent[0], accent[1], accent[2]);
-	});
 
 	/**
 	 *  texture
@@ -65,24 +57,29 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		color : 0x000000,
 	});
 
-	var geometry = new THREE.PlaneBufferGeometry(1, 1, 2, 2);
+	PicturePreset.onupdate(function(preset){
+		var frame = preset.frame;
+		var accent = preset.accent;
+		materialA.color.setRGB(frame[0], frame[1], frame[2]);
+		materialB.color.setRGB(accent[0], accent[1], accent[2]);
+	});
 
-	window.Context = Context;
+	var geometry = new THREE.PlaneBufferGeometry(1, 1, 2, 2);
 
 	var FrameVisuals = function(){
 		//topbar
 		this.topbar = new THREE.Mesh( geometry, materialB);
-		Context.scene.add(this.topbar);
+		Context.layer1.add(this.topbar);
 		//left size
 		this.leftTop = new THREE.Mesh( geometry, materialA);
-		Context.scene.add(this.leftTop);
+		Context.layer1.add(this.leftTop);
 		this.leftBottom = new THREE.Mesh( geometry, materialA);
-		Context.scene.add(this.leftBottom);
+		Context.layer1.add(this.leftBottom);
 		//right size
 		this.rightTop = new THREE.Mesh( geometry, materialB);
-		Context.scene.add(this.rightTop);
+		Context.layer1.add(this.rightTop);
 		this.rightBottom = new THREE.Mesh( geometry, materialB);
-		Context.scene.add(this.rightBottom);
+		Context.layer1.add(this.rightBottom);
 		this.resize();
 		Window.resize(this.resize.bind(this));
 	};
@@ -94,33 +91,35 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		this.topbar.scale.setY(-topbarHeight);
 		this.topbar.scale.setX(Context.width - 2);
 		//left
-		var sideHeight = Context.height * 0.6;
-		var sideWidth = Context.width / 4;
-		// var sideMargin = Context.width
-		var topSideHeight = sideHeight / 4;
-		var bottomSideHeight = sideHeight - topSideHeight;
+		var sideHeight = 45;
+		var bottomSideHeight = 10;
+		var centerWidth = Context.pictureWidth;
+		var sideWidth = Context.sidebarWidth;
+
+		var topSideHeight = sideHeight - bottomSideHeight;
+		var leftSideHeight = Context.height - topbarHeight - 3;
 		this.leftTop.scale.setX(sideWidth);
-		this.leftTop.scale.setY(-topSideHeight);
-		this.leftTop.position.x = Context.width / 2 - 1 - sideWidth / 2;
-		this.leftTop.position.y = Context.height / 2 - topbarHeight - 2 - topSideHeight / 2;
+		this.leftTop.scale.setY(-leftSideHeight);
+		this.leftTop.position.x =  centerWidth / 2 + sideWidth / 2 + 1;
+		this.leftTop.position.y = Context.height / 2 - topbarHeight - 2 - leftSideHeight / 2;
 		//left / bottom
-		window.leftBottom = this.leftBottom;
-		this.leftBottom.scale.setX(sideWidth);
-		this.leftBottom.scale.setY(-bottomSideHeight);
-		this.leftBottom.position.x = Context.width / 2 - 1 - sideWidth / 2;
-		this.leftBottom.position.y = Context.height / 2 - topbarHeight - 3 - topSideHeight - bottomSideHeight / 2;
+		// window.leftBottom = this.leftBottom;
+		// this.leftBottom.scale.setX(sideWidth);
+		// this.leftBottom.scale.setY(-bottomSideHeight);
+		// this.leftBottom.position.x = centerWidth / 2 + sideWidth / 2 + 1;
+		// this.leftBottom.position.y = Context.height / 2 - topbarHeight - 3 - topSideHeight - bottomSideHeight / 2;
 		//right
 		var tmp = bottomSideHeight;
 		bottomSideHeight = topSideHeight;
 		topSideHeight = tmp;
 		this.rightTop.scale.setX(sideWidth);
 		this.rightTop.scale.setY(-topSideHeight);
-		this.rightTop.position.x = -(Context.width / 2 - 1 - sideWidth / 2);
+		this.rightTop.position.x = -(centerWidth / 2 + sideWidth / 2 + 1);
 		this.rightTop.position.y = Context.height / 2 - topbarHeight - 2 - topSideHeight / 2;
 		//left / bottom
 		this.rightBottom.scale.setX(sideWidth);
 		this.rightBottom.scale.setY(-bottomSideHeight);
-		this.rightBottom.position.x = -(Context.width / 2 - 1 - sideWidth / 2);
+		this.rightBottom.position.x = -(centerWidth / 2 + sideWidth / 2 + 1);
 		this.rightBottom.position.y = Context.height / 2 - topbarHeight - 3 - topSideHeight - bottomSideHeight / 2;
 
 	};

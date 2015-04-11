@@ -31,12 +31,13 @@ function(Context, Mediator, BassPreset, Conductor){
 		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
+		// side : THREE.DoubleSide,
 		// wireframe : true,
 		color : 0x00ff00,
 		emissive : 0x000000
 	});
 
-	var geometry = new THREE.BoxGeometry( 200, 10, 10, 1, 1);
+	var geometry = new THREE.BoxGeometry( 1, 10, 10, 1, 1);
 
 	var startSize, endSize, rotation, duration;
 
@@ -61,7 +62,7 @@ function(Context, Mediator, BassPreset, Conductor){
 		var object = new THREE.Mesh( geometry, material);
 		var initialSize = 0.001;
 		var initialY = -(Context.height / 2 - startSize * 3);
-		object.scale.set(1, initialSize, initialSize);
+		object.scale.set(Context.width * 1.1, initialSize, initialSize);
 		object.position.y = initialY;
 		scene.add(object);
 		var tween = new TWEEN.Tween({y : initialY, rotation : 0, size : startSize})
@@ -69,7 +70,8 @@ function(Context, Mediator, BassPreset, Conductor){
 			.onUpdate(function(){
 				object.position.y = this.y;
 				object.rotation.x = this.rotation;
-				object.scale.set(1, this.size, this.size);
+				object.scale.setY(this.size);
+				object.scale.setZ(this.size);
 			})
 			.onComplete(function(){
 				scene.remove(object);
@@ -82,7 +84,11 @@ function(Context, Mediator, BassPreset, Conductor){
 		var attack = new TWEEN.Tween({size : initialSize})
 			.to({size : startSize}, 300)
 			.onUpdate(function(){
-				object.scale.set(1, this.size, this.size);	
+				object.scale.setY(this.size);
+				object.scale.setZ(this.size);
+			})
+			.onComplete(function(){
+				attack = null;
 			})
 			.easing( TWEEN.Easing.Elastic.Out)
 			.chain(tween)

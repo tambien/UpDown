@@ -29,19 +29,19 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 			var bTransition = Conductor.getBTransitionProgress();
 			if (bTransition > 0){
 				var filterFreq = TERP.scale(bTransition, 20000, 350, 0.5);
-				filter.frequency.rampTo(filterFreq, 0.25);
+				filter.frequency.value = filterFreq;
 			}
-		} /*else if (movement === 2) {
+		} else if (movement === 2) {
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
-				var volume = TERP.scale(endTransition, 0, -100, 2);
-				Master.volume.rampTo(volume, 0.25);
+				var volume = TERP.scale(endTransition, 0, -50, 2);
+				Master.volume.value = volume;
 				//trigger the end of the song
 				if (endTransition >= 1){
 					Mediator.send("end");
 				}
 			} 
-		}*/
+		}
 
 	});
 

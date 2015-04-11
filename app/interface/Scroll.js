@@ -48,7 +48,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	if (Config.MOBILE){
 		scroller.height(10000);
 	} else {
-		scroller.height(100000);
+		scroller.height(50000);
 	}
 
 	var scrollSize = scroller.height();

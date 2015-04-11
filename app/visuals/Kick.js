@@ -14,7 +14,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 	var KickVisuals = function(){
 
 		var objectScale = new THREE.Vector3(width, -Context.height, 1);
-		var objectPosition = -(Context.width / 2) * 0.66;
+		var objectPosition = -(Context.pictureWidth / 2 + Context.sidebarWidth / 3 + 1);
 
 		this.object = new THREE.Mesh( geometry, KickMaterial);
 		Context.background.add(this.object);
@@ -42,16 +42,25 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 	KickVisuals.prototype.note = function(){
 		var maxAmp = 5;
 		var amplitude = this.amplitude;
+		if (this.tween){
+			this.tween.stop();
+		}
 		this.tween = new TWEEN.Tween({amp : maxAmp})
 			.to({amp: 0}, 240)
 			.onUpdate(function(){
 				amplitude.value = this.amp;
+			})
+			.onComplete(function(){
+				amplitude = null;	
 			})
 			.easing( TWEEN.Easing.Quadratic.Out );
 		var attack = new TWEEN.Tween({amp : amplitude.value})
 			.to({amp : maxAmp}, 40)
 			.onUpdate(function(){
 				amplitude.value = this.amp;
+			})
+			.onComplete(function(){
+				attack = null;
 			})
 			.easing( TWEEN.Easing.Linear.None)
 			.chain(this.tween)
@@ -82,7 +91,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 	};
 
 	KickVisuals.prototype.resize = function(w, h){
-		var objectPosition = -(Context.width / 2) * 0.66;
+		var objectPosition = -(Context.pictureWidth / 2 + Context.sidebarWidth / 3 + 1);
 		this.object.position.setX(objectPosition);
 		this.object2.position.setX(objectPosition + 3);
 	};

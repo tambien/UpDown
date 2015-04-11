@@ -30,29 +30,14 @@ require.config({
 });
 
 require(["jquery", "Tone/core/Transport", "controller/Mediator", "util/Config", "Tone/core/Buffer", 
-	"visuals/Main", "score/Main", "interface/Main", "effect/Main", "channel/Main", "interface/StartButton"],
+	"visuals/Main", "score/Main", "interface/Main", "effect/Main", "channel/Main", 
+	"interface/StartButton", "controller/Analytics"],
  function($, Transport, Mediator, Config, Buffer){
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
 	console.log("%c      UP/DOWN      ", coloring);
 	console.log("%c        2015       ", coloring);
 	console.log("%c     Yotam Mann    ", coloring);
 	console.log("%c  Sarah Rothberg   ", coloring);
-
-	var inFocus = true;
-
-	/*$(window).blur(function(){
-		if (Transport.state !== "paused" && inFocus){
-			Mediator.send("stop");
-		}
-		inFocus = false;
-	});
-
-	$(window).focus(function(){
-		if (Transport.state === "paused" && !inFocus){
-			Mediator.send("stop");
-		}
-		inFocus = true;
-	});*/
 
 	if (Config.STATS){
 		setInterval(function(){

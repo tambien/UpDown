@@ -1,14 +1,15 @@
-define(["jquery"], function($){
-
-	var width = $(window).width();
-	var height = $(window).height();
-
-	$(window).resize(function(){
-		width = $(window).width();
-		height = $(window).height();
-	});
+define(["jquery", "domReady!"], function($, doc){
 
 	var container = $("#Container");
+
+	var width = container.width();
+	var height = container.height();
+
+	$(window).resize(function(){
+		width = container.width();
+		height = container.height();
+	});
+
 
 	// http://davidwalsh.name/javascript-debounce-function
 	function debounce(func, wait, immediate) {

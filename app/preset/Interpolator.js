@@ -73,7 +73,7 @@ define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"],
 	Interpolator.prototype.onupdate = function(func){
 		this._updateFunc = func;
 		//call it initially
-		// this._updateFunc(this.get(this.position));
+		this._updateFunc(this.get());
 	};
 
 	/**
@@ -96,16 +96,19 @@ define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"],
 			} else if (Array.isArray(propA)){
 				var len = propA.length;
 				var retArr = new Array(len);
-				var bTransition = Conductor.getBTransitionProgress();
 				var movement = Conductor.getMovement();
 				var i;
 				if (movement !== 1){
 					for (i = 0; i < len; i++){
 						retArr[i] = TERP.scale(amount, propA[i], propB[i]); 
 					}
-					if (bTransition > 0 && movement === 0){
-						for (i = 0; i < len; i++){
-							retArr[i] = TERP.scale(bTransition, retArr[i], 1);
+
+					if (movement === 0){
+						var bTransition = Conductor.getBTransitionProgress();
+						if (bTransition > 0){
+							for (i = 0; i < len; i++){
+								retArr[i] = TERP.scale(bTransition, retArr[i], 1);
+							}
 						}
 					}
 				} else {

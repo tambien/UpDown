@@ -1,6 +1,7 @@
 define(["interface/Window", "jquery", "TWEEN", "Stats", 
-	"controller/Mediator", "shader/ColorShift", "shader/Noise", "util/Config"], 
-function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Config){
+	"controller/Mediator", "shader/ColorShift", "shader/Noise", 
+	"util/Config", "controller/Conductor"], 
+function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Config, Conductor){
 
 	/**
 	 *  the threejs context
@@ -16,14 +17,15 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 			stencil : false,
 		});
 		this.renderer.autoClearStencil = false;
-		// this.renderer.sortObjects = false;
+		this.renderer.sortObjects = false;
 
 		if (Config.MOBILE){
 			this.renderer.setClearColor( 0xffffff , 0);
 		} else {
 			this.renderer.setClearColor( 0x000000 , 0);
 		}
-		this.renderer.setSize(Window.width(), Window.height());
+		// this.renderer.setSize(Window.width(), Window.height());
+		this.resize(Window.width(), Window.height());
 		Window.container.append(this.renderer.domElement);
 
 		//camera positioning
@@ -49,13 +51,19 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		}
 		
 		//the background and foreground layers		
-		this.background = new THREE.Object3D();
-		this.scene.add(this.background);
-		this.background.position.setZ(-1);
+		this.background = this.layer0 = new THREE.Object3D();
+		this.layer1 = new THREE.Object3D();
+		this.layer2 = new THREE.Object3D();
+		// this.background.position.setZ(-1);
+		this.scene.add(this.layer2);
+		this.scene.add(this.layer1);
+		this.scene.add(this.layer0);
 
 		//listen for events
 		Mediator.route("half", this.flipCamera.bind(this));
 		Mediator.route("update", this.animate.bind(this));
+		Mediator.route("start", this.fadeIn.bind(this));
+		Mediator.route("scroll", this.fadeOut.bind(this));
 		Window.resize(this.resize.bind(this));
 
 		this.computeBounding();
@@ -75,7 +83,6 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 
 		//the background shapes for testing
 		// this.backgroundShape();
-		// this.backgroundImage();
 		if (!Config.MOBILE){
 			this.addComposer();
 		}
@@ -92,10 +99,10 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		}
 		var self = this;
 		this.tween = new TWEEN.Tween({rotation : this.background.rotation.z})
-			.to({rotation : Math.PI * (1 - half)}, 500)
+			.to({rotation : Math.PI * (1 - half)}, 1000)
 			.onUpdate(function(){
 				self.background.rotation.z = this.rotation;
-				self.background.rotation.x = this.rotation * 2;
+				// self.background.rotation.x = this.rotation * 2;
 			})
 			.onComplete(function(){
 				self.tween = null;
@@ -107,100 +114,26 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 	};
 
 	Context.prototype.resize = function(width, height){
+		// var width = $(this.renderer.domElement).width();
+		// var height = $(this.renderer.domElement).height();
+		// console.log(width, height);
 		this.camera.aspect = width / height;
 		this.camera.updateProjectionMatrix();
 		this.renderer.setSize( width, height);
 	};
 
-	Context.prototype.createGrid = function(){
-		var gridTexture = THREE.ImageUtils.loadTexture("./images/grid.png");
-		// gridTexture.wrapS = THREE.RepeatWrapping;
-		// gridTexture.wrapT = THREE.RepeatWrapping;
-		// gridTexture.repeat.set( 10, 10 );
-		var gridMaterial = new THREE.SpriteMaterial({
-			map: gridTexture,
-			depthTest : false,
-			blending: THREE.NormalBlending,
-			transparent: true,
-			opacity: 0.8
-		});
-		this.grid = new THREE.Sprite(gridMaterial);
-		this.grid.scale.set(100, 100, 100);
-		this.scene.add(this.grid);
-		window.grid = this.grid;
-		window.gridTexture = gridTexture;
-
+	Context.prototype.fadeIn = function(){
+		$(this.renderer.domElement).css("opacity", 1);
 	};
 
-	Context.prototype.backgroundImage = function(){
-		var material = new THREE.SpriteMaterial({
-			transparent: true,
-			opacity : 1,
-			map: THREE.ImageUtils.loadTexture("./images/mountain.png"),
-			side: THREE.DoubleSide,
-			blending : THREE.SubtractiveBlending,
-			blendSrc : this.blendSrc,
-			blendDst : this.blendDst,
-			blendEquation : this.blendEq,
-			depthTest : false,
-			color : 0xffffff
-		});
-		var pic = new THREE.Sprite(material);
-		this.scene.add(pic);
-		pic.position.setZ(20);
-		pic.scale.set(100, 100, 1);
-	};
-
-	Context.prototype.backgroundShape = function(){
-
-		var boxMaterial = new THREE.MeshNormalMaterial({
-			transparent: this.transparent,
-			opacity: this.opacity,
-			blending : this.blending,
-			blendSrc : this.blendSrc,
-			blendDst : this.blendDst,
-			blendEquation : this.blendEq,
-			depthTest : false,
-			depthWrite : false,
-			color : 0x00ff00
-		});
-		// material.depthTest = false;
-		this.square = new THREE.Mesh( new THREE.BoxGeometry( 100, 10, 10), boxMaterial);
-		this.square.geometry.computeVertexNormals();
-		this.scene.add(this.square);
-
-		var sphereMaterial = new THREE.MeshBasicMaterial({
-			transparent: this.transparent,
-			opacity: this.opacity,
-			blending : this.blending,
-			blendSrc : this.blendSrc,
-			blendDst : this.blendDst,
-			blendEquation : this.blendEq,
-			depthTest : false,
-			depthWrite : false,
-			color : 0x0000ff
-		});
-		// material.depthTest = false;
-		this.sphere = new THREE.Mesh( new THREE.SphereGeometry( 25, 25, 25), sphereMaterial);
-		this.sphere.geometry.computeVertexNormals();
-		this.scene.add(this.sphere);
-
-		var sphereMaterial2 = new THREE.MeshBasicMaterial({
-			transparent: this.transparent,
-			opacity: this.opacity,
-			blending : this.blending,
-			blendSrc : this.blendSrc,
-			blendDst : this.blendDst,
-			blendEquation : this.blendEq,
-			depthTest : false,
-			depthWrite : false,
-			color : 0xff0000
-		});
-		// material.depthTest = false;
-		this.sphere = new THREE.Mesh( new THREE.SphereGeometry( 25, 25, 25), sphereMaterial2);
-		this.sphere.geometry.computeVertexNormals();
-		this.sphere.position.x += 20;
-		this.scene.add(this.sphere);
+	Context.prototype.fadeOut = function(){
+		if (Conductor.getMovement() === 2) {
+			var endTransition = Conductor.getEndTransitionProgress();
+			if (endTransition > 0){
+				var opacity = Math.pow(1 - endTransition, 2);
+				$(this.renderer.domElement).css("opacity", opacity);
+			} 
+		}
 	};
 
 	Context.prototype.animate = function(time) {
@@ -224,6 +157,10 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.width = Math.abs(vector.x * 2);
 		this.height = Math.abs(vector.y * 2);
 	};
+
+	Context.prototype.pictureWidth = 50;
+
+	Context.prototype.sidebarWidth = 25;
 
 	Context.prototype.addComposer = function() {
 		this.composer = new THREE.EffectComposer( this.renderer );

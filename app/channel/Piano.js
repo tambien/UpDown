@@ -28,7 +28,8 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 			if (Conductor.getMovement() === 0){
 				var progress = Conductor.getBTransitionProgress();
 				if (progress > 0){
-					ampLFO.amplitude.rampTo(progress, 0.25);
+					// ampLFO.amplitude.rampTo(progress, 0.25);
+					ampLFO.amplitude.value = progress;
 				}
 			} 
 		});
@@ -84,10 +85,13 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 		//trigger the attack
 		monoSynth.set({
 			"envelope" : {
-				"release" : 0.1,
+				"release" : 2,
 			},
 			"filterEnvelope" : {
-				"release" : 0.1,
+				"min" : 200,
+				"max" : 2500,
+				"sustain" : 0.4,
+				"release" : 2
 			}
 		});
 		monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"]);

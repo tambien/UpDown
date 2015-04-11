@@ -1,13 +1,11 @@
 * Make Piano visuals have width/length in preset controls. 
 	go slower at top.
 
-* Add B backgrounds
+* Add B backgrounds - animate - make them.
+
+* reshoot head pictures
 
 * Optimize / performance / mobile
-
-* Splash/Loading
-
-* start
 
 * fix vocal entrances
 
@@ -23,4 +21,18 @@
 
 * optimize kick frequency
 
-* Fix side margin of picture frame to resemble facebook layout better. 
+* Scroll Indicator should disappear when not scrolling
+
+* info and credits
+
+* notifications when only gone up/down
+
+* UpDown.jpg - thumbnail for twitter / facebook - square image
+
+https://developers.facebook.com/apps/825781467502888/review-status/
+
+* scroll and play at B should be black/white
+
+* no head at browser
+
+* Performance only seems to get back after B/C section transition....?

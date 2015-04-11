@@ -18,7 +18,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "control
 
 	window.material = material;
 
-	var geometry = new THREE.SphereGeometry(10, 32, 32);
+	var geometry = new THREE.SphereGeometry(10, 16, 16);
 
 	Mediator.route("B", function(){
 		material.color.setRGB(1, 1, 1);
@@ -56,7 +56,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "control
 		var currentSize = object.scale.x;
 		var maxSize = 3;
 		this.tween = new TWEEN.Tween({size : maxSize})
-			.to({size : 0.01}, duration)
+			.to({size : 0.001}, duration)
 			.easing( TWEEN.Easing.Quadratic.Out)
 			.onUpdate(function(){
 				object.scale.set(this.size, this.size, this.size);	

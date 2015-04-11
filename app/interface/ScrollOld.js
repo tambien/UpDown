@@ -50,7 +50,7 @@ define(["domReady!", "jquery.mousewheel", "controller/Mediator"], function(ready
 	});
 
 	Mediator.route("start", function(updateRate){
-		Mediator.send("scroll", scrollPosition, updateRate);
+		// Mediator.send("scroll", scrollPosition, updateRate);
 	});
 
 	window.setScroll = function(position){

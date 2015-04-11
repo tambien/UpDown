@@ -44,11 +44,11 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 
 	BackgroundImage.prototype.add = function(){
 		this.setImage();
-		Context.scene.add(this.pic);
+		Context.layer1.add(this.pic);
 	};
 
 	BackgroundImage.prototype.remove = function(){
-		Context.scene.remove(this.pic);	
+		Context.layer1.remove(this.pic);	
 	};
 
 	BackgroundImage.prototype.scroll = function(pos){
