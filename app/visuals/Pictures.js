@@ -53,9 +53,9 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	frameTexture.minFilter = THREE.NearestMipMapNearestFilter;*/
 
 	var frameBlending = "CustomBlending";
-	if (Config.MOBILE){
-		frameBlending = "NormalBlending";
-	}
+	/*if (Config.MOBILE){
+		frameBlending = "CustomBlending";
+	}*/
 
 	var frameMaterial = new THREE.MeshBasicMaterial({
 		transparent: Context.transparent,
@@ -67,7 +67,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		depthTest : false,
 		depthWrite : false,
 		// side: THREE.DoubleSide,
-		color : 0xff0f00,
+		color : 0x00ED00,
 	});
 
 
@@ -75,17 +75,24 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	//set the initial values
 	var pre = PictureFramePreset.get();
-	if (!Config.MOBILE){
+	// if (!Config.MOBILE){
 		var color = pre.frame;
 		frameMaterial.color.setRGB(color[0], color[1], color[2]);
-	}
+	// }
 
 	Mediator.route("scroll", function(){
 		var pre = PictureFramePreset.get();
-		if (!Config.MOBILE){
+		// if (!Config.MOBILE){
 			var color = pre.frame;
 			frameMaterial.color.setRGB(color[0], color[1], color[2]);
-		}
+		// }
+	});
+
+	//reset the color after the B sectiono
+	Mediator.route("C", function(){
+		var pre = PictureFramePreset.get();
+		var color = pre.frame;
+		frameMaterial.color.setRGB(color[0], color[1], color[2]);
 	});
 
 

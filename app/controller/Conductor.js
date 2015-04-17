@@ -208,14 +208,16 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 
 	Conductor.prototype.updateSection = function(time) {
 		//set the measures
-		if (Scroll.getDistance() > this.bDistance && this.movement !== 1){
-			this._BStart(time);
-			this.setLoopStartSection();
-			this.setLoopEnd(this.currentSection);
-		} if (Scroll.getDistance() > this.cDistance && this.movement !== 2){
-			this._CStart(time);
-			this.setLoopStartSection();
-			this.setLoopEnd(this.currentSection);
+		if (!Config.MOBILE){
+			if (Scroll.getDistance() > this.bDistance && this.movement !== 1){
+				this._BStart(time);
+				this.setLoopStartSection();
+				this.setLoopEnd(this.currentSection);
+			} if (Scroll.getDistance() > this.cDistance && this.movement !== 2){
+				this._CStart(time);
+				this.setLoopStartSection();
+				this.setLoopEnd(this.currentSection);
+			}
 		}
 		this.loop++;
 		this.voiceNumber = (this.voiceNumber + 1) % 3;

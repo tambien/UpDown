@@ -28,17 +28,19 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.resize(Window.width(), Window.height());
 		Window.container.append(this.renderer.domElement);
 
+		this.$rendererElement = $(this.renderer.domElement);
+
 		//camera positioning
 		this.camera.position.setZ(-100);
 		this.camera.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
 
-		this.scene.add( new THREE.AmbientLight( 0x222222 ) );
+		/*this.scene.add( new THREE.AmbientLight( 0x222222 ) );
 		this.light = new THREE.PointLight( 0xffffff );
 		this.light.position.setX(-100);
 		this.light.position.setY(-100);
 		this.light.position.setZ(-100);
 		this.light.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
-		this.scene.add( this.light );
+		this.scene.add( this.light );*/
 
 		//the stats
 		if (Config.STATS){
@@ -73,7 +75,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.transparent = true;
 		this.opacity = 0.7;
 		if (Config.MOBILE){
-			this.blending = THREE.SubtractiveBlending;
+			this.blending = THREE.NormalBlending;
 		} else {
 			this.blending = THREE.CustomBlending;
 		}
@@ -131,7 +133,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
 				var opacity = Math.pow(1 - endTransition, 2);
-				$(this.renderer.domElement).css("opacity", opacity);
+				this.$rendererElement.css("opacity", opacity);
 			} 
 		}
 	};

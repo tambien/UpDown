@@ -4,24 +4,25 @@ define(["visuals/Bass", "visuals/Voice", "visuals/Pictures", "visuals/Piano",
 function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, 
 	KickVisuals, SnareVisuals, ArpVisuals, HighHatVisuals, Config, Scroll, FrameVisuals, BackgroundImages){
 
+	var bassVis = new BassVisuals(); 
+
+	var voiceVis = new VoiceVisuals();
+
+	var pianoVis = new PianoVisuals();
+
+	var arpVis = new ArpVisuals();
+
+	var hhVis = new HighHatVisuals();
+	
 	if (!Config.MOBILE){
-		var bassVis = new BassVisuals(); 
+		
+		var frameVis = new FrameVisuals();
 
-		var voiceVis = new VoiceVisuals();
-
-		var pianoVis = new PianoVisuals();
+		var backgroundImages = new BackgroundImages();
 
 		var kickVis = new KickVisuals();
 
 		var snareVis = new SnareVisuals();
-
-		var arpVis = new ArpVisuals();
-
-		var hhVis = new HighHatVisuals();
-
-		var frameVis = new FrameVisuals();
-
-		var backgroundImages = new BackgroundImages();
 	}
 	
 	var pics = new Pictures();

@@ -1,3 +1,5 @@
+$UpdateRate : 0.4s;
+
 .dg.ac {
   z-index: 10000 !important; }
 
@@ -20,10 +22,10 @@
     -webkit-transform-origin: 0 0;
     -moz-transform: scale(1);
     -moz-transform-origin: 0 0;
-    transition: opacity 0.25s;
-    -webkit-transition: opacity 0.25s;
-    -moz-transition: opacity 0.25s;
-    -o-transition: opacity 0.25s; }
+    transition: opacity $UpdateRate;
+    -webkit-transition: opacity $UpdateRate;
+    -moz-transition: opacity $UpdateRate;
+    -o-transition: opacity $UpdateRate; }
 
 #StartButton {
   width: 250px;

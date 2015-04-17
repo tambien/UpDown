@@ -35,12 +35,11 @@ define(["requestAnimationFrame", "util/Config"], function(requestAnimationFrame,
 			this._events = this._events || {};
 			if( event in this._events === false  )	return;
 			var args = Array.prototype.slice.call(arguments, 1);
-			var self = this;
 			setTimeout(function(){
-				for(var i = 0; i < self._events[event].length; i++){
-					self._events[event][i].apply(self, args);
+				for(var i = 0; i < this._events[event].length; i++){
+					this._events[event][i].apply(this, args);
 				}
-			}, 1);
+			}.bind(this), 1);
 		}
 	};
 
@@ -50,8 +49,7 @@ define(["requestAnimationFrame", "util/Config"], function(requestAnimationFrame,
 	//	UPDATE LOOPS
 	///////////////////////////////////////////////////////////////////////////
 
-	var slowUpdateRate = 250;
-	var presetUpdateRate = 500;
+	var slowUpdateRate = Config.SLOW_UPDATE * 1000;
 
 	function slowUpdateLoop(){
 		setTimeout(slowUpdateLoop, slowUpdateRate);

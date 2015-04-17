@@ -121,7 +121,7 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 					monoSynth.output.gain.setValueAtTime(0, time);
 					monoSynth.output.gain.linearRampToValueAtTime(1, time + 0.1);
 				}
-				monoSynth.set(pre);
+				monoSynth.set(pre, Config.SLOW_UPDATE);
 				if (pre.oscillator.type === "pwm"){
 					monoSynth.set({
 						"modulationFrequency" : 0.7

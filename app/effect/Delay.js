@@ -8,7 +8,7 @@ define(["Tone/core/Bus", "interface/GUI", "Tone/effect/PingPongDelay", "Tone/cor
 		pingPong.receive("delay");
 
 		Mediator.route("scroll", function(position){
-			pingPong.delayTime.rampTo("16n", 0.25);
+			pingPong.delayTime.rampTo("16n", Config.SLOW_UPDATE);
 		});
 
 		if (Config.GUI){

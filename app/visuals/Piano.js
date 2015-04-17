@@ -95,15 +95,13 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 	 */
 	var startKeys = [];
 	Mediator.route("start", function(){
-		if (!Config.MOBILE){
-			for (var i = 0; i < 4 ; i++){
-				var obj = new THREE.Mesh( geometry, material);
-				obj.position.x = TERP.scale(i, 0, 3, -10, 10);
-				obj.rotation.z = Math.PI / 2;
-				startKeys[i] = obj;
-				Context.background.add(obj);
-				animateInKey(obj);
-			}
+		for (var i = 0; i < 4 ; i++){
+			var obj = new THREE.Mesh( geometry, material);
+			obj.position.x = TERP.scale(i, 0, 3, -10, 10);
+			obj.rotation.z = Math.PI / 2;
+			startKeys[i] = obj;
+			Context.background.add(obj);
+			animateInKey(obj);
 		}
 	});
 

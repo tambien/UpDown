@@ -111,6 +111,11 @@ define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"],
 							}
 						}
 					}
+					if (Config.MOBILE){
+						for (i = 0; i < len; i++){
+							retArr[i] = 1 - retArr[i];
+						}
+					}
 				} else {
 					retArr = [1, 1, 1];
 				}
