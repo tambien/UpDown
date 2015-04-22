@@ -1,7 +1,9 @@
-$UpdateRate : 0.4s;
-
 .dg.ac {
   z-index: 10000 !important; }
+
+html, body {
+  height: 100%;
+  overflow: hidden; }
 
 #Container {
   height: 100%;
@@ -16,16 +18,24 @@ $UpdateRate : 0.4s;
     opacity: 0;
     width: 100% !important;
     height: 100% !important;
-    transform: scale(1);
-    transform-origin: 0 0;
-    -webkit-transform: scale(1);
-    -webkit-transform-origin: 0 0;
-    -moz-transform: scale(1);
-    -moz-transform-origin: 0 0;
-    transition: opacity $UpdateRate;
-    -webkit-transition: opacity $UpdateRate;
-    -moz-transition: opacity $UpdateRate;
-    -o-transition: opacity $UpdateRate; }
+    		/*transform: scale($scaling);
+      		transform-origin: 0 0;
+      		-webkit-transform: scale($scaling);
+      		-webkit-transform-origin: 0 0;
+      		-moz-transform: scale($scaling);
+    		-moz-transform-origin: 0 0;
+    		transition: opacity 0.25s;
+    		-webkit-transition: opacity 0.25s;
+    		-moz-transition: opacity 0.25s;
+    		-o-transition: opacity 0.25s;*/ }
+  #Container #CoverAll {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    top: 0px;
+    left: 0px;
+    opacity: 0; }
 
 #StartButton {
   width: 250px;
@@ -226,7 +236,8 @@ $UpdateRate : 0.4s;
     width: calc(100% + 20px);
     overflow-y: scroll; }
     #ScrollContainer #InnerScroll #Scroller {
-      height: 100000px;
+      /*height: 100000px;*/
+      height: 100%;
       width: 100%; }
   #ScrollContainer #Channel {
     width: 24px;
@@ -250,6 +261,16 @@ $UpdateRate : 0.4s;
       background-color: white; }
     #ScrollContainer #Channel #Indicator.Dragging {
       background-color: black; }
+
+#ScrollContainer.B #Channel {
+  background-color: black;
+  /*border-left: 1px dotted black;*/ }
+  #ScrollContainer.B #Channel #Indicator {
+    background-color: white; }
+  #ScrollContainer.B #Channel #Indicator:hover {
+    background-color: #00ED00; }
+  #ScrollContainer.B #Channel #Indicator.Dragging {
+    background-color: #F010FF; }
 
 #TransportPosition {
   color: #aaaaaa;
@@ -292,5 +313,84 @@ $UpdateRate : 0.4s;
   font-weight: bold;
   font-size: 24px;
   line-height: 48px; }
+
+#Notification {
+  width: calc(100% - 10px * 2);
+  height: 70px;
+  line-height: 70px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #1040FF;
+  font-family: "Courier New", monospace;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  opacity: 0; }
+
+.Mobile #Notification {
+  top: calc(100% - 10px - 70px);
+  font-size: 14px;
+  line-height: 35px; }
+
+#InfoContainer {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  background-color: #1040FF;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  z-index: 101;
+  transition: width 0.25s, height 0.25s;
+  -webkit-transition: width 0.25s, height 0.25s;
+  -moz-transition: width 0.25s, height 0.25s;
+  -o-transition: width 0.25s, height 0.25s; }
+  #InfoContainer #Credits {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    opacity: 0;
+    text-align: left;
+    color: white;
+    transition: opacity 0.25s;
+    -webkit-transition: opacity 0.25s;
+    -moz-transition: opacity 0.25s;
+    -o-transition: opacity 0.25s; }
+    #InfoContainer #Credits a {
+      font-weight: 900;
+      text-decoration: none;
+      color: white; }
+  #InfoContainer #InfoButton {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 100;
+    cursor: pointer; }
+  #InfoContainer #InfoButton:hover {
+    background-color: #00ED00;
+    color: #1040FF; }
+
+.Mobile #InfoContainer {
+  top: 15px !important; }
+  .Mobile #InfoContainer #Credits {
+    font-size: 14px; }
+
+#InfoContainer.Expanded {
+  width: calc(100% - 15px * 2);
+  height: calc(100% - 15px * 2);
+  opacity: 0.85;
+  cursor: inherit; }
+  #InfoContainer.Expanded #Credits {
+    opacity: 1; }
 
 /*# sourceMappingURL=main.css.map */

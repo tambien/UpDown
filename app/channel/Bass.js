@@ -64,7 +64,7 @@ function(MonoSynth, Master, Filter, PresetA, PresetB, Conductor, GUI,
 			if (Conductor.getMovement() === 0){
 				var progress = Conductor.getBTransitionProgress();
 				if (progress > 0){
-					// ampLFO.amplitude.rampTo(progress / 1.5, 0.25);
+					// ampLFO.amplitude.rampTo(progress / 1.5, Config.SLOW_UPDATE);
 					ampLFO.amplitude.value = progress / 1.5;
 				}
 			} 

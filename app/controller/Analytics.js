@@ -21,40 +21,40 @@ define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Cond
 
 	//setup some timed events
 	Mediator.route("start", function(){
-		sendEvent("section", "change", "start", Date.now() - lastSection);
+		sendEvent("interface", "transport", "start", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("B", function(){
-		sendEvent("section", "change", "B", Date.now() - lastSection);
+		sendEvent("song", "section", "B", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("C", function(){
-		sendEvent("section", "change", "C", Date.now() - lastSection);
+		sendEvent("song", "section", "C", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("end", function(){
-		sendEvent("section", "change", "end", Date.now() - lastSection);
+		sendEvent("song", "section", "end", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("pause", function(){
-		sendEvent("controls", "click", "pause");
+		sendEvent("interface", "transport", "pause");
 	});
 
 	Mediator.route("play", function(){
-		sendEvent("controls", "click", "play");
+		sendEvent("interface", "transport", "play");
 	});
 
 	Mediator.route("flipped", function(){
-		sendEvent("scroll", "flip");
+		sendEvent("song", "interaction", "flip");
 	});
 
 	var startLoading = Date.now();
 	Mediator.route("loaded", function(){
-		sendEvent("timing", "loaded", "loaded", Date.now() - startLoading);
+		sendEvent("system", "timing", "loaded", Date.now() - startLoading);
 	});
 
 	return {

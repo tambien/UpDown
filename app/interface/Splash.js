@@ -20,6 +20,10 @@ define(["jquery", "controller/Mediator", "util/Config"], function($, Mediator, C
 			secondText.append("<br><span id='MobileDisclaimer'>for the full experience, use a desktop browser.</span>");
 		}
 
+		if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1){
+			secondText.append("works best in Chrome or Safari");
+		}
+
 		Mediator.route("ready", function(){
 			var fadeTime = 500;
 			var waitTime = 2000;

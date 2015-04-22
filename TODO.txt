@@ -3,41 +3,13 @@
 
 * Add B backgrounds - animate - make them.
 
-* reshoot head pictures
-
-* Optimize / performance / mobile
-
 * fix vocal entrances
 
-* optimize out panners on mobile. 
-
-* put some visuals on mobile
-
-* frame is black coming out of B section
-
-* analytics
-
-* browser support tests / firefox warning
-
-* optimize kick frequency
-
-* Scroll Indicator should disappear when not scrolling
-
-* info and credits
-
-* notifications when only gone up/down
-
 * UpDown.jpg - thumbnail for twitter / facebook - square image
-
-https://developers.facebook.com/apps/825781467502888/review-status/
-
-* scroll and play at B should be black/white
+	https://developers.facebook.com/apps/825781467502888/review-status/
 
 * no head at browser
 
-* Performance only seems to get back after B/C section transition....?
-	Performance degrades bc of css transition
-
 * Favicon
 
-* Ramp `set` values for all channels. 
+* remove frame interpolation

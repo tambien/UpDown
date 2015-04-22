@@ -1,6 +1,10 @@
-define(["jquery", "domReady!"], function($, doc){
+define(["jquery", "domReady!", "util/Config"], function($, doc, Config){
 
 	var container = $("#Container");
+
+	if (Config.MOBILE){
+		container.addClass("Mobile");
+	}
 
 	var width = container.width();
 	var height = container.height();

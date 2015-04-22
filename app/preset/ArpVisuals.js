@@ -4,7 +4,7 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 	[
 		{
 			"color": [
-				0.5,
+				1,
 				0,
 				1
 			],
@@ -15,11 +15,11 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 		{
 			"color": [
 				1,
-				0.5,
-				0
+				0,
+				0.03529411764705881
 			],
 			"angle": 0,
-			"growth": 1.5,
+			"growth": 1.9,
 			"size": 0.5
 		}
 	], "Arp Visuals", GUI);

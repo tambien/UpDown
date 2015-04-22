@@ -13,6 +13,6 @@ define(["jquery"], function($){
 		SPLASH : false,
 		ANALYTICS : true,
 		PAUSE_ON_BLUR : false,
-		SLOW_UPDATE : isMobile ? 0.7: 0.5
+		SLOW_UPDATE : isMobile ? 0.8: 0.5
 	};
 });

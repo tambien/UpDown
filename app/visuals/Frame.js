@@ -32,7 +32,7 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 	
 	var materialA = new THREE.MeshBasicMaterial({
 		transparent: Context.transparent,
-		opacity: 0.2,
+		opacity: 0.8,
 		blending : Context.blending,
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
@@ -40,13 +40,13 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		// map: frameTexture,
 		depthTest : false,
 		depthWrite : false,
-		color : 0x000000,
+		color : 0xffffff,
 	});
 
 
 	var materialB = new THREE.MeshBasicMaterial({
 		transparent: Context.transparent,
-		opacity: 0.2,
+		opacity: 0.8,
 		blending : Context.blending,
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
@@ -54,7 +54,7 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		// map: frameTexture,
 		depthTest : false,
 		depthWrite : false,
-		color : 0x000000,
+		color : 0xffffff,
 	});
 
 	PicturePreset.onupdate(function(preset){

@@ -35,7 +35,7 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
 				var volume = TERP.scale(endTransition, 0, -50, 2);
-				Master.volume.value = volume;
+				Master.volume.rampTo(volume, Config.SLOW_UPDATE);
 				//trigger the end of the song
 				if (endTransition >= 1){
 					Mediator.send("end");

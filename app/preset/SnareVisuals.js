@@ -4,7 +4,7 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 	[
 		{
 			"decay": 230,
-			"width": 1.5,
+			"width": 0.8,
 			"color": [
 				0.800557477893118,
 				0.18627450980392157,
@@ -12,12 +12,12 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 			]
 		},
 		{
-			"decay": 700,
-			"width": 4,
+			"decay": 650,
+			"width": 5.8,
 			"color": [
-				0.7594434832756632,
-				0.911284121491734,
-				0.303921568627451
+				0.584313725490196,
+				0.7764705882352941,
+				0
 			]
 		}
 	], "Snare Preset", GUI);

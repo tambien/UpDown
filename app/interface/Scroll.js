@@ -1,5 +1,5 @@
-define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "TERP"], 
-	function(ready, Mediator, Config, Window, TERP){
+define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "TERP", "jquery.mousewheel"], 
+	function(ready, Mediator, Config, Window, TERP, mousewheel){
 
 	/**
 	 *  the total distance traveled by scrolling
@@ -41,27 +41,33 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	 */
 	var started = false;
 
+	var scrollHeight = 50000;
 
-	var innerScroll = $("<div>").attr("id", "InnerScroll").appendTo("#ScrollContainer");
-	var scroller = $("<div>").attr("id", "Scroller").appendTo(innerScroll);
+	var pageHeight = 0;
+
+	var scrollContainer = $("#ScrollContainer");
 
 	if (Config.MOBILE){
-		scroller.height(10000);
-	} else {
-		scroller.height(50000);
+		var innerScroll = $("<div>").attr("id", "InnerScroll").appendTo(scrollContainer);
+		var scroller = $("<div>").attr("id", "Scroller").appendTo(innerScroll);
+		scrollHeight = 5000;
+		scroller.height(scrollHeight);
+		innerScroll.scrollTop(scrollHeight * 0.5);
+		pageHeight = innerScroll.height();
 	}
 
-	var scrollSize = scroller.height();
-	var scrollHeight = innerScroll.height();
+	var lastPosition = scrollHeight * 0.5;
 
-	Window.resize(function(){
-		scrollHeight = innerScroll.height();
+	var scrollTop = lastPosition;
+
+	$(window).mousewheel(function(e, x){
+		if (started){
+			scrollTop = lastPosition - x;
+		}
 	});
 
 	//start it off at the right scroll position
-	innerScroll.scrollTop(scrollSize * 0.5);
-
-	var lastPosition = scrollSize * 0.5;
+	// innerScroll.scrollTop(scrollHeight * 0.5);
 
 	Mediator.route("slowUpdate", function(updateRate){
 		if (needsUpdate){
@@ -70,39 +76,54 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 		}
 	});
 
+	Mediator.route("B", function(updateRate){
+		scrollContainer.addClass("B");
+	});
+
+	Mediator.route("C", function(updateRate){
+		scrollContainer.removeClass("B");
+	});
+
 	Mediator.route("update", function(){
-		var scrollTop = innerScroll.scrollTop();
+		if (Config.MOBILE){
+			scrollTop = innerScroll.scrollTop();
+		}
 		if (started && scrollTop !== lastPosition){
-			//the scroll distance
-			scrollDistance += Math.abs(lastPosition - scrollTop) / scrollSize;
+			scrollDistance += Math.abs(lastPosition - scrollTop) / scrollHeight;
 			//the loop position
-			scrollPosition = 1 - scrollTop / scrollSize;
+			scrollPosition = 1 - scrollTop / (scrollHeight - pageHeight);
 			var loopOffset = 0.05;
 			var loopOffsetMult = 1.5;
 			if (scrollTop < lastPosition && 
 					scrollDirection !== 1 && 
 					scrollPosition > loopOffset * loopOffsetMult){
 				scrollDirection = 1;
+				// console.log(scrollDirection);
 				switchCenterPosition = scrollPosition;
 			} else if (scrollTop > lastPosition && 
 					scrollDirection !== -1 && 
 					scrollPosition < 1 - loopOffset * loopOffsetMult){
 				scrollDirection = -1;
+				// console.log(scrollDirection);
 				switchCenterPosition = scrollPosition;
 			}
 			lastPosition = scrollTop;
 			if (scrollTop <= 1){
 				scrollPosition = 1 - loopOffset;
-				innerScroll.scrollTop((1 - scrollPosition) * scrollSize);
-			} else if (scrollTop >= scrollSize - scrollHeight - 1){
+				lastPosition = (1 - scrollPosition) * scrollHeight;
+				if (Config.MOBILE){
+					innerScroll.scrollTop(lastPosition);
+				}
+			} else if (scrollTop >= scrollHeight - pageHeight - 1){
 				scrollPosition = loopOffset;
-				innerScroll.scrollTop((1 - scrollPosition) * (scrollSize - scrollHeight));
+				lastPosition = (1 - scrollPosition) * scrollHeight;
+				if (Config.MOBILE){
+					innerScroll.scrollTop(lastPosition - pageHeight);
+				}
 			}
 			needsUpdate = true;
 			Mediator.send("rawscroll", scrollPosition);
-		} else if (!started){
-			innerScroll.scrollTop(lastPosition);
-		}
+		} 
 	});
 
 
@@ -135,9 +156,10 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 		},
 		scrollTop : function(top){
 			if (top){
-				top *= scrollSize;
+				top *= scrollHeight;
+				scrollTop = top;
 			}
-			return innerScroll.scrollTop(top);
+			return scrollTop;
 		}
 	};
 });

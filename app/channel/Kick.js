@@ -12,11 +12,11 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 		"ratio": 4
 	});*/
 
-	var filter = new Filter({
+/*	var filter = new Filter({
 		"type" : "highpass",
 		"frequency": 40,
 		"Q": 16
-	});
+	});*/
 
 	//oscillator
 	var oscillator = new Oscillator({
@@ -34,9 +34,13 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 	// CONECTIONS // 
 
 	// oscillator.chain(ampEnv, filter, comp, Master);
-	oscillator.chain(ampEnv, filter);
+	// oscillator.chain(ampEnv, filter);
 
-	filter.send("drums");
+	// filter.send("drums");
+
+	oscillator.chain(ampEnv);
+
+	ampEnv.send("drums");
 
 	var kickFreqEnv = {
 		"startMult": 10,
@@ -47,16 +51,16 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 	if (Config.GUI){
 		var kickFolder = GUI.getFolder("Kick");
 		// GUI.addTone2(kickFolder, "Compressor", comp);
-		GUI.addTone2(kickFolder, "Filter", filter);
+		// GUI.addTone2(kickFolder, "Filter", filter);
 		GUI.addObject(kickFolder, "Freq Env", kickFreqEnv);
 	}
 	
 	return {
-		triggerAttackRelease : function(duration, time, note){
+		triggerAttackRelease : function(duration, time, freq){
 			Preset.update(ampEnv.set.bind(ampEnv));
 			ampEnv.triggerAttack(time);
 			//the frequency ramp
-			var freq = oscillator.noteToFrequency(note);
+			// var freq = oscillator.noteToFrequency(note);
 			oscillator.frequency.setValueAtTime(freq * kickFreqEnv.startMult, time);
 			oscillator.frequency.exponentialRampToValueAtTime(freq, time + kickFreqEnv.attack);
 		},

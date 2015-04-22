@@ -18,14 +18,14 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	var material = new THREE.SpriteMaterial({
 		transparent: true,
-		opacity : 0.9,
+		opacity : 0.5,
 		map: texture,
 		blending : THREE[blending],
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
-		depthTest : false,
-		color : 0xffffff
+		depthTest : true,
+		color : 0xdddddd
 	});
 
 	//make the frame canvas
@@ -119,7 +119,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.makePictures();
 
 		//load the first one
-		this.load(0);
+		this.load(7);
 
 		//setup the events
 		Mediator.route("rawscroll", this.scroll.bind(this));
@@ -134,11 +134,12 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		var scale = this.scale;
 		this.picDist = scale * pictureCount * 0.8;
 		var increment = this.previousPosition * this.scrollMultipler;
-		var frameScaleY = 2 * 1.71;
-		var frameScaleX = 2;
-		var frameTopMargin = 0.65;
+		//original 3590 × 3615 pixels 1.006
+		var picScale = 0.9;
+		var frameScaleX = 1 / picScale;
+		var frameTopMargin = 0.55;
 		var frameWidth = 0.1;
-		var frameLeftMargin = 0.915;
+		var frameLeftMargin = 0.562 * picScale;
 		for(var i = 0; i < pictureCount; i++){
 			var pic = new THREE.Sprite(material);
 			//make the frame
@@ -152,13 +153,13 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 			//left
 			var left = new THREE.Mesh(frameGeometry, frameMaterial);
 			left.position.x = frameLeftMargin;
-			left.scale.setX(frameWidth * 1.71);
+			left.scale.setX(frameWidth);
 			left.scale.setY(frameTopMargin * 2 - frameWidth);
 			frame.add(left);
 			//right
 			var right = new THREE.Mesh(frameGeometry, frameMaterial);
 			right.position.x = -frameLeftMargin;
-			right.scale.setX(frameWidth * 1.71);
+			right.scale.setX(frameWidth);
 			right.scale.setY(frameTopMargin * 2 - frameWidth);
 			frame.add(right);
 			//bottom
@@ -168,8 +169,8 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 			bottom.scale.setY(frameWidth);
 			frame.add(bottom);
 			frame.scale.setX(-1);
-			pic.scale.setX(0.5);
-			pic.scale.setY(0.5 * 1.71);
+			pic.scale.setX(picScale);
+			pic.scale.setY(picScale);
 			pic.add(frame);
 			pic.position.setY(((i * this.distance + increment) % (this.modDistance)));
 			this.pictures.add(pic);
@@ -177,7 +178,6 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.pictures.position.y = -Context.height / 3 - this.scale;
 		//picture original size 680 x 1163. 
 		this.pictures.scale.set(this.scale, this.scale, 1);
-		window.object = this.pictures;
 		//and make the frames
 		Context.layer2.add(this.pictures);
 	};
@@ -188,7 +188,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	Pictures.prototype.scroll = function(position) {
 		//load the level
-		var level = Math.round(TERP.scale(Scroll.getDirectionPosition(), -8, 8));
+		var level = Math.round(Scroll.getDirectionPosition() * 13);
 		if (this.level !== level){
 			this.load(level);
 		}
@@ -209,9 +209,6 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	Pictures.prototype.load = function(level){
 		this.level = level;
-		if (level < 0){
-			level = "n" + Math.abs(level);
-		}
 		var images = [];
 		var count = 0;
 		var self = this;
@@ -228,11 +225,22 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 			};
 		};
 		var picC = "./images/"+level+"_c.png";
-		var picO = "./images/"+level+"_o.png";
-		var picOo = "./images/"+level+"_oo.png";
+		var picO = "./images/"+level+"_a.png";
+		var picOo = "./images/"+level+"_o.png";
+		var picDow = "./images/"+level+"_d.png";
+		var picOwn = "./images/"+level+"_w.png";
+		// var picC =  "./images/test_18.png";
+		// var picO =  "./images/test_18.png";
+		// var picOo =  "./images/test_18.png";
+		// var picDow = "./images/test_18.png";
+		// var picOwn = "./images/test_18.png";
 		this.loader.load(picC, onLoad(0));
 		this.loader.load(picO, onLoad(1));
 		this.loader.load(picOo, onLoad(2));
+		if (level < 7){
+			this.loader.load(picDow, onLoad(3));
+			this.loader.load(picOwn, onLoad(4));
+		}
 	};
 
 	Pictures.prototype.setWord = function(word, duration) {
@@ -241,8 +249,8 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		if (start === "l"){
 			this.setImage(2, 0);
 		} else if (start === "d"){
-			this.setImage(1, 0);
-			this.setImage(2, duration / 10);
+			this.setImage(3, 0);
+			this.setImage(4, duration / 10);
 			this.setImage(0, duration / 1.7);
 		} else if (start === "u"){
 			this.setImage(1, 0);
@@ -254,11 +262,10 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	};
 
 	Pictures.prototype.setImage = function(pos, wait){
-		var self = this;
 		setTimeout(function(){
-			texture.image = self.images[pos];
+			texture.image = this.images[pos];
 			texture.needsUpdate = true;
-		}, wait);
+		}.bind(this), wait);
 	};
 
 	Pictures.prototype.dispose = function(){

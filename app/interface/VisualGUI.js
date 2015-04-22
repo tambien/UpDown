@@ -43,6 +43,15 @@ define(["dat", "util/Config"], function(dat, Config){
 		}
 	}
 
+	function hexToRgb(hex) {
+	    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	    return result ? [
+	        parseInt(result[1], 16),
+	        parseInt(result[2], 16),
+	        parseInt(result[3], 16)
+	    ] : null;
+	}
+
 	function addColor(folder, title, color){
 		var obj = {};
 		var colorCopy = [];
@@ -52,12 +61,13 @@ define(["dat", "util/Config"], function(dat, Config){
 		obj[title] = colorCopy;
 		folder.addColor(obj, title)
 			.onChange(function(val){
-				if (typeof val !== "string"){
-					var closedColor = color;
-					for (var i = 0; i < closedColor.length; i++){
-						closedColor[i] = 1 - val[i]/255;
-					}		
-				}
+				if (typeof val === "string"){
+					val = hexToRgb(val);
+				} 
+				var closedColor = color;
+				for (var i = 0; i < closedColor.length; i++){
+					closedColor[i] = 1 - val[i]/255;
+				}		
 			});
 	}
 

@@ -4,7 +4,9 @@ define(["Tone/effect/JCReverb", "Tone/core/Bus", "interface/GUI",
 
 	//reverb
 	if (!Config.MOBILE){
-		var reverb = new Reverb();
+		var reverb = new Reverb({
+			"roomSize" : 0.55
+		});
 		reverb.receive("reverb");
 		reverb.toMaster();
 

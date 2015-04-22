@@ -72,17 +72,17 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.bDistance = 6;
+		this.bDistance = 5;
 
 		/**
 		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 9;
+		this.cDistance = 7;
 
 		/**
 		 *  the distance you have to scroll to arrive at the end
 		 */
-		this.endDistance = 18;
+		this.endDistance = 12;
 
 		/** 
 		 *  The movement of the piece A, B, or C
@@ -209,11 +209,11 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	Conductor.prototype.updateSection = function(time) {
 		//set the measures
 		if (!Config.MOBILE){
-			if (Scroll.getDistance() > this.bDistance && this.movement !== 1){
+			if (Scroll.getDistance() > this.bDistance && this.movement === 0){
 				this._BStart(time);
 				this.setLoopStartSection();
 				this.setLoopEnd(this.currentSection);
-			} if (Scroll.getDistance() > this.cDistance && this.movement !== 2){
+			} if (Scroll.getDistance() > this.cDistance && this.movement === 1){
 				this._CStart(time);
 				this.setLoopStartSection();
 				this.setLoopEnd(this.currentSection);
@@ -382,18 +382,26 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	var transitionDistance = 1.5;
 
 	Conductor.prototype.getBTransitionProgress = function(){
-		var bDiff = this.bDistance - Scroll.getDistance();
-		if (bDiff < transitionDistance){
-			return TERP.map(bDiff, transitionDistance, 0, 0, 1);
+		if (!Config.MOBILE){
+			var bDiff = this.bDistance - Scroll.getDistance();
+			if (bDiff < transitionDistance){
+				return TERP.map(bDiff, transitionDistance, 0, 0, 1);
+			} else {
+				return 0;
+			}
 		} else {
 			return 0;
 		}
 	};
 
 	Conductor.prototype.getEndTransitionProgress = function(){
-		var endDiff = this.endDistance - Scroll.getDistance();
-		if (endDiff < transitionDistance * 2){
-			return TERP.map(endDiff, transitionDistance * 2, 0, 0, 1);
+		if (!Config.MOBILE){
+			var endDiff = this.endDistance - Scroll.getDistance();
+			if (endDiff < transitionDistance * 2){
+				return TERP.map(endDiff, transitionDistance * 2, 0, 0, 1);
+			} else {
+				return 0;
+			}
 		} else {
 			return 0;
 		}

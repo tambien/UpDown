@@ -34,13 +34,13 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.camera.position.setZ(-100);
 		this.camera.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
 
-		/*this.scene.add( new THREE.AmbientLight( 0x222222 ) );
+		this.scene.add( new THREE.AmbientLight( 0x222222 ) );
 		this.light = new THREE.PointLight( 0xffffff );
 		this.light.position.setX(-100);
 		this.light.position.setY(-100);
 		this.light.position.setZ(-100);
 		this.light.lookAt(new THREE.Vector3 (0.0, 0.0, 0.0));
-		this.scene.add( this.light );*/
+		this.scene.add( this.light );
 
 		//the stats
 		if (Config.STATS){
@@ -73,7 +73,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 
 		//drawing setup
 		this.transparent = true;
-		this.opacity = 0.7;
+		this.opacity = 0.5;
 		if (Config.MOBILE){
 			this.blending = THREE.NormalBlending;
 		} else {
@@ -100,7 +100,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 			this.tween.stop();
 		}
 		var self = this;
-		this.tween = new TWEEN.Tween({rotation : this.background.rotation.z})
+		/*this.tween = new TWEEN.Tween({rotation : this.background.rotation.z})
 			.to({rotation : Math.PI * (1 - half)}, 1000)
 			.onUpdate(function(){
 				self.background.rotation.z = this.rotation;
@@ -112,7 +112,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 				Mediator.send("flipped", half);
 			})
 			.easing( TWEEN.Easing.Quadratic.InOut)
-			.start();
+			.start();*/
 	};
 
 	Context.prototype.resize = function(width, height){
@@ -125,14 +125,14 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 	};
 
 	Context.prototype.fadeIn = function(){
-		$(this.renderer.domElement).css("opacity", 1);
+		this.$rendererElement.css("opacity", 1);
 	};
 
 	Context.prototype.fadeOut = function(){
 		if (Conductor.getMovement() === 2) {
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
-				var opacity = Math.pow(1 - endTransition, 2);
+				var opacity = Math.pow(1 - endTransition, 1.5);
 				this.$rendererElement.css("opacity", opacity);
 			} 
 		}

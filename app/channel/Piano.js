@@ -17,7 +17,7 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 	var volume = monoSynth.context.createGain();
 
 	if (!Config.MOBILE){
-		var ampLFO = new LFO({
+		/*var ampLFO = new LFO({
 			"frequency": "8t", 
 			"min": 1, 
 			"max" : 0
@@ -32,7 +32,7 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 					ampLFO.amplitude.value = progress;
 				}
 			} 
-		});
+		});*/
 	}
 
 	var vibrato = new LFO("32n", -40, 40);

@@ -10,6 +10,11 @@ $blue : #1040FF;
 $green : #00ED00;
 $red : #F010FF;
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 $ScrollIndicatorWidth: 20px;
 
 #Container {
@@ -25,10 +30,9 @@ $ScrollIndicatorWidth: 20px;
 
 	canvas {
 		opacity: 0;
-		$scaling : 1;
-		width: 100%/$scaling!important;
-		height: 100%/$scaling!important;
-		transform: scale($scaling);
+		width: 100%!important;
+		height: 100%!important;
+		/*transform: scale($scaling);
   		transform-origin: 0 0;
   		-webkit-transform: scale($scaling);
   		-webkit-transform-origin: 0 0;
@@ -37,7 +41,17 @@ $ScrollIndicatorWidth: 20px;
 		transition: opacity 0.25s;
 		-webkit-transition: opacity 0.25s;
 		-moz-transition: opacity 0.25s;
-		-o-transition: opacity 0.25s;
+		-o-transition: opacity 0.25s;*/
+	}
+
+	#CoverAll {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		top: 0px;
+		left: 0px;
+		opacity: 0;
 	}
 }
 
@@ -290,7 +304,8 @@ $ScrollIndicatorWidth: 20px;
 		overflow-y : scroll;
 
 		#Scroller {
-			height: 100000px;
+			/*height: 100000px;*/
+			height: 100%;
 			width: 100%;
 		}
 	}
@@ -325,6 +340,26 @@ $ScrollIndicatorWidth: 20px;
 
 		#Indicator.Dragging {
 			background-color: black;	
+		}
+	}
+}
+
+#ScrollContainer.B {
+
+	#Channel {
+		background-color: black;
+		/*border-left: 1px dotted black;*/
+
+		#Indicator {
+			background-color: white;
+		}
+
+		#Indicator:hover {
+			background-color: $green;
+		}
+
+		#Indicator.Dragging {
+			background-color: $red;	
 		}
 	}
 }
@@ -383,4 +418,105 @@ $ScrollIndicatorWidth: 20px;
 	font-weight: bold;
 	font-size: 24px;
 	line-height: 48px;
+}
+
+$notificationHeight : 70px;
+
+#Notification {
+	$margin : 10px;
+	width: calc(100% - #{$margin} * 2);
+	height: $notificationHeight;
+	line-height: $notificationHeight;
+	position: absolute;
+	top: $margin;
+	left: $margin;
+	background-color: $blue;
+	@include fontFamily;
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	opacity: 0;
+}
+
+.Mobile #Notification {
+	top: calc(100% - 10px - #{$notificationHeight});
+	font-size: 14px;
+	line-height: $notificationHeight / 2;
+}
+
+#InfoContainer {
+	$size : 40px;
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	background-color: $blue;
+	width: $size;
+	height: $size;
+	border-radius: 2px;
+	line-height: $size;
+	text-align: center;
+	color: white;
+	@include fontFamily;
+	font-size: 20px;
+	z-index: 101;
+	transition: width 0.25s, height 0.25s;
+	-webkit-transition: width 0.25s, height 0.25s;
+	-moz-transition: width 0.25s, height 0.25s;
+	-o-transition: width 0.25s, height 0.25s;
+
+	#Credits {
+		position: absolute;
+		top: 10%;
+		left: 10%;
+		width: 80%;
+		height: 80%;
+		opacity: 0;
+		text-align: left;
+		color: white;
+		transition: opacity 0.25s;
+		-webkit-transition: opacity 0.25s;
+		-moz-transition: opacity 0.25s;
+		-o-transition: opacity 0.25s;
+
+		a {
+			font-weight: 900;
+			text-decoration: none;
+			color: white;
+		}
+	}
+
+	#InfoButton {
+		width: $size;
+		height: $size;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		z-index: 100;
+		cursor: pointer;
+	}
+
+	#InfoButton:hover {
+		background-color: $green;
+		color: $blue;
+	}
+}
+
+.Mobile #InfoContainer {
+	top: 15px!important;
+
+	#Credits {
+		font-size: 14px;
+	}
+}
+
+#InfoContainer.Expanded {
+	$margin : 15px;
+	width: calc(100% - #{$margin} * 2);
+	height: calc(100% - #{$margin} * 2);
+	opacity: 0.85;
+	cursor: inherit;
+
+	#Credits {
+		opacity: 1;
+	}
 }

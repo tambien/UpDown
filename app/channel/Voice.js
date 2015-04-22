@@ -9,7 +9,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 	var volume = new Volume().toMaster();
 
-	var samplerA = new PolySynth(2, Sampler, {
+	var samplerA = new PolySynth(1, Sampler, {
 		"A" : {
 			"down" : {
 				"some" : audioFolder+"down/some.mp3",
@@ -36,7 +36,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		}
 	}).connect(volume);
 
-	var samplerB = new PolySynth(2, Sampler, {
+	var samplerB = new PolySynth(1, Sampler, {
 		"B" : {
 			"down" : {
 				"some" : audioFolder+"B/G/some.mp3",

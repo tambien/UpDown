@@ -1,6 +1,6 @@
 define(["channel/HighHat", "controller/Conductor", "controller/Mediator", 
-	"channel/Kick", "channel/Snare", "TERP"], 
-function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
+	"channel/Kick", "channel/Snare", "TERP", "Tone/core/Note", "Tone/core/Tone"], 
+function(HighHat, Conductor, Mediator, Kick, Snare, TERP, Note, Tone){
 
 	//generate highhat patterns
 	var highhat = [];
@@ -158,6 +158,11 @@ function(HighHat, Conductor, Mediator, Kick, Snare, TERP){
 		["22:1:2"], ["22:3"], 
 		["23:1:2"], ["23:3"], 
 	];
+
+	//convert the kick notes to frequencies
+	for (var i = 0; i < kick.length; i++){
+		kick[i][1] = Tone.prototype.noteToFrequency(kick[i][1]);
+	}
 
 	Conductor.parseScore(highhat, function(time, note, chordName){
 		if (Conductor.hasHH()){
