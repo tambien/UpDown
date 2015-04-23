@@ -2,14 +2,14 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 
 	return new Interpolator([
 		{
-			"ampEnv": {
-				"decay": 0.27
-			}
+			"decay": 0.27,
+			"startMult": 11,
+			"attack": 0.02
 		},
 		{
-			"ampEnv": {
-				"decay": 4.4
-			}
+			"decay": 4.4,
+			"startMult": 8,
+			"attack": 0.08
 		}
 	], "Kick Sound", GUI);
 });

@@ -25,7 +25,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
 		depthTest : true,
-		color : 0xdddddd
+		color : 0xffffff
 	});
 
 	//make the frame canvas
@@ -113,7 +113,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.scrollMultipler = 100;
 		this.previousPosition = 0.5;
 		this.pictureCount = 3;
-		this.distance = 1.4;
+		this.distance = 1.2;
 		this.modDistance = this.distance * this.pictureCount;
 
 		this.makePictures();
@@ -135,11 +135,11 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.picDist = scale * pictureCount * 0.8;
 		var increment = this.previousPosition * this.scrollMultipler;
 		//original 3590 × 3615 pixels 1.006
-		var picScale = 0.9;
-		var frameScaleX = 1 / picScale;
 		var frameTopMargin = 0.55;
 		var frameWidth = 0.1;
-		var frameLeftMargin = 0.562 * picScale;
+		var picScale = 1 - frameWidth * 2;
+		var frameScaleX = 1 + frameWidth * 2;
+		var frameLeftMargin = 0.55;
 		for(var i = 0; i < pictureCount; i++){
 			var pic = new THREE.Sprite(material);
 			//make the frame
@@ -229,11 +229,11 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		var picOo = "./images/"+level+"_o.png";
 		var picDow = "./images/"+level+"_d.png";
 		var picOwn = "./images/"+level+"_w.png";
-		// var picC =  "./images/test_18.png";
-		// var picO =  "./images/test_18.png";
-		// var picOo =  "./images/test_18.png";
-		// var picDow = "./images/test_18.png";
-		// var picOwn = "./images/test_18.png";
+		/*var picC =  "./images/X1_0001.png";
+		var picO =  "./images/X1_0001.png";
+		var picOo =  "./images/X1_0001.png";
+		var picDow = "./images/X1_0001.png";
+		var picOwn = "./images/X1_0001.png";*/
 		this.loader.load(picC, onLoad(0));
 		this.loader.load(picO, onLoad(1));
 		this.loader.load(picOo, onLoad(2));

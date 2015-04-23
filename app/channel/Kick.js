@@ -12,10 +12,10 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 		"ratio": 4
 	});*/
 
-/*	var filter = new Filter({
+	/*var filter = new Filter({
 		"type" : "highpass",
 		"frequency": 40,
-		"Q": 16
+		"Q": 4
 	});*/
 
 	//oscillator
@@ -57,7 +57,11 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 	
 	return {
 		triggerAttackRelease : function(duration, time, freq){
-			Preset.update(ampEnv.set.bind(ampEnv));
+			Preset.update(function(pre){
+				ampEnv.decay = pre.decay;
+				kickFreqEnv.startMult = pre.startMult;
+				kickFreqEnv.attack = pre.attack;
+			});
 			ampEnv.triggerAttack(time);
 			//the frequency ramp
 			// var freq = oscillator.noteToFrequency(note);

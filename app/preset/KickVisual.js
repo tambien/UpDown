@@ -3,11 +3,11 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 	return new Interpolator(
 	[
 		{
-			"width": 0.1,
+			"width": 0.3,
 			"color": [
-				0.5196078431372549,
-				0.5196078431372549,
-				0.5196078431372549
+				0.800557477893118,
+				0.18627450980392157,
+				0.547617432209331
 			]
 		},
 		{

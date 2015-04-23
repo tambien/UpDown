@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UP/DOWN info</title>
+</head>
+<body>
+	<style type="text/css">
+		body {
+			background-color: #1040FF;
+			font-family: "Courier New", monospace;
+		}
+
+		a {
+			font-weight: 900;
+			text-decoration: none;
+			color: white;
+		}
+		a:hover {
+			color: #00ED00;
+		}
+		a:hover:active {
+			color: #F010FF;
+		}
+
+		#Container {
+			width: 700px;
+			height: auto;
+			margin: auto;
+			margin-top: 40px;
+			color: white;
+			font-size: 18px;
+			margin-bottom: 100px;
+		}
+
+		img {
+			width: 300px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			margin-left: 200px;
+		}
+
+	</style>
+	<div id="Container">
+		<div>
+			Up/Down is an interactive song that requires your input to play. The music is created collaboratively between the composer and the listener and will be different every time you hear it. 
+		</div>
+		<h3>Music</h3>
+		<div>
+			Interactive Music is a very different way of conceiving and producing music. Unlike a typical song which is fixed along a timeline, Up/Down does not have a timeline. It is a potentially endless song. Instruments, effects, tempo, chords and sections respond to the distance and direction of your scrolling. 
+			<br><br>
+			The most immediate change based on the scroll position is the tempo of the song. At the top of the page the tempo is 130 bpm and 65 bpm at the bottom. Because different tempos have very different feels, the arrangement of the song also changes with the tempo. At the bottom of the page, the song has a laid-back triplet groove, and at the top of the page, the song is a driving four on the floor.
+			<br><br>
+			Similarly, the sounds of instruments and effects are interpolated based on the scrolling position. For example the kick drum has two preset points position at the top and the bottom of the page. As listeners scroll towards the bottom, the attack and decay slow down and the pitch lowers until it reaches the bottom preset. The technique is similar to defining tween anchors in animation. 
+			<br><br>
+			The chord progression presented a different challenge. Unlike the preset interpolation used for the timbres of the synths and effects, chord progressions have a directionality to them and need to feel like they're always moving forward. The solution to this was using a <a target="_blank" href="http://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> which descibes how chords can transition based on the current chord and the position of the scroll. Below is Up/Down's chord chart: 
+			<img src="./images/UpDownChords.png">
+			<br><br>
+			When a listener is resting at a specific scroll position (normalized as a value between 0-1) the chords will alternate on the two chords at that strata. When the user transitions to the next section, it will follow the flow of the graph. 
+		</div>
+
+		<h3>Technology</h3>
+		<div>
+			Everything you hear is generated live. The only sample is the voice which is pre-recorded but triggered and effected in real-time. This is very different from an "interactive music video" which uses a fixed mp3 for the music and generates the visuals live. Up/Down is created entirely in the browser. The sounds are synthesized and the effects are applied in real-time. This is made possible with a recent browser technology called the <a href="http://webaudio.github.io/web-audio-api/">Web Audio API</a>. Since it's still under active development, different browsers sound and perform differently from one another. Up/Down uses a library for arranging and generating music using the Web Audio API called <a href="http://tonejs.org" target="_blank">Tone.js</a>.
+		</div>
+
+		<h3>Visuals</h3>
+		<div>
+			To go along with the scrolling interaction, the images in the center are meant to parody a social news feed. As the user scrolls up, the eyes and head turn to look up, and they look down as the user scrolls down. 
+			<br><br>
+			The visuals follow the music closely and apply a few of the same techniques. Each instrument has a corresponding visual element which is triggered along with that instrument. The colors, sizes and animation speeds are interpolated in a similar way to the effects using preset interpolation. 
+			<br><br>
+			The visuals were programmed using <a href="http://threejs.org" target="_blank">three.js</a>. The color blending was created with a simple custom shader to create unique color combinations where shapes overlap. 
+		</div>
+
+		<h3>Interaction</h3>
+		<div>
+			We chose scrolling as the interface with the music because of how ingrained scrolling has become in all our digital interactions. Scrolling is usually the first thing you do on a website, and for many websites, it is the only thing you do. The idea was to apply this sedate interaction towards something more expressive and active. 
+			<br><br>
+			We spend so much of our time passively sliding through feeds of information. To quantify this, we have created a separate but related project called <a href="http://scroll-o-meter.club" target="_blank">Scroll-O-Meter</a> which is a sort Fitbit for your online life, measuring how many miles you've scrolled.
+		</div>
+
+		<!-- <h3>Interactive Music</h3>
+		<div>
+			Up/Down is just one example of the possibilities which are opened up when you create music interactively with the listener. As the technology and techniques mature, the barrier of entry will become lower and the 
+		</div> -->
+
+	</div>
+</body>
+</html>

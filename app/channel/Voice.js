@@ -84,6 +84,14 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 	samplerB.volume.value = -4;
 
+	//repitch the sampler for the C section
+	Mediator.route("replay", function(){
+		for (var i = 0; i < samplerB.voices.length; i++){
+			samplerB.voices[i].pitch = 0;
+		}
+		samplerB.volume.value = -4;
+	});
+
 	// SETUP //
 
 	//set special loop points for the somes

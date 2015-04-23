@@ -53,9 +53,16 @@ define(["jquery", "controller/Mediator", "util/Config", "Tone/core/Tone"], funct
 	});
 
 	Mediator.route("end", function(){
+		transportStarted = false;
 		startButton.fadeTo(500, 0, function(){
 			startButton.remove();
 		});
+	});
+
+	Mediator.route("replay", function(){
+		Mediator.send("start");
+		startButton.appendTo("body");
+		startButton.fadeTo(500, 1);
 	});
 
 	startButton.one("mousedown touchstart", function(e){

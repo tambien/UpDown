@@ -62,10 +62,10 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.scene.add(this.layer0);
 
 		//listen for events
-		Mediator.route("half", this.flipCamera.bind(this));
+		// Mediator.route("half", this.flipCamera.bind(this));
 		Mediator.route("update", this.animate.bind(this));
 		Mediator.route("start", this.fadeIn.bind(this));
-		Mediator.route("scroll", this.fadeOut.bind(this));
+		Mediator.route("end", this.fadeOut.bind(this));
 		Window.resize(this.resize.bind(this));
 
 		this.computeBounding();
@@ -125,17 +125,23 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 	};
 
 	Context.prototype.fadeIn = function(){
-		this.$rendererElement.css("opacity", 1);
+		this.$rendererElement.animate({
+			"opacity" : 1
+		}, 500);
 	};
 
 	Context.prototype.fadeOut = function(){
-		if (Conductor.getMovement() === 2) {
+		// var opacity = Math.pow(1 - endTransition, 1.5);
+		/*this.$rendererElement.animate({
+			"opacity" : 0
+		}, 1000);*/
+		/*if (Conductor.getMovement() === 2) {
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
-				var opacity = Math.pow(1 - endTransition, 1.5);
-				this.$rendererElement.css("opacity", opacity);
+				// var opacity = Math.pow(1 - endTransition, 1.5);
+				// this.$rendererElement.css("opacity", opacity);
 			} 
-		}
+		}*/
 	};
 
 	Context.prototype.animate = function(time) {

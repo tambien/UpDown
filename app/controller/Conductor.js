@@ -72,17 +72,17 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.bDistance = 5;
+		this.bDistance = 4;
 
 		/**
 		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 7;
+		this.cDistance = 5.5;
 
 		/**
 		 *  the distance you have to scroll to arrive at the end
 		 */
-		this.endDistance = 12;
+		this.endDistance = 8;
 
 		/** 
 		 *  The movement of the piece A, B, or C
@@ -102,6 +102,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		Mediator.route("scroll", this.setTempo.bind(this));
 		Mediator.route("firstScroll", this.start.bind(this));
 		Mediator.route("pause", this.pause.bind(this));
+		Mediator.route("replay", this.replay.bind(this));
 		Mediator.route("play", this.play.bind(this));
 		Mediator.route("end", this.end.bind(this));
 		Mediator.route("switchDirection", this.switchDirection.bind(this));
@@ -379,7 +380,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		} 
 	};
 
-	var transitionDistance = 1.5;
+	var transitionDistance = 0.75;
 
 	Conductor.prototype.getBTransitionProgress = function(){
 		if (!Config.MOBILE){
@@ -452,6 +453,18 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 
 	Conductor.prototype.end = function(){
 		Transport.stop();
+	};
+
+	Conductor.prototype.replay = function() {
+		this.movement = 0;
+		this.measure = 0;
+		this.nextSection = -1;
+		this.currentSection = -2;
+		this.chordNumber = -1;
+		this.chordName = "none!";
+		this.progress = 0.5;
+		this.voiceNumber = -1;
+		this.setTempo(this.progress, 0);
 	};
 
 	Conductor.prototype.isPaused = function(){

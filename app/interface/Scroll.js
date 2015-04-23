@@ -111,12 +111,14 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 			if (scrollTop <= 1){
 				scrollPosition = 1 - loopOffset;
 				lastPosition = (1 - scrollPosition) * scrollHeight;
+				Mediator.send("scrollEnd");
 				if (Config.MOBILE){
 					innerScroll.scrollTop(lastPosition);
 				}
 			} else if (scrollTop >= scrollHeight - pageHeight - 1){
 				scrollPosition = loopOffset;
 				lastPosition = (1 - scrollPosition) * scrollHeight;
+				Mediator.send("scrollEnd");
 				if (Config.MOBILE){
 					innerScroll.scrollTop(lastPosition - pageHeight);
 				}
@@ -131,6 +133,15 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 		setTimeout(function(){
 			started = true;
 		}, 100);
+	});
+
+	Mediator.route("replay", function(){
+		scrollTop = 0.5 * scrollHeight;
+		lastPosition = scrollTop;
+		scrollDistance = 0;
+		scrollPosition = 0.5;
+		Mediator.send("rawscroll", 0.5);
+		Mediator.send("scroll", 0.5);
 	});
 
 	return {

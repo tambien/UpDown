@@ -23,14 +23,14 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 			"length": 4
 		},
 		{
-			"minSpeed": 4200,
+			"minSpeed": 3000,
 			"color": [
 				0.06862745098039214,
 				0.06862745098039214,
 				0.06862745098039214
 			],
 			"width": 1.6,
-			"length": 9.6
+			"length": 8
 		}
 	], "Piano Visuals", GUI);
 });

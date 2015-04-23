@@ -11,7 +11,9 @@ require.config({
 		"Stats" : "../deps/Stats",
 		"requestAnimationFrame" : "../deps/requestAnimationFrame",
 		"dat" : "../deps/dat.gui",
-		"THREE" : "https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js"
+		"THREE" : "https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js",
+		"facebook": "//connect.facebook.net/en_US/sdk",
+		"fragment" : "../fragment"
 	},
 	shim : {
 		"dat" : {
@@ -25,6 +27,9 @@ require.config({
 		},
 		"THREE" : {
 			exports : "THREE"
+		},
+		"facebook" : {
+			exports : "FB"
 		}
 	}
 });
@@ -51,6 +56,10 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "util/Config", 
 			firstScroll = true;
 			Mediator.send("firstScroll");
 		}
+	});
+
+	Mediator.route("replay", function(){
+		firstScroll = false;
 	});
 
 	if (!Config.PASSWORD){

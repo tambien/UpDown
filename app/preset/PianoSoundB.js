@@ -38,13 +38,13 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"amount": 1.7
 			},
 			"envelope": {
-				"attack": 0.01,
+				"attack": 0.177,
 				"decay": 0.04,
 				"sustain": 0.59,
 				"release": 0.02
 			},
 			"filterEnvelope": {
-				"attack": 0.02,
+				"attack": 0.005,
 				"decay": 0.06,
 				"sustain": 0.21,
 				"release": 0.1,

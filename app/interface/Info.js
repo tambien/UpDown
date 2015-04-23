@@ -1,5 +1,6 @@
-define(["jquery", "controller/Mediator", "interface/Window", "controller/Analytics", "Tone/core/Master", "util/Config"], 
-function($, Mediator, Window, Analytics, Master, Config){
+define(["jquery", "controller/Mediator", "interface/Window", "controller/Analytics", 
+	"Tone/core/Master", "util/Config", "text!fragment/info.html", "text!fragment/infoDetail.html"], 
+function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag){
 
 	var expanded = false;
 
@@ -13,11 +14,11 @@ function($, Mediator, Window, Analytics, Master, Config){
 
 	var credits = $("<div>").attr("id", "Credits")
 		.appendTo(infoContainer)
-		.append("Up/Down is an interactive song by  <a href='http://yotammann.info'>Yotam Mann</a> with visual design "+
-				"by <a href='http://sarahrothberg.com'>Sarah Rothberg</a>.<br><br>"+
-				// "Everything you hear is generated live in the browser. No pre-recorded synths or effects.<br><br>"+ 
-				"Special thanks to Gabe Liberti for production help.<br><br>" +
-				"Up/Down was developed using <a href='http://tonejs.org'>Tone.js</a> and <a href='http://threejs.org'>Three.js</a><br><br>");
+		.append(infoFrag);
+
+	credits.find("#MoreInfo").on("click", function(){
+		Analytics.event("interface", "info", "moreinfo");
+	});
 
 	function infoClicked(e){
 		e.preventDefault();
@@ -30,6 +31,7 @@ function($, Mediator, Window, Analytics, Master, Config){
 
 	function expand(){
 		if (!expanded){
+			Analytics.event("interface", "info", "expanded");
 			infoButton.text("X");
 			expanded = true;
 			Master.mute();

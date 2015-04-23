@@ -46,4 +46,14 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 			"top" : top,
 		});
 	});
+
+	Mediator.route("scrollEnd", scrollFlash);
+	Mediator.route("firstScroll", scrollFlash);
+
+	function scrollFlash(){
+		scrollChannel.addClass("Highlight");
+		setTimeout(function(){
+			scrollChannel.removeClass("Highlight");
+		}, 100);
+	}
 });

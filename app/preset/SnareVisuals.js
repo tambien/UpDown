@@ -4,7 +4,7 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 	[
 		{
 			"decay": 230,
-			"width": 0.8,
+			"width": 0.7,
 			"color": [
 				0.800557477893118,
 				0.18627450980392157,

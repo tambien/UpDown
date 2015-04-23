@@ -3,13 +3,13 @@ define(["channel/Bass", "channel/Piano", "channel/Voice", "channel/HighHat", "ch
 function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 
 	var volumes = {
-		Bass : -10,
-		Piano : -32,
+		Bass : -11,
+		Piano : -35,
 		Voice : -2,
 		HH : -23,
-		Kick : -16,
-		Snare : -8,
-		Arp : -52
+		Kick : -18,
+		Snare : -13,
+		Arp : -53
 	};
 
 	Bass.volume.value = volumes.Bass;

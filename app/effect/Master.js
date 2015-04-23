@@ -35,7 +35,8 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
 				var volume = TERP.scale(endTransition, 0, -50, 2);
-				Master.volume.rampTo(volume, Config.SLOW_UPDATE);
+				// Master.volume.rampTo(volume, Config.SLOW_UPDATE);
+				Master.volume.value = volume;
 				//trigger the end of the song
 				if (endTransition >= 1){
 					Mediator.send("end");
@@ -43,6 +44,10 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 			} 
 		}
 
+	});
+
+	Mediator.route("replay", function(){
+		Master.volume.value = 0;
 	});
 
 	Mediator.route("pause", function(){

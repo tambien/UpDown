@@ -69,6 +69,10 @@ function(MonoSynth, Master, Filter, PresetA, PresetB, Conductor, GUI,
 				}
 			} 
 		});
+
+		Mediator.route("replay", function(){
+			ampLFO.amplitude.value = 0;
+		});
 	}
 
 		

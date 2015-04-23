@@ -65,7 +65,8 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 			});
 			//random pan
 			pan = TERP.scale(pan, 0.2, 0.8);
-			panner.pan.rampTo(pan, 0.01);
+			// panner.pan.rampTo(pan, 0.01);
+			panner.pan.value = pan;
 			synth.triggerAttack(time, velocity);
 		},
 		volume : synth.volume
