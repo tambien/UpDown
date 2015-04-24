@@ -452,6 +452,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	};
 
 	Conductor.prototype.end = function(){
+		this.movement = 3;
 		Transport.stop();
 	};
 

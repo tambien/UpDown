@@ -34,7 +34,6 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 			Analytics.event("interface", "info", "expanded");
 			infoButton.text("X");
 			expanded = true;
-			Master.mute();
 			infoContainer.addClass("Expanded");	
 		}
 	}
@@ -43,7 +42,6 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 		if (expanded){
 			infoButton.text("?");
 			expanded = false;
-			Master.unmute();
 			infoContainer.removeClass("Expanded");	
 		}
 	}

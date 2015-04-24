@@ -13,7 +13,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		this.renderer = new THREE.WebGLRenderer({
 			precision : "lowp",
 			alpha : false,
-			premultipliedAlpha: false,
+			premultipliedAlpha: true,
 			stencil : false,
 		});
 		this.renderer.autoClearStencil = false;

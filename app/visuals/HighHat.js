@@ -79,7 +79,7 @@ define(["visuals/Context", "controller/Mediator", "interface/Window",
 			})
 			.easing( TWEEN.Easing.Linear.None);
 		var attack = new TWEEN.Tween({scale : 0})
-			.to({scale : scale}, 100)
+			.to({scale : scale}, scale * 20)
 			.onUpdate(function(){
 				object.scale.set(this.scale/horizontalScale, this.scale, this.scale);
 			})

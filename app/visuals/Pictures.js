@@ -12,6 +12,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	texture.minFilter = THREE.NearestMipMapNearestFilter;*/
 
 	var blending = "SubtractiveBlending";
+	// var blending = "CustomBlending";
 	if (Config.MOBILE){
 		blending = "NormalBlending";
 	}
@@ -25,8 +26,11 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
 		depthTest : true,
+		alphaTest : 0.1,
 		color : 0xffffff
 	});
+
+	window.material = material;
 
 	//make the frame canvas
 
@@ -180,6 +184,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.pictures.scale.set(this.scale, this.scale, 1);
 		//and make the frames
 		Context.layer2.add(this.pictures);
+		this.scroll(0.5);
 	};
 
 	Pictures.prototype.resize = function(){
@@ -187,6 +192,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	};
 
 	Pictures.prototype.scroll = function(position) {
+		position += 0.00515;
 		//load the level
 		var level = Math.round(Scroll.getDirectionPosition() * 13);
 		if (this.level !== level){
@@ -229,11 +235,11 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		var picOo = "./images/"+level+"_o.png";
 		var picDow = "./images/"+level+"_d.png";
 		var picOwn = "./images/"+level+"_w.png";
-		/*var picC =  "./images/X1_0001.png";
-		var picO =  "./images/X1_0001.png";
-		var picOo =  "./images/X1_0001.png";
-		var picDow = "./images/X1_0001.png";
-		var picOwn = "./images/X1_0001.png";*/
+		// var picC =  "./images/X1_0002.png";
+		// var picO =  "./images/X1_0002.png";
+		// var picOo =  "./images/X1_0002.png";
+		// var picDow = "./images/X1_0002.png";
+		// var picOwn = "./images/X1_0002.png";
 		this.loader.load(picC, onLoad(0));
 		this.loader.load(picO, onLoad(1));
 		this.loader.load(picOo, onLoad(2));

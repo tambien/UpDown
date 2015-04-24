@@ -146,7 +146,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 	// EFFECTS //
 
 	var effectLevels = {
-		"reverb" : -10,
+		"reverb" : -6,
 		"delay" : -10
 	};
 

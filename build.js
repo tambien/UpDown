@@ -14,7 +14,8 @@
 		"Stats" : "../deps/Stats",
 		"requestAnimationFrame" : "../deps/requestAnimationFrame",
 		"dat" : "../deps/dat.gui",
-		"THREE" : "../deps/three.min"
+		"THREE" : "../deps/three.min",
+		"fragment" : "../fragment"
 	},
 	"shim" : {
 		"dat" : {

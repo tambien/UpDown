@@ -7,7 +7,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			"attack": 0.02
 		},
 		{
-			"decay": 4.4,
+			"decay": 2.4,
 			"startMult": 8,
 			"attack": 0.08
 		}
