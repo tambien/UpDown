@@ -14,7 +14,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 	var SnareVisuals = function(){
 
 		var objectScale = new THREE.Vector3(width, -Context.height, 1);
-		var objectPosition = -(Context.pictureWidth / 2 + 2 * Context.sidebarWidth / 3) + 1;
+		var objectPosition = -Context.width;
 		this.object = new THREE.Mesh( geometry, SnareMaterial);
 		Context.background.add(this.object);
 		this.object.scale.set(objectScale.x, objectScale.y, 1);
@@ -56,6 +56,7 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 			.chain(this.tween)
 			.start();
 		if (!this.onscreen){
+			this.resize();
 			this.onscreen = true;
 			var obj = this.object;
 			var tween = new TWEEN.Tween({width : 0.001})

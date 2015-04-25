@@ -85,13 +85,13 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 		//trigger the attack
 		monoSynth.set({
 			"envelope" : {
-				"release" : 2,
+				"release" : "4n"
 			},
 			"filterEnvelope" : {
 				"min" : 200,
 				"max" : 2500,
 				"sustain" : 0.4,
-				"release" : 2
+				"release" : "4n"
 			}
 		});
 		monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"]);
@@ -121,12 +121,12 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 					monoSynth.output.gain.setValueAtTime(0, time);
 					monoSynth.output.gain.linearRampToValueAtTime(1, time + 0.1);
 				}
-				monoSynth.set(pre, Config.SLOW_UPDATE);
-				if (pre.oscillator.type === "pwm"){
+				monoSynth.set(pre);
+				/*if (pre.oscillator.type === "pwm"){
 					monoSynth.set({
 						"modulationFrequency" : 0.7
 					});
-				}
+				}*/
 				vibratoParams = pre.vibrato;
 				velocity = pre.velocity;
 			});

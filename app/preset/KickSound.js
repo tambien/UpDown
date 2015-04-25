@@ -3,8 +3,8 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 	return new Interpolator([
 		{
 			"decay": 0.27,
-			"startMult": 11,
-			"attack": 0.02
+			"startMult": 10,
+			"attack": 0.01
 		},
 		{
 			"decay": 2.4,

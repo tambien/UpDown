@@ -5,7 +5,7 @@ function(MonoSynth, Master, Filter, PresetA, PresetB, Conductor, GUI,
 	Compressor, LFO, Expr, Oscillator, Mediator, Config){
 
 	var filter = new Filter({
-		"frequency": "G3",
+		"frequency": 300,
 		"type": "lowpass",
 		"Q": 1.5
 	});

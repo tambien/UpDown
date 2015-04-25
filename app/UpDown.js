@@ -12,7 +12,7 @@ require.config({
 		"requestAnimationFrame" : "../deps/requestAnimationFrame",
 		"dat" : "../deps/dat.gui",
 		"THREE" : "https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js",
-		"facebook": "//connect.facebook.net/en_US/sdk",
+		// "facebook": "//connect.facebook.net/en_US/sdk",
 		"fragment" : "../fragment"
 	},
 	shim : {

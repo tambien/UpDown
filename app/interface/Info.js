@@ -20,6 +20,28 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 		Analytics.event("interface", "info", "moreinfo");
 	});
 
+	var fbook = $("<div>").addClass("icon-facebook-squared social")
+		.attr("id", "Facebook")
+		.appendTo(credits)
+		.on("click", function(e){
+			e.preventDefault();
+			Analytics.event("interface", "social", "facebook");
+			window.open("https://www.facebook.com/dialog/share?"+
+				"app_id=825781467502888"+
+				"&display=popup"+
+				"&href=http%3A%2F%2Fjazz.computer%2F"+
+				"&redirect_uri=http%3A%2F%2Fjazz.computer%2F", 'facebookwindow', 'height=260, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+		});
+
+	var twitter = $("<div>").addClass("icon-twitter-squared social")
+		.attr("id", "Twitter")
+		.appendTo(credits)
+		.on("click", function(e){
+			e.preventDefault();
+			Analytics.event("interface", "social", "twitter");
+			window.open('http://twitter.com/share?url=' + "http://jazz.computer", 'twitterwindow', 'height=260, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+		});
+
 	function infoClicked(e){
 		e.preventDefault();
 		if (expanded){

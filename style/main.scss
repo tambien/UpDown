@@ -374,7 +374,7 @@ $ScrollIndicatorWidth: 20px;
 	color: #aaaaaa;
 	position: absolute;
 	left: 10px;
-	bottom: 10px;
+	bottom: 100px;
 }
 
 #FrameContainer {
@@ -532,6 +532,35 @@ $notificationHeight : 70px;
 
 	#Credits {
 		opacity: 1;
+
+		.social {
+			/*@include translate(-50%, -50%);*/
+			position: relative;
+			margin-right: 10px;
+			/*top: 60%;*/
+			height: 50px;
+			width: 50px;
+			font-size: 50px;
+			color: $red;
+			cursor: pointer;
+			text-align: left;
+			float: left;
+		}
+
+		.social:hover {
+			color: $green;
+		}
+
+		.social:hover:active {
+			color: white;
+		}
+
+		/*#Facebook {
+			maring-left: 33%;
+		}
+		#Twitter {
+			left: 66%;
+		}*/
 	}
 }
 
@@ -548,32 +577,6 @@ $notificationHeight : 70px;
 	-webkit-transition: opacity 0.9s;
 	-moz-transition: opacity 0.9s;
 	-o-transition: opacity 0.9s;
-
-	.social {
-		@include translate(-50%, -50%);
-		position: absolute;
-		top: 60%;
-		height: 50px;
-		width: 50px;
-		font-size: 50px;
-		color: $red;
-		cursor: pointer;
-	}
-
-	.social:hover {
-		color: $green;
-	}
-
-	.social:hover:active {
-		color: black;
-	}
-
-	#Facebook {
-		left: 33%;
-	}
-	#Twitter {
-		left: 66%;
-	}
 
 	#Replay {
 		@include translate(-50%, -50%);

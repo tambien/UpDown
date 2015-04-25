@@ -5,11 +5,12 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 	var compressor = new Compressor({
 		"attack" : 0.6,
 		"release" : 0.01,
-		"threshold" : -10,
-		"ratio" : 3.5,
-		"knee" : 4
+		"threshold" : -8,
+		"ratio" : 3.3,
+		"knee" : 8
 	});
 	var filter = new Filter(20000, "lowpass");
+	filter.Q.value = 0;
 	filter.connect(compressor);
 
 	//master send/recv
@@ -34,14 +35,9 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 		} else if (movement === 2) {
 			var endTransition = Conductor.getEndTransitionProgress();
 			if (endTransition > 0){
-				var volume = TERP.scale(endTransition, 0, -50, 2);
-				// Master.volume.rampTo(volume, Config.SLOW_UPDATE);
-				Master.volume.value = volume;
-				//trigger the end of the song
-				if (endTransition >= 1){
-					Mediator.send("end");
-				}
-			} 
+				var endFilterFreq = TERP.scale(endTransition, 20000, 350, 0.5);
+				filter.frequency.value = endFilterFreq;
+			}
 		}
 
 	});

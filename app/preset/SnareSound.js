@@ -1,16 +1,17 @@
 define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GUI){
 
-	return new Interpolator([
+	return new Interpolator(
+	[
 		{
 			"ampEnv": {
-				"attack": 0.0007,
+				"attack": 0.00083,
 				"decay": 0.0572
 			}
 		},
 		{
 			"ampEnv": {
-				"attack": 0.02,
-				"decay": 0.108
+				"attack": 0.005,
+				"decay": 0.37
 			}
 		}
 	], "Snare Preset", GUI);

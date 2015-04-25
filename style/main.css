@@ -280,7 +280,7 @@ html, body {
   color: #aaaaaa;
   position: absolute;
   left: 10px;
-  bottom: 10px; }
+  bottom: 100px; }
 
 #FrameContainer {
   position: absolute;
@@ -399,7 +399,29 @@ html, body {
   opacity: 0.85;
   cursor: inherit; }
   #InfoContainer.Expanded #Credits {
-    opacity: 1; }
+    opacity: 1;
+    /*#Facebook {
+    	maring-left: 33%;
+    }
+    #Twitter {
+    	left: 66%;
+    }*/ }
+    #InfoContainer.Expanded #Credits .social {
+      /*@include translate(-50%, -50%);*/
+      position: relative;
+      margin-right: 10px;
+      /*top: 60%;*/
+      height: 50px;
+      width: 50px;
+      font-size: 50px;
+      color: #F010FF;
+      cursor: pointer;
+      text-align: left;
+      float: left; }
+    #InfoContainer.Expanded #Credits .social:hover {
+      color: #00ED00; }
+    #InfoContainer.Expanded #Credits .social:hover:active {
+      color: white; }
 
 #End {
   width: 100%;
@@ -414,26 +436,6 @@ html, body {
   -webkit-transition: opacity 0.9s;
   -moz-transition: opacity 0.9s;
   -o-transition: opacity 0.9s; }
-  #End .social {
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    -o-transform: translate3d(-50%, -50%, 0);
-    position: absolute;
-    top: 60%;
-    height: 50px;
-    width: 50px;
-    font-size: 50px;
-    color: #F010FF;
-    cursor: pointer; }
-  #End .social:hover {
-    color: #00ED00; }
-  #End .social:hover:active {
-    color: black; }
-  #End #Facebook {
-    left: 33%; }
-  #End #Twitter {
-    left: 66%; }
   #End #Replay {
     transform: translate3d(-50%, -50%, 0);
     -webkit-transform: translate3d(-50%, -50%, 0);

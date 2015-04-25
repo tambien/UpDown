@@ -38,6 +38,8 @@ function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor){
 		}
 	}
 
+	var velocity = 1;
+
 
 	return {
 		triggerAttackRelease : function(note, duration, time){
@@ -49,10 +51,11 @@ function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor){
 					Preset = PresetA;
 				}
 				Preset.update(function(preset){
+					velocity = preset.velocity;
 					monoSynth.set(preset.synth);
 				});
 				//add some randomness in the duration
-				monoSynth.triggerAttackRelease(note, duration, time);
+				monoSynth.triggerAttackRelease(note, duration, time, velocity);
 			}
 		},
 		volume : volume

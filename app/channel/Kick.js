@@ -14,7 +14,7 @@ function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filte
 
 	var filter = new Filter({
 		"type" : "highpass",
-		"frequency": 65,
+		"frequency": 50,
 		"Q": 6
 	});
 

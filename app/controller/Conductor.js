@@ -77,12 +77,12 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 5.5;
+		this.cDistance = 6;
 
 		/**
 		 *  the distance you have to scroll to arrive at the end
 		 */
-		this.endDistance = 8;
+		this.endDistance = 12;
 
 		/** 
 		 *  The movement of the piece A, B, or C
@@ -214,8 +214,13 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 				this._BStart(time);
 				this.setLoopStartSection();
 				this.setLoopEnd(this.currentSection);
-			} if (Scroll.getDistance() > this.cDistance && this.movement === 1){
+			} else if (Scroll.getDistance() > this.cDistance && this.movement === 1){
 				this._CStart(time);
+				this.setLoopStartSection();
+				this.setLoopEnd(this.currentSection);
+			} else if (Scroll.getDistance() > this.endDistance && this.movement === 2){
+				this.end();
+				this._BStart(time);
 				this.setLoopStartSection();
 				this.setLoopEnd(this.currentSection);
 			}
@@ -452,8 +457,8 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	};
 
 	Conductor.prototype.end = function(){
-		this.movement = 3;
-		Transport.stop();
+		Scroll.setPosition(this.bDistance);
+		// Transport.stop();
 	};
 
 	Conductor.prototype.replay = function() {

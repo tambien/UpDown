@@ -14,7 +14,8 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	var blending = "SubtractiveBlending";
 	// var blending = "CustomBlending";
 	if (Config.MOBILE){
-		blending = "NormalBlending";
+		// blending = "NormalBlending";
+		blending = "MultiplyBlending";
 	}
 
 	var material = new THREE.SpriteMaterial({
@@ -30,31 +31,6 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		color : 0xffffff
 	});
 
-	window.material = material;
-
-	//make the frame canvas
-
-	/*var frameCanvas = $("<canvas>")[0];
-	var frameSize = 256;
-	var frameWidth = 16;
-	frameCanvas.width = frameSize;
-	frameCanvas.height = frameSize;
-	var frameContext = frameCanvas.getContext("2d");
-	frameContext.fillStyle = "#ffffff";
-	//top
-	frameContext.rect(0, 0, frameSize, frameWidth);
-	//bottom
-	frameContext.rect(0, frameSize  - frameWidth, frameSize, frameSize);
-	//left
-	frameContext.rect(0, 0, frameWidth, frameSize);
-	//right
-	frameContext.rect( frameSize - frameWidth, 0, frameSize, frameSize);
-	frameContext.fill();
-
-	var frameTexture = new THREE.Texture(frameCanvas);
-	frameTexture.needsUpdate = true;
-	frameTexture.magFilter = THREE.NearestFilter;
-	frameTexture.minFilter = THREE.NearestMipMapNearestFilter;*/
 
 	var frameBlending = "CustomBlending";
 	/*if (Config.MOBILE){
@@ -94,9 +70,14 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	//reset the color after the B sectiono
 	Mediator.route("C", function(){
+		material.map = texture;
 		var pre = PictureFramePreset.get();
 		var color = pre.frame;
 		frameMaterial.color.setRGB(color[0], color[1], color[2]);
+	});
+
+	Mediator.route("B", function(){
+		material.map = new THREE.Texture();
 	});
 
 

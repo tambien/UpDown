@@ -3,9 +3,9 @@ define(["Tone/core/Bus", "interface/GUI", "Tone/component/Compressor",
 	function(Bus, GUI, Compressor, Mediator, Config){
 
 	var comp = new Compressor({
-		"attack": 0.2,
-		"release": 0.4,
-		"threshold": -13,
+		"attack": 0.29,
+		"release": 0.07,
+		"threshold": -12,
 		"ratio": 2.8,
 		"knee" : 8
 	}).toMaster().receive("drums");

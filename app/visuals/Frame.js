@@ -32,7 +32,7 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 	
 	var materialA = new THREE.MeshBasicMaterial({
 		transparent: Context.transparent,
-		opacity: 0.8,
+		opacity: Context.opacity,
 		blending : Context.blending,
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
@@ -41,12 +41,13 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		depthTest : false,
 		depthWrite : false,
 		color : 0xffffff,
+		emissive : 0xff0000
 	});
 
 
 	var materialB = new THREE.MeshBasicMaterial({
 		transparent: Context.transparent,
-		opacity: 0.8,
+		opacity: Context.opacity,
 		blending : Context.blending,
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
@@ -55,13 +56,16 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		depthTest : false,
 		depthWrite : false,
 		color : 0xffffff,
+		emissive : 0xff0000
 	});
 
 	PicturePreset.onupdate(function(preset){
 		var frame = preset.frame;
 		var accent = preset.accent;
 		materialA.color.setRGB(frame[0], frame[1], frame[2]);
+		// materialA.emissive.setRGB(frame[0] - 0.5, frame[1] - 0.5, frame[2] - 0.5);
 		materialB.color.setRGB(accent[0], accent[1], accent[2]);
+		// materialB.emissive.setRGB(accent[0] - 0.5, accent[1] - 0.5, accent[2] - 0.5);
 	});
 
 	var geometry = new THREE.PlaneBufferGeometry(1, 1, 2, 2);

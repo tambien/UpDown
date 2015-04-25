@@ -3,21 +3,32 @@ define(["channel/Bass", "channel/Piano", "channel/Voice", "channel/HighHat", "ch
 function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 
 	var volumes = {
-		Bass : -11,
-		Piano : -35,
-		Voice : -2,
-		HH : -23,
-		Kick : -18,
-		Snare : -13,
-		Arp : -53
+		Bass : -8,
+		Piano : -30,
+		Voice : 2,
+		HH : -24,
+		Kick : -14,
+		Snare : -10,
+		Arp : -36
 	};
 
 	Bass.volume.value = volumes.Bass;
+	// Bass.volume.value = -Infinity;
+
 	Piano.volume.value = volumes.Piano;
+	// Piano.volume.value = -Infinity;
+
 	Voice.volume.value = volumes.Voice;
+	// Voice.volume.value = -Infinity;
+
 	HH.volume.value = volumes.HH;
+	// HH.volume.value = -Infinity;
+	
 	Kick.volume.value = volumes.Kick;
+	// Kick.volume.value = -Infinity;
+
 	Snare.volume.value = volumes.Snare;
+	// Snare.volume.value = -Infinity;
 
 	if (!Config.MOBILE){
 		Arp.volume.value = volumes.Arp;

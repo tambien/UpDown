@@ -48,6 +48,9 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "control
 	};
 
 	VoiceVisuals.prototype.note = function(){
+		if (Conductor.getMovement() === 1){
+			return;
+		}
 		// new VoiceNote(Context.scene);
 		if (this.tween){
 			this.tween.stop();

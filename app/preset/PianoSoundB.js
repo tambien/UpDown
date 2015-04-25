@@ -3,7 +3,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 	return new Interpolator(
 	[
 		{
-			"velocity": 0.5,
+			"velocity": 0.2,
 			"oscillator": {
 				"type": "pulse",
 				"width": 0.5
@@ -28,7 +28,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			}
 		},
 		{
-			"velocity": 0.2,
+			"velocity": 0.1,
 			"oscillator": {
 				"type": "pulse",
 				"width": 0.128

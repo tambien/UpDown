@@ -17,11 +17,11 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 		if (!sawNotification && !(wentUp && wentDown) && Scroll.getDistance() > 1.5){
 			Analytics.event("interface", "notifications", "otherDirection", wentUp ? 1 : 0);
 			sawNotification = true;
-			notification.fadeTo(500, 1, function(){
+			/*notification.fadeTo(500, 1, function(){
 				setTimeout(function(){
 					notification.fadeTo(500, 0);
 				}, 1000);
-			});
+			});*/
 		}
 	});
 

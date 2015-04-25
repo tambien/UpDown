@@ -1,6 +1,7 @@
 define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(Interpolator, Bass, GUI){
 
-	return new Interpolator([
+	return new Interpolator(
+	[
 		{
 			"volume": -7.5,
 			"synth": {
@@ -21,23 +22,23 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 				"filter": {
 					"Q": 3.4
 				}
-			},
+			}
 		},
 		{
 			"volume": -2,
 			"synth": {
 				"envelope": {
-					"attack": 0.1,
-					"decay": 0.45,
+					"attack": 0.001,
+					"decay": 0.38,
 					"sustain": 0.06,
 					"release": 0.83
 				},
 				"filterEnvelope": {
-					"attack": 0.096,
-					"decay": 0.31,
-					"sustain": 0.19,
+					"attack": 0.024,
+					"decay": 0.23,
+					"sustain": 0.41,
 					"release": 0.03,
-					"min": 70,
+					"min": 89,
 					"max": 6500
 				},
 				"filter": {

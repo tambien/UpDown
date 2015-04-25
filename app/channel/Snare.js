@@ -28,7 +28,7 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 
 	//effects
 	var effectLevels = {
-		"reverb" : -50,
+		"reverb" : -8,
 		"delay" : -30
 	};
 

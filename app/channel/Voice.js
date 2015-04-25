@@ -1,15 +1,16 @@
 define(["Tone/instrument/Sampler", "controller/Mediator",
  "preset/Voice", "controller/Conductor", "Tone/core/Master", 
  "effect/Main", "interface/GUI", "Tone/instrument/PolySynth", 
- "Tone/signal/Signal", "Tone/component/Volume", "util/Config"], 
+ "Tone/signal/Signal", "Tone/component/Volume", "util/Config", 
+ "Tone/core/Transport", "TERP"], 
 function(Sampler, Mediator, Preset, Conductor, Master, Effects, 
-	GUI, PolySynth, Signal, Volume, Config){
+	GUI, PolySynth, Signal, Volume, Config, Transport, TERP){
 
 	var audioFolder = "./audio/";
 
-	var volume = new Volume().toMaster();
+	var volume = new Volume().connect(Master);
 
-	var samplerA = new PolySynth(1, Sampler, {
+	var samplerA = new Sampler({
 		"A" : {
 			"down" : {
 				"some" : audioFolder+"down/some.mp3",
@@ -36,7 +37,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		}
 	}).connect(volume);
 
-	var samplerB = new PolySynth(1, Sampler, {
+	var samplerB = new Sampler({
 		"B" : {
 			"down" : {
 				"some" : audioFolder+"B/G/some.mp3",
@@ -81,16 +82,13 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		}
 	}).connect(volume);
 
-
-	samplerB.volume.value = -4;
-
 	//repitch the sampler for the C section
 	Mediator.route("replay", function(){
-		for (var i = 0; i < samplerB.voices.length; i++){
-			samplerB.voices[i].pitch = 0;
-		}
-		samplerB.volume.value = -4;
+		samplerB.pitch = 0;
+		samplerB.volume.value = -5;
 	});
+
+	// window.VoiceBVolume = samplerB.volume;
 
 	// SETUP //
 
@@ -134,11 +132,20 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 	function setLoopPoints(sampler, time){
 		var sampleDuration = "+32n";
-		sampler.set({
-			"player" : {
-				"loopStart" : time,
-				"loopEnd" : time + sampleDuration
-			}
+		var startTime = time;
+		var endTime = time + sampleDuration;
+		if (Conductor.getMovement() === 1){
+			/*startTime = sampler.player.buffer.duration;
+			console.log(startTime);
+			endTime = startTime + sampleDuration;
+			// sampler.player.offset = startTime;
+			sampler.player.loop = true;*/
+		} else {
+			// sampler.player.offset = 0;
+		}
+		sampler.player.set({
+			"loopStart" : startTime,
+			"loopEnd" : endTime
 		});
 	}
 
@@ -146,8 +153,8 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 	// EFFECTS //
 
 	var effectLevels = {
-		"reverb" : -6,
-		"delay" : -10
+		"reverb" : 0,
+		"delay" : -7
 	};
 
 	var reverbAmount = volume.send("reverb", effectLevels.reverb);
@@ -162,16 +169,34 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		var voiceFolder = GUI.getFolder("Voice");
 		voiceFolder.add(reverbControl, "value", -100, 1).name("reverb");
 		voiceFolder.add(delayControl, "value", -100, 1).name("delay");
+		// voiceFolder.addTone2(filter, "value", -100, 1).name("reverb");
 	}
+
+
+	Mediator.route("B", function(){
+		samplerB.volume.value = -12;
+		samplerB.pitch = 0;
+	});
 
 	//repitch the sampler for the C section
 	Mediator.route("C", function(){
-		for (var i = 0; i < samplerB.voices.length; i++){
-			samplerB.voices[i].pitch = 12;
-		}
-		samplerB.volume.value = -13;
+		samplerB.pitch = 12;
+		samplerB.volume.value = -11;
+		Transport.clearInterval(interval);
 	});
 
+	var interval = -1;
+
+	function shuffleLoopPosition(duration, startPosition){
+		startPosition = Math.max(startPosition + TERP.scale(Math.random(), -0.2, 0.1), 0);
+		var grainSize = TERP.scale(Math.random(), 0.05, 0.1);
+		samplerB.player.set({
+			"loopStart" : startPosition,
+			"loopEnd" : startPosition + grainSize,
+		});
+	}
+
+	var vocalRound = 0;
 	
 	return {
 		triggerAttackRelease : function(name, duration, time){
@@ -197,15 +222,25 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 					samplerB.triggerAttackRelease(section + name,
 						noteDur - samplerB.toSeconds("16n"), 
 						time);
-				}
+				} 
 			} else {
 				Preset.update(function(pre){
 					samplerB.set(pre);
 				});
 				section = "B.";
 				noteDur = samplerB.toSeconds(duration);
-				setLoopPoints(samplerB, loopPoints[section+name]);
-				samplerB.triggerAttackRelease(section + name,
+				var noteName = section + name;
+				var startPosition = loopPoints[section+name];
+				var bufferDuration = samplerB._buffers[noteName].duration;
+
+				shuffleLoopPosition(bufferDuration, startPosition);
+				samplerB.player.loop = true;
+				if (name.indexOf("some") > 0){
+					samplerB.pitch = vocalRound * 12;
+					vocalRound++;
+					vocalRound = vocalRound % 2;
+				}
+				samplerB.triggerAttackRelease(noteName,
 					noteDur - samplerB.toSeconds("16n"), 
 					time);
 			}

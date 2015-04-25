@@ -1,5 +1,5 @@
-define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "TERP", "jquery.mousewheel"], 
-	function(ready, Mediator, Config, Window, TERP, mousewheel){
+define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "TERP", "jquery.mousewheel", "interface/GUI"], 
+	function(ready, Mediator, Config, Window, TERP, mousewheel, GUI){
 
 	/**
 	 *  the total distance traveled by scrolling
@@ -41,7 +41,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	 */
 	var started = false;
 
-	var scrollHeight = 50000;
+	var scrollHeight = 30000;
 
 	var pageHeight = 0;
 
@@ -145,9 +145,12 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	});
 
 	return {
+		setPosition : function(pos) {
+			scrollDistance = pos;
+		},
 		/**
 		 *  get the position of the scroll
-		 *  @return {number} a number -1 at the bottom and 1 at the top
+		 *  @return {number} a number 0 at the bottom and 1 at the top
 		 */
 		getPosition : function() {
 			return scrollPosition;

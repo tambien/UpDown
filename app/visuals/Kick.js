@@ -14,7 +14,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 	var KickVisuals = function(){
 
 		var objectScale = new THREE.Vector3(width, -Context.height, 1);
-		var objectPosition = -(Context.pictureWidth / 2 + Context.sidebarWidth / 3 + 1);
+		var objectPosition = -Context.width;
 
 		this.object = new THREE.Mesh( geometry, KickMaterial);
 		Context.background.add(this.object);
@@ -66,6 +66,7 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 			.chain(this.tween)
 			.start();
 		if (!this.onscreen){
+			this.resize();
 			this.onscreen = true;
 			var obj = this.object;
 			var obj2 = this.object2;

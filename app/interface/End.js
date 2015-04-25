@@ -1,7 +1,7 @@
 define(["jquery", "controller/Mediator", "util/Config", "interface/Window", "controller/Analytics"], 
 function($, Mediator, Config, Window, Analytics){
 
-	var endContainer = $("<div>").attr("id", "End").appendTo(Window.container);
+	/*var endContainer = $("<div>").attr("id", "End").appendTo(Window.container);
 
 	var fbook = $("<div>").addClass("icon-facebook-squared social")
 		.attr("id", "Facebook")
@@ -38,7 +38,7 @@ function($, Mediator, Config, Window, Analytics){
 
 	Mediator.route("end", function(){
 		endContainer.addClass("Visible");
-	});
+	});*/
 
 });
 
