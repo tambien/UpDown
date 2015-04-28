@@ -344,7 +344,7 @@ html, body {
   background-color: #1040FF;
   width: 40px;
   height: 40px;
-  border-radius: 2px;
+  border-radius: 3px;
   line-height: 40px;
   text-align: center;
   color: white;
@@ -391,7 +391,11 @@ html, body {
 .Mobile #InfoContainer {
   top: 15px !important; }
   .Mobile #InfoContainer #Credits {
-    font-size: 14px; }
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 10px;
+    font-size: 12px; }
 
 #InfoContainer.Expanded {
   width: calc(100% - 15px * 2);

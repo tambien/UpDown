@@ -28,9 +28,9 @@ require.config({
 		"THREE" : {
 			exports : "THREE"
 		},
-		"facebook" : {
-			exports : "FB"
-		}
+		// "facebook" : {
+		// 	exports : "FB"
+		// }
 	}
 });
 

@@ -13,3 +13,5 @@
 * Favicon
 
 * remove frame interpolation
+
+* thumbs enter on the downbeat

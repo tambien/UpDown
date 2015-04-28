@@ -8,6 +8,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	// MATERIALS
 
 	var texture = new THREE.Texture();
+	var blankTexture = new THREE.Texture();
 	/*texture.magFilter = THREE.NearestFilter;
 	texture.minFilter = THREE.NearestMipMapNearestFilter;*/
 
@@ -31,11 +32,13 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		color : 0xffffff
 	});
 
+	window.pictureMaterial = material;
+
 
 	var frameBlending = "CustomBlending";
-	/*if (Config.MOBILE){
-		frameBlending = "CustomBlending";
-	}*/
+	if (Config.MOBILE){
+		frameBlending = "NormalBlending";
+	}
 
 	var frameMaterial = new THREE.MeshBasicMaterial({
 		transparent: Context.transparent,
@@ -55,17 +58,13 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 
 	//set the initial values
 	var pre = PictureFramePreset.get();
-	// if (!Config.MOBILE){
-		var color = pre.frame;
-		frameMaterial.color.setRGB(color[0], color[1], color[2]);
-	// }
+	var color = pre.frame;
+	frameMaterial.color.setRGB(color[0], color[1], color[2]);
 
 	Mediator.route("scroll", function(){
 		var pre = PictureFramePreset.get();
-		// if (!Config.MOBILE){
-			var color = pre.frame;
-			frameMaterial.color.setRGB(color[0], color[1], color[2]);
-		// }
+		var color = pre.frame;
+		frameMaterial.color.setRGB(color[0], color[1], color[2]);
 	});
 
 	//reset the color after the B sectiono
@@ -77,7 +76,7 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	});
 
 	Mediator.route("B", function(){
-		material.map = new THREE.Texture();
+		material.map = blankTexture;
 	});
 
 
@@ -110,6 +109,12 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		Mediator.route("rawscroll", this.scroll.bind(this));
 		Mediator.route("voice", this.setWord.bind(this));
 		Window.resize(this.resize.bind(this));
+
+		//load the gray image into the blank texture
+		this.loader.load("./images/black.png", function(img){
+			blankTexture.image = img;
+			blankTexture.needsUpdate = true;
+		});
 	};
 
 	Pictures.prototype.makePictures = function() {

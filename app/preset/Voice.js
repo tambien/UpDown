@@ -5,7 +5,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 		{
 			"player": {
 				"volume": -6,
-				"loop": false
+				// "loop": false
 			},
 			"envelope": {
 				"attack": "32t",
@@ -22,13 +22,13 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 				"max": 5500
 			},
 			"filter": {
-				"Q": 10
+				"Q": 7
 			}
 		},
 		{
 			"player": {
 				"volume": -6,
-				"loop": false
+				// "loop": false
 			},
 			"envelope": {
 				"attack": "32n",
@@ -51,7 +51,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 		{
 			"player": {
 				"volume": 0,
-				"loop": true
+				// "loop": true
 			},
 			"envelope": {
 				"sustain": 0.2,

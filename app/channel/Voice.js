@@ -2,9 +2,9 @@ define(["Tone/instrument/Sampler", "controller/Mediator",
  "preset/Voice", "controller/Conductor", "Tone/core/Master", 
  "effect/Main", "interface/GUI", "Tone/instrument/PolySynth", 
  "Tone/signal/Signal", "Tone/component/Volume", "util/Config", 
- "Tone/core/Transport", "TERP"], 
+ "Tone/core/Transport", "TERP", "preset/VoiceB"], 
 function(Sampler, Mediator, Preset, Conductor, Master, Effects, 
-	GUI, PolySynth, Signal, Volume, Config, Transport, TERP){
+	GUI, PolySynth, Signal, Volume, Config, Transport, TERP, PresetB){
 
 	var audioFolder = "./audio/";
 
@@ -75,18 +75,18 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 	}, {
 		"filter" : {
 			"type" : "lowpass",
-			"rolloff" : -48,
+			"rolloff" : -12,
 		},
 		"filterEnvelope" : {
 			"exponent" : 2
 		}
 	}).connect(volume);
 
-	//repitch the sampler for the C section
+	/*//repitch the sampler for the C section
 	Mediator.route("replay", function(){
 		samplerB.pitch = 0;
 		samplerB.volume.value = -5;
-	});
+	});*/
 
 	// window.VoiceBVolume = samplerB.volume;
 
@@ -153,43 +153,56 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 	// EFFECTS //
 
 	var effectLevels = {
-		"reverb" : 0,
-		"delay" : -7
+		"A" : {
+			"reverb" : 0,
+			"delay" : -7,
+		},
+		"B" : {
+			"reverb" : 4,
+			"delay" : 0,
+		}
 	};
 
-	var reverbAmount = volume.send("reverb", effectLevels.reverb);
-	var delayAmount = volume.send("delay", effectLevels.delay);
+	var reverbAmount = volume.send("reverb", effectLevels.A.reverb);
+	var delayAmount = volume.send("delay", effectLevels.A.delay);
 
 	//GUI
 	if (Config.GUI){
 		var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
-		reverbControl.value = effectLevels.reverb;
+		reverbControl.value = effectLevels.A.reverb;
 		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
-		delayControl.value = effectLevels.delay;
+		delayControl.value = effectLevels.A.delay;
 		var voiceFolder = GUI.getFolder("Voice");
-		voiceFolder.add(reverbControl, "value", -100, 1).name("reverb");
-		voiceFolder.add(delayControl, "value", -100, 1).name("delay");
+		voiceFolder.add(reverbControl, "value", -100, 6).name("reverb");
+		voiceFolder.add(delayControl, "value", -100, 6).name("delay");
+		voiceFolder.add(samplerB.volume, "value", -100, 10).name("samplerB");
 		// voiceFolder.addTone2(filter, "value", -100, 1).name("reverb");
 	}
 
 
 	Mediator.route("B", function(){
-		samplerB.volume.value = -12;
+		samplerB.volume.value = 3;
 		samplerB.pitch = 0;
+		reverbAmount.gain.value = samplerB.dbToGain(effectLevels.B.reverb);
+		delayAmount.gain.value = samplerB.dbToGain(effectLevels.B.delay);
+		samplerB.filter.type = "bandpass";
 	});
 
 	//repitch the sampler for the C section
 	Mediator.route("C", function(){
 		samplerB.pitch = 12;
 		samplerB.volume.value = -11;
-		Transport.clearInterval(interval);
+		samplerB.filter.type = "lowpass";
+		reverbAmount.gain.value = samplerB.dbToGain(effectLevels.A.reverb);
+		delayAmount.gain.value = samplerB.dbToGain(effectLevels.A.delay);
 	});
 
 	var interval = -1;
 
 	function shuffleLoopPosition(duration, startPosition){
-		startPosition = Math.max(startPosition + TERP.scale(Math.random(), -0.2, 0.1), 0);
-		var grainSize = TERP.scale(Math.random(), 0.05, 0.1);
+		var progress = Conductor.getBProgress();
+		startPosition = Math.max(startPosition + TERP.scale(Math.random(), -0.1, 0.1), 0);
+		var grainSize = TERP.scale(progress, 0.1, 0.03, 0.5);
 		samplerB.player.set({
 			"loopStart" : startPosition,
 			"loopEnd" : startPosition + grainSize,
@@ -209,13 +222,14 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 				});
 				section = "A.";
 				noteDur = samplerA.toSeconds(duration);
-				setLoopPoints(samplerB, loopPoints[section+name]);
+				// setLoopPoints(samplerA, loopPoints[section+name]);
 				samplerA.triggerAttackRelease(section + name,
 					noteDur - samplerA.toSeconds("16n"), 
 					time);
 				if (Conductor.getMovement() === 2){
 					section = "C.";
-					setLoopPoints(samplerB, loopPoints[section+name]);
+					// setLoopPoints(samplerB, loopPoints[section+name]);
+					samplerB.player.loop = false;
 					if (name === "down.some" || name === "up.some"){
 						time  = time + " + 8n";
 					}
@@ -224,7 +238,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 						time);
 				} 
 			} else {
-				Preset.update(function(pre){
+				PresetB.update(function(pre){
 					samplerB.set(pre);
 				});
 				section = "B.";
@@ -235,11 +249,6 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 				shuffleLoopPosition(bufferDuration, startPosition);
 				samplerB.player.loop = true;
-				if (name.indexOf("some") > 0){
-					samplerB.pitch = vocalRound * 12;
-					vocalRound++;
-					vocalRound = vocalRound % 2;
-				}
 				samplerB.triggerAttackRelease(noteName,
 					noteDur - samplerB.toSeconds("16n"), 
 					time);

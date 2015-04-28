@@ -4,8 +4,8 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 
 	var volumes = {
 		Bass : -8,
-		Piano : -30,
-		Voice : 2,
+		Piano : -34,
+		Voice : 1,
 		HH : -24,
 		Kick : -14,
 		Snare : -10,

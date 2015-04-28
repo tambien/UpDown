@@ -15,16 +15,16 @@ function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals,
 
 	var hhVis = new HighHatVisuals();
 	
+	var pics = new Pictures();
+
 	if (!Config.MOBILE){
 		
 		var frameVis = new FrameVisuals();
 
-		// var backgroundImages = new BackgroundImages();
+		var backgroundImages = new BackgroundImages();
 
 		var kickVis = new KickVisuals();
 
 		var snareVis = new SnareVisuals();
 	}
-	
-	var pics = new Pictures();
 });

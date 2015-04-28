@@ -4,7 +4,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	/**
 	 *  the total distance traveled by scrolling
 	 */
-	var scrollDistance = 0;
+	var scrollDistance = 4;
 
 	/**
 	 *  the current scroll position
@@ -159,7 +159,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 			return scrollDistance;
 		},
 		getDirection : function(){
-			return scrollDistance;
+			return scrollDirection;
 		},
 		getDirectionPosition : function(){
 			if (scrollPosition >= switchCenterPosition){

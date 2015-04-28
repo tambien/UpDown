@@ -6,7 +6,7 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 		"attack" : 0.6,
 		"release" : 0.01,
 		"threshold" : -8,
-		"ratio" : 3.3,
+		"ratio" : 5,
 		"knee" : 8
 	});
 	var filter = new Filter(20000, "lowpass");

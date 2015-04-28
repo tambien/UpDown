@@ -110,6 +110,13 @@ define(["TERP", "controller/Mediator", "controller/Conductor", "util/Config"],
 								retArr[i] = TERP.scale(bTransition, retArr[i], 1);
 							}
 						}
+					} else if (movement === 2){
+						var rebTransition = Conductor.getEndTransitionProgress();
+						if (rebTransition > 0){
+							for (i = 0; i < len; i++){
+								retArr[i] = TERP.scale(rebTransition, retArr[i], 1);
+							}
+						}
 					}
 					if (Config.MOBILE){
 						for (i = 0; i < len; i++){

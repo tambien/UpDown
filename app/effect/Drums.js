@@ -5,8 +5,8 @@ define(["Tone/core/Bus", "interface/GUI", "Tone/component/Compressor",
 	var comp = new Compressor({
 		"attack": 0.29,
 		"release": 0.07,
-		"threshold": -12,
-		"ratio": 2.8,
+		"threshold": -10,
+		"ratio": 6,
 		"knee" : 8
 	}).toMaster().receive("drums");
 

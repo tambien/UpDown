@@ -458,7 +458,7 @@ $notificationHeight : 70px;
 	background-color: $blue;
 	width: $size;
 	height: $size;
-	border-radius: 2px;
+	border-radius: 3px;
 	line-height: $size;
 	text-align: center;
 	color: white;
@@ -519,7 +519,11 @@ $notificationHeight : 70px;
 	top: 15px!important;
 
 	#Credits {
-		font-size: 14px;
+		width: 90%;
+		height: 90%;
+		left: 5%;
+		top: 10px;
+		font-size: 12px;
 	}
 }
 

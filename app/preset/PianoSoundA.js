@@ -26,7 +26,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 			}
 		},
 		{
-			"velocity": 0.7,
+			"velocity": 0.4,
 			"oscillator": {
 				"type": "sawtooth"
 			},

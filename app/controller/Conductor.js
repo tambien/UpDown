@@ -77,12 +77,12 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 6;
+		this.cDistance = 7;
 
 		/**
 		 *  the distance you have to scroll to arrive at the end
 		 */
-		this.endDistance = 12;
+		this.endDistance = 18;
 
 		/** 
 		 *  The movement of the piece A, B, or C
@@ -386,6 +386,11 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	};
 
 	var transitionDistance = 0.75;
+
+	Conductor.prototype.getBProgress = function(){
+		return TERP.scale(Scroll.getDistance(), this.bDistance, this.cDistance, 0, 1);
+	};
+
 
 	Conductor.prototype.getBTransitionProgress = function(){
 		if (!Config.MOBILE){
