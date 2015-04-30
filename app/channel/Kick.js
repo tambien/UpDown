@@ -5,13 +5,6 @@ define(["Tone/source/Oscillator", "controller/Mediator",
 function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filter,
  AmplitudeEnvelope, ScaledEnvelope, Config){
 
-	/*var comp = new Compressor({
-		"attack": 0.14,
-		"release": 0.98,
-		"threshold": -24,
-		"ratio": 4
-	});*/
-
 	var filter = new Filter({
 		"type" : "highpass",
 		"frequency": 60,

@@ -301,6 +301,7 @@ $ScrollIndicatorWidth: 20px;
 		height: 100%;
 		width: calc(100% + 20px);
 		overflow-y : scroll;
+		/*-webkit-overflow-scrolling: touch;*/
 
 		#Scroller {
 			/*height: 100000px;*/

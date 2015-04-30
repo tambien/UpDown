@@ -234,7 +234,8 @@ html, body {
   #ScrollContainer #InnerScroll {
     height: 100%;
     width: calc(100% + 20px);
-    overflow-y: scroll; }
+    overflow-y: scroll;
+    /*-webkit-overflow-scrolling: touch;*/ }
     #ScrollContainer #InnerScroll #Scroller {
       /*height: 100000px;*/
       height: 100%;

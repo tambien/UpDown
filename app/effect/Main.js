@@ -4,10 +4,6 @@ define(["Tone/effect/Convolver", "Tone/core/Bus", "interface/GUI",
 
 	//reverb
 	if (!Config.MOBILE){
-		/*var reverb = new Reverb({
-			"roomSize" : 0.55,
-			"dampening" : 5000,
-		});*/
 		var filter = new Filter({
 			"type" : "highpass",
 			"frequency" : 300,
@@ -22,7 +18,6 @@ define(["Tone/effect/Convolver", "Tone/core/Bus", "interface/GUI",
 		if (Config.GUI){
 			var effectFolder = GUI.getFolder("Effect");
 			GUI.addTone2(effectFolder, "filter", filter);
-			// GUI.addTone2(effectFolder, "Reverb", reverb, ["roomSize", "dampening"]);
 		}
 	}
 });

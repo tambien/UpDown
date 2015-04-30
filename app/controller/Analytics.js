@@ -1,5 +1,5 @@
-define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Conductor", "util/Config"], 
-	function(Mediator, doc, Scroll, Conductor, Config){
+define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Conductor", "util/Config", "jquery"], 
+	function(Mediator, doc, Scroll, Conductor, Config, $){
 
 	(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -16,6 +16,10 @@ define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Cond
 			ga("send", "event", category, action, label, value);
 		}
 	}
+
+	window.onerror = function(msg){
+		sendEvent("error", "javascript", msg);
+	};
 
 	var lastSection = Date.now();
 

@@ -4,7 +4,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	/**
 	 *  the total distance traveled by scrolling
 	 */
-	var scrollDistance = 4;
+	var scrollDistance = 0;
 
 	/**
 	 *  the current scroll position

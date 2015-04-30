@@ -145,10 +145,12 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 	};
 
 	Context.prototype.animate = function(time) {
-		if (!Config.MOBILE){
-			this.composer.render();
-		} else {
-			this.renderer.render(this.scene, this.camera);
+		if (Config.VISUALS){
+			if (!Config.MOBILE){
+				this.composer.render();
+			} else {
+				this.renderer.render(this.scene, this.camera);
+			}
 		}
 		TWEEN.update(time);
 		if (Config.STATS){

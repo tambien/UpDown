@@ -10,14 +10,6 @@ function(MonoSynth, Master, Filter, PresetA, PresetB, Conductor, GUI,
 		"Q": 1.5
 	});
 
-	/*var compressor = new Compressor({
-	 	"threshold": -12,
-	 	"attack": 0.0102,
-	 	"release": 0.01,
-	 	"ratio": 4.6,
-	 	"knee" : 4
-	});*/
-
 	var monoSynth = new MonoSynth({
 		"oscillator": {
 			"type": "sawtooth"

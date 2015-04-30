@@ -34,7 +34,7 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 		this.imageNumber = 0;
 		Mediator.route("scroll",this.scroll.bind(this));
 		Mediator.route("rawscroll",this.rawscroll.bind(this));
-		Mediator.route("B",this.add.bind(this));
+		Mediator.route("BDrop",this.add.bind(this));
 		Mediator.route("C",this.remove.bind(this));
 	};
 

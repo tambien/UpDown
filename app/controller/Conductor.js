@@ -246,6 +246,9 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 			Mediator.deferSend("section", this.currentSection);
 		}
 		this.sectionPosition = (this.sectionPosition + 1) % 3;
+		if (this.getMovement() === 1 && this.measure === 1){
+			Mediator.send("BDrop");
+		}
 		this.measure++;
 	};
 
