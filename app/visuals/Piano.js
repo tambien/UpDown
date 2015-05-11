@@ -13,7 +13,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 	PianoVisuals.prototype.note = function(vals){
 		for (var i = 0; i < vals.length; i++){
 			var speed = TERP.scale(vals[i], 250, 800, minSpeed, minSpeed * 1.5);
-			var offset = TERP.scale(i, 0, vals.length, -10, 10);
+			var offset = TERP.scale(i, 0, vals.length, -10 * spread, 10 * spread);
 			new PianoNote(Context.background, speed, offset, width, length);
 		}
 	};
@@ -40,6 +40,8 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 
 	var minSpeed, maxSpeed, width, length;
 
+	var spread = 1;
+
 	Preset.onupdate(function(pre){
 		if (Conductor.getMovement() !== 1){
 			var color = pre.color;
@@ -48,6 +50,7 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		minSpeed = pre.minSpeed;
 		length = pre.length;
 		width = pre.width;
+		spread = pre.spread;
 	});
 
 	var startX, startY, endX, endY, angle;
@@ -71,8 +74,8 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		object.rotation.z = angle;
 		object.position.x = startX + offset;
 		object.position.y = startY;
-		object.scale.setX(-length);
-		object.scale.setY(width);
+		object.scale.setX(-length * TERP.scale(Math.random(), 0.3, 1));
+		object.scale.setY(width * TERP.scale(Math.random(), 0.3, 1));
 		scene.add(object);
 		var tween = new TWEEN.Tween({x : startX + offset, y : startY})
 			.to({x : endX + offset, y : endY}, speed)

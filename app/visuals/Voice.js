@@ -56,6 +56,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "control
 			this.tween.stop();
 		}
 		var object = this.object;
+		object.position.x = 0;
 		var currentSize = object.scale.x;
 		var maxSize = 3;
 		this.tween = new TWEEN.Tween({size : maxSize})
@@ -63,6 +64,9 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "control
 			.easing( TWEEN.Easing.Quadratic.Out)
 			.onUpdate(function(){
 				object.scale.set(this.size, this.size, this.size);	
+			})
+			.onComplete(function(){
+				object.position.x = -1000;
 			});
 		var attack = new TWEEN.Tween({size : currentSize})
 			.to({size : maxSize}, attackTime)

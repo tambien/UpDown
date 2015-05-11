@@ -163,7 +163,7 @@ html, body {
   left: 0px;
   height: 100%;
   width: 100%;
-  background-color: black;
+  background-color: white;
   z-index: 1000;
   opacity: 1; }
   #SplashBackground .SplashPage {
@@ -384,7 +384,8 @@ html, body {
     top: 0px;
     right: 0px;
     z-index: 100;
-    cursor: pointer; }
+    cursor: pointer;
+    font-weight: bold; }
   #InfoContainer #InfoButton:hover {
     background-color: #00ED00;
     color: #1040FF; }
@@ -463,5 +464,47 @@ html, body {
 #End.Visible {
   z-index: 100;
   opacity: 1; }
+
+/**
+ *  HD BUTTON
+ */
+#HDButton {
+  position: absolute;
+  bottom: 15px;
+  right: 70px;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  line-height: 40px;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 101;
+  cursor: pointer;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: #1040FF;
+  border: 2px solid #1040FF; }
+
+#HDButton:hover {
+  background-color: transparent;
+  border-color: #00ED00;
+  color: #00ED00; }
+
+#HDButton.HD {
+  background-color: #1040FF;
+  color: white; }
+
+#HDButton.HD:hover {
+  background-color: #00ED00;
+  border-color: #00ED00;
+  color: #1040FF; }
+
+#HDButton:hover:active {
+  background-color: black;
+  color: white; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/KickWave", 
-	"TWEEN", "interface/Window", "preset/KickVisual", "controller/Conductor"], 
-	function(Context, Mediator, KickMaterial, TWEEN, Window, Preset, Conductor){
+	"TWEEN", "interface/Window", "preset/KickVisual", "controller/Conductor", "util/Config"], 
+	function(Context, Mediator, KickMaterial, TWEEN, Window, Preset, Conductor, Config){
 
 	"use strict";
 
@@ -83,7 +83,11 @@ define(["visuals/Context", "controller/Mediator", "shader/KickWave",
 
 	KickVisuals.prototype.update = function(){
 		if (this.amplitude.value > 0.0001){
-			this.time.value += 1;
+			if (Config.HD){
+				this.time.value += 1;
+			} else {
+				this.time.value += 1.5;
+			}
 		}
 	};
 

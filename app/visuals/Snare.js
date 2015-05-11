@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/SnareWave", 
-	"TWEEN", "interface/Window", "preset/SnareVisuals", "controller/Conductor"], 
-	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor){
+	"TWEEN", "interface/Window", "preset/SnareVisuals", "controller/Conductor", "util/Config"], 
+	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor, Config){
 
 	"use strict";
 
@@ -74,7 +74,11 @@ define(["visuals/Context", "controller/Mediator", "shader/SnareWave",
 
 	SnareVisuals.prototype.update = function(){
 		if (this.amplitude.value > 0.0001){
-			this.time.value += 1;
+			if (Config.HD){
+				this.time.value += 1;
+			} else {
+				this.time.value += 2;
+			}
 		}
 	};
 

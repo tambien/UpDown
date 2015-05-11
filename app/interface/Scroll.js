@@ -4,7 +4,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	/**
 	 *  the total distance traveled by scrolling
 	 */
-	var scrollDistance = 0;
+	var scrollDistance = 4;
 
 	/**
 	 *  the current scroll position
@@ -60,6 +60,9 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 
 	var scrollTop = lastPosition;
 
+	var directionSwitchDelta = scrollHeight * 0.05;
+
+
 	$(window).mousewheel(function(e, x){
 		if (started){
 			scrollTop = lastPosition - x;
@@ -98,12 +101,14 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 					scrollDirection !== 1 && 
 					scrollPosition > loopOffset * loopOffsetMult){
 				scrollDirection = 1;
+				Mediator.send("flip", scrollDirection);
 				// console.log(scrollDirection);
 				switchCenterPosition = scrollPosition;
 			} else if (scrollTop > lastPosition && 
 					scrollDirection !== -1 && 
 					scrollPosition < 1 - loopOffset * loopOffsetMult){
 				scrollDirection = -1;
+				Mediator.send("flip", scrollDirection);
 				// console.log(scrollDirection);
 				switchCenterPosition = scrollPosition;
 			}

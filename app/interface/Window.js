@@ -1,4 +1,4 @@
-define(["jquery", "domReady!", "util/Config"], function($, doc, Config){
+define(["jquery", "domReady!", "util/Config", "controller/Mediator"], function($, doc, Config, Mediator){
 
 	var container = $("#Container");
 

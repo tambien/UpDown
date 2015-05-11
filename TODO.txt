@@ -1,17 +1,8 @@
-* Make Piano visuals have width/length in preset controls. 
-	go slower at top.
-
 * Add B backgrounds - animate - make them.
-
-* fix vocal entrances
 
 * UpDown.jpg - thumbnail for twitter / facebook - square image
 	https://developers.facebook.com/apps/825781467502888/review-status/
 
-* no head at browser
-
 * Favicon
 
 * remove frame interpolation
-
-* thumbs enter on the downbeat

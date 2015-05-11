@@ -1,6 +1,8 @@
 define(["visuals/Context", "TERP", "controller/Mediator", 
-	"TWEEN", "util/Config", "interface/Scroll", "preset/PictureFrame", "interface/Window"], 
-	function(Context, TERP, Mediator, TWEEN, Config, Scroll, PictureFramePreset, Window){
+	"TWEEN", "util/Config", "interface/Scroll", "preset/PictureFrame", 
+	"interface/Window", "controller/Conductor"], 
+	function(Context, TERP, Mediator, TWEEN, Config, Scroll, 
+		PictureFramePreset, Window, Conductor){
 
 	"use strict";
 
@@ -28,12 +30,11 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
 		depthTest : true,
-		alphaTest : 0.1,
+		alphaTest : 0.05,
 		color : 0xffffff
 	});
 
 	window.pictureMaterial = material;
-
 
 	var frameBlending = "CustomBlending";
 	if (Config.MOBILE){
@@ -178,25 +179,27 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 	};
 
 	Pictures.prototype.scroll = function(position) {
-		position += 0.00515;
-		//load the level
-		var level = Math.round(Scroll.getDirectionPosition() * 13);
-		if (this.level !== level){
-			this.load(level);
-		}
-		//set the position of the individual frames
-		position = 1 - position;
-		var max = this.modDistance;
-		var increment = (position * this.scrollMultipler);
-		var children = this.pictures.children;
-		var currentPos = this.previousPosition * this.scrollMultipler;
-		this.previousPosition = position;
-		var distance = this.distance;
-		for (var i = 0; i < children.length; i++){
-			var child = children[i];
-			var newY = i * distance + increment;
-			child.position.setY((newY % max));
-		}
+		// if (Conductor.getMovement() !== 1){
+			position += 0.00515;
+			//load the level
+			var level = Math.round(Scroll.getDirectionPosition() * 13);
+			if (this.level !== level){
+				this.load(level);
+			}
+			//set the position of the individual frames
+			position = 1 - position;
+			var max = this.modDistance;
+			var increment = (position * this.scrollMultipler);
+			var children = this.pictures.children;
+			var currentPos = this.previousPosition * this.scrollMultipler;
+			this.previousPosition = position;
+			var distance = this.distance;
+			for (var i = 0; i < children.length; i++){
+				var child = children[i];
+				var newY = i * distance + increment;
+				child.position.setY((newY % max));
+			}
+		// }
 	};
 
 	Pictures.prototype.load = function(level){

@@ -181,7 +181,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 
 	Mediator.route("B", function(){
-		samplerB.volume.value = 3;
+		samplerB.volume.value = 4;
 		samplerB.pitch = 0;
 		reverbAmount.gain.value = samplerB.dbToGain(effectLevels.B.reverb);
 		delayAmount.gain.value = samplerB.dbToGain(effectLevels.B.delay);

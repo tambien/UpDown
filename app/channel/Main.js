@@ -9,7 +9,7 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 		HH : -24,
 		Kick : -14,
 		Snare : -10,
-		Arp : -36
+		Arp : -34
 	};
 
 	Bass.volume.value = volumes.Bass;

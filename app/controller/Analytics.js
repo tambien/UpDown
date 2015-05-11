@@ -1,5 +1,5 @@
-define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Conductor", "util/Config", "jquery"], 
-	function(Mediator, doc, Scroll, Conductor, Config, $){
+define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Conductor", "util/Config"], 
+	function(Mediator, doc, Scroll, Conductor, Config){
 
 	(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -17,6 +17,9 @@ define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Cond
 		}
 	}
 
+	/**
+	 *  error listening
+	 */
 	window.onerror = function(msg){
 		sendEvent("error", "javascript", msg);
 	};
@@ -48,11 +51,15 @@ define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Cond
 		sendEvent("interface", "transport", "pause");
 	});
 
+	Mediator.route("HD", function(){
+		sendEvent("interface", "HD", Config.HD ? "HD" : "regular");
+	});
+
 	Mediator.route("play", function(){
 		sendEvent("interface", "transport", "play");
 	});
 
-	Mediator.route("flipped", function(){
+	Mediator.route("flip", function(){
 		sendEvent("song", "interaction", "flip");
 	});
 

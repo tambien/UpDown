@@ -3,7 +3,7 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 	return new Interpolator(
 		[
 			{
-				"velocity" : 0.1,
+				"velocity" : 0.15,
 				"synth": {
 					"portamento": 0.003,
 					"oscillator": {
@@ -29,7 +29,7 @@ define(["preset/Interpolator", "channel/Bass", "interface/PresetGUI"], function(
 				}
 			},
 			{
-				"velocity" : 0.1,
+				"velocity" : 0.15,
 				"synth": {
 					"portamento": 0.015,
 					"oscillator": {

@@ -12,10 +12,12 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		// this.scene.fog = new THREE.FogExp2( 0xffffff, 0.0025);
 		this.renderer = new THREE.WebGLRenderer({
 			precision : "lowp",
+			// precision : "mediump",
 			alpha : false,
 			premultipliedAlpha: true,
 			stencil : false,
 		});
+		window.renderer = this.renderer;
 		this.renderer.autoClearStencil = false;
 		this.renderer.sortObjects = false;
 
@@ -66,6 +68,7 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 		Mediator.route("update", this.animate.bind(this));
 		Mediator.route("start", this.fadeIn.bind(this));
 		Mediator.route("end", this.fadeOut.bind(this));
+		Mediator.route("HD", this.resize.bind(this));
 		Window.resize(this.resize.bind(this));
 
 		this.computeBounding();
@@ -115,13 +118,16 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 			.start();*/
 	};
 
-	Context.prototype.resize = function(width, height){
-		// var width = $(this.renderer.domElement).width();
-		// var height = $(this.renderer.domElement).height();
-		// console.log(width, height);
+	Context.prototype.resize = function(){
+		var width = Window.width();
+		var height = Window.height();
 		this.camera.aspect = width / height;
 		this.camera.updateProjectionMatrix();
-		this.renderer.setSize( width, height);
+		var resolutionMult = 1;
+		if (!Config.HD || Config.MOBILE){
+			resolutionMult = 0.8;
+		}
+		this.renderer.setSize( width * resolutionMult, height * resolutionMult);
 	};
 
 	Context.prototype.fadeIn = function(){

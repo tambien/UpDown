@@ -57,7 +57,11 @@ define(["requestAnimationFrame", "util/Config"], function(requestAnimationFrame,
 	}
 
 	function update(){
-		requestAnimationFrame(update);
+		if (Config.HD){
+			requestAnimationFrame(update);
+		} else {
+			setTimeout(update, 30);	
+		}
 		Mediator.send("update");
 	}
 

@@ -1,5 +1,6 @@
-define(["visuals/Context","controller/Mediator", "util/Config", "interface/Window", "preset/PictureFrame", "visuals/Frame"], 
-	function(Context, Mediator, Config, Window, PicturePreset, Frame){
+define(["visuals/Context","controller/Mediator", "util/Config", 
+	"interface/Window", "preset/PictureFrame", "TWEEN"], 
+	function(Context, Mediator, Config, Window, PicturePreset, TWEEN){
 
 	"use strict";
 
@@ -41,7 +42,7 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		depthTest : false,
 		depthWrite : false,
 		color : 0xffffff,
-		emissive : 0xff0000
+		// emissive : 0xff0000
 	});
 
 
@@ -56,7 +57,7 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 		depthTest : false,
 		depthWrite : false,
 		color : 0xffffff,
-		emissive : 0xff0000
+		// emissive : 0xff0000
 	});
 
 	PicturePreset.onupdate(function(preset){
@@ -69,6 +70,32 @@ define(["visuals/Context","controller/Mediator", "util/Config", "interface/Windo
 	});
 
 	var geometry = new THREE.PlaneBufferGeometry(1, 1, 2, 2);
+
+	// var BBox = new THREE.Mesh( geometry, materialB);
+	// Context.layer0.add(BBox);
+
+	// BBox.scale.setX(10);
+	// BBox.scale.setY(10);
+
+	// window.BBox = BBox;
+
+	Mediator.route("B", function(){
+		// Context.layer1.position.set(-100, 0, 0);
+		var out = new TWEEN.Tween({angle : 0})
+			.to({angle : -Math.PI / 2}, 1500)
+			.onUpdate(function(){
+				// obj.scale.set(this.size, this.size, 1);	
+				Context.layer1.rotation.x = this.angle;
+				Context.layer2.rotation.x = this.angle;
+			})
+			.easing( TWEEN.Easing.Quadratic.In)
+			.start();
+	});
+
+	Mediator.route("C", function(){
+		Context.layer1.rotation.x = 0;
+		Context.layer2.rotation.x = 0;
+	});
 
 	var FrameVisuals = function(){
 		//topbar
