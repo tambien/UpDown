@@ -32,8 +32,8 @@ define(["preset/Interpolator", "interface/VisualGUI"], function(Interpolator, GU
 				0.06862745098039214
 			],
 			"width": 4.4,
-			"length": 10.7,
-			"spread": 6
+			"length": 8,
+			"spread": 4
 		}
 	], "Piano Visuals", GUI);
 });

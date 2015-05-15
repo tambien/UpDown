@@ -20,52 +20,54 @@ define(["controller/Mediator", "domReady!", "interface/Scroll", "controller/Cond
 	/**
 	 *  error listening
 	 */
-	window.onerror = function(msg){
-		sendEvent("error", "javascript", msg);
+	window.onerror = function(msg, file, lineno){
+		var filePath = file.split("/");
+		file = filePath[filePath.length - 1];
+		sendEvent("error", msg, file +" "+ lineno);
 	};
 
 	var lastSection = Date.now();
 
 	//setup some timed events
 	Mediator.route("start", function(){
-		sendEvent("interface", "transport", "start", Date.now() - lastSection);
+		sendEvent("user", "start", "click", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("B", function(){
-		sendEvent("song", "section", "B", Date.now() - lastSection);
+		sendEvent("song", "B", "change", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("C", function(){
-		sendEvent("song", "section", "C", Date.now() - lastSection);
+		sendEvent("song", "C", "change", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("end", function(){
-		sendEvent("song", "section", "end", Date.now() - lastSection);
+		sendEvent("song", "end", "change", Date.now() - lastSection);
 		lastSection = Date.now();
 	});
 
 	Mediator.route("pause", function(){
-		sendEvent("interface", "transport", "pause");
+		sendEvent("user", "pause", "any");
 	});
 
 	Mediator.route("HD", function(){
-		sendEvent("interface", "HD", Config.HD ? "HD" : "regular");
+		sendEvent("user", "HD", "turned"+Config.HD ? "on" : "off");
 	});
 
 	Mediator.route("play", function(){
-		sendEvent("interface", "transport", "play");
+		sendEvent("user", "play", "any");
 	});
 
 	Mediator.route("flip", function(){
-		sendEvent("song", "interaction", "flip");
+		sendEvent("song", "flip", "change");
 	});
 
 	var startLoading = Date.now();
 	Mediator.route("loaded", function(){
-		sendEvent("system", "timing", "loaded", Date.now() - startLoading);
+		sendEvent("system", "loaded", "done", Date.now() - startLoading);
 	});
 
 	return {

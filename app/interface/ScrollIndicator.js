@@ -27,14 +27,17 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 		indicator.addClass("Dragging");
 	});
 
-	scrollChannel.on("mouseup mouseleave touchend", function(e){
-		dragging = false;
-		indicator.removeClass("Dragging");
+	scrollContainer.on("mouseup touchend", function(e){
+		if (dragging){
+			e.preventDefault();
+			dragging = false;
+			indicator.removeClass("Dragging");
+		}
 	});
 
-	scrollChannel.on("mousemove touchmove", function(e){
-		e.preventDefault();
+	scrollContainer.on("mousemove touchmove", function(e){
 		if (dragging){
+			e.preventDefault();
 			var position = e.clientY / channelHeight;
 			Scroll.scrollTop(position);
 		}

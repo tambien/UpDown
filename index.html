@@ -4,19 +4,25 @@
 
 	<meta name="description" content="Interactive Music. Scroll to play.">
 
+	<!-- FAVICON -->
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+
 	<!--FACEBOOK-->
 	<meta property="og:title" content="Up/Down"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:image" content="UpDown.jpg"/>
+	<meta property="og:image" content="http://jazz.computer/thumbs.jpg"/>
 	<meta property="og:url" content="http://jazz.computer"/>
 	<meta property="og:description" content="Interactive Music. Scroll to play."/>
-	<meta property="fb:admins" content="825781467502888"/>
+	<meta property="fb:app_id" content="825781467502888"/>
 
 	<!--TWITTER-->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Up/Down">
 	<meta name="twitter:description" content="Interactive Music. Scroll to play.">
-	<meta name="twitter:image" content="UpDown.jpg">
+	<meta name="twitter:image" content="http://jazz.computer/stars.jpg">
+	<meta name="twitter:url" content="http://jazz.computer/">
 
 	<!--VIEWPORT-->
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -26,11 +32,14 @@
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
 
 	<script type="text/javascript" src="./deps/modernizr.js"></script>
+	<script type="text/javascript" src="./deps/three.min.js"></script>
+	<script type="text/javascript" src="./deps/three.shader.min.js"></script>
 	<script type="text/javascript">
 	Modernizr.load({
 		test : Modernizr.webaudio && Modernizr.webgl,
-		// yep : ["./deps/three.min.js", "./deps/three.shader.min.js", "UpDown-build.js"],
-		yep : ["./deps/three.min.js", "./deps/three.shader.min.js", "./deps/require.js", "./app/UpDown.js"],
+		// test : false,
+		yep : ["UpDown-build.js"],
+		// yep : ["./deps/require.js", "./app/UpDown.js"],
   		nope: ["./deps/jquery-2.1.1.min.js", "fallback.js"],
 	});
 	</script>

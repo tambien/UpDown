@@ -17,7 +17,7 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 		.append(infoFrag);
 
 	credits.find("#MoreInfo").on("click", function(){
-		Analytics.event("interface", "info", "moreinfo");
+		Analytics.event("user", "moreinfo", "clicked");
 	});
 
 	var fbook = $("<div>").addClass("icon-facebook-squared social")
@@ -25,7 +25,7 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 		.appendTo(credits)
 		.on("click", function(e){
 			e.preventDefault();
-			Analytics.event("interface", "social", "facebook");
+			Analytics.event("user", "facebook", "clicked");
 			window.open("https://www.facebook.com/dialog/share?"+
 				"app_id=825781467502888"+
 				"&display=popup"+
@@ -38,7 +38,7 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 		.appendTo(credits)
 		.on("click", function(e){
 			e.preventDefault();
-			Analytics.event("interface", "social", "twitter");
+			Analytics.event("user", "twitter", "clicked");
 			window.open('http://twitter.com/share?url=' + "http://jazz.computer", 'twitterwindow', 'height=260, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
 		});
 
@@ -53,7 +53,7 @@ function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag)
 
 	function expand(){
 		if (!expanded){
-			Analytics.event("interface", "info", "expanded");
+			Analytics.event("user", "info", "open");
 			infoButton.text("X");
 			expanded = true;
 			infoContainer.addClass("Expanded");	

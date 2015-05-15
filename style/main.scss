@@ -6,37 +6,8 @@
 	height: 100%;
 }
 
-@mixin translate($x, $y){
-	transform: translate3d($x, $y, 0);
-	-webkit-transform: translate3d($x, $y, 0);
-	-moz-transform: translate3d($x, $y, 0);
-	-o-transform: translate3d($x, $y, 0);
-}
-
-@mixin transition($args...) {
-	-webkit-transition: $args;
-	-moz-transition: $args;
-	-ms-transition: $args;
-	-o-transition: $args;
-	transition: $args;
-}
-
-@mixin clip-path($args...) {
-	-webkit-clip-path: $args;
-	-moz-clip-path: $args;
-	-ms-clip-path: $args;
-	-o-clip-path: $args;
-	-webkit-clip-path: $args;
-}
-
 @mixin zIndex($tier, $level : 0) {
 	z-index: $tier * 1000 + $level;
-}
-
-@mixin borderBox {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 }
 
 .dg.ac {
@@ -72,16 +43,6 @@ $ScrollIndicatorWidth: 20px;
 		opacity: 0;
 		width: 100%!important;
 		height: 100%!important;
-		/*transform: scale($scaling);
-  		transform-origin: 0 0;
-  		-webkit-transform: scale($scaling);
-  		-webkit-transform-origin: 0 0;
-  		-moz-transform: scale($scaling);
-		-moz-transform-origin: 0 0;
-		transition: opacity 0.25s;
-		-webkit-transition: opacity 0.25s;
-		-moz-transition: opacity 0.25s;
-		-o-transition: opacity 0.25s;*/
 	}
 
 	#CoverAll {
@@ -93,20 +54,6 @@ $ScrollIndicatorWidth: 20px;
 		left: 0px;
 		opacity: 0;
 	}
-}
-
-@mixin translate($x, $y){
-	transform: translate3d($x, $y, 0);
-	-webkit-transform: translate3d($x, $y, 0);
-	-moz-transform: translate3d($x, $y, 0);
-	-o-transform: translate3d($x, $y, 0);
-}
-
-@mixin translateScale($x, $y, $scale){
-	transform: translate3d($x, $y, 0) scale($scale);
-	-webkit-transform: translate3d($x, $y, 0) scale($scale);
-	-moz-transform: translate3d($x, $y, 0) scale($scale);
-	-o-transform: translate3d($x, $y, 0) scale($scale);
 }
 
 #StartButton {
@@ -121,7 +68,7 @@ $ScrollIndicatorWidth: 20px;
 	position: absolute;
 	bottom: 50%;
 	left: 50%;
-	@include translate(-50%, 50%);
+	transform: translate(-50%, 50%);
 	border-radius: 10px;
 
 	cursor: pointer;
@@ -133,7 +80,7 @@ $ScrollIndicatorWidth: 20px;
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		@include translate(-50%, -50%);
+		transform: translate(-50%, -50%);
 		border-top: $ArrowSize/2 solid transparent;
 		border-bottom: $ArrowSize/2 solid transparent;
 		border-left: $ArrowSize * 0.75 solid $ArrowColor;
@@ -146,7 +93,7 @@ $ScrollIndicatorWidth: 20px;
 		height: $ArrowSize; 
 		width: $ArrowSize / 4;
 		top: 50%;
-		@include translate(-50%, -50%);
+		transform: translate(-50%, -50%);
 		background-color: $ArrowColor;
 	}
 
@@ -171,21 +118,15 @@ $ScrollIndicatorWidth: 20px;
 #StartButton.Corner {
 	bottom: 10px;
 	left: 10px;
-	@include translateScale(-40%, 40%, 0.15);
+	transform : translate(-40%, 40%) scale(0.15);
 	transition: transform 0.2s, left 0.2s, bottom 0.2s;
-	-webkit-transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
-	-moz-transition: -moz-transform 0.2s, left 0.2s, bottom 0.2s;
-	-o-transition: -o-transform 0.2s, left 0.2s, bottom 0.2s;
 }
 
 #StartButton.MobileCorner {
 	top: 10px;
 	left: 10px;
-	@include translateScale(-40%, -40%, 0.15);
+	transform : translate(-40%, 40%) scale(0.15);
 	transition: transform 0.2s, left 0.2s, bottom 0.2s;
-	-webkit-transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
-	-moz-transition: -moz-transform 0.2s, left 0.2s, bottom 0.2s;
-	-o-transition: -o-transform 0.2s, left 0.2s, bottom 0.2s;
 }
 
 #StartButton:hover {
@@ -228,7 +169,7 @@ $ScrollIndicatorWidth: 20px;
 
 	#LoadingBar {
 
-		@include translate(-50%, -50%);
+		transform: translate(-50%, -50%);
 		width: 60%;
 		height: $BarHeight;
 		position: absolute;
@@ -279,7 +220,7 @@ $ScrollIndicatorWidth: 20px;
 			left: 50%;
 			top: 50%;
 			height: auto;
-			@include translate(-50%, -50%);
+			transform: translate(-50%, -50%);
 
 			.arrow {
 				display: block;
@@ -321,7 +262,7 @@ $ScrollIndicatorWidth: 20px;
 		height: 60px;
 		@include fontFamily;
 		font-size: 24px;
-		@include translate(-50%, -50%);
+		transform: translate(-50%, -50%);
 	}
 }
 
@@ -468,28 +409,38 @@ $ScrollIndicatorWidth: 20px;
 	line-height: 48px;
 }
 
-$notificationHeight : 70px;
+$notificationSize : 140px;
+
+@keyframes UpAndDown {
+  0%   { transform : translate(-50%, -100%); }
+  100%   { transform : translate(-50%, 0%); }
+}
 
 #Notification {
-	$margin : 10px;
-	width: calc(100% - #{$margin} * 2);
-	height: $notificationHeight;
-	line-height: $notificationHeight;
 	position: absolute;
-	top: $margin;
-	left: $margin;
-	background-color: $blue;
+	left: 50%;
+	top: 50%;
+	transform : translate(-50%, -50%);
+	width: $notificationSize;
+	height: $notificationSize;
 	@include fontFamily;
+	font-size: $notificationSize * 0.75;
 	color: white;
-	font-size: 24px;
 	text-align: center;
+	text-shadow: #aaa 0px 0px 12px;
 	opacity: 0;
 }
 
+#Notification.Animate {
+	animation-name: UpAndDown;
+	animation-duration: 0.5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+
 .Mobile #Notification {
-	top: calc(100% - 10px - #{$notificationHeight});
-	font-size: 14px;
-	line-height: $notificationHeight / 2;
+	
 }
 
 $InfoButtonSize : 40px;
@@ -510,9 +461,6 @@ $InfoButtonMargin : 15px;
 	font-size: 20px;
 	z-index: 101;
 	transition: width 0.25s, height 0.25s;
-	-webkit-transition: width 0.25s, height 0.25s;
-	-moz-transition: width 0.25s, height 0.25s;
-	-o-transition: width 0.25s, height 0.25s;
 
 	#Credits {
 		position: absolute;
@@ -524,9 +472,6 @@ $InfoButtonMargin : 15px;
 		text-align: left;
 		color: white;
 		transition: opacity 0.25s;
-		-webkit-transition: opacity 0.25s;
-		-moz-transition: opacity 0.25s;
-		-o-transition: opacity 0.25s;
 
 		a {
 			font-weight: 900;
@@ -584,7 +529,6 @@ $InfoButtonMargin : 15px;
 		opacity: 1;
 
 		.social {
-			/*@include translate(-50%, -50%);*/
 			position: relative;
 			margin-right: 10px;
 			/*top: 60%;*/
@@ -623,13 +567,10 @@ $InfoButtonMargin : 15px;
 	background-color: white;
 	opacity: 0;
 	z-index: 0;
-	transition: opacity 0.9s;
-	-webkit-transition: opacity 0.9s;
-	-moz-transition: opacity 0.9s;
-	-o-transition: opacity 0.9s;
+	transition: opacity 0.9s;	
 
 	#Replay {
-		@include translate(-50%, -50%);
+		transform: translate(-50%, -50%);
 		position: absolute;
 		top: 40%;
 		left: 50%;
@@ -672,7 +613,7 @@ $InfoButtonMargin : 15px;
 	font-size: 20px;
 	z-index: 101;
 	cursor: pointer;
-	@include borderBox;
+	box-sizing: border-box;
 	color: $blue;
 	border: 2px solid $blue;
 }

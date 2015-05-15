@@ -14,7 +14,7 @@ define(["jquery", "controller/Mediator", "util/Config"], function($, Mediator, C
 			.addClass("SplashPage")
 			.appendTo(background);
 		var secondText = $("<div>").attr("id", "Text").appendTo(secondPage)
-			.append("<span class='arrow'>&uarr;</span>scroll to advance the music<span class='arrow'>&darr;</span>");
+			.append("<span class='arrow'>&uarr;</span>scroll up and down to advance the music<span class='arrow'>&darr;</span>");
 
 		if (Config.MOBILE){
 			secondText.append("<br><span id='MobileDisclaimer'>for the full experience, use a desktop browser.</span>");

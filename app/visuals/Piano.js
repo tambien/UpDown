@@ -50,7 +50,9 @@ define(["controller/Mediator", "visuals/Context", "interface/Window",
 		minSpeed = pre.minSpeed;
 		length = pre.length;
 		width = pre.width;
-		spread = pre.spread;
+		if (!Config.MOBILE){
+			spread = pre.spread;
+		}
 	});
 
 	var startX, startY, endX, endY, angle;

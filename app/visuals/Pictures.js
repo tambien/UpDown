@@ -104,7 +104,9 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 		this.makePictures();
 
 		//load the first one
-		this.load(7);
+		this.load(7, function(){
+			Mediator.send("imageloaded");
+		});
 
 		//setup the events
 		Mediator.route("rawscroll", this.scroll.bind(this));
@@ -199,42 +201,45 @@ define(["visuals/Context", "TERP", "controller/Mediator",
 				var newY = i * distance + increment;
 				child.position.setY((newY % max));
 			}
-		// }
 	};
 
-	Pictures.prototype.load = function(level){
+	Pictures.prototype.load = function(level, callback){
 		this.level = level;
 		var images = [];
 		var count = 0;
 		var self = this;
-		var onLoad = function(position){
+		var onLoad = function(position, total){
 			var pos = position;
 			return function(img){
 				count++;
 				images[pos] = img;
-				if (count === 3){
+				if (count === total && self.level === level){
 					self.images = images;
 					texture.image = self.images[0];
 					texture.needsUpdate = true;
+					if (callback){
+						callback();
+					}
 				}
 			};
 		};
-		var picC = "./images/"+level+"_c.png";
-		var picO = "./images/"+level+"_a.png";
-		var picOo = "./images/"+level+"_o.png";
-		var picDow = "./images/"+level+"_d.png";
-		var picOwn = "./images/"+level+"_w.png";
-		// var picC =  "./images/X1_0002.png";
-		// var picO =  "./images/X1_0002.png";
-		// var picOo =  "./images/X1_0002.png";
-		// var picDow = "./images/X1_0002.png";
-		// var picOwn = "./images/X1_0002.png";
-		this.loader.load(picC, onLoad(0));
-		this.loader.load(picO, onLoad(1));
-		this.loader.load(picOo, onLoad(2));
+		var picC = "./smallerImages/"+level+"_c.png";
+		var picO = "./smallerImages/"+level+"_a.png";
+		var picOo = "./smallerImages/"+level+"_o.png";
+		var picDow = "./smallerImages/"+level+"_d.png";
+		var picOwn = "./smallerImages/"+level+"_w.png";
+
+		var totalImages = 3;
 		if (level < 7){
-			this.loader.load(picDow, onLoad(3));
-			this.loader.load(picOwn, onLoad(4));
+			totalImages = 5;
+		}
+		
+		this.loader.load(picC, onLoad(0, totalImages));
+		this.loader.load(picO, onLoad(1, totalImages));
+		this.loader.load(picOo, onLoad(2, totalImages));
+		if (level < 7){
+			this.loader.load(picDow, onLoad(3, totalImages));
+			this.loader.load(picOwn, onLoad(4, totalImages));
 		}
 	};
 

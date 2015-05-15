@@ -17,17 +17,7 @@ html, body {
   #Container canvas {
     opacity: 0;
     width: 100% !important;
-    height: 100% !important;
-    		/*transform: scale($scaling);
-      		transform-origin: 0 0;
-      		-webkit-transform: scale($scaling);
-      		-webkit-transform-origin: 0 0;
-      		-moz-transform: scale($scaling);
-    		-moz-transform-origin: 0 0;
-    		transition: opacity 0.25s;
-    		-webkit-transition: opacity 0.25s;
-    		-moz-transition: opacity 0.25s;
-    		-o-transition: opacity 0.25s;*/ }
+    height: 100% !important; }
   #Container #CoverAll {
     position: absolute;
     width: 100%;
@@ -44,10 +34,8 @@ html, body {
   position: absolute;
   bottom: 50%;
   left: 50%;
-  transform: translate3d(-50%, 50%, 0);
-  -webkit-transform: translate3d(-50%, 50%, 0);
-  -moz-transform: translate3d(-50%, 50%, 0);
-  -o-transform: translate3d(-50%, 50%, 0);
+  -webkit-transform: translate(-50%, 50%);
+          transform: translate(-50%, 50%);
   border-radius: 10px;
   cursor: pointer; }
   #StartButton #Triangle {
@@ -57,10 +45,8 @@ html, body {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    -o-transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     border-top: 75px solid transparent;
     border-bottom: 75px solid transparent;
     border-left: 112.5px solid white;
@@ -71,10 +57,8 @@ html, body {
     height: 150px;
     width: 37.5px;
     top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    -o-transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     background-color: white; }
   #StartButton #Pause0 {
     left: 33%; }
@@ -89,26 +73,18 @@ html, body {
 #StartButton.Corner {
   bottom: 10px;
   left: 10px;
-  transform: translate3d(-40%, 40%, 0) scale(0.15);
-  -webkit-transform: translate3d(-40%, 40%, 0) scale(0.15);
-  -moz-transform: translate3d(-40%, 40%, 0) scale(0.15);
-  -o-transform: translate3d(-40%, 40%, 0) scale(0.15);
-  transition: transform 0.2s, left 0.2s, bottom 0.2s;
-  -webkit-transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
-  -moz-transition: -moz-transform 0.2s, left 0.2s, bottom 0.2s;
-  -o-transition: -o-transform 0.2s, left 0.2s, bottom 0.2s; }
+  -webkit-transform: translate(-40%, 40%) scale(0.15);
+          transform: translate(-40%, 40%) scale(0.15);
+  transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
+  transition: transform 0.2s, left 0.2s, bottom 0.2s; }
 
 #StartButton.MobileCorner {
   top: 10px;
   left: 10px;
-  transform: translate3d(-40%, -40%, 0) scale(0.15);
-  -webkit-transform: translate3d(-40%, -40%, 0) scale(0.15);
-  -moz-transform: translate3d(-40%, -40%, 0) scale(0.15);
-  -o-transform: translate3d(-40%, -40%, 0) scale(0.15);
-  transition: transform 0.2s, left 0.2s, bottom 0.2s;
-  -webkit-transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
-  -moz-transition: -moz-transform 0.2s, left 0.2s, bottom 0.2s;
-  -o-transition: -o-transform 0.2s, left 0.2s, bottom 0.2s; }
+  -webkit-transform: translate(-40%, 40%) scale(0.15);
+          transform: translate(-40%, 40%) scale(0.15);
+  transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
+  transition: transform 0.2s, left 0.2s, bottom 0.2s; }
 
 #StartButton:hover {
   background-color: #00ED00; }
@@ -136,10 +112,8 @@ html, body {
   background-color: #1040FF;
   z-index: 100; }
   #LoadingScreen #LoadingBar {
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    -o-transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     width: 60%;
     height: 70px;
     position: absolute;
@@ -183,10 +157,8 @@ html, body {
       left: 50%;
       top: 50%;
       height: auto;
-      transform: translate3d(-50%, -50%, 0);
-      -webkit-transform: translate3d(-50%, -50%, 0);
-      -moz-transform: translate3d(-50%, -50%, 0);
-      -o-transform: translate3d(-50%, -50%, 0); }
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%); }
       #SplashBackground .SplashPage #Text .arrow {
         display: block; }
     #SplashBackground .SplashPage #MobileDisclaimer {
@@ -215,10 +187,8 @@ html, body {
     height: 60px;
     font-family: "Courier New", monospace;
     font-size: 24px;
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    -o-transform: translate3d(-50%, -50%, 0); }
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
 
 /**
  *  SCROLL STUFF
@@ -319,24 +289,47 @@ html, body {
   font-size: 24px;
   line-height: 48px; }
 
+@-webkit-keyframes UpAndDown {
+  0% {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%); }
+  100% {
+    -webkit-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%); } }
+
+@keyframes UpAndDown {
+  0% {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%); }
+  100% {
+    -webkit-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%); } }
 #Notification {
-  width: calc(100% - 10px * 2);
-  height: 70px;
-  line-height: 70px;
   position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #1040FF;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
   font-family: "Courier New", monospace;
+  font-size: 105px;
   color: white;
-  font-size: 24px;
   text-align: center;
+  text-shadow: #aaa 0px 0px 12px;
   opacity: 0; }
 
-.Mobile #Notification {
-  top: calc(100% - 10px - 70px);
-  font-size: 14px;
-  line-height: 35px; }
+#Notification.Animate {
+  -webkit-animation-name: UpAndDown;
+          animation-name: UpAndDown;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out; }
 
 #InfoContainer {
   position: absolute;
@@ -352,10 +345,7 @@ html, body {
   font-family: "Courier New", monospace;
   font-size: 20px;
   z-index: 101;
-  transition: width 0.25s, height 0.25s;
-  -webkit-transition: width 0.25s, height 0.25s;
-  -moz-transition: width 0.25s, height 0.25s;
-  -o-transition: width 0.25s, height 0.25s; }
+  transition: width 0.25s, height 0.25s; }
   #InfoContainer #Credits {
     position: absolute;
     top: 10%;
@@ -365,10 +355,7 @@ html, body {
     opacity: 0;
     text-align: left;
     color: white;
-    transition: opacity 0.25s;
-    -webkit-transition: opacity 0.25s;
-    -moz-transition: opacity 0.25s;
-    -o-transition: opacity 0.25s; }
+    transition: opacity 0.25s; }
     #InfoContainer #Credits a {
       font-weight: 900;
       text-decoration: none;
@@ -407,13 +394,12 @@ html, body {
   #InfoContainer.Expanded #Credits {
     opacity: 1;
     /*#Facebook {
-    	maring-left: 33%;
+      maring-left: 33%;
     }
     #Twitter {
-    	left: 66%;
+      left: 66%;
     }*/ }
     #InfoContainer.Expanded #Credits .social {
-      /*@include translate(-50%, -50%);*/
       position: relative;
       margin-right: 10px;
       /*top: 60%;*/
@@ -438,15 +424,10 @@ html, body {
   background-color: white;
   opacity: 0;
   z-index: 0;
-  transition: opacity 0.9s;
-  -webkit-transition: opacity 0.9s;
-  -moz-transition: opacity 0.9s;
-  -o-transition: opacity 0.9s; }
+  transition: opacity 0.9s; }
   #End #Replay {
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    -o-transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     position: absolute;
     top: 40%;
     left: 50%;
@@ -484,8 +465,6 @@ html, body {
   z-index: 101;
   cursor: pointer;
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   color: #1040FF;
   border: 2px solid #1040FF; }
 
@@ -506,5 +485,3 @@ html, body {
 #HDButton:hover:active {
   background-color: black;
   color: white; }
-
-/*# sourceMappingURL=main.css.map */

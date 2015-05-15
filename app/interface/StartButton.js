@@ -31,7 +31,7 @@ define(["jquery", "controller/Mediator", "util/Config", "Tone/core/Tone"], funct
 		var inFocus = true;
 
 		$(window).blur(function(){
-			if (playing && inFocus){
+			if (playing && inFocus && transportStarted){
 				Mediator.send("pause");
 			}
 			inFocus = false;

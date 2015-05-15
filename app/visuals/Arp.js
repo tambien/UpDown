@@ -13,7 +13,7 @@ define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN",
 		blendEquation : Context.blendEq,
 		depthTest : false,
 		depthWrite : false,
-		side: THREE.DoubleSide,
+		side: THREE.BackSide,
 		color : 0xf00a00,
 		emissive : 0x000000
 	});

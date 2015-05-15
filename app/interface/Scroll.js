@@ -4,7 +4,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 	/**
 	 *  the total distance traveled by scrolling
 	 */
-	var scrollDistance = 4;
+	var scrollDistance = 0;
 
 	/**
 	 *  the current scroll position
@@ -64,8 +64,27 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 
 
 	$(window).mousewheel(function(e, x){
+		var thresh = 400;
+		x = Math.min(x, thresh);
+		x = Math.max(x, -thresh);
 		if (started){
 			scrollTop = lastPosition - x;
+		}
+	});
+
+	$(window).on("keydown", function(e){
+		var delta = 0;
+		var moveDist = 150;
+		if (e.which === 40){ // DOWN
+			e.preventDefault();
+			delta = -moveDist;				
+		} else if (e.which === 38){ // UP
+			e.preventDefault();
+			delta = moveDist;	
+		}
+
+		if (started && delta !== 0) {
+			scrollTop = lastPosition - delta;
 		}
 	});
 
@@ -174,7 +193,7 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 			}
 		},
 		scrollTop : function(top){
-			if (top){
+			if (top && started){
 				top *= scrollHeight;
 				scrollTop = top;
 			}

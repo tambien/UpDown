@@ -43,6 +43,7 @@ define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "control
 	var VoiceVisuals = function(){
 		this.object = new THREE.Mesh( geometry, material);
 		this.object.scale.set(0.01, 0.01, 0.01);
+		this.object.position.x = -1000;
 		Context.background.add(this.object);
 		Mediator.route("voice", this.note.bind(this));
 	};

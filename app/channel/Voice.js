@@ -202,18 +202,22 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 	function shuffleLoopPosition(duration, startPosition){
 		var progress = Conductor.getBProgress();
 		startPosition = Math.max(startPosition + TERP.scale(Math.random(), -0.1, 0.1), 0);
-		var grainSize = TERP.scale(progress, 0.1, 0.03, 0.5);
-		samplerB.player.set({
-			"loopStart" : startPosition,
-			"loopEnd" : startPosition + grainSize,
-		});
+		var grainSize = TERP.map(progress, 0.1, 0.03, 0.5);
+		if (isFinite(grainSize) && isFinite(startPosition)){
+			samplerB.player.set({
+				"loopStart" : startPosition,
+				"loopEnd" : startPosition + grainSize,
+			});
+		}
 	}
 
 	var vocalRound = 0;
 	
 	return {
 		triggerAttackRelease : function(name, duration, time){
-			
+			if (name === "up.down" || name === "down.up"){
+				return;
+			}
 			var section, noteDur;
 			if (Conductor.getMovement() !== 1){
 				Preset.update(function(pre){

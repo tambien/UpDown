@@ -39,6 +39,8 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
 		// map: frameTexture,
+		// side: THREE.DoubleSide,
+		side: THREE.FrontSide,
 		depthTest : false,
 		depthWrite : false,
 		color : 0xffffff,
@@ -53,6 +55,7 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 		blendSrc : Context.blendSrc,
 		blendDst : Context.blendDst,
 		blendEquation : Context.blendEq,
+		side: THREE.FrontSide,
 		// map: frameTexture,
 		depthTest : false,
 		depthWrite : false,
@@ -81,12 +84,18 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 
 	Mediator.route("B", function(){
 		// Context.layer1.position.set(-100, 0, 0);
+		materialA.side = THREE.DoubleSide;
+		materialB.side = THREE.DoubleSide;
 		var out = new TWEEN.Tween({angle : 0})
-			.to({angle : -Math.PI / 2}, 1500)
+			.to({angle : -3 * Math.PI / 2}, 1500)
 			.onUpdate(function(){
 				// obj.scale.set(this.size, this.size, 1);	
 				Context.layer1.rotation.x = this.angle;
-				Context.layer2.rotation.x = this.angle;
+				Context.layer2.rotation.x = this.angle / 3;
+			})
+			.onComplete(function(){
+				materialA.side = THREE.FrontSide;
+				materialB.side = THREE.FrontSide;
 			})
 			.easing( TWEEN.Easing.Quadratic.In)
 			.start();
@@ -104,8 +113,6 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 		//left size
 		this.leftTop = new THREE.Mesh( geometry, materialA);
 		Context.layer1.add(this.leftTop);
-		this.leftBottom = new THREE.Mesh( geometry, materialA);
-		Context.layer1.add(this.leftBottom);
 		//right size
 		this.rightTop = new THREE.Mesh( geometry, materialB);
 		Context.layer1.add(this.rightTop);
@@ -133,12 +140,6 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 		this.leftTop.scale.setY(-leftSideHeight);
 		this.leftTop.position.x =  centerWidth / 2 + sideWidth / 2 + 1;
 		this.leftTop.position.y = Context.height / 2 - topbarHeight - 2 - leftSideHeight / 2;
-		//left / bottom
-		// window.leftBottom = this.leftBottom;
-		// this.leftBottom.scale.setX(sideWidth);
-		// this.leftBottom.scale.setY(-bottomSideHeight);
-		// this.leftBottom.position.x = centerWidth / 2 + sideWidth / 2 + 1;
-		// this.leftBottom.position.y = Context.height / 2 - topbarHeight - 3 - topSideHeight - bottomSideHeight / 2;
 		//right
 		var tmp = bottomSideHeight;
 		bottomSideHeight = topSideHeight;

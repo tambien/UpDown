@@ -45,7 +45,7 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 
 	var thumbImageCount = 15;
 	var starImageCount = 13;
-	var heartImageCount = 6;
+	var heartImageCount = 5;
 
 
 
@@ -77,13 +77,13 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 		};
 		var i;
 		for (i = 0; i < thumbImageCount; i++){
-			this.loader.load("./images/thumbs/"+i+".png", this.storeImage("thumb", i));
+			this.loader.load("./smallerImages/thumbs/"+i+".png", this.storeImage("thumb", i));
 		}
 		for (i = 0; i < starImageCount; i++){
-			this.loader.load("./images/star/"+i+".png", this.storeImage("star", i));
+			this.loader.load("./smallerImages/star/"+i+".png", this.storeImage("star", i));
 		}
 		for (i = 0; i < heartImageCount; i++){
-			this.loader.load("./images/heart/"+i+".png", this.storeImage("heart", i));
+			this.loader.load("./smallerImages/heart/"+i+".png", this.storeImage("heart", i));
 		}
 	};
 

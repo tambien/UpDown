@@ -77,12 +77,12 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 7;
+		this.cDistance = 8;
 
 		/**
 		 *  the distance you have to scroll to arrive at the end
 		 */
-		this.endDistance = 18;
+		this.endDistance = 14;
 
 		/** 
 		 *  The movement of the piece A, B, or C
