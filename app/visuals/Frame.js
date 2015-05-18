@@ -87,11 +87,11 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 		materialA.side = THREE.DoubleSide;
 		materialB.side = THREE.DoubleSide;
 		var out = new TWEEN.Tween({angle : 0})
-			.to({angle : -3 * Math.PI / 2}, 1500)
+			.to({angle : -5 * Math.PI / 2}, 1700)
 			.onUpdate(function(){
 				// obj.scale.set(this.size, this.size, 1);	
 				Context.layer1.rotation.x = this.angle;
-				Context.layer2.rotation.x = this.angle / 3;
+				Context.layer2.rotation.x = this.angle / 5;
 			})
 			.onComplete(function(){
 				materialA.side = THREE.FrontSide;

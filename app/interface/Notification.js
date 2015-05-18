@@ -35,9 +35,9 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 			var dir = Scroll.getDirection();
 			var classNames = "Animate ";
 			if (dir === 1){
-				classNames += "icon-down-big";
+				classNames += "Up";
 			} else {
-				classNames += "icon-up-big";
+				classNames += "Down";
 			}
 			notification.addClass(classNames).fadeTo(500, 1);
 			Analytics.event("user", "scrollend", "notification", dir);

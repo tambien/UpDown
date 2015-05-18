@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>UP/DOWN info</title>
+	<title>jazz.computer info</title>
 
 	<!--VIEWPORT-->
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -54,50 +54,46 @@
 	</style>
 	<div id="Container">
 		<div>
-			Up/Down is an interactive song that requires your input to play. The music is created collaboratively between the composer and the listener and will be different every time you hear it. 
+			jazz.computer is an interactive song that responds to the position and direction of your scrolling. 
 		</div>
+
+		<h3>Interaction</h3>
+		<div>
+			Scrolling is the first thing you do when you wake up and the last thing that you do before you go to sleep. Like our other project <a href="http://scroll-o-meter.club" target="_blank">Scroll-O-Meter</a>, jazz.computer makes scrolling the subject.
+		</div>
+
 		<h3>Music</h3>
 		<div>
-			Interactive Music is a different way of conceiving and producing music. Unlike a typical song which is fixed along a timeline and will play beginning to end the same way every time, Up/Down is a potentially endless song with infinite variation. Instruments, effects, tempo, chords and sections respond to the distance and direction of your scrolling. 
+			A typical song will play beginning to end the same way every time, jazz.computer is a potentially endless song with infinite variation. Instruments, effects, tempo, chords and sections respond to the distance and direction of your scrolling and your position on the page. 
 			<br><br>
-			The most immediate control the player has is over the tempo of the song. At the top of the page, the song is at 130 bpm and 65 bpm at the bottom. Different tempos have very different feels, so the arrangement of the song also changes with the tempo. At the bottom of the page, the song has a laid-back triplet groove, and at the top of the page, the song is a driving four-on-the-floor with a gradation in between. 
+			At the top of the page, the song is at 130 bpm and 65 bpm at the bottom. Correspondingly, the arrangement of the song also changes with the tempo. The sounds of instruments and effects are interpolated in a similar way, like keyframes or automation points.
 			<br><br>
-			The sounds of instruments and effects are interpolated in a similar way. The kick drum has two preset points positioned at the top and the bottom of the page. The technique is similar to creating tween anchors or automation points.
-			<br><br>
-			The chord progression had to be handled differently. Unlike preset interpolation used for timbres, chord progressions have a directionality to them and need to feel like they're always moving forward. The solution to this was using a <a target="_blank" href="http://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> which describes how chords transition from the current chord to the next. Below is Up/Down's chord chart. The horizontal lines are events triggered by the position of the song along the spectrum from 0 (bottommost) to 1 (topmost). 
-
+			The chord progression is handled differently in order to feel like the chords always moving forward. A <a target="_blank" href="http://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> describes how chords transition from the current chord to the next (pictured below).
+			<br>
 			<img src="./images/UpDownChords.png">
 			<br>
+			After you scroll a certain distance, the song will transition to the B Section where the chords are flipped and the top of the page uses the chords from the bottom.
 		</div>
 
 		<h3>Technology</h3>
 		<div>
-			Everything you hear is synthesized and the effected live. The only sample is the voice, which is pre-recorded but triggered and effected in real-time. This is made possible with a recent browser technology called the <a href="http://webaudio.github.io/web-audio-api/">Web Audio API</a> and a library built with this API called <a href="http://tonejs.org" target="_blank">Tone.js</a>. I developed Tone.js in order to realize ambitious interactive songs like Up/Down. Tone allows a developer to produce and arrange music entirely in the browser. 
+			Everything in jazz.computer is synthesized and the effected live. The only sample is the voice, which is pre-recorded but triggered and effected in real-time. This is made possible with a recent browser technology called the <a href="http://webaudio.github.io/web-audio-api/">Web Audio API</a> and a library built with this API called <a href="http://tonejs.org" target="_blank">Tone.js</a>. 
 
 			<br><br>
-			Since both the Web Audio API and Tone.js are still under active development, different browsers sound and perform differently. I've had the best results on Chrome and Safari.
+			I developed Tone.js in order to realize ambitious interactive songs like jazz.computer. Tone allows a developer to produce and arrange music entirely in the browser. 
 			<br>
 		</div>
 
 		<h3>Visuals</h3>
 		<div>
-			To go along with the scrolling interaction, the images in the center are meant to mirror a social news feed. As the player scrolls up, the eyes and head turn to look up, and they look down as the player scrolls down. 
-			<br><br>
 			The visuals follow the music closely and apply a few of the same techniques. Each instrument has a corresponding visual element which is triggered along with that instrument. The colors, sizes and animation speeds are interpolated in a similar way to the effects using preset interpolation. 
 			<br><br>
-			The visuals were programmed using <a href="http://threejs.org" target="_blank">three.js</a>. The color blending was created with a simple custom shader to create unique color combinations where shapes overlap. 
-		</div>
-
-		<h3>Interaction</h3>
-		<div>
-			We chose scrolling as the interaction because of how ingrained scrolling has become in all our digital lives. Scrolling is usually the first thing you do on a website, and for many websites, it is the only thing you do. The idea was to apply this sedate interaction towards something expressive and active. 
-			<br><br>
-			To quantify our time spent passively sliding through feeds of information, we have created a separate but related project called <a href="http://scroll-o-meter.club" target="_blank">Scroll-O-Meter</a> which is a sort Fitbit for your online life, measuring how many miles you've scrolled.
+			The visuals were created using a combination of generative graphics with <a href="http://threejs.org" target="_blank">three.js</a> and stop motion animation. The color blending was created with a simple custom shader to create unique color combinations where shapes overlap. 
 		</div>
 
 		<h3>Interactive Music</h3>
 		<div>
-			Up/Down is not an "interactive music video", which uses a fixed mp3 for the music and generates or affects the visuals live. Both the music and the visuals are created live in front of you, with you. This is much closer to the experience of live music than a stream or an mp3. Up/Down is just one example of the possibilities of creating music interactively with listeners.
+			Unlike an "interactive music video", both the visuals <i>and</i> the music affected by the user. jazz.computer is just one example of the possibilities of creating music interactively with listeners.
 			<br><br>
 			Future work will focus on producing more interactive music as well as building tools which will lower the barrier of entry and enable other people to create interactive music as the technology and techniques mature. 
 		</div>

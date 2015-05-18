@@ -35,7 +35,7 @@ html, body {
   bottom: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, 50%);
-          transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
   border-radius: 10px;
   cursor: pointer; }
   #StartButton #Triangle {
@@ -46,7 +46,7 @@ html, body {
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     border-top: 75px solid transparent;
     border-bottom: 75px solid transparent;
     border-left: 112.5px solid white;
@@ -58,7 +58,7 @@ html, body {
     width: 37.5px;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     background-color: white; }
   #StartButton #Pause0 {
     left: 33%; }
@@ -74,20 +74,20 @@ html, body {
   bottom: 10px;
   left: 10px;
   -webkit-transform: translate(-40%, 40%) scale(0.15);
-          transform: translate(-40%, 40%) scale(0.15);
+  transform: translate(-40%, 40%) scale(0.15);
   transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
   transition: transform 0.2s, left 0.2s, bottom 0.2s; }
 
 #StartButton.MobileCorner {
   top: 10px;
   left: 10px;
-  -webkit-transform: translate(-40%, 40%) scale(0.15);
-          transform: translate(-40%, 40%) scale(0.15);
+  -webkit-transform: translate(-40%, -40%) scale(0.15);
+  transform: translate(-40%, -40%) scale(0.15);
   transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
   transition: transform 0.2s, left 0.2s, bottom 0.2s; }
 
 #StartButton:hover {
-  background-color: #00ED00; }
+  background-color: #ff00d2; }
   #StartButton:hover #Triangle {
     border-left-color: black; }
   #StartButton:hover .PauseBar {
@@ -113,7 +113,7 @@ html, body {
   z-index: 100; }
   #LoadingScreen #LoadingBar {
     -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 60%;
     height: 70px;
     position: absolute;
@@ -158,15 +158,15 @@ html, body {
       top: 50%;
       height: auto;
       -webkit-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%); }
+      transform: translate(-50%, -50%); }
       #SplashBackground .SplashPage #Text .arrow {
         display: block; }
     #SplashBackground .SplashPage #MobileDisclaimer {
       font-size: 0.6em; }
   #SplashBackground #First {
-    background-color: #F010FF; }
+    background-color: #ff00d2; }
   #SplashBackground #Second {
-    background-color: #00ED00; }
+    background-color: #ff00d2; }
 
 /**
  *  PASSWORD SCREEN
@@ -188,7 +188,7 @@ html, body {
     font-family: "Courier New", monospace;
     font-size: 24px;
     -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%); }
+    transform: translate(-50%, -50%); }
 
 /**
  *  SCROLL STUFF
@@ -216,36 +216,56 @@ html, body {
     position: absolute;
     top: 0px;
     right: 0;
-    background-color: #F010FF;
+    background-color: #ff00d2;
     /*border-left: 1px dotted black;*/ }
-    #ScrollContainer #Channel #Indicator {
+    #ScrollContainer #Channel #IndicatorContainer {
       cursor: pointer;
       width: 20px;
       height: 30px;
       border-radius: 2px;
       position: absolute;
-      top: calc(50% - 15px - 2px);
-      right: 2px;
-      background-color: #00ED00;
-      opacity: 1; }
-    #ScrollContainer #Channel #Indicator:hover {
+      /*top: calc(50% - 15px - 2px);*/
+      top: 0px;
+      right: 2px; }
+      #ScrollContainer #Channel #IndicatorContainer #Indicator {
+        width: 20px;
+        height: 100%;
+        border-radius: 2px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: #ff00d2;
+        opacity: 0.8;
+        width: 100%; }
+      #ScrollContainer #Channel #IndicatorContainer #Bubble {
+        width: 20px;
+        height: 30px;
+        border-radius: 2px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: #1040FF;
+        opacity: 1; }
+    #ScrollContainer #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer #Channel #IndicatorContainer:hover #Bubble {
       background-color: white; }
-    #ScrollContainer #Channel #Indicator.Dragging {
+    #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Bubble {
       background-color: black; }
   #ScrollContainer #Channel.Highlight {
     background-color: white; }
-    #ScrollContainer #Channel.Highlight #Indicator {
+    #ScrollContainer #Channel.Highlight #IndicatorContainer #Bubble {
       background-color: black; }
 
 #ScrollContainer.B #Channel {
   background-color: black;
   /*border-left: 1px dotted black;*/ }
-  #ScrollContainer.B #Channel #Indicator {
+  #ScrollContainer.B #Channel #IndicatorContainer #Indicator, #ScrollContainer.B #Channel #IndicatorContainer #Bubble {
     background-color: white; }
-  #ScrollContainer.B #Channel #Indicator:hover {
-    background-color: #00ED00; }
-  #ScrollContainer.B #Channel #Indicator.Dragging {
-    background-color: #F010FF; }
+  #ScrollContainer.B #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer.B #Channel #IndicatorContainer:hover #Bubble {
+    background-color: #1040FF; }
+  #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Bubble {
+    background-color: #ff00d2; }
+#ScrollContainer.B #Channel.Highlight #IndicatorContainer #Bubble {
+  background-color: white; }
 
 #TransportPosition {
   color: #aaaaaa;
@@ -292,44 +312,54 @@ html, body {
 @-webkit-keyframes UpAndDown {
   0% {
     -webkit-transform: translate(-50%, -100%);
-            transform: translate(-50%, -100%); }
+    transform: translate(-50%, -100%); }
   100% {
     -webkit-transform: translate(-50%, 0%);
-            transform: translate(-50%, 0%); } }
-
+    transform: translate(-50%, 0%); } }
 @keyframes UpAndDown {
   0% {
     -webkit-transform: translate(-50%, -100%);
-            transform: translate(-50%, -100%); }
+    transform: translate(-50%, -100%); }
   100% {
     -webkit-transform: translate(-50%, 0%);
-            transform: translate(-50%, 0%); } }
+    transform: translate(-50%, 0%); } }
 #Notification {
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 140px;
-  height: 140px;
+  transform: translate(-50%, -50%);
+  width: 0px;
+  height: 0px;
   font-family: "Courier New", monospace;
-  font-size: 105px;
+  font-size: 45px;
   color: white;
   text-align: center;
-  text-shadow: #aaa 0px 0px 12px;
   opacity: 0; }
+
+#Notification.Up {
+  top: 70%;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 60px solid black; }
+
+#Notification.Down {
+  top: 30%;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 60px solid black; }
 
 #Notification.Animate {
   -webkit-animation-name: UpAndDown;
-          animation-name: UpAndDown;
+  animation-name: UpAndDown;
   -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  animation-duration: 0.5s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
-          animation-direction: alternate;
+  animation-direction: alternate;
   -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out; }
+  animation-timing-function: ease-in-out; }
 
 #InfoContainer {
   position: absolute;
@@ -361,9 +391,9 @@ html, body {
       text-decoration: none;
       color: white; }
     #InfoContainer #Credits a:hover {
-      color: #00ED00; }
+      color: #ff00d2; }
     #InfoContainer #Credits a:hover:active {
-      color: #F010FF; }
+      color: black; }
   #InfoContainer #InfoButton {
     width: 40px;
     height: 40px;
@@ -372,9 +402,10 @@ html, body {
     right: 0px;
     z-index: 100;
     cursor: pointer;
-    font-weight: bold; }
+    font-weight: bold;
+    border-radius: 3px; }
   #InfoContainer #InfoButton:hover {
-    background-color: #00ED00;
+    background-color: #ff00d2;
     color: #1040FF; }
 
 .Mobile #InfoContainer {
@@ -394,10 +425,10 @@ html, body {
   #InfoContainer.Expanded #Credits {
     opacity: 1;
     /*#Facebook {
-      maring-left: 33%;
+    	maring-left: 33%;
     }
     #Twitter {
-      left: 66%;
+    	left: 66%;
     }*/ }
     #InfoContainer.Expanded #Credits .social {
       position: relative;
@@ -406,12 +437,12 @@ html, body {
       height: 50px;
       width: 50px;
       font-size: 50px;
-      color: #F010FF;
+      color: #ff00d2;
       cursor: pointer;
       text-align: left;
       float: left; }
     #InfoContainer.Expanded #Credits .social:hover {
-      color: #00ED00; }
+      color: black; }
     #InfoContainer.Expanded #Credits .social:hover:active {
       color: white; }
 
@@ -427,18 +458,18 @@ html, body {
   transition: opacity 0.9s; }
   #End #Replay {
     -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     position: absolute;
     top: 40%;
     left: 50%;
     height: 50px;
     width: 200px;
     text-align: center;
-    color: #F010FF;
+    color: #ff00d2;
     cursor: pointer;
     font-size: 50px; }
   #End #Replay:hover {
-    color: #00ED00; }
+    color: #ff00d2; }
   #End #Replay:hover:active {
     color: black; }
 
@@ -470,18 +501,20 @@ html, body {
 
 #HDButton:hover {
   background-color: transparent;
-  border-color: #00ED00;
-  color: #00ED00; }
+  border-color: #ff00d2;
+  color: #ff00d2; }
 
 #HDButton.HD {
   background-color: #1040FF;
   color: white; }
 
 #HDButton.HD:hover {
-  background-color: #00ED00;
-  border-color: #00ED00;
+  background-color: #ff00d2;
+  border-color: #ff00d2;
   color: #1040FF; }
 
 #HDButton:hover:active {
   background-color: black;
   color: white; }
+
+/*# sourceMappingURL=main.css.map */

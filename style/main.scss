@@ -19,8 +19,8 @@
 }
 
 $blue : #1040FF;
-$green : #00ED00;
-$red : #F010FF;
+$red : #00ED00;
+$red : rgb(255, 0, 210);
 
 html, body {
   height: 100%;
@@ -68,7 +68,8 @@ $ScrollIndicatorWidth: 20px;
 	position: absolute;
 	bottom: 50%;
 	left: 50%;
-	transform: translate(-50%, 50%);
+	-webkit-transform: translate(-50%, 50%);
+	        transform: translate(-50%, 50%);
 	border-radius: 10px;
 
 	cursor: pointer;
@@ -80,7 +81,8 @@ $ScrollIndicatorWidth: 20px;
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		        transform: translate(-50%, -50%);
 		border-top: $ArrowSize/2 solid transparent;
 		border-bottom: $ArrowSize/2 solid transparent;
 		border-left: $ArrowSize * 0.75 solid $ArrowColor;
@@ -93,7 +95,8 @@ $ScrollIndicatorWidth: 20px;
 		height: $ArrowSize; 
 		width: $ArrowSize / 4;
 		top: 50%;
-		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		        transform: translate(-50%, -50%);
 		background-color: $ArrowColor;
 	}
 
@@ -118,20 +121,24 @@ $ScrollIndicatorWidth: 20px;
 #StartButton.Corner {
 	bottom: 10px;
 	left: 10px;
-	transform : translate(-40%, 40%) scale(0.15);
+    -webkit-transform : translate(-40%, 40%) scale(0.15);
+            transform : translate(-40%, 40%) scale(0.15);
+	transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
 	transition: transform 0.2s, left 0.2s, bottom 0.2s;
 }
 
 #StartButton.MobileCorner {
 	top: 10px;
 	left: 10px;
-	transform : translate(-40%, 40%) scale(0.15);
+    -webkit-transform : translate(-40%, -40%) scale(0.15);
+            transform : translate(-40%, -40%) scale(0.15);
+	transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
 	transition: transform 0.2s, left 0.2s, bottom 0.2s;
 }
 
 #StartButton:hover {
 	$ArrowColor: black;
-	background-color: $green;
+	background-color: $red;
 	#Triangle {
 		border-left-color: $ArrowColor;
 	}
@@ -169,7 +176,11 @@ $ScrollIndicatorWidth: 20px;
 
 	#LoadingBar {
 
-		transform: translate(-50%, -50%);
+
+        -webkit-transform: translate(-50%, -50%);
+
+
+                transform: translate(-50%, -50%);
 		width: 60%;
 		height: $BarHeight;
 		position: absolute;
@@ -220,7 +231,8 @@ $ScrollIndicatorWidth: 20px;
 			left: 50%;
 			top: 50%;
 			height: auto;
-			transform: translate(-50%, -50%);
+	        -webkit-transform: translate(-50%, -50%);
+	                transform: translate(-50%, -50%);
 
 			.arrow {
 				display: block;
@@ -237,7 +249,7 @@ $ScrollIndicatorWidth: 20px;
 	}
 
 	#Second {
-		background-color: $green;
+		background-color: $red;
 	}
 }
 
@@ -262,7 +274,8 @@ $ScrollIndicatorWidth: 20px;
 		height: 60px;
 		@include fontFamily;
 		font-size: 24px;
-		transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
 	}
 }
 
@@ -304,30 +317,57 @@ $ScrollIndicatorWidth: 20px;
 		background-color: $red;
 		/*border-left: 1px dotted black;*/
 
-		#Indicator {
+		#IndicatorContainer {
 			cursor: pointer;
 			width: $ScrollIndicatorWidth;
 			height: $ScrollIndicatorHeight;
 			border-radius: 2px;
 			position: absolute;
-			top: calc(50% - #{$ScrollIndicatorHeight / 2} - #{$RightMargin});
+			/*top: calc(50% - #{$ScrollIndicatorHeight / 2} - #{$RightMargin});*/
+			top: 0px;
 			right: $RightMargin;
-			background-color: $green;
-			opacity: 1;
+
+			#Indicator {
+				width: $ScrollIndicatorWidth;
+				height: 100%;
+				border-radius: 2px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background-color: $red;
+				opacity: 0.8;
+				width: 100%;
+			}
+
+			#Bubble {
+				width: $ScrollIndicatorWidth;
+				height: $ScrollIndicatorHeight;
+				border-radius: 2px;
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				background-color: $blue;
+				opacity: 1;
+			}
 		}
 
-		#Indicator:hover {
-			background-color: white;
+
+		#IndicatorContainer:hover {
+			#Indicator, #Bubble {
+				background-color: white;
+			}
 		}
 
-		#Indicator.Dragging {
-			background-color: black;	
+		#IndicatorContainer.Dragging #Indicator{
+			#Indicator, #Bubble {
+				background-color: black;
+			}
 		}
 	}
 	#Channel.Highlight {
 		background-color: white;
 
-		#Indicator {
+		#IndicatorContainer #Bubble {
 			background-color: black;
 		}
 	}
@@ -339,16 +379,29 @@ $ScrollIndicatorWidth: 20px;
 		background-color: black;
 		/*border-left: 1px dotted black;*/
 
-		#Indicator {
+		#IndicatorContainer {
+			#Indicator, #Bubble {
+				background-color: white;
+			}
+		}
+
+		#IndicatorContainer:hover {
+			#Indicator, #Bubble {
+				background-color: $blue;
+			}
+		}
+
+		#IndicatorContainer.Dragging #Indicator{
+			#Indicator, #Bubble {
+				background-color: $red;
+			}
+		}
+	}
+
+	#Channel.Highlight {
+
+		#IndicatorContainer #Bubble {
 			background-color: white;
-		}
-
-		#Indicator:hover {
-			background-color: $green;
-		}
-
-		#Indicator.Dragging {
-			background-color: $red;	
 		}
 	}
 }
@@ -409,34 +462,58 @@ $ScrollIndicatorWidth: 20px;
 	line-height: 48px;
 }
 
-$notificationSize : 140px;
+$notificationSize : 60px;
+
+@-webkit-keyframes UpAndDown {
+  0%   { -webkit-transform : translate(-50%, -100%); transform : translate(-50%, -100%); }
+  100%   { -webkit-transform : translate(-50%, 0%); transform : translate(-50%, 0%); }
+}
 
 @keyframes UpAndDown {
-  0%   { transform : translate(-50%, -100%); }
-  100%   { transform : translate(-50%, 0%); }
+  0%   { -webkit-transform : translate(-50%, -100%); transform : translate(-50%, -100%); }
+  100%   { -webkit-transform : translate(-50%, 0%); transform : translate(-50%, 0%); }
 }
 
 #Notification {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform : translate(-50%, -50%);
-	width: $notificationSize;
-	height: $notificationSize;
+	-webkit-transform : translate(-50%, -50%);
+	        transform : translate(-50%, -50%);
+	width: 0px; 
+	height: 0px; 
 	@include fontFamily;
 	font-size: $notificationSize * 0.75;
 	color: white;
 	text-align: center;
-	text-shadow: #aaa 0px 0px 12px;
 	opacity: 0;
 }
 
+#Notification.Up {
+	top: 70%;
+	border-left: 2 * $notificationSize/3 solid transparent;
+	border-right: 2 * $notificationSize/3 solid transparent;
+	border-top: $notificationSize solid black;
+}
+
+#Notification.Down {
+	top: 30%;
+	border-left: 2 * $notificationSize/3 solid transparent;
+	border-right: 2 * $notificationSize/3 solid transparent;
+	border-bottom: $notificationSize solid black;
+}
+
 #Notification.Animate {
-	animation-name: UpAndDown;
-	animation-duration: 0.5s;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
-	animation-timing-function: ease-in-out;
+	-webkit-animation-name: UpAndDown;
+	        animation-name: UpAndDown;
+	-webkit-animation-duration: 0.5s;
+	        animation-duration: 0.5s;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	        animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
 }
 
 .Mobile #Notification {
@@ -480,11 +557,11 @@ $InfoButtonMargin : 15px;
 		}
 
 		a:hover {
-			color: $green;
+			color: $red;
 		}
 
 		a:hover:active {
-			color: $red;
+			color: black;
 		}
 	}
 
@@ -497,11 +574,12 @@ $InfoButtonMargin : 15px;
 		z-index: 100;
 		cursor: pointer;
 		font-weight: bold;
+		border-radius: 3px;
 
 	}
 
 	#InfoButton:hover {
-		background-color: $green;
+		background-color: $red;
 		color: $blue;
 	}
 }
@@ -542,7 +620,7 @@ $InfoButtonMargin : 15px;
 		}
 
 		.social:hover {
-			color: $green;
+			color: black;
 		}
 
 		.social:hover:active {
@@ -570,7 +648,8 @@ $InfoButtonMargin : 15px;
 	transition: opacity 0.9s;	
 
 	#Replay {
-		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		        transform: translate(-50%, -50%);
 		position: absolute;
 		top: 40%;
 		left: 50%;
@@ -582,7 +661,7 @@ $InfoButtonMargin : 15px;
 		font-size: 50px;
 	}
 	#Replay:hover {
-		color: $green;
+		color: $red;
 	}
 
 	#Replay:hover:active {
@@ -620,8 +699,8 @@ $InfoButtonMargin : 15px;
 
 #HDButton:hover {
 	background-color: transparent;
-	border-color: $green;
-	color: $green;
+	border-color: $red;
+	color: $red;
 }
 
 #HDButton.HD {
@@ -630,8 +709,8 @@ $InfoButtonMargin : 15px;
 }
 
 #HDButton.HD:hover {
-	background-color: $green;
-	border-color: $green;
+	background-color: $red;
+	border-color: $red;
 	color: $blue;
 }
 

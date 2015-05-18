@@ -198,6 +198,9 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 				scrollTop = top;
 			}
 			return scrollTop;
+		},
+		isStarted : function(){
+			return started;
 		}
 	};
 });

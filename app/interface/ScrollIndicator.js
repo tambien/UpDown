@@ -1,9 +1,11 @@
-define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/Scroll"], 
-	function(Mediator, TERP, Window, $, Scroll){
+define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/Scroll", "util/Config"], 
+	function(Mediator, TERP, Window, $, Scroll, Config){
 
 	var scrollContainer = $("#ScrollContainer");
 	var scrollChannel = $("<div>", {"id" : "Channel"}).appendTo(scrollContainer);
-	var indicator = $("<div>", {"id" : "Indicator"}).appendTo(scrollChannel);
+	var indicator = $("<div>", {"id" : "IndicatorContainer"}).appendTo(scrollChannel);
+	var indicatorBar = $("<div>", {"id" : "Indicator"}).appendTo(indicator);
+	var buble = $("<div>", {"id" : "Bubble"}).appendTo(indicator);
 	var body = $("body");
 
 	var indicatorHeight = indicator.height();
@@ -17,17 +19,28 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 
 	var dragging = false;
 
-	Window.resize(function(){
-		channelHeight = scrollChannel.height();
+	//initial position
+	var top = TERP.scale(0.5, Window.height() - indicatorHeight, 0);
+	indicator.css({
+		"transform" : "translateY("+top+"px)",
 	});
 
-	indicator.on("mousedown touchdown", function(e){
+	Window.resize(function(){
+		channelHeight = scrollChannel.height();
+		if (Scroll.isStarted() && !Config.MOBILE){
+			indicator.css({
+				"width" : Window.width() + channelWidth
+			});
+		}
+	});
+
+	indicator.on("mousedown", function(e){
 		e.preventDefault();
 		dragging = true;
 		indicator.addClass("Dragging");
 	});
 
-	scrollContainer.on("mouseup touchend", function(e){
+	scrollContainer.on("mouseup", function(e){
 		if (dragging){
 			e.preventDefault();
 			dragging = false;
@@ -35,7 +48,7 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 		}
 	});
 
-	scrollContainer.on("mousemove touchmove", function(e){
+	scrollContainer.on("mousemove", function(e){
 		if (dragging){
 			e.preventDefault();
 			var position = e.clientY / channelHeight;
@@ -46,12 +59,18 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 	Mediator.route("rawscroll", function(position){
 		var top = TERP.scale(position, Window.height() - indicatorHeight, 0);
 		indicator.css({
-			"top" : top,
+			"transform" : "translateY("+top+"px)",
 		});
 	});
 
 	Mediator.route("scrollEnd", scrollFlash);
-	Mediator.route("firstScroll", scrollFlash);
+	Mediator.route("start", function(){
+		if (!Config.MOBILE){
+			indicator.animate({
+				"width" : Window.width() + channelWidth
+			}, 400, "linear");
+		}
+	});
 
 	function scrollFlash(){
 		scrollChannel.addClass("Highlight");
