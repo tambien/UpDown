@@ -425,10 +425,10 @@ html, body {
   #InfoContainer.Expanded #Credits {
     opacity: 1;
     /*#Facebook {
-    	maring-left: 33%;
+      maring-left: 33%;
     }
     #Twitter {
-    	left: 66%;
+      left: 66%;
     }*/ }
     #InfoContainer.Expanded #Credits .social {
       position: relative;
@@ -516,5 +516,3 @@ html, body {
 #HDButton:hover:active {
   background-color: black;
   color: white; }
-
-/*# sourceMappingURL=main.css.map */

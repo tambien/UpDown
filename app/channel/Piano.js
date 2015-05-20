@@ -68,7 +68,7 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 		var pianoFolder = GUI.getFolder("Piano");
 		GUI.addTone2(pianoFolder, "vibrato", vibrato);
 		pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
-		pianoFolder.add(delayControl, "value", -100, 1).name("delay");
+		pianoFolder.add(delayControl, "value", -100, 10).name("delay");
 	}
 
 	//return
@@ -94,7 +94,7 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 				"release" : "4n"
 			}
 		});
-		monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"]);
+		monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"], 0, 0.8);
 		vibratoParams = pre.vibrato;
 		vibrato.amplitude.setValueAtTime(0, 0);
 		vibrato.amplitude.linearRampToValueAtTime(vibratoParams.amount, vibratoParams.amount);

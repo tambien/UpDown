@@ -154,11 +154,11 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 	var effectLevels = {
 		"A" : {
-			"reverb" : 0,
+			"reverb" : -2,
 			"delay" : -7,
 		},
 		"B" : {
-			"reverb" : 4,
+			"reverb" : 3,
 			"delay" : 0,
 		}
 	};
@@ -181,7 +181,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 
 	Mediator.route("B", function(){
-		samplerB.volume.value = 4;
+		samplerB.volume.value = 5;
 		samplerB.pitch = 0;
 		reverbAmount.gain.value = samplerB.dbToGain(effectLevels.B.reverb);
 		delayAmount.gain.value = samplerB.dbToGain(effectLevels.B.delay);

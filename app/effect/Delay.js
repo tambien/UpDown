@@ -2,7 +2,7 @@ define(["Tone/core/Bus", "interface/GUI", "Tone/effect/PingPongDelay", "Tone/cor
 	"controller/Mediator", "util/Config"], 
 	function(Bus, GUI, PingPongDelay, Transport, Mediator, Config){
 
-	if (!Config.MOBILE){
+/*	if (!Config.MOBILE){
 		var delayTime = "16n";
 		var pingPong = new PingPongDelay(delayTime, 0.2).toMaster();
 		pingPong.receive("delay");
@@ -15,5 +15,5 @@ define(["Tone/core/Bus", "interface/GUI", "Tone/effect/PingPongDelay", "Tone/cor
 			var effectFolder = GUI.getFolder("Effect");
 			GUI.addTone2(effectFolder, "Delay", pingPong, ["feedback"]);
 		}
-	}
+	}*/
 });

@@ -64,7 +64,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the number of times the voice has repeated
 		 */
-		this.voiceNumber = -1;
+		this.forceVoice = -1;
 
 
 		// SECTION TIMING
@@ -208,6 +208,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	};
 
 	Conductor.prototype.updateSection = function(time) {
+		// console.log(this.section);
 		//set the measures
 		if (!Config.MOBILE){
 			if (Scroll.getDistance() > this.bDistance && this.movement === 0){
@@ -226,7 +227,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 			}
 		}
 		this.loop++;
-		this.voiceNumber = (this.voiceNumber + 1) % 3;
+		this.forceVoice++;
 		//update the chords if necessary
 		this.updateChords(this.currentSection);
 	};
@@ -234,11 +235,11 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	Conductor.prototype.updateLoop = function(time) {
 		if (this.currentSection !== this.nextSection){
 			if (this.nextSection >= 2 && this.currentSection < 2){
-				this.voiceNumber = 0;
+				this.forceVoice = -1;
 				Mediator.deferSend("half", 1);
 			} else if (this.nextSection < 2 && this.currentSection >= 2){
 				Mediator.deferSend("half", 0);
-				this.voiceNumber = 0;
+				this.forceVoice = -1;
 			}
 			this.currentSection = this.nextSection;
 			this.setLoopStart(this.currentSection);
@@ -289,6 +290,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 	Conductor.prototype._BStart = function(time){
 		this.movement = 1;
 		this.measure = 1;
+		this.forceVoice === -1;
 		Mediator.send("B", time);
 		Mediator.send("Movement", time);
 	};
@@ -310,13 +312,26 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 
 	var scrollIncrement = 0.1;
 
+	var hasVoiceA = 3;
+	var hasVoiceB = 4;
+	var voiceCounter = 0;
+
 	Conductor.prototype.hasVoice = function(){
 		if (Scroll.getDistance() > scrollIncrement * 5){
-			if (this.movement === 1 && this.measure === 1){
+			// console.log("pass", this.measure % 2 === 0 || this.measure % 3 === 0);
+			// console.log("force", this.forceVoice);
+			if (this.forceVoice === -1){
+				return true;
+			}  else if (this.measure % 5 === 1 || this.measure % 2 === 1){
 				return true;
 			} else {
-				return this.voiceNumber !== 0;
+				return false;
 			}
+			/*if (this.movement === 1 && this.measure === 1){
+				return true;
+			} else {
+				return this.forceVoice !== 0;
+			}*/
 		} else {
 			return false;
 		}
@@ -477,7 +492,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		this.chordNumber = -1;
 		this.chordName = "none!";
 		this.progress = 0.5;
-		this.voiceNumber = -1;
+		this.forceVoice = -1;
 		this.setTempo(this.progress, 0);
 	};
 

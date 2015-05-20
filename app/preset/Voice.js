@@ -27,7 +27,7 @@ define(["preset/Interpolator", "interface/PresetGUI"], function(Interpolator, GU
 		},
 		{
 			"player": {
-				"volume": -6,
+				"volume": -8,
 				// "loop": false
 			},
 			"envelope": {

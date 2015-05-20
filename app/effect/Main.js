@@ -4,14 +4,17 @@ define(["Tone/effect/Convolver", "Tone/core/Bus", "interface/GUI",
 
 	//reverb
 	if (!Config.MOBILE){
-		var filter = new Filter({
-			"type" : "highpass",
-			"frequency" : 300,
-			"Q" : 1,
-		}).toMaster();
 		var reverb = new Reverb("./audio/IR4.wav");
 		reverb.receive("reverb");
-		reverb.connect(filter);
+
+		var filter = new Filter({
+			"type" : "highpass",
+			"frequency" : 400,
+			"Q" : 1,
+		}).connect(reverb.context.destination);
+
+		// reverb.connect(filter);
+		reverb.connect(reverb.context.destination);
 		
 		Master.volume.value = 2;
 
