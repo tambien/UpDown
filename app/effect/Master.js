@@ -1,6 +1,7 @@
 define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/Mediator", 
-	"Tone/component/Compressor", "interface/GUI", "TERP", "controller/Conductor" ,"Tone/component/EQ3", "Tone/component/LFO"], 
-	function(Master, Config, Filter, Mediator, Compressor, GUI, TERP, Conductor, EQ3, LFO){
+	"Tone/component/Compressor", "interface/GUI", "TERP", "controller/Conductor" ,"Tone/component/EQ3", 
+	"Tone/component/LFO", "Tone/effect/Distortion"], 
+	function(Master, Config, Filter, Mediator, Compressor, GUI, TERP, Conductor, EQ3, LFO, Distortion){
 
 	if (!Config.MOBILE){
 		var compressor = new Compressor({
@@ -14,37 +15,26 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 		var filter = new Filter(20000, "lowpass");
 		filter.Q.value = 1;
 
-		//master filtering
-		var midBump = new Filter({
-			"frequency" : 540,
-			"type" : "peaking",
-			"Q" : 0.5
+		var saturation = new Distortion({
+			"distortion" : 0.15,
+			"wet" : 0.1
 		});
+
+		window.saturation = saturation;
+
+		//master filtering
 
 
 		var lowBump = new Filter({
-			"frequency" : 180,
+			"frequency" : 220,
 			"type" : "lowshelf",
 			"Q" : 2.1,
 			"gain" : 6,
 		});
 
-		var midLFO = new LFO(3, 3, -10).start();
-		var midFreqLFO = new LFO(0.02, 8, 1).start().connect(midLFO.frequency);
-		midLFO.connect(midBump.gain);
-		// midBump.gain.value = 7;
+		Master.chain(filter, compressor, lowBump, saturation);
 
-
-		window.eq = midBump;
-		window.lowBump = lowBump;
-		window.midLFO = midLFO;
-		// window.highLFO = highLFO;
-
-		Master.chain(filter, midBump, compressor, lowBump);
-
-		//master send/recv
-		/*Master.send(filter);
-		Master.receive(compressor);*/
+		Master.volume.value = 2;
 
 		//events
 		Mediator.route("B", function(time){
@@ -85,9 +75,8 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 		if (Config.GUI){
 			var folder = GUI.getFolder("Master Effects");
 			GUI.addTone2(folder, "Compressor", compressor);
-			GUI.addTone2(folder, "EQ", eq);
-			GUI.addTone2(folder, "midLFO", midLFO);
 			GUI.addTone2(folder, "lowBump", lowBump);
+			GUI.addTone2(folder, "saturation", saturation);
 		}
 	}
 

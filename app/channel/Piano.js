@@ -1,9 +1,9 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/instrument/PolySynth", 
 	"Tone/component/Panner", "preset/PianoSoundA", "preset/PianoSoundB", "Tone/component/LFO", "interface/GUI", 
 	"Tone/signal/Signal", "controller/Mediator", "controller/Conductor", "util/Config", "Tone/component/Volume", 
-	"Tone/component/Meter", "Tone/core/Bus"], 
+	"Tone/component/Meter", "Tone/core/Bus", "Tone/component/Filter"], 
 function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signal, 
-	Mediator, Conductor, Config, Volume, Meter, Bus){
+	Mediator, Conductor, Config, Volume, Meter, Bus, Filter){
 
 	"use strict";
 
@@ -15,25 +15,6 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 	var synthVolume = new Volume();
 
 	var volume = monoSynth.context.createGain();
-
-	if (!Config.MOBILE){
-		/*var ampLFO = new LFO({
-			"frequency": "8t", 
-			"min": 1, 
-			"max" : 0
-		}).connect(volume.gain).sync();
-		ampLFO.amplitude.value = 0;
-
-		Mediator.route("scroll", function(position, rampTime){
-			if (Conductor.getMovement() === 0){
-				var progress = Conductor.getBTransitionProgress();
-				if (progress > 0){
-					// ampLFO.amplitude.rampTo(progress, 0.25);
-					ampLFO.amplitude.value = progress;
-				}
-			} 
-		});*/
-	}
 
 	var vibrato = new LFO("32n", -40, 40);
 	vibrato.sync();
@@ -49,12 +30,24 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 		"delay" : -24
 	};
 
-	var revAmount, delayAmount, panner;
+	var revAmount, delayAmount, panner, midLFO, midFreqLFO;
 	if (!Config.MOBILE){
+		var midBump = new Filter({
+			"frequency" : 540,
+			"type" : "peaking",
+			"Q" : 0.5
+		});
+
+		midLFO = new LFO(3, 3, -10).start();
+		midFreqLFO = new LFO(0.02, 8, 1).start().connect(midLFO.frequency);
+		midLFO.connect(midBump.gain);
+		window.eq = midBump;
+		window.midLFO = midLFO;
+
 		panner = new Panner(0.2);
 		revAmount = panner.send("reverb", effectLevels.reverb);
 		delayAmount = panner.send("delay", effectLevels.delay);
-		monoSynth.chain(synthVolume, panner, volume, Master);
+		monoSynth.chain(synthVolume, midBump, panner, volume, Master);
 	} else {
 		monoSynth.chain(synthVolume, Master);
 	}
@@ -69,6 +62,9 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 		GUI.addTone2(pianoFolder, "vibrato", vibrato);
 		pianoFolder.add(reverbControl, "value", -100, 1).name("reverb");
 		pianoFolder.add(delayControl, "value", -100, 10).name("delay");
+
+		GUI.addTone2(pianoFolder, "midBump", midBump);
+		GUI.addTone2(pianoFolder, "midLFO", midLFO);
 	}
 
 	//return

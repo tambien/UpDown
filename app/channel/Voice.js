@@ -2,13 +2,21 @@ define(["Tone/instrument/Sampler", "controller/Mediator",
  "preset/Voice", "controller/Conductor", "Tone/core/Master", 
  "effect/Main", "interface/GUI", "Tone/instrument/PolySynth", 
  "Tone/signal/Signal", "Tone/component/Volume", "util/Config", 
- "Tone/core/Transport", "TERP", "preset/VoiceB"], 
+ "Tone/core/Transport", "TERP", "preset/VoiceB", "Tone/component/Filter"], 
 function(Sampler, Mediator, Preset, Conductor, Master, Effects, 
-	GUI, PolySynth, Signal, Volume, Config, Transport, TERP, PresetB){
+	GUI, PolySynth, Signal, Volume, Config, Transport, TERP, PresetB, Filter){
 
 	var audioFolder = "./audio/";
 
-	var volume = new Volume().connect(Master);
+	var filter = new Filter({
+		"frequency" : 240,
+		"type" : "highpass", 
+		"Q" : 2
+	});
+
+	var volume = new Volume().chain(filter, Master);
+
+	window.filter = filter;
 
 	var samplerA = new Sampler({
 		"A" : {
@@ -163,7 +171,7 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 		}
 	};
 
-	var reverbAmount = volume.send("reverb", effectLevels.A.reverb);
+	var reverbAmount = filter.send("reverb", effectLevels.A.reverb);
 	var delayAmount = volume.send("delay", effectLevels.A.delay);
 
 	//GUI

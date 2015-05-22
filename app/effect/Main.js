@@ -16,8 +16,6 @@ define(["Tone/effect/Convolver", "Tone/core/Bus", "interface/GUI",
 		// reverb.connect(filter);
 		reverb.connect(reverb.context.destination);
 		
-		Master.volume.value = 2;
-
 		if (Config.GUI){
 			var effectFolder = GUI.getFolder("Effect");
 			GUI.addTone2(effectFolder, "filter", filter);

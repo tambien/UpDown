@@ -4,12 +4,12 @@ function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 
 	var volumes = {
 		Bass : -8,
-		Piano : -34,
+		Piano : -32,
 		Voice : 3,
 		HH : -24,
 		Kick : -16,
 		Snare : -8,
-		Arp : -37
+		Arp : -33
 	};
 
 	Bass.volume.value = volumes.Bass;

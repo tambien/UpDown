@@ -52,9 +52,9 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 	var BackgroundImage = function(){
 		this.loader = new THREE.ImageLoader();
 		this.pic = new THREE.Sprite(material);
-		
-		window.pic = this.pic;
 
+		window.pic = this.pic;
+		
 		this.setSize();
 		Window.resize(this.setSize.bind(this));
 		this.imageNumber = 0;
@@ -85,6 +85,8 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 		for (i = 0; i < heartImageCount; i++){
 			this.loader.load("./smallerImages/heart/"+i+".png", this.storeImage("heart", i));
 		}
+
+		this.imagesAdded = false;
 	};
 
 	var scrollDist = 0.5;
@@ -105,13 +107,16 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 
 	BackgroundImage.prototype.add = function(){
 		this.setImage();
-		Context.layer1.add(this.pic);
+		if (!this.imagesAdded){
+			this.imagesAdded = true;
+			Context.layer1.add(this.pic);
+		}
 		Context.background.add(BBox);
 		this.interval = setInterval(this.updateLoop.bind(this), 100);
 	};
 
 	BackgroundImage.prototype.remove = function(){
-		Context.layer1.remove(this.pic);	
+		// Context.layer1.remove(this.pic);	
 		Context.background.remove(BBox);
 		clearInterval(this.interval);
 	};
