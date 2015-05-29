@@ -1,0 +1,11 @@
+$blue : #1040FF;
+$red : #00ED00;
+$red : rgb(255, 0, 210);
+$yellow : rgb(249, 255, 0);
+
+$ScrollIndicatorWidth: 20px;
+
+@mixin fontFamily {
+	// font-family: "Courier New", monospace;
+	font-family: sans-serif;
+}

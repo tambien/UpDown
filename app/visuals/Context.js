@@ -1,7 +1,8 @@
 define(["interface/Window", "jquery", "TWEEN", "Stats", 
 	"controller/Mediator", "shader/ColorShift", "shader/Noise", 
-	"util/Config", "controller/Conductor"], 
-function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Config, Conductor){
+	"util/Config", "controller/Conductor", "THREE", "THREEShaders"], 
+function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, 
+	NoiseShader, Config, Conductor, THREE, THREEShaders){
 
 	/**
 	 *  the threejs context
@@ -131,9 +132,9 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, NoiseShader, Confi
 	};
 
 	Context.prototype.fadeIn = function(){
-		this.$rendererElement.animate({
+		this.$rendererElement.css({
 			"opacity" : 1
-		}, 500);
+		});
 	};
 
 	Context.prototype.fadeOut = function(){

@@ -1,5 +1,5 @@
-define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "controller/Conductor"], 
-	function(Context, Mediator, VoicePreset, Conductor){
+define(["visuals/Context", "controller/Mediator", "preset/VoiceVisual", "controller/Conductor", "THREE", "TWEEN"], 
+	function(Context, Mediator, VoicePreset, Conductor, THREE, TWEEN){
 
 	"use strict";
 

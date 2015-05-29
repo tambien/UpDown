@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "interface/Window", 
-	"TERP", "preset/HighHatVisual", "controller/Conductor"],
- function(Context, Mediator, Window, TERP, Preset, Conductor){
+	"TERP", "preset/HighHatVisual", "controller/Conductor", "THREE", "TWEEN"],
+ function(Context, Mediator, Window, TERP, Preset, Conductor, THREE, TWEEN){
 
 	"use strict";
 

@@ -1,5 +1,5 @@
-define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "controller/Conductor"], 
-function(Context, Mediator, BassPreset, Conductor){
+define(["visuals/Context", "controller/Mediator", "preset/BassVisual", "controller/Conductor", "THREE", "TWEEN"], 
+function(Context, Mediator, BassPreset, Conductor, THREE, TWEEN){
 
 	"use strict";
 

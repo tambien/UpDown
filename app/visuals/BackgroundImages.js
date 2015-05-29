@@ -1,6 +1,7 @@
 define(["visuals/Context", "controller/Mediator", "util/Config", 
-	"interface/Window", "controller/Conductor", "interface/Scroll", "TERP", "TWEEN"], 
-	function(Context, Mediator, Config, Window, Conductor, Scroll, TERP, TWEEN){
+	"interface/Window", "controller/Conductor", "interface/Scroll", 
+	"TERP", "TWEEN", "THREE"], 
+	function(Context, Mediator, Config, Window, Conductor, Scroll, TERP, TWEEN, THREE){
 
 	"use strict";
 
@@ -61,6 +62,7 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 		Mediator.route("scroll",this.scroll.bind(this));
 		// Mediator.route("rawscroll",this.rawscroll.bind(this));
 		Mediator.route("BDrop",this.add.bind(this));
+		Mediator.route("B",this.BSetup.bind(this));
 		Mediator.route("flip",this.flip.bind(this));
 		Mediator.route("C",this.remove.bind(this));
 
@@ -107,12 +109,13 @@ define(["visuals/Context", "controller/Mediator", "util/Config",
 
 	BackgroundImage.prototype.add = function(){
 		this.setImage();
-		if (!this.imagesAdded){
-			this.imagesAdded = true;
-			Context.layer1.add(this.pic);
-		}
+		Context.layer1.add(this.pic);
 		Context.background.add(BBox);
 		this.interval = setInterval(this.updateLoop.bind(this), 100);
+	};
+
+	BackgroundImage.prototype.BSetup = function(){
+		Context.layer1.remove(this.pic);
 	};
 
 	BackgroundImage.prototype.remove = function(){

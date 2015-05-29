@@ -1,5 +1,5 @@
 define(["jquery", "controller/Mediator", "interface/Window", "controller/Analytics", 
-	"Tone/core/Master", "util/Config", "text!fragment/info.html", "text!fragment/infoDetail.html"], 
+	"Tone/core/Master", "util/Config", "info.html", "infoDetail.html"], 
 function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag){
 
 	var expanded = false;

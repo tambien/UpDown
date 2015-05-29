@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/KickWave", 
-	"TWEEN", "interface/Window", "preset/KickVisual", "controller/Conductor", "util/Config"], 
-	function(Context, Mediator, KickMaterial, TWEEN, Window, Preset, Conductor, Config){
+	"TWEEN", "interface/Window", "preset/KickVisual", "controller/Conductor", "util/Config", "THREE"], 
+	function(Context, Mediator, KickMaterial, TWEEN, Window, Preset, Conductor, Config, THREE){
 
 	"use strict";
 

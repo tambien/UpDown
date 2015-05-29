@@ -16,7 +16,7 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 		filter.Q.value = 1;
 
 		var saturation = new Distortion({
-			"distortion" : 0.15,
+			"distortion" : 0.1,
 			"wet" : 0.1
 		});
 
@@ -66,10 +66,10 @@ define(["Tone/core/Master", "util/Config", "Tone/component/Filter", "controller/
 		});
 
 		Mediator.route("pause", function(){
-			Master.mute();
+			Master.mute = true;
 		});
 		Mediator.route("play", function(){
-			Master.unmute();
+			Master.mute = false;
 		});
 
 		if (Config.GUI){

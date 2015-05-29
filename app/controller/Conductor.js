@@ -72,12 +72,12 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		/**
 		 *  the distance you have to scroll to arrive at the b section
 		 */
-		this.bDistance = 4;
+		this.bDistance = 3;
 
 		/**
 		 *  the distance you have to scroll to arrive at the c section
 		 */
-		this.cDistance = 8;
+		this.cDistance = 7;
 
 		/**
 		 *  the distance you have to scroll to arrive at the end

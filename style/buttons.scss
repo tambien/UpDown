@@ -1,0 +1,419 @@
+@import "common.scss";
+
+$ButtonSize : 35px;
+$ButtonMargin : 10px;
+$ButtonTop : 4px;
+$RightPadding : 20px;
+
+$HoverInside : $blue;
+$HoverOutside : white;
+$ActiveInside : white;
+$ActiveOutside : black;
+$StartButtonSize : 250px;
+
+@mixin PositionButton($pos){
+	top: $ButtonTop;
+	right : $pos * ($ButtonSize + $ButtonMargin) + $RightPadding;
+}
+
+#StartButton {
+
+	$ArrowSize : 150px;
+	$ArrowColor: white;
+
+	width: $StartButtonSize;
+	height: $StartButtonSize;
+	background-color: $blue;
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	margin-right : -$StartButtonSize / 2;
+	margin-top : -$StartButtonSize / 2;
+	transform-origin: 100% 0px;
+	border-radius: 18px;
+
+	cursor: pointer;
+
+	#Triangle {
+		opacity: 1;
+		width: 0;
+		height: 0;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		border-top: $ArrowSize/2 solid transparent;
+		border-bottom: $ArrowSize/2 solid transparent;
+		border-left: $ArrowSize * 0.75 solid $ArrowColor;
+		font-size: 150px;
+	}
+
+	.PauseBar {
+		opacity: 0;
+		position: absolute;
+		height: $ArrowSize; 
+		width: $ArrowSize / 4;
+		top: 50%;	
+		transform: translate(-50%, -50%);
+		background-color: $ArrowColor;
+	}
+
+	#Pause0 {
+		left: 33%;
+	}
+
+	#Pause1 {
+		left: 66%;
+	}
+}
+
+#StartButton.Playing {
+	#Triangle {
+		opacity: 0;
+	}
+	.PauseBar {
+		opacity: 1;
+	}
+}
+
+#StartButton.Corner {
+	@include PositionButton(3.5);
+    transform : scale($ButtonSize / $StartButtonSize);
+    margin-right : 0px;
+	margin-top : 0px;
+	transition: all 0.2s;
+}
+
+#StartButton.Corner:hover {
+	$ArrowColor: $HoverInside;
+	background-color: $HoverOutside;
+	#Triangle {
+		border-left-color: $ArrowColor;
+	}
+	.PauseBar {
+		background-color: $ArrowColor;
+	}
+}
+
+#StartButton.Corner:hover:active {
+	$ArrowColor: $ActiveInside;
+	background-color: $ActiveOutside;
+	#Triangle {
+		border-left-color: $ArrowColor;
+	}
+	.PauseBar {
+		background-color: $ArrowColor;
+	}
+}
+
+#StartButton.MobileCorner {
+	@include PositionButton(2.5);
+    transform : scale($ButtonSize / $StartButtonSize);
+    margin-right : 0px;
+	margin-top : 0px;
+	transition: all 0.2s;
+}
+
+#StartButton:hover {
+	$ArrowColor: black;
+	background-color: $red;
+	#Triangle {
+		border-left-color: $ArrowColor;
+	}
+	.PauseBar {
+		background-color: $ArrowColor;
+	}
+}
+
+#StartButton:hover:active {
+	$ArrowColor: white;
+	background-color: black;
+	#Triangle {
+		border-left-color: $ArrowColor;
+	}
+	.PauseBar {
+		background-color: $ArrowColor;
+	}
+}
+
+/**
+ *  INFO BUTTON
+ */
+
+#InfoContainer {
+	overflow: hidden;
+	position: absolute;
+	@include PositionButton(1);
+	background-color: $blue;
+	width: $ButtonSize;
+	height: $ButtonSize;
+	border-radius: 3px;
+	line-height: $ButtonSize;
+	text-align: center;
+	color: white;
+	@include fontFamily;
+	font-size: 20px;
+	z-index: 101;
+	transition: all 0.25s;
+
+	#Credits {
+		position: absolute;
+		top: 10%;
+		left: 10%;
+		width: 80%;
+		height: 80%;
+		opacity: 0;
+		text-align: left;
+		color: white;
+		transition: opacity 0.25s;
+
+		a {
+			font-weight: 900;
+			text-decoration: none;
+			color: white;
+		}
+
+		a:hover {
+			color: $red;
+		}
+
+		a:hover:active {
+			color: black;
+		}
+	}
+
+	#InfoButton {
+		width: $ButtonSize;
+		height: $ButtonSize;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		z-index: 100;
+		cursor: pointer;
+		font-weight: lighter;
+		border-radius: 3px;
+
+	}
+
+	#InfoButton:hover {
+		background-color: $HoverOutside;
+		color: $HoverInside;
+	}
+
+	#InfoButton:hover:active {
+		background-color: $ActiveOutside;
+		color: $ActiveInside;
+	}
+}
+
+.Mobile #InfoContainer {
+
+	#Credits {
+		width: 90%;
+		height: 90%;
+		left: 5%;
+		top: 10px;
+		font-size: 12px;
+	}
+}
+
+#InfoContainer.Expanded {
+	$margin : 15px;
+	width: calc(100% - #{$margin} * 2);
+	height: calc(100% - #{$ButtonTop}  - #{$margin});
+	right: $margin;
+
+	opacity: 0.85;
+	cursor: inherit;
+
+	#Credits {
+
+		font-family: monospace;
+		opacity: 1;
+
+		.social {
+			position: relative;
+			margin-right: 10px;
+			height: 50px;
+			width: 50px;
+			font-size: 50px;
+			color: $red;
+			cursor: pointer;
+			text-align: left;
+			float: left;
+		}
+
+		.social:hover {
+			color: black;
+		}
+
+		.social:hover:active {
+			color: white;
+		}
+	}
+}
+
+/**
+ *  HD BUTTON
+ */
+#HDButton {
+	position: absolute;
+	@include PositionButton(2);
+	background-color: transparent;
+	width: $ButtonSize;
+	height: $ButtonSize;
+	border-radius: 3px;
+	line-height: $ButtonSize;
+	text-align: center;
+	@include fontFamily;
+	font-weight: lighter;
+	font-size: 20px;
+	z-index: 101;
+	cursor: pointer;
+	box-sizing: border-box;
+	color: $blue;
+	border: 2px solid $blue;
+}
+
+#HDButton:hover {
+	background-color: transparent;
+	border-color: white;
+	color: white;
+}
+
+#HDButton.HD {
+	background-color: $blue;
+	color: white;
+}
+
+#HDButton.HD:hover {
+	background-color: white;
+	border-color: white;
+	color: $blue;
+}
+
+#HDButton:hover:active {
+	background-color: $ActiveOutside;
+	color: $ActiveInside;
+}
+
+/**
+ *  NOTIFICATION BUTTON
+ */
+$ItemHeight : 60px;
+
+#NotificationButton {
+	width: $ButtonSize;
+	height: $ButtonSize;
+	position: absolute;
+	@include PositionButton(0);
+	z-index: 100;
+	cursor: pointer;
+	font-weight: lighter;
+	border-radius: 3px;
+
+	#Flag {
+		bottom: calc(50% + 2px);
+		left: calc(50% + 2px);
+		position: absolute;
+		background-color: $yellow;
+		width: 0px;
+		height: 0px;
+		border-radius: 3px;
+		transition: width 0.3s, height 0.3s;
+		transition-delay: 0.5s;
+		transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46);
+	}
+
+	#Button {
+		z-index: 1;
+		position: absolute; 
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: $blue;
+		cursor: pointer;
+	}
+
+	#Button:hover {
+		background-color: white;
+	}
+
+	#Button:active:hover {
+		background-color: $ActiveOutside;
+	}
+
+	#DropDown {
+		position: absolute;
+		right: 0px;
+		top: $ButtonSize + 10;
+		width: 200px;
+		height: $ItemHeight * 3;
+		text-align: right;
+		padding: 10px;
+		pointer-events: none;
+		z-index: 10000;
+		background-color: rgba($blue, 0.8);
+		opacity: 0;
+		overflow: hidden;
+		height: 0px;
+		transition: height 0.2s ease-in, opacity 0.2s ease-in;
+
+		.Item {
+			width: 100%;
+			height: $ItemHeight;
+			position: relative;
+
+			#Square {
+				$padding : 10px;
+				width: $ItemHeight - $padding * 2;
+				height: $ItemHeight - $padding * 2;
+				margin-top: $padding;
+				margin-right: $padding;
+				background-color: $yellow;
+				float: left;
+			}
+
+			#Text {
+				width: auto;
+				height: $ItemHeight;
+				line-height: $ItemHeight;
+				float: left;
+				color: $yellow;
+				font-family: sans-serif;
+				font-weight: lighter;
+			}
+
+		}
+	}
+}
+
+#NotificationButton.Expanded {
+	#DropDown {
+		opacity: 1;
+		height: $ItemHeight * 3;
+		transition: height 0.2s ease-out, opacity 0.2s ease-out;
+	}
+}
+
+#NotificationButton.Notified {	
+	#Flag {
+		width: $ButtonSize / 2;
+		height: $ButtonSize / 2;
+	}
+}
+
+/**
+ *  JC LOGO
+ */
+#Logo {
+	position: absolute;
+	top: $ButtonTop;
+	left: $RightPadding * 2;
+	background: url("../images/logo.png");
+	background-size : 100% 100%;
+	width: $ButtonSize;
+	height: $ButtonSize;
+}

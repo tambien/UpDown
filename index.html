@@ -12,7 +12,7 @@
 	<!--FACEBOOK-->
 	<meta property="og:title" content="Jazz.Computer"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:image" content="http://jazz.computer/thumbs.jpg"/>
+	<meta property="og:image" content="http://jazz.computer/screenshots/thumbs.jpg"/>
 	<meta property="og:url" content="http://jazz.computer"/>
 	<meta property="og:description" content="Interactive Music. Scroll to play."/>
 	<meta property="fb:app_id" content="825781467502888"/>
@@ -21,7 +21,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Jazz.Computer">
 	<meta name="twitter:description" content="Interactive Music. Scroll to play.">
-	<meta name="twitter:image" content="http://jazz.computer/stars.jpg">
+	<meta name="twitter:image" content="http://jazz.computer/screenshots/stars.jpg">
 	<meta name="twitter:url" content="http://jazz.computer/">
 
 	<!--VIEWPORT-->
@@ -31,23 +31,7 @@
 	<meta name="apple-touch-fullscreen" content="yes"/>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
 
-	<script type="text/javascript" src="./deps/modernizr.js"></script>
-	<script type="text/javascript" src="./deps/three.min.js"></script>
-	<script type="text/javascript" src="./deps/three.shader.min.js"></script>
-	<script type="text/javascript">
-	Modernizr.load({
-		test : Modernizr.webaudio && Modernizr.webgl,
-		// test : false,
-		// yep : ["UpDown-build.js"],
-		yep : ["./deps/require.js", "./app/UpDown.js"],
-  		nope: ["./deps/jquery-2.1.1.min.js", "fallback.js"],
-	});
-	</script>
-
-	<!--STYLE-->
 	<link rel="stylesheet" type="text/css" href="./style/fontello/css/fontello.css">
-	<link rel="stylesheet" type="text/css" href="./style/main.css">
-	
 </head>
 <body>
 	<div id="Container">
@@ -55,9 +39,15 @@
 	</div>
 	<div id="ScrollContainer"></div>
 
-	<script>
-	 
-
+	<!-- ACTION! -->
+	<script type="text/javascript" src="./deps/modernizr.js"></script>
+	<script type="text/javascript">
+	Modernizr.load({
+		test : Modernizr.webaudio && Modernizr.webgl,
+		// yep : ["./build/updown.js", "./build/0.js"],
+		yep : ["./build/updown.js", "./build/1.js"],
+  		nope: ["./deps/jquery-2.1.1.min.js", "fallback.js"],
+	});
 	</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-define(["text!shader/colorshift.frag",  "text!shader/colorshift.vert"], 
+define(["shader/colorshift.frag",  "shader/colorshift.vert"], 
 function(fragShader, vertShader){
 
 	var ColorShader = {

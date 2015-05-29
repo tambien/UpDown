@@ -1,4 +1,4 @@
-define(["requestAnimationFrame", "util/Config"], function(requestAnimationFrame, Config){
+define(["requestAnimationFrame", "util/Config", "jquery"], function(requestAnimationFrame, Config, $){
 	
 	/**
 	 * MicroEvent - to make any js object an event emitter (server or browser)

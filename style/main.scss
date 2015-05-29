@@ -1,3 +1,5 @@
+@import "common.scss";
+
 @mixin hundredPercent {
 	position: absolute;
 	top: 0px;
@@ -14,20 +16,11 @@
 	z-index: 10000!important;
 }
 
-@mixin fontFamily {
-	font-family: "Courier New", monospace;
-}
-
-$blue : #1040FF;
-$red : #00ED00;
-$red : rgb(255, 0, 210);
-
 html, body {
   height: 100%;
   overflow: hidden;
 }
 
-$ScrollIndicatorWidth: 20px;
 
 #Container {
 	height: 100%;
@@ -40,7 +33,8 @@ $ScrollIndicatorWidth: 20px;
 	width: calc(100% - #{$ScrollIndicatorWidth} - 4px);
 
 	canvas {
-		opacity: 0;
+		opacity: 0.6;
+		transition: opacity 0.2s;
 		width: 100%!important;
 		height: 100%!important;
 	}
@@ -54,363 +48,6 @@ $ScrollIndicatorWidth: 20px;
 		left: 0px;
 		opacity: 0;
 	}
-}
-
-#StartButton {
-
-	$StartButtonSize : 250px;
-	$ArrowSize : 150px;
-	$ArrowColor: white;
-
-	width: $StartButtonSize;
-	height: $StartButtonSize;
-	background-color: $blue;
-	position: absolute;
-	bottom: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, 50%);
-	        transform: translate(-50%, 50%);
-	border-radius: 10px;
-
-	cursor: pointer;
-
-	#Triangle {
-		opacity: 1;
-		width: 0;
-		height: 0;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		        transform: translate(-50%, -50%);
-		border-top: $ArrowSize/2 solid transparent;
-		border-bottom: $ArrowSize/2 solid transparent;
-		border-left: $ArrowSize * 0.75 solid $ArrowColor;
-		font-size: 150px;
-	}
-
-	.PauseBar {
-		opacity: 0;
-		position: absolute;
-		height: $ArrowSize; 
-		width: $ArrowSize / 4;
-		top: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		        transform: translate(-50%, -50%);
-		background-color: $ArrowColor;
-	}
-
-	#Pause0 {
-		left: 33%;
-	}
-
-	#Pause1 {
-		left: 66%;
-	}
-}
-
-#StartButton.Playing {
-	#Triangle {
-		opacity: 0;
-	}
-	.PauseBar {
-		opacity: 1;
-	}
-}
-
-#StartButton.Corner {
-	bottom: 10px;
-	left: 10px;
-    -webkit-transform : translate(-40%, 40%) scale(0.15);
-            transform : translate(-40%, 40%) scale(0.15);
-	transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
-	transition: transform 0.2s, left 0.2s, bottom 0.2s;
-}
-
-#StartButton.MobileCorner {
-	top: 10px;
-	left: 10px;
-    -webkit-transform : translate(-40%, -40%) scale(0.15);
-            transform : translate(-40%, -40%) scale(0.15);
-	transition: -webkit-transform 0.2s, left 0.2s, bottom 0.2s;
-	transition: transform 0.2s, left 0.2s, bottom 0.2s;
-}
-
-#StartButton:hover {
-	$ArrowColor: black;
-	background-color: $red;
-	#Triangle {
-		border-left-color: $ArrowColor;
-	}
-	.PauseBar {
-		background-color: $ArrowColor;
-	}
-}
-
-#StartButton:hover:active {
-	$ArrowColor: white;
-	background-color: black;
-	#Triangle {
-		border-left-color: $ArrowColor;
-	}
-	.PauseBar {
-		background-color: $ArrowColor;
-	}
-}
-
-/**
- *  LOADING
- */
-#LoadingScreen {
-
-	$BarHeight : 70px;
-	$AccentColor: white;
-
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background-color: $blue;
-	z-index: 100;
-
-	#LoadingBar {
-
-
-        -webkit-transform: translate(-50%, -50%);
-
-
-                transform: translate(-50%, -50%);
-		width: 60%;
-		height: $BarHeight;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		border: 4px solid $AccentColor;
-
-		#Progress {
-			width: 20px;
-			height: 100%;
-			position: absolute;
-			left: 0px;
-			top: 0px;
-			background-color: $AccentColor;
-		}
-	}
-}
-
-/**
- *  SPLASH
- */
-#SplashBackground {
-
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background-color: white;
-	z-index: 1000;
-	opacity: 1;
-
-	.SplashPage {
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		opacity: 0;
-		width: 100%;
-		height: 100%;
-
-		#Text {
-			color: white;
-			position: absolute;
-			@include fontFamily;
-			font-size: 36px;
-			text-align: center;
-			width: 80%;
-			left: 50%;
-			top: 50%;
-			height: auto;
-	        -webkit-transform: translate(-50%, -50%);
-	                transform: translate(-50%, -50%);
-
-			.arrow {
-				display: block;
-			}
-		}
-
-		#MobileDisclaimer {
-			font-size: 0.6em;
-		}
-	}
-
-	#First {
-		background-color: $red;
-	}
-
-	#Second {
-		background-color: $red;
-	}
-}
-
-/**
- *  PASSWORD SCREEN
- */
-
-#PassWordScreen {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background-color: black;
-	z-index: 1000;
-
-	#Text {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 200px;
-		height: 60px;
-		@include fontFamily;
-		font-size: 24px;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-	}
-}
-
-/**
- *  SCROLL STUFF
- */
-
-#ScrollContainer {
-	width: 100%;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	height: 100%;
-	/*z-index: 0;*/
-	overflow: hidden;
-
-	#InnerScroll {
-		height: 100%;
-		width: calc(100% + 20px);
-		overflow-y : scroll;
-		/*-webkit-overflow-scrolling: touch;*/
-
-		#Scroller {
-			/*height: 100000px;*/
-			height: 100%;
-			width: 100%;
-		}
-	}
-
-	#Channel {
-		$ScrollIndicatorHeight: 30px;
-		$RightMargin : 2px;
-
-		width: $ScrollIndicatorWidth + $RightMargin * 2;
-		height: 100%;
-		position: absolute;
-		top: 0px;
-		right: 0;
-		background-color: $red;
-		/*border-left: 1px dotted black;*/
-
-		#IndicatorContainer {
-			cursor: pointer;
-			width: $ScrollIndicatorWidth;
-			height: $ScrollIndicatorHeight;
-			border-radius: 2px;
-			position: absolute;
-			/*top: calc(50% - #{$ScrollIndicatorHeight / 2} - #{$RightMargin});*/
-			top: 0px;
-			right: $RightMargin;
-
-			#Indicator {
-				width: $ScrollIndicatorWidth;
-				height: 100%;
-				border-radius: 2px;
-				position: absolute;
-				top: 0px;
-				left: 0px;
-				background-color: $red;
-				opacity: 0.8;
-				width: 100%;
-			}
-
-			#Bubble {
-				width: $ScrollIndicatorWidth;
-				height: $ScrollIndicatorHeight;
-				border-radius: 2px;
-				position: absolute;
-				top: 0px;
-				right: 0px;
-				background-color: $blue;
-				opacity: 1;
-			}
-		}
-
-
-		#IndicatorContainer:hover {
-			#Indicator, #Bubble {
-				background-color: white;
-			}
-		}
-
-		#IndicatorContainer.Dragging #Indicator{
-			#Indicator, #Bubble {
-				background-color: black;
-			}
-		}
-	}
-	#Channel.Highlight {
-		background-color: white;
-
-		#IndicatorContainer #Bubble {
-			background-color: black;
-		}
-	}
-}
-
-#ScrollContainer.B {
-
-	#Channel {
-		background-color: black;
-		/*border-left: 1px dotted black;*/
-
-		#IndicatorContainer {
-			#Indicator, #Bubble {
-				background-color: white;
-			}
-		}
-
-		#IndicatorContainer:hover {
-			#Indicator, #Bubble {
-				background-color: $blue;
-			}
-		}
-
-		#IndicatorContainer.Dragging #Indicator{
-			#Indicator, #Bubble {
-				background-color: $red;
-			}
-		}
-	}
-
-	#Channel.Highlight {
-
-		#IndicatorContainer #Bubble {
-			background-color: white;
-		}
-	}
-}
-
-#TransportPosition {
-	color: #aaaaaa;
-	position: absolute;
-	left: 10px;
-	bottom: 100px;
 }
 
 #FrameContainer {
@@ -462,24 +99,18 @@ $ScrollIndicatorWidth: 20px;
 	line-height: 48px;
 }
 
-$notificationSize : 60px;
-
-@-webkit-keyframes UpAndDown {
-  0%   { -webkit-transform : translate(-50%, -100%); transform : translate(-50%, -100%); }
-  100%   { -webkit-transform : translate(-50%, 0%); transform : translate(-50%, 0%); }
-}
+/* $notificationSize : 100px;
 
 @keyframes UpAndDown {
-  0%   { -webkit-transform : translate(-50%, -100%); transform : translate(-50%, -100%); }
-  100%   { -webkit-transform : translate(-50%, 0%); transform : translate(-50%, 0%); }
+  0%   {transform : translate(-50%, -100%); }
+  100%   { transform : translate(-50%, 0%); }
 }
 
 #Notification {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	-webkit-transform : translate(-50%, -50%);
-	        transform : translate(-50%, -50%);
+	transform : translate(-50%, -50%);
 	width: 0px; 
 	height: 0px; 
 	@include fontFamily;
@@ -504,217 +135,35 @@ $notificationSize : 60px;
 }
 
 #Notification.Animate {
-	-webkit-animation-name: UpAndDown;
-	        animation-name: UpAndDown;
-	-webkit-animation-duration: 0.5s;
-	        animation-duration: 0.5s;
-	-webkit-animation-iteration-count: infinite;
-	        animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	        animation-direction: alternate;
-	-webkit-animation-timing-function: ease-in-out;
-	        animation-timing-function: ease-in-out;
+	animation-name: UpAndDown;
+	animation-duration: 0.5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
 }
 
 .Mobile #Notification {
 	
-}
+} */
 
-$InfoButtonSize : 40px;
-$InfoButtonMargin : 15px;
-
-#InfoContainer {
+#AlwaysBeScrolling {
+	display: none;
+	$size : 40px;
 	position: absolute;
-	right: $InfoButtonMargin;
-	bottom: $InfoButtonMargin;
-	background-color: $blue;
-	width: $InfoButtonSize;
-	height: $InfoButtonSize;
-	border-radius: 3px;
-	line-height: $InfoButtonSize;
-	text-align: center;
+	top: 13px;
+	left: 20px;
+	width: auto;
+	line-height: $size;
+	height: $size;
+	font-family: sans-serif;
+	font-size: 18px;
 	color: white;
-	@include fontFamily;
-	font-size: 20px;
-	z-index: 101;
-	transition: width 0.25s, height 0.25s;
-
-	#Credits {
-		position: absolute;
-		top: 10%;
-		left: 10%;
-		width: 80%;
-		height: 80%;
-		opacity: 0;
-		text-align: left;
-		color: white;
-		transition: opacity 0.25s;
-
-		a {
-			font-weight: 900;
-			text-decoration: none;
-			color: white;
-		}
-
-		a:hover {
-			color: $red;
-		}
-
-		a:hover:active {
-			color: black;
-		}
-	}
-
-	#InfoButton {
-		width: $InfoButtonSize;
-		height: $InfoButtonSize;
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		z-index: 100;
-		cursor: pointer;
-		font-weight: bold;
-		border-radius: 3px;
-
-	}
-
-	#InfoButton:hover {
-		background-color: $red;
-		color: $blue;
-	}
+	font-weight: lighter;
+	pointer-events: none;
 }
 
-.Mobile #InfoContainer {
-	top: 15px!important;
 
-	#Credits {
-		width: 90%;
-		height: 90%;
-		left: 5%;
-		top: 10px;
-		font-size: 12px;
-	}
-}
-
-#InfoContainer.Expanded {
-	$margin : 15px;
-	width: calc(100% - #{$margin} * 2);
-	height: calc(100% - #{$margin} * 2);
-	opacity: 0.85;
-	cursor: inherit;
-
-	#Credits {
-		opacity: 1;
-
-		.social {
-			position: relative;
-			margin-right: 10px;
-			/*top: 60%;*/
-			height: 50px;
-			width: 50px;
-			font-size: 50px;
-			color: $red;
-			cursor: pointer;
-			text-align: left;
-			float: left;
-		}
-
-		.social:hover {
-			color: black;
-		}
-
-		.social:hover:active {
-			color: white;
-		}
-
-		/*#Facebook {
-			maring-left: 33%;
-		}
-		#Twitter {
-			left: 66%;
-		}*/
-	}
-}
-
-#End {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	background-color: white;
-	opacity: 0;
-	z-index: 0;
-	transition: opacity 0.9s;	
-
-	#Replay {
-		-webkit-transform: translate(-50%, -50%);
-		        transform: translate(-50%, -50%);
-		position: absolute;
-		top: 40%;
-		left: 50%;
-		height: 50px;
-		width: 200px;
-		text-align: center;
-		color: $red;
-		cursor: pointer;
-		font-size: 50px;
-	}
-	#Replay:hover {
-		color: $red;
-	}
-
-	#Replay:hover:active {
-		color: black;
-	}
-}
-
-#End.Visible {
-	z-index: 100;
-	opacity: 1;
-}
-
-/**
- *  HD BUTTON
- */
-#HDButton {
-	position: absolute;
-	bottom: $InfoButtonMargin;
-	right: $InfoButtonMargin * 2 + $InfoButtonSize;
-	background-color: transparent;
-	width: $InfoButtonSize;
-	height: $InfoButtonSize;
-	border-radius: 3px;
-	line-height: $InfoButtonSize;
-	text-align: center;
-	@include fontFamily;
-	font-weight: bold;
-	font-size: 20px;
-	z-index: 101;
-	cursor: pointer;
-	box-sizing: border-box;
-	color: $blue;
-	border: 2px solid $blue;
-}
-
-#HDButton:hover {
-	background-color: transparent;
-	border-color: $red;
-	color: $red;
-}
-
-#HDButton.HD {
-	background-color: $blue;
-	color: white;
-}
-
-#HDButton.HD:hover {
-	background-color: $red;
-	border-color: $red;
-	color: $blue;
-}
-
-#HDButton:hover:active {
-	background-color: black;
-	color: white;
+#AlwaysBeScrolling.Mobile {
+	bottom: 20px;
+	top: inherit;
 }

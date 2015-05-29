@@ -1,0 +1,49 @@
+@import "common.scss";
+
+$NotificationWidth : 220px;
+$NotificationHeight : 40px;
+$OffscreenLeft : -$NotificationWidth - 30px;
+
+@keyframes Appear {
+	0%   {
+		transform : translate($OffscreenLeft, 0); 
+		opacity : 0; 
+	}
+	10%   {
+		transform : translate(0px, 0); 
+		opacity : 1; 
+	}
+	100%   {
+		transform : translate(0px, 0); 
+		opacity : 0; 
+	}
+}
+
+.Notification {
+	width: $NotificationWidth;
+	height: auto;
+	@include fontFamily;
+	position: absolute;
+	bottom: 25px;
+	left: 25px;
+	font-size: 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 4px;
+	$padding : 15px;
+	padding: $padding;
+	padding-left: $padding * 2;
+	border: 1px solid rgba(180, 180, 180, 0.8);
+	opacity: 0;
+	transform: translate($OffscreenLeft, 0px);
+	color: $blue;
+}
+
+.Mobile .Notification {
+	bottom: 60px;
+}
+
+.Notification.Show {
+	animation-name: Appear;
+	animation-duration: 4s;
+	animation-direction: forwards;
+}

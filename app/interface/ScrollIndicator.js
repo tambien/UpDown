@@ -1,5 +1,5 @@
-define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/Scroll", "util/Config"], 
-	function(Mediator, TERP, Window, $, Scroll, Config){
+define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/Scroll", "util/Config", "scroll.scss"], 
+	function(Mediator, TERP, Window, $, Scroll, Config, scrollStyle){
 
 	var scrollContainer = $("#ScrollContainer");
 	var scrollChannel = $("<div>", {"id" : "Channel"}).appendTo(scrollContainer);
@@ -36,6 +36,7 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 
 	indicator.on("mousedown", function(e){
 		e.preventDefault();
+		e.stopPropagation();
 		dragging = true;
 		indicator.addClass("Dragging");
 	});
@@ -63,7 +64,6 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 		});
 	});
 
-	Mediator.route("scrollEnd", scrollFlash);
 	Mediator.route("start", function(){
 		if (!Config.MOBILE){
 			indicator.animate({
@@ -72,6 +72,7 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 		}
 	});
 
+	// Mediator.route("scrollEnd", scrollFlash);
 	function scrollFlash(){
 		scrollChannel.addClass("Highlight");
 		setTimeout(function(){

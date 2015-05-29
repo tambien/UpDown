@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "interface/Window", "TWEEN", 
-	"preset/ArpVisuals", "controller/Conductor"],
- function(Context, Mediator, Window, TWEEN, Preset, Conductor){
+	"preset/ArpVisuals", "controller/Conductor", "THREE"],
+ function(Context, Mediator, Window, TWEEN, Preset, Conductor, THREE){
 
 	"use strict";
 

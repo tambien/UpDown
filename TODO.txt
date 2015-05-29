@@ -1,3 +1,13 @@
-* Thumbs over C part
+* prevent right click
 
-* voice is a little loud
+* cursor arrows while scrolling in that direction
+
+* YotamMann.info
+	* scroll-o-meter.club
+	* jazz.computer
+	* itp class
+
+* Better notifications: 
+	* Just scroll notification when clicking too much.
+	* reminder to "keep scrolling"
+	* "this is your scroll bar"

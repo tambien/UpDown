@@ -1,5 +1,5 @@
-define(["text!shader/kickwave.frag",  "text!shader/kickwave.vert", "visuals/Context"], 
-function(fragShader, vertShader, Context){
+define(["shader/kickwave.frag",  "shader/kickwave.vert", "visuals/Context", "THREE"], 
+function(fragShader, vertShader, Context, THREE){
 
 	return new THREE.ShaderMaterial({
 

@@ -1,31 +1,8 @@
 define(["visuals/Context","controller/Mediator", "util/Config", 
-	"interface/Window", "preset/PictureFrame", "TWEEN"], 
-	function(Context, Mediator, Config, Window, PicturePreset, TWEEN){
+	"interface/Window", "preset/PictureFrame", "TWEEN", "THREE", "jquery"], 
+	function(Context, Mediator, Config, Window, PicturePreset, TWEEN, THREE, $){
 
 	"use strict";
-
-	/**
-	 *  texture
-	 */
-	var frameCanvas = $("<canvas>")[0];
-	var frameSize = 256;
-	var frameWidth = 16;
-	frameCanvas.width = frameSize;
-	frameCanvas.height = frameSize;
-	var frameContext = frameCanvas.getContext("2d");
-	frameContext.fillStyle = "#ffffff";
-	//top
-	frameContext.rect(0, 0, frameSize, frameWidth);
-	//bottom
-	frameContext.rect(0, frameSize  - frameWidth, frameSize, frameSize);
-	//left
-	frameContext.rect(0, 0, frameWidth, frameSize);
-	//right
-	frameContext.rect( frameSize - frameWidth, 0, frameSize, frameSize);
-	frameContext.fill();
-
-	var frameTexture = new THREE.Texture(frameCanvas);
-	frameTexture.needsUpdate = true;
 
 	/**
 	 *  materials
@@ -110,14 +87,16 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 		//topbar
 		this.topbar = new THREE.Mesh( geometry, materialB);
 		Context.layer1.add(this.topbar);
-		//left size
-		this.leftTop = new THREE.Mesh( geometry, materialA);
-		Context.layer1.add(this.leftTop);
-		//right size
-		this.rightTop = new THREE.Mesh( geometry, materialB);
-		Context.layer1.add(this.rightTop);
-		this.rightBottom = new THREE.Mesh( geometry, materialB);
-		Context.layer1.add(this.rightBottom);
+		if (!Config.MOBILE){
+			//left size
+			this.leftTop = new THREE.Mesh( geometry, materialA);
+			Context.layer1.add(this.leftTop);
+			//right size
+			this.rightTop = new THREE.Mesh( geometry, materialB);
+			Context.layer1.add(this.rightTop);
+			this.rightBottom = new THREE.Mesh( geometry, materialB);
+			Context.layer1.add(this.rightBottom);
+		}
 		this.resize();
 		Window.resize(this.resize.bind(this));
 	};
@@ -125,34 +104,37 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 	FrameVisuals.prototype.resize = function(){
 		//top
 		var topbarHeight = 5;
-		this.topbar.position.y = Context.height / 2 - topbarHeight / 2 - 1;
+		this.topbar.position.y = Context.height / 2 - topbarHeight / 2;
 		this.topbar.scale.setY(-topbarHeight);
-		this.topbar.scale.setX(Context.width - 2);
-		//left
-		var sideHeight = 45;
-		var bottomSideHeight = 10;
-		var centerWidth = Context.pictureWidth;
-		var sideWidth = Context.sidebarWidth;
+		this.topbar.scale.setX(Context.width);
 
-		var topSideHeight = sideHeight - bottomSideHeight;
-		var leftSideHeight = Context.height - topbarHeight - 3;
-		this.leftTop.scale.setX(sideWidth);
-		this.leftTop.scale.setY(-leftSideHeight);
-		this.leftTop.position.x =  centerWidth / 2 + sideWidth / 2 + 1;
-		this.leftTop.position.y = Context.height / 2 - topbarHeight - 2 - leftSideHeight / 2;
-		//right
-		var tmp = bottomSideHeight;
-		bottomSideHeight = topSideHeight;
-		topSideHeight = tmp;
-		this.rightTop.scale.setX(sideWidth);
-		this.rightTop.scale.setY(-topSideHeight);
-		this.rightTop.position.x = -(centerWidth / 2 + sideWidth / 2 + 1);
-		this.rightTop.position.y = Context.height / 2 - topbarHeight - 2 - topSideHeight / 2;
-		//left / bottom
-		this.rightBottom.scale.setX(sideWidth);
-		this.rightBottom.scale.setY(-bottomSideHeight);
-		this.rightBottom.position.x = -(centerWidth / 2 + sideWidth / 2 + 1);
-		this.rightBottom.position.y = Context.height / 2 - topbarHeight - 3 - topSideHeight - bottomSideHeight / 2;
+		if (!Config.MOBILE){
+			//left
+			var sideHeight = 45;
+			var bottomSideHeight = 10;
+			var centerWidth = Context.pictureWidth;
+			var sideWidth = Context.sidebarWidth;
+
+			var topSideHeight = sideHeight - bottomSideHeight;
+			var leftSideHeight = Context.height - topbarHeight - 3;
+			this.leftTop.scale.setX(sideWidth);
+			this.leftTop.scale.setY(-leftSideHeight);
+			this.leftTop.position.x =  centerWidth / 2 + sideWidth / 2 + 1;
+			this.leftTop.position.y = Context.height / 2 - topbarHeight - 2 - leftSideHeight / 2;
+			//right
+			var tmp = bottomSideHeight;
+			bottomSideHeight = topSideHeight;
+			topSideHeight = tmp;
+			this.rightTop.scale.setX(sideWidth);
+			this.rightTop.scale.setY(-topSideHeight);
+			this.rightTop.position.x = -(centerWidth / 2 + sideWidth / 2 + 1);
+			this.rightTop.position.y = Context.height / 2 - topbarHeight - 2 - topSideHeight / 2;
+			//left / bottom
+			this.rightBottom.scale.setX(sideWidth);
+			this.rightBottom.scale.setY(-bottomSideHeight);
+			this.rightBottom.position.x = -(centerWidth / 2 + sideWidth / 2 + 1);
+			this.rightBottom.position.y = Context.height / 2 - topbarHeight - 3 - topSideHeight - bottomSideHeight / 2;
+		}
 
 	};
 

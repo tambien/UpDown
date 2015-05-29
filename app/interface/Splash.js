@@ -1,4 +1,4 @@
-define(["jquery", "controller/Mediator", "util/Config"], function($, Mediator, Config){
+define(["jquery", "controller/Mediator", "util/Config", "splash.scss"], function($, Mediator, Config, splashStyle){
 
 	if (Config.SPLASH){
 

@@ -1,8 +1,12 @@
-define(["jquery", "controller/Mediator", "util/Config", "Tone/core/Tone"], function($, Mediator, Config, Tone){
+define(["jquery", "controller/Mediator", "util/Config", "Tone/core/Tone", "interface/Window"], 
+function($, Mediator, Config, Tone, Window){
+
+	//start button
 	var startButton = $("<div>").attr("id", "StartButton").appendTo("body");
 	var triangle = $("<div>").attr("id", "Triangle").appendTo(startButton);
 	var pause0 = $("<div>").attr("id", "Pause0").addClass("PauseBar").appendTo(startButton);
 	var pause1 = $("<div>").attr("id", "Pause1").addClass("PauseBar").appendTo(startButton);
+
 
 	var started = false;
 

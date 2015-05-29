@@ -16,11 +16,11 @@ define(["jquery"], function($){
 		PRESET_UPDATE : false,
 		STATS : false,
 		PASSWORD : false,
-		SPLASH : true,
+		SPLASH : false,
 		VISUALS : noVis,
 		ANALYTICS : true,
 		PAUSE_ON_BLUR : false,
-		HD : HD,
+		HD : false,
 		SLOW_UPDATE : isMobile ? 0.8: 0.5
 	};
 });

@@ -17,9 +17,9 @@ function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals,
 	
 	var pics = new Pictures();
 
-	if (!Config.MOBILE){
-		
-		var frameVis = new FrameVisuals();
+	var frameVis = new FrameVisuals();
+
+	if (!Config.MOBILE){	
 
 		var backgroundImages = new BackgroundImages();
 

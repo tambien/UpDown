@@ -1,4 +1,4 @@
-define(["jquery", "controller/Mediator", "Tone/core/Buffer"], function($, Mediator, Buffer){
+define(["jquery", "controller/Mediator", "Tone/core/Buffer", "loading.scss"], function($, Mediator, Buffer, loadingStyle){
 
 	var loadingScreen = $("<div>").attr("id", "LoadingScreen").appendTo("body");
 	var loadingBar = $("<div>").attr("id", "LoadingBar").appendTo(loadingScreen);

@@ -1,4 +1,5 @@
-define(["jquery", "controller/Mediator", "util/Config", "interface/Window"], function ($, Mediator, Config, Window) {
+define(["jquery", "controller/Mediator", "util/Config", "interface/Window", "buttons.scss"], 
+	function ($, Mediator, Config, Window, buttonStyle) {
 
 	if (!Config.MOBILE){
 		var button = $("<div>").prop("id", "HDButton").appendTo(Window.container).text("HD");
@@ -15,7 +16,7 @@ define(["jquery", "controller/Mediator", "util/Config", "interface/Window"], fun
 				button.addClass("HD");
 			}
 			Config.HD = button.hasClass("HD");
-			Mediator.send("HD");
+			Mediator.send("HD", Config.HD);
 		});
 	}
 });

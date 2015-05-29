@@ -1,6 +1,6 @@
 define(["visuals/Context", "controller/Mediator", "shader/SnareWave", 
-	"TWEEN", "interface/Window", "preset/SnareVisuals", "controller/Conductor", "util/Config"], 
-	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor, Config){
+	"TWEEN", "interface/Window", "preset/SnareVisuals", "controller/Conductor", "util/Config", "THREE"], 
+	function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor, Config, THREE){
 
 	"use strict";
 

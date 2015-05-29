@@ -15,7 +15,7 @@ html, body {
   overflow: hidden;
   width: calc(100% - 20px - 4px); }
   #Container canvas {
-    opacity: 0;
+    opacity: 1;
     width: 100% !important;
     height: 100% !important; }
   #Container #CoverAll {
@@ -332,22 +332,22 @@ html, body {
   width: 0px;
   height: 0px;
   font-family: "Courier New", monospace;
-  font-size: 45px;
+  font-size: 75px;
   color: white;
   text-align: center;
   opacity: 0; }
 
 #Notification.Up {
   top: 70%;
-  border-left: 40px solid transparent;
-  border-right: 40px solid transparent;
-  border-top: 60px solid black; }
+  border-left: 66.66667px solid transparent;
+  border-right: 66.66667px solid transparent;
+  border-top: 100px solid black; }
 
 #Notification.Down {
   top: 30%;
-  border-left: 40px solid transparent;
-  border-right: 40px solid transparent;
-  border-bottom: 60px solid black; }
+  border-left: 66.66667px solid transparent;
+  border-right: 66.66667px solid transparent;
+  border-bottom: 100px solid black; }
 
 #Notification.Animate {
   -webkit-animation-name: UpAndDown;
@@ -363,13 +363,13 @@ html, body {
 
 #InfoContainer {
   position: absolute;
-  right: 15px;
-  bottom: 15px;
+  right: 10px;
+  top: 4px;
   background-color: #1040FF;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 3px;
-  line-height: 40px;
+  line-height: 35px;
   text-align: center;
   color: white;
   font-family: "Courier New", monospace;
@@ -395,8 +395,8 @@ html, body {
     #InfoContainer #Credits a:hover:active {
       color: black; }
   #InfoContainer #InfoButton {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -405,7 +405,7 @@ html, body {
     font-weight: bold;
     border-radius: 3px; }
   #InfoContainer #InfoButton:hover {
-    background-color: #ff00d2;
+    background-color: white;
     color: #1040FF; }
 
 .Mobile #InfoContainer {
@@ -425,10 +425,10 @@ html, body {
   #InfoContainer.Expanded #Credits {
     opacity: 1;
     /*#Facebook {
-      maring-left: 33%;
+    	maring-left: 33%;
     }
     #Twitter {
-      left: 66%;
+    	left: 66%;
     }*/ }
     #InfoContainer.Expanded #Credits .social {
       position: relative;
@@ -482,13 +482,13 @@ html, body {
  */
 #HDButton {
   position: absolute;
-  bottom: 15px;
-  right: 70px;
+  top: 4px;
+  right: 55px;
   background-color: transparent;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 3px;
-  line-height: 40px;
+  line-height: 35px;
   text-align: center;
   font-family: "Courier New", monospace;
   font-weight: bold;
@@ -501,18 +501,38 @@ html, body {
 
 #HDButton:hover {
   background-color: transparent;
-  border-color: #ff00d2;
-  color: #ff00d2; }
+  border-color: white;
+  color: white; }
 
 #HDButton.HD {
   background-color: #1040FF;
   color: white; }
 
 #HDButton.HD:hover {
-  background-color: #ff00d2;
-  border-color: #ff00d2;
+  background-color: white;
+  border-color: white;
   color: #1040FF; }
 
 #HDButton:hover:active {
   background-color: black;
   color: white; }
+
+#AlwaysBeScrolling {
+  display: none;
+  position: absolute;
+  top: 13px;
+  left: 20px;
+  width: auto;
+  line-height: 40px;
+  height: 40px;
+  font-family: sans-serif;
+  font-size: 18px;
+  color: white;
+  font-weight: lighter;
+  pointer-events: none; }
+
+#AlwaysBeScrolling.Mobile {
+  bottom: 20px;
+  top: inherit; }
+
+/*# sourceMappingURL=main.css.map */

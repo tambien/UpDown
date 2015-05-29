@@ -1,0 +1,89 @@
+@import "common.scss";
+
+
+/**
+ *  SPLASH
+ */
+#SplashBackground {
+
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	z-index: 1000;
+	opacity: 1;
+
+	.SplashPage {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+
+		#Text {
+			color: white;
+			position: absolute;
+			@include fontFamily;
+			font-size: 36px;
+			text-align: center;
+			width: 80%;
+			left: 50%;
+			top: 50%;
+			height: auto;
+	        -webkit-transform: translate(-50%, -50%);
+	                transform: translate(-50%, -50%);
+
+			.arrow {
+				display: block;
+			}
+		}
+
+		#MobileDisclaimer {
+			font-size: 0.6em;
+		}
+	}
+
+	#First {
+		background-color: $red;
+	}
+
+	#Second {
+		background-color: $red;
+	}
+}
+
+/**
+ *  PASSWORD SCREEN
+ */
+
+#PassWordScreen {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	z-index: 1000;
+
+	#Text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 200px;
+		height: 60px;
+		@include fontFamily;
+		font-size: 24px;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+	}
+}
+
+#TransportPosition {
+	color: #aaaaaa;
+	position: absolute;
+	left: 10px;
+	bottom: 100px;
+}

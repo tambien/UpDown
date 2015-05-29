@@ -1,5 +1,5 @@
-define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "TERP", "jquery.mousewheel", "interface/GUI"], 
-	function(ready, Mediator, Config, Window, TERP, mousewheel, GUI){
+define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquery.mousewheel", "interface/GUI", "jquery", "main.scss"], 
+	function(Mediator, Config, Window, TERP, mousewheel, GUI, $, mainStyle){
 
 	/**
 	 *  the total distance traveled by scrolling
@@ -52,8 +52,10 @@ define(["domReady!", "controller/Mediator", "util/Config", "interface/Window", "
 		var scroller = $("<div>").attr("id", "Scroller").appendTo(innerScroll);
 		scrollHeight = 5000;
 		scroller.height(scrollHeight);
-		innerScroll.scrollTop(scrollHeight * 0.5);
-		pageHeight = innerScroll.height();
+		pageHeight = Window.height();
+		$(function(){	
+			innerScroll.scrollTop(scrollHeight * 0.5);
+		});
 	}
 
 	var lastPosition = scrollHeight * 0.5;

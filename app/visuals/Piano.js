@@ -1,6 +1,6 @@
 define(["controller/Mediator", "visuals/Context", "interface/Window", 
-	"TERP", "preset/PianoVisuals", "controller/Conductor", "util/Config"], 
-	function(Mediator, Context, Window, TERP, Preset, Conductor, Config){
+	"TERP", "preset/PianoVisuals", "controller/Conductor", "util/Config", "THREE", "TWEEN"], 
+	function(Mediator, Context, Window, TERP, Preset, Conductor, Config, THREE, TWEEN){
 
 	"use strict";
 

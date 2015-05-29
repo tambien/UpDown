@@ -1,8 +1,8 @@
 define(["visuals/Context", "TERP", "controller/Mediator", 
 	"TWEEN", "util/Config", "interface/Scroll", "preset/PictureFrame", 
-	"interface/Window", "controller/Conductor"], 
+	"interface/Window", "controller/Conductor", "THREE"], 
 	function(Context, TERP, Mediator, TWEEN, Config, Scroll, 
-		PictureFramePreset, Window, Conductor){
+		PictureFramePreset, Window, Conductor, THREE){
 
 	"use strict";
 

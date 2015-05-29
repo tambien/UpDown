@@ -8,3 +8,6 @@ originalimages
 *.asd
 
 *.wav
+
+
+node_modules
