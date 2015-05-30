@@ -65,10 +65,11 @@ define(["controller/Mediator", "TERP", "interface/Window", "jquery", "interface/
 	});
 
 	Mediator.route("start", function(){
+		scrollContainer.css("background-color", "rgba(0, 0, 0, 0.0)");
 		if (!Config.MOBILE){
-			indicator.animate({
+			indicator.css({
 				"width" : Window.width() + channelWidth
-			}, 400, "linear");
+			});
 		}
 	});
 

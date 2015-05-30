@@ -132,9 +132,9 @@ function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader,
 	};
 
 	Context.prototype.fadeIn = function(){
-		this.$rendererElement.css({
-			"opacity" : 1
-		});
+		// this.$rendererElement.css({
+		// 	"opacity" : 1
+		// });
 	};
 
 	Context.prototype.fadeOut = function(){

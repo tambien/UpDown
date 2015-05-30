@@ -157,6 +157,7 @@ $StartButtonSize : 250px;
 	transition: all 0.25s;
 
 	#Credits {
+		font-family: monospace;
 		position: absolute;
 		top: 10%;
 		left: 10%;
@@ -227,8 +228,6 @@ $StartButtonSize : 250px;
 	cursor: inherit;
 
 	#Credits {
-
-		font-family: monospace;
 		opacity: 1;
 
 		.social {

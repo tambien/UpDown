@@ -33,8 +33,7 @@ html, body {
 	width: calc(100% - #{$ScrollIndicatorWidth} - 4px);
 
 	canvas {
-		opacity: 0.6;
-		transition: opacity 0.2s;
+		opacity: 1;
 		width: 100%!important;
 		height: 100%!important;
 	}

@@ -3018,7 +3018,7 @@ webpackJsonp([1],[
 			PRESET_UPDATE : false,
 			STATS : false,
 			PASSWORD : false,
-			SPLASH : false,
+			SPLASH : isMobile,
 			VISUALS : noVis,
 			ANALYTICS : true,
 			PAUSE_ON_BLUR : false,
@@ -3489,7 +3489,7 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(17)();
-	exports.push([module.id, ".dg.ac {\n  z-index: 10000 !important; }\n\nhtml, body {\n  height: 100%;\n  overflow: hidden; }\n\n#Container {\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  background-color: white;\n  font-family: sans-serif;\n  overflow: hidden;\n  width: calc(100% - 20px - 4px); }\n  #Container canvas {\n    opacity: 0.6;\n    -webkit-transition: opacity 0.2s;\n            transition: opacity 0.2s;\n    width: 100% !important;\n    height: 100% !important; }\n  #Container #CoverAll {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: white;\n    top: 0px;\n    left: 0px;\n    opacity: 0; }\n\n#FrameContainer {\n  position: absolute;\n  height: 240%;\n  top: 50%;\n  left: 50%;\n  margin-left: -320px;\n  margin-top: -120%;\n  width: 640px; }\n  #FrameContainer .Frame {\n    height: calc(100% / 3);\n    left: 10%;\n    width: 80%;\n    top: 0px;\n    position: absolute;\n    position: absolute;\n    z-index: 1000; }\n    #FrameContainer .Frame #Content {\n      height: 80%;\n      position: absolute;\n      left: 10%;\n      width: 80%;\n      top: 10%;\n      background-color: #aaaaaa; }\n\n#NoSupport {\n  font-family: sans-serif;\n  width: 80%;\n  left: 10%;\n  position: absolute;\n  top: 40%;\n  text-align: center;\n  color: black;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 48px; }\n\n/* $notificationSize : 100px;\n\n@keyframes UpAndDown {\n  0%   {transform : translate(-50%, -100%); }\n  100%   { transform : translate(-50%, 0%); }\n}\n\n#Notification {\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 50%;\n\ttransform : translate(-50%, -50%);\n\twidth: 0px; \n\theight: 0px; \n\t@include fontFamily;\n\tfont-size: $notificationSize * 0.75;\n\tcolor: white;\n\ttext-align: center;\n\topacity: 0;\n}\n\n#Notification.Up {\n\ttop: 70%;\n\tborder-left: 2 * $notificationSize/3 solid transparent;\n\tborder-right: 2 * $notificationSize/3 solid transparent;\n\tborder-top: $notificationSize solid black;\n}\n\n#Notification.Down {\n\ttop: 30%;\n\tborder-left: 2 * $notificationSize/3 solid transparent;\n\tborder-right: 2 * $notificationSize/3 solid transparent;\n\tborder-bottom: $notificationSize solid black;\n}\n\n#Notification.Animate {\n\tanimation-name: UpAndDown;\n\tanimation-duration: 0.5s;\n\tanimation-iteration-count: infinite;\n\tanimation-direction: alternate;\n\tanimation-timing-function: ease-in-out;\n}\n\n.Mobile #Notification {\n\t\n} */\n#AlwaysBeScrolling {\n  display: none;\n  position: absolute;\n  top: 13px;\n  left: 20px;\n  width: auto;\n  line-height: 40px;\n  height: 40px;\n  font-family: sans-serif;\n  font-size: 18px;\n  color: white;\n  font-weight: lighter;\n  pointer-events: none; }\n\n#AlwaysBeScrolling.Mobile {\n  bottom: 20px;\n  top: inherit; }\n", ""]);
+	exports.push([module.id, ".dg.ac {\n  z-index: 10000 !important; }\n\nhtml, body {\n  height: 100%;\n  overflow: hidden; }\n\n#Container {\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  background-color: white;\n  font-family: sans-serif;\n  overflow: hidden;\n  width: calc(100% - 20px - 4px); }\n  #Container canvas {\n    opacity: 1;\n    width: 100% !important;\n    height: 100% !important; }\n  #Container #CoverAll {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: white;\n    top: 0px;\n    left: 0px;\n    opacity: 0; }\n\n#FrameContainer {\n  position: absolute;\n  height: 240%;\n  top: 50%;\n  left: 50%;\n  margin-left: -320px;\n  margin-top: -120%;\n  width: 640px; }\n  #FrameContainer .Frame {\n    height: calc(100% / 3);\n    left: 10%;\n    width: 80%;\n    top: 0px;\n    position: absolute;\n    position: absolute;\n    z-index: 1000; }\n    #FrameContainer .Frame #Content {\n      height: 80%;\n      position: absolute;\n      left: 10%;\n      width: 80%;\n      top: 10%;\n      background-color: #aaaaaa; }\n\n#NoSupport {\n  font-family: sans-serif;\n  width: 80%;\n  left: 10%;\n  position: absolute;\n  top: 40%;\n  text-align: center;\n  color: black;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 48px; }\n\n/* $notificationSize : 100px;\n\n@keyframes UpAndDown {\n  0%   {transform : translate(-50%, -100%); }\n  100%   { transform : translate(-50%, 0%); }\n}\n\n#Notification {\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 50%;\n\ttransform : translate(-50%, -50%);\n\twidth: 0px; \n\theight: 0px; \n\t@include fontFamily;\n\tfont-size: $notificationSize * 0.75;\n\tcolor: white;\n\ttext-align: center;\n\topacity: 0;\n}\n\n#Notification.Up {\n\ttop: 70%;\n\tborder-left: 2 * $notificationSize/3 solid transparent;\n\tborder-right: 2 * $notificationSize/3 solid transparent;\n\tborder-top: $notificationSize solid black;\n}\n\n#Notification.Down {\n\ttop: 30%;\n\tborder-left: 2 * $notificationSize/3 solid transparent;\n\tborder-right: 2 * $notificationSize/3 solid transparent;\n\tborder-bottom: $notificationSize solid black;\n}\n\n#Notification.Animate {\n\tanimation-name: UpAndDown;\n\tanimation-duration: 0.5s;\n\tanimation-iteration-count: infinite;\n\tanimation-direction: alternate;\n\tanimation-timing-function: ease-in-out;\n}\n\n.Mobile #Notification {\n\t\n} */\n#AlwaysBeScrolling {\n  display: none;\n  position: absolute;\n  top: 13px;\n  left: 20px;\n  width: auto;\n  line-height: 40px;\n  height: 40px;\n  font-family: sans-serif;\n  font-size: 18px;\n  color: white;\n  font-weight: lighter;\n  pointer-events: none; }\n\n#AlwaysBeScrolling.Mobile {\n  bottom: 20px;\n  top: inherit; }\n", ""]);
 
 /***/ },
 /* 17 */
@@ -4046,9 +4046,9 @@ webpackJsonp([1],[
 		};
 
 		Context.prototype.fadeIn = function(){
-			this.$rendererElement.css({
-				"opacity" : 1
-			});
+			// this.$rendererElement.css({
+			// 	"opacity" : 1
+			// });
 		};
 
 		Context.prototype.fadeOut = function(){
@@ -4434,6 +4434,8 @@ webpackJsonp([1],[
 			 */
 			this.sectionPosition = 0;
 
+			this.btransitionNotification = false;
+
 
 			Transport.setInterval(this.updateLoop.bind(this), "1m");
 			Transport.setInterval(this.updateSection.bind(this), "3m");
@@ -4632,6 +4634,7 @@ webpackJsonp([1],[
 			this.measure = 1;
 			this.forceVoice === -1;
 			Mediator.send("B", time);
+			this.btransitionNotification = false;
 			Mediator.send("Movement", time);
 		};
 
@@ -4754,6 +4757,10 @@ webpackJsonp([1],[
 			if (!Config.MOBILE){
 				var bDiff = this.bDistance - Scroll.getDistance();
 				if (bDiff < transitionDistance){
+					if (!this.btransitionNotification){
+						this.btransitionNotification = true;
+						Mediator.send("BTransitionStart");
+					}
 					return TERP.map(bDiff, transitionDistance, 0, 0, 1);
 				} else {
 					return 0;
@@ -5401,7 +5408,7 @@ webpackJsonp([1],[
 		 */
 		var started = false;
 
-		var scrollHeight = 30000;
+		var scrollHeight = 20000;
 
 		var pageHeight = 0;
 
@@ -15182,6 +15189,9 @@ webpackJsonp([1],[
 		FrameVisuals.prototype.resize = function(){
 			//top
 			var topbarHeight = 5;
+			if (Config.MOBILE){
+				topbarHeight = 7;
+			}
 			this.topbar.position.y = Context.height / 2 - topbarHeight / 2;
 			this.topbar.scale.setY(-topbarHeight);
 			this.topbar.scale.setX(Context.width);
@@ -22264,10 +22274,11 @@ webpackJsonp([1],[
 		});
 
 		Mediator.route("start", function(){
+			scrollContainer.css("background-color", "rgba(0, 0, 0, 0.0)");
 			if (!Config.MOBILE){
-				indicator.animate({
+				indicator.css({
 					"width" : Window.width() + channelWidth
-				}, 400, "linear");
+				});
 			}
 		});
 
@@ -22311,7 +22322,7 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(17)();
-	exports.push([module.id, "/**\n *  SCROLL STUFF\n */\n#ScrollContainer {\n  width: 100%;\n  position: absolute;\n  left: 0px;\n  top: 0px;\n  height: 100%;\n  /*z-index: 0;*/\n  overflow: hidden; }\n  #ScrollContainer #InnerScroll {\n    height: 100%;\n    width: calc(100% + 20px);\n    overflow-y: scroll;\n    /*-webkit-overflow-scrolling: touch;*/ }\n    #ScrollContainer #InnerScroll #Scroller {\n      /*height: 100000px;*/\n      height: 100%;\n      width: 100%; }\n  #ScrollContainer #Channel {\n    width: 24px;\n    height: 100%;\n    position: absolute;\n    top: 0px;\n    right: 0;\n    background-color: #ff00d2;\n    /*border-left: 1px dotted black;*/ }\n    #ScrollContainer #Channel #IndicatorContainer {\n      cursor: pointer;\n      width: 20px;\n      height: 30px;\n      border-radius: 2px;\n      position: absolute;\n      /*top: calc(50% - 15px - 2px);*/\n      top: 0px;\n      right: 2px; }\n      #ScrollContainer #Channel #IndicatorContainer #Indicator {\n        width: 20px;\n        height: 100%;\n        border-radius: 2px;\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        background-color: #ff00d2;\n        opacity: 0.8;\n        width: 100%; }\n      #ScrollContainer #Channel #IndicatorContainer #Bubble {\n        width: 20px;\n        height: 30px;\n        border-radius: 2px;\n        position: absolute;\n        top: 0px;\n        right: 0px;\n        background-color: #1040FF;\n        opacity: 1; }\n    #ScrollContainer #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer #Channel #IndicatorContainer:hover #Bubble {\n      background-color: white; }\n    #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Bubble {\n      background-color: black; }\n  #ScrollContainer #Channel.Highlight {\n    background-color: white; }\n    #ScrollContainer #Channel.Highlight #IndicatorContainer #Bubble {\n      background-color: black; }\n\n#ScrollContainer.B #Channel {\n  background-color: black;\n  /*border-left: 1px dotted black;*/ }\n  #ScrollContainer.B #Channel #IndicatorContainer #Indicator, #ScrollContainer.B #Channel #IndicatorContainer #Bubble {\n    background-color: white; }\n  #ScrollContainer.B #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer.B #Channel #IndicatorContainer:hover #Bubble {\n    background-color: #1040FF; }\n  #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Bubble {\n    background-color: #ff00d2; }\n\n#ScrollContainer.B #Channel.Highlight #IndicatorContainer #Bubble {\n  background-color: white; }\n", ""]);
+	exports.push([module.id, "/**\n *  SCROLL STUFF\n */\n#ScrollContainer {\n  width: 100%;\n  position: absolute;\n  left: 0px;\n  top: 0px;\n  height: 100%;\n  /*z-index: 0;*/\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.6);\n  -webkit-transition: background-color 0.2s;\n          transition: background-color 0.2s; }\n  #ScrollContainer #InnerScroll {\n    height: 100%;\n    width: calc(100% + 20px);\n    overflow-y: scroll;\n    /*-webkit-overflow-scrolling: touch;*/ }\n    #ScrollContainer #InnerScroll #Scroller {\n      /*height: 100000px;*/\n      height: 100%;\n      width: 100%; }\n  #ScrollContainer #Channel {\n    width: 24px;\n    height: 100%;\n    position: absolute;\n    top: 0px;\n    right: 0;\n    background-color: #ff00d2;\n    /*border-left: 1px dotted black;*/ }\n    #ScrollContainer #Channel #IndicatorContainer {\n      cursor: pointer;\n      width: 20px;\n      height: 30px;\n      border-radius: 2px;\n      position: absolute;\n      /*top: calc(50% - 15px - 2px);*/\n      top: 0px;\n      right: 2px;\n      -webkit-transition: width 0.4s;\n              transition: width 0.4s; }\n      #ScrollContainer #Channel #IndicatorContainer #Indicator {\n        width: 20px;\n        height: 100%;\n        border-radius: 2px;\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        background-color: #ff00d2;\n        opacity: 0.8;\n        width: 100%; }\n      #ScrollContainer #Channel #IndicatorContainer #Bubble {\n        width: 20px;\n        height: 30px;\n        border-radius: 2px;\n        position: absolute;\n        top: 0px;\n        right: 0px;\n        background-color: #1040FF;\n        opacity: 1; }\n    #ScrollContainer #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer #Channel #IndicatorContainer:hover #Bubble {\n      background-color: white; }\n    #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Bubble {\n      background-color: black; }\n  #ScrollContainer #Channel.Highlight {\n    background-color: white; }\n    #ScrollContainer #Channel.Highlight #IndicatorContainer #Bubble {\n      background-color: black; }\n\n#ScrollContainer.B #Channel {\n  background-color: black;\n  /*border-left: 1px dotted black;*/ }\n  #ScrollContainer.B #Channel #IndicatorContainer #Indicator, #ScrollContainer.B #Channel #IndicatorContainer #Bubble {\n    background-color: white; }\n  #ScrollContainer.B #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer.B #Channel #IndicatorContainer:hover #Bubble {\n    background-color: #1040FF; }\n  #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Bubble {\n    background-color: #ff00d2; }\n\n#ScrollContainer.B #Channel.Highlight #IndicatorContainer #Bubble {\n  background-color: white; }\n", ""]);
 
 /***/ },
 /* 156 */
@@ -22475,7 +22486,7 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(17)();
-	exports.push([module.id, "/**\n *  SPLASH\n */\n#SplashBackground {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: white;\n  z-index: 1000;\n  opacity: 1; }\n  #SplashBackground .SplashPage {\n    position: absolute;\n    left: 0px;\n    top: 0px;\n    opacity: 0;\n    width: 100%;\n    height: 100%; }\n    #SplashBackground .SplashPage #Text {\n      color: white;\n      position: absolute;\n      font-family: sans-serif;\n      font-size: 36px;\n      text-align: center;\n      width: 80%;\n      left: 50%;\n      top: 50%;\n      height: auto;\n      -webkit-transform: translate(-50%, -50%);\n      -ms-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n      #SplashBackground .SplashPage #Text .arrow {\n        display: block; }\n    #SplashBackground .SplashPage #MobileDisclaimer {\n      font-size: 0.6em; }\n  #SplashBackground #First {\n    background-color: #ff00d2; }\n  #SplashBackground #Second {\n    background-color: #ff00d2; }\n\n/**\n *  PASSWORD SCREEN\n */\n#PassWordScreen {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: black;\n  z-index: 1000; }\n  #PassWordScreen #Text {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 200px;\n    height: 60px;\n    font-family: sans-serif;\n    font-size: 24px;\n    -webkit-transform: translate(-50%, -50%);\n    -ms-transform: translate(-50%, -50%);\n        transform: translate(-50%, -50%); }\n\n#TransportPosition {\n  color: #aaaaaa;\n  position: absolute;\n  left: 10px;\n  bottom: 100px; }\n", ""]);
+	exports.push([module.id, "/**\n *  SPLASH\n */\n#SplashBackground {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: white;\n  z-index: 1000;\n  opacity: 1; }\n  #SplashBackground .SplashPage {\n    position: absolute;\n    left: 0px;\n    top: 0px;\n    opacity: 0;\n    width: 100%;\n    height: 100%; }\n    #SplashBackground .SplashPage #Text {\n      color: white;\n      position: absolute;\n      font-family: \"Courier New\", monospace;\n      font-size: 36px;\n      text-align: center;\n      width: 80%;\n      left: 50%;\n      top: 50%;\n      height: auto;\n      -webkit-transform: translate(-50%, -50%);\n      -ms-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n      #SplashBackground .SplashPage #Text .arrow {\n        display: block; }\n    #SplashBackground .SplashPage #MobileDisclaimer {\n      font-size: 0.6em; }\n  #SplashBackground #First {\n    background-color: #ff00d2; }\n  #SplashBackground #Second {\n    background-color: #ff00d2; }\n\n/**\n *  PASSWORD SCREEN\n */\n#PassWordScreen {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: black;\n  z-index: 1000; }\n  #PassWordScreen #Text {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 200px;\n    height: 60px;\n    font-family: sans-serif;\n    font-size: 24px;\n    -webkit-transform: translate(-50%, -50%);\n    -ms-transform: translate(-50%, -50%);\n        transform: translate(-50%, -50%); }\n\n#TransportPosition {\n  color: #aaaaaa;\n  position: absolute;\n  left: 10px;\n  bottom: 100px; }\n", ""]);
 
 /***/ },
 /* 162 */
@@ -22503,7 +22514,7 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(14), __webpack_require__(32), 
-		__webpack_require__(164), __webpack_require__(165), __webpack_require__(166), __webpack_require__(169)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Window, Scroll, Analytics, notificationHtml, buttonStyle, notificationStyle){
+		__webpack_require__(164), __webpack_require__(165), __webpack_require__(166), __webpack_require__(169), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Window, Scroll, Analytics, notificationHtml, buttonStyle, notificationStyle, Config){
 
 		var scrollDirection = 0;
 
@@ -22517,6 +22528,8 @@ webpackJsonp([1],[
 			"faster" : false,
 			"nicemoves" : false,
 			"bsection" : false,
+			"bintro" : false,
+			"csection" : false
 		};
 
 		var notificationButton = $(notificationHtml).appendTo(Window.container)
@@ -22528,20 +22541,48 @@ webpackJsonp([1],[
 				$(this).removeClass("Expanded");
 			});
 
+		var onScreenNotifications = [];
+
 		function showNotification(text){
-			notificationButton.addClass("Notified");
-			var notificationBox = $("<div>", {
-				"class" : "Notification",
-				"text" : text
-			}).appendTo(Window.container);
+			if (!Config.MOBILE){
+				notificationButton.addClass("Notified");
+				var notificationBox = $("<div>", {
+					"class" : "Notification",
+					"html" : text
+				}).appendTo(Window.container);
 
-			notificationBox.on("animationend", function(){
-				notificationBox.remove();
-			});
+				$("<img>", {
+					"src" : "./images/thumb.png"
+				}).appendTo(notificationBox);
 
-			setTimeout(function(){
-				notificationBox.addClass("Show");
-			}, 10);
+
+				var bottomposition = 25;
+				if (onScreenNotifications.length > 0){
+					var lastNotif = onScreenNotifications[onScreenNotifications.length - 1];
+					bottomposition += parseInt(lastNotif.height()) + parseInt(lastNotif.css("bottom")) + 20;
+					if (bottomposition > Window.height() - notificationBox.height() - 20){
+						bottomposition = 25;
+					}
+				}
+
+				notificationBox.css("bottom", bottomposition);
+
+				onScreenNotifications.push(notificationBox);
+
+				notificationBox.on("animationend webkitAnimationEnd", function(){
+					notificationBox.remove();
+					for (var i = 0; i < onScreenNotifications.length; i++){
+						if (onScreenNotifications[i] === notificationBox){
+							onScreenNotifications.splice(i, 1);
+							break;
+						}
+					}
+				});
+
+				setTimeout(function(){
+					notificationBox.addClass("Show");
+				}, 10);
+			}
 		}
 
 		/**
@@ -22552,15 +22593,16 @@ webpackJsonp([1],[
 		var endCount = 0;
 		Mediator.route("scrollEnd", function(){
 			endCount++;
-			if (endCount > 8){
+			if (endCount > 12 && !notifications.changeDirection){
 				endCount = 0;
-				notifications.changeDirection = true;
 				var dir = Scroll.getDirection() > 0 ? "top" : "bottom";
-				showNotification("you hit the "+dir+". scroll the other way!");
+				notifications.changeDirection = true;
+				showNotification("Reminder: You can scroll in both directions.");
 				Analytics.event("user", "notification", "scrollend", dir);
 			}
 		});
 		Mediator.route("half", function(half){
+			endCount = 0;
 			if (half === 0){
 				wentDown = true;
 			} else if (half === 1){
@@ -22574,7 +22616,8 @@ webpackJsonp([1],[
 			// }
 			if (wentUp && wentDown && !notifications.nicemoves){
 				notifications.nicemoves = true;
-				showNotification("nice moves");	
+				// showNotification("<strong>Jazz.Computer</strong> commented on your scroll.");
+				// Analytics.event("user", "notification", "nicemoves");
 			}
 		});
 
@@ -22583,22 +22626,22 @@ webpackJsonp([1],[
 			started = true;
 			setTimeout(function(){
 				if (Scroll.getDistance() === 0){
-					showNotification("scroll to advance the music");
+					showNotification("Scroll to advance the song.");
 				}
-			}, 1000);
+			}, 1500);
 			setTimeout(function(){
 				if (Scroll.getDistance() === 0){
-					showNotification("SCROLL!");
+					showNotification("Reminder: Don't forget to scroll.");
 				}
-			}, 5000);
+			}, 6000);
 		});
 
 		Mediator.route("play", function(){
-			showNotification("unpaused");
+			showNotification("Unpaused");
 		});
 
 		Mediator.route("pause", function(){
-			showNotification("paused");
+			showNotification("Paused");
 		});
 
 		//clicks
@@ -22606,8 +22649,8 @@ webpackJsonp([1],[
 		$("#ScrollContainer").on("mousedown", function(){
 			if (started){
 				clickCount++;
-				if (clickCount > 5){
-					showNotification("don't click. just scroll.");
+				if (clickCount > 3){
+					showNotification("Reminder: Don't forget to scroll.");
 					Analytics.event("user", "notification", "clicks");
 					clickCount = 0;
 				}
@@ -22616,35 +22659,35 @@ webpackJsonp([1],[
 
 		//HD
 		Mediator.route("HD", function(hd){
-			showNotification("high definition "+(hd?"ON" : "OFF"));
+			showNotification("High Definition "+(hd?"ON." : "OFF."));
 		});
 
 		//encouraging messages
 		Mediator.route("firstScroll", function(){
 			setTimeout(function(){
 				if (Scroll.getDistance() < 0.1){
-					showNotification("KEEP SCROLLING!");
+					showNotification("Reminder: Keep Scrolling.");
 					Analytics.event("user", "notification", "keepscrolling");
 				} else {
-					showNotification("good pace. keep scrolling.");
+					showNotification("<strong>Jazz.Computer</strong> liked your scroll.");
 				}
 			}, 5000);
 
 			setTimeout(function(){
 				if (Scroll.getDistance() < 0.5){
-					showNotification("there's more. scroll on.");
+					showNotification("<strong>Jazz.Computer</strong> invited you to an event <strong>Scroll Faster</strong>. ");
 					Analytics.event("user", "notification", "scrollon");
 				} else {
-					showNotification("always be scrolling");
+					showNotification("<strong>Jazz.Computer</strong> commented on your scroll: \"nice!\"");
 				}
 			}, 15000);
 
 			setTimeout(function(){
 				if (Scroll.getDistance() < 1){
-					showNotification("more scroll. more song.");
+					showNotification("<strong>Jazz.Computer</strong> shared a link: <strong>www.scrollmore.com</strong>");
 					Analytics.event("user", "notification", "moresong");
 				} else if (Scroll.getDistance() < 2){
-					showNotification("there's more");
+					showNotification("<strong>Jazz.Computer</strong> commented on your scroll: \"there's more.\"");
 					Analytics.event("user", "notification", "theresmore");
 				}
 			}, 40000);
@@ -22653,12 +22696,22 @@ webpackJsonp([1],[
 		Mediator.route("B", function(){
 			if (!notifications.bsection){
 				notifications.bsection = true;
-				showNotification("woah. new section.");
+				showNotification("Today is <strong>Jazz.Computer</strong>'s Birthday!");
+			}
+		});
+
+		Mediator.route("BTransitionStart", function(){
+			if (!notifications.bintro){
+				notifications.bintro = true;
+				showNotification("You'll never believe what happens next.");
 			}
 		});
 
 		Mediator.route("C", function(){
-			showNotification("back here");
+			if (!notifications.csection){
+				notifications.csection = true;
+				showNotification("<strong>Jazz.Computer</strong> is going to an event <strong>Welcome Back</strong>.");
+			}
 		});
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -22746,7 +22799,7 @@ webpackJsonp([1],[
 /* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<div id=\"NotificationButton\">\n\t<div id=\"Button\">\n\t\t<div id=\"Flag\"></div>\n\t</div>\n\n\t<div id=\"DropDown\">\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\talways be scrolling\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tsometimes up\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tsometimes down\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>";
+	module.exports = "<div id=\"NotificationButton\">\n\t<div id=\"Button\">\n\t\t<div id=\"Flag\"></div>\n\t</div>\n\n\t<div id=\"DropDown\">\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tkeep scrolling\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tsometimes up\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tsometimes down\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>";
 
 /***/ },
 /* 166 */
@@ -22779,7 +22832,7 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(17)();
-	exports.push([module.id, "#StartButton {\n  width: 250px;\n  height: 250px;\n  background-color: #1040FF;\n  position: absolute;\n  top: 50%;\n  right: 50%;\n  margin-right: -125px;\n  margin-top: -125px;\n  -webkit-transform-origin: 100% 0px;\n      -ms-transform-origin: 100% 0px;\n          transform-origin: 100% 0px;\n  border-radius: 18px;\n  cursor: pointer; }\n  #StartButton #Triangle {\n    opacity: 1;\n    width: 0;\n    height: 0;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    border-top: 75px solid transparent;\n    border-bottom: 75px solid transparent;\n    border-left: 112.5px solid white;\n    font-size: 150px; }\n  #StartButton .PauseBar {\n    opacity: 0;\n    position: absolute;\n    height: 150px;\n    width: 37.5px;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: white; }\n  #StartButton #Pause0 {\n    left: 33%; }\n  #StartButton #Pause1 {\n    left: 66%; }\n\n#StartButton.Playing #Triangle {\n  opacity: 0; }\n\n#StartButton.Playing .PauseBar {\n  opacity: 1; }\n\n#StartButton.Corner {\n  top: 4px;\n  right: 177.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton.Corner:hover {\n  background-color: white; }\n  #StartButton.Corner:hover #Triangle {\n    border-left-color: #1040FF; }\n  #StartButton.Corner:hover .PauseBar {\n    background-color: #1040FF; }\n\n#StartButton.Corner:hover:active {\n  background-color: black; }\n  #StartButton.Corner:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton.Corner:hover:active .PauseBar {\n    background-color: white; }\n\n#StartButton.MobileCorner {\n  top: 4px;\n  right: 132.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton:hover {\n  background-color: #ff00d2; }\n  #StartButton:hover #Triangle {\n    border-left-color: black; }\n  #StartButton:hover .PauseBar {\n    background-color: black; }\n\n#StartButton:hover:active {\n  background-color: black; }\n  #StartButton:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton:hover:active .PauseBar {\n    background-color: white; }\n\n/**\n *  INFO BUTTON\n */\n#InfoContainer {\n  overflow: hidden;\n  position: absolute;\n  top: 4px;\n  right: 65px;\n  background-color: #1040FF;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  color: white;\n  font-family: sans-serif;\n  font-size: 20px;\n  z-index: 101;\n  -webkit-transition: all 0.25s;\n          transition: all 0.25s; }\n  #InfoContainer #Credits {\n    position: absolute;\n    top: 10%;\n    left: 10%;\n    width: 80%;\n    height: 80%;\n    opacity: 0;\n    text-align: left;\n    color: white;\n    -webkit-transition: opacity 0.25s;\n            transition: opacity 0.25s; }\n    #InfoContainer #Credits a {\n      font-weight: 900;\n      text-decoration: none;\n      color: white; }\n    #InfoContainer #Credits a:hover {\n      color: #ff00d2; }\n    #InfoContainer #Credits a:hover:active {\n      color: black; }\n  #InfoContainer #InfoButton {\n    width: 35px;\n    height: 35px;\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    z-index: 100;\n    cursor: pointer;\n    font-weight: lighter;\n    border-radius: 3px; }\n  #InfoContainer #InfoButton:hover {\n    background-color: white;\n    color: #1040FF; }\n  #InfoContainer #InfoButton:hover:active {\n    background-color: black;\n    color: white; }\n\n.Mobile #InfoContainer #Credits {\n  width: 90%;\n  height: 90%;\n  left: 5%;\n  top: 10px;\n  font-size: 12px; }\n\n#InfoContainer.Expanded {\n  width: calc(100% - 15px * 2);\n  height: calc(100% - 4px  - 15px);\n  right: 15px;\n  opacity: 0.85;\n  cursor: inherit; }\n  #InfoContainer.Expanded #Credits {\n    font-family: monospace;\n    opacity: 1; }\n    #InfoContainer.Expanded #Credits .social {\n      position: relative;\n      margin-right: 10px;\n      height: 50px;\n      width: 50px;\n      font-size: 50px;\n      color: #ff00d2;\n      cursor: pointer;\n      text-align: left;\n      float: left; }\n    #InfoContainer.Expanded #Credits .social:hover {\n      color: black; }\n    #InfoContainer.Expanded #Credits .social:hover:active {\n      color: white; }\n\n/**\n *  HD BUTTON\n */\n#HDButton {\n  position: absolute;\n  top: 4px;\n  right: 110px;\n  background-color: transparent;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  font-family: sans-serif;\n  font-weight: lighter;\n  font-size: 20px;\n  z-index: 101;\n  cursor: pointer;\n  box-sizing: border-box;\n  color: #1040FF;\n  border: 2px solid #1040FF; }\n\n#HDButton:hover {\n  background-color: transparent;\n  border-color: white;\n  color: white; }\n\n#HDButton.HD {\n  background-color: #1040FF;\n  color: white; }\n\n#HDButton.HD:hover {\n  background-color: white;\n  border-color: white;\n  color: #1040FF; }\n\n#HDButton:hover:active {\n  background-color: black;\n  color: white; }\n\n/**\n *  NOTIFICATION BUTTON\n */\n#NotificationButton {\n  width: 35px;\n  height: 35px;\n  position: absolute;\n  top: 4px;\n  right: 20px;\n  z-index: 100;\n  cursor: pointer;\n  font-weight: lighter;\n  border-radius: 3px; }\n  #NotificationButton #Flag {\n    bottom: calc(50% + 2px);\n    left: calc(50% + 2px);\n    position: absolute;\n    background-color: #f9ff00;\n    width: 0px;\n    height: 0px;\n    border-radius: 3px;\n    -webkit-transition: width 0.3s, height 0.3s;\n            transition: width 0.3s, height 0.3s;\n    -webkit-transition-delay: 0.5s;\n            transition-delay: 0.5s;\n    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46);\n            transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46); }\n  #NotificationButton #Button {\n    z-index: 1;\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    background-color: #1040FF;\n    cursor: pointer; }\n  #NotificationButton #Button:hover {\n    background-color: white; }\n  #NotificationButton #Button:active:hover {\n    background-color: black; }\n  #NotificationButton #DropDown {\n    position: absolute;\n    right: 0px;\n    top: 45px;\n    width: 200px;\n    height: 180px;\n    text-align: right;\n    padding: 10px;\n    pointer-events: none;\n    z-index: 10000;\n    background-color: rgba(16, 64, 255, 0.8);\n    opacity: 0;\n    overflow: hidden;\n    height: 0px;\n    -webkit-transition: height 0.2s ease-in, opacity 0.2s ease-in;\n            transition: height 0.2s ease-in, opacity 0.2s ease-in; }\n    #NotificationButton #DropDown .Item {\n      width: 100%;\n      height: 60px;\n      position: relative; }\n      #NotificationButton #DropDown .Item #Square {\n        width: 40px;\n        height: 40px;\n        margin-top: 10px;\n        margin-right: 10px;\n        background-color: #f9ff00;\n        float: left; }\n      #NotificationButton #DropDown .Item #Text {\n        width: auto;\n        height: 60px;\n        line-height: 60px;\n        float: left;\n        color: #f9ff00;\n        font-family: sans-serif;\n        font-weight: lighter; }\n\n#NotificationButton.Expanded #DropDown {\n  opacity: 1;\n  height: 180px;\n  -webkit-transition: height 0.2s ease-out, opacity 0.2s ease-out;\n          transition: height 0.2s ease-out, opacity 0.2s ease-out; }\n\n#NotificationButton.Notified #Flag {\n  width: 17.5px;\n  height: 17.5px; }\n\n/**\n *  JC LOGO\n */\n#Logo {\n  position: absolute;\n  top: 4px;\n  left: 40px;\n  background: url("+__webpack_require__(168)+");\n  background-size: 100% 100%;\n  width: 35px;\n  height: 35px; }\n", ""]);
+	exports.push([module.id, "#StartButton {\n  width: 250px;\n  height: 250px;\n  background-color: #1040FF;\n  position: absolute;\n  top: 50%;\n  right: 50%;\n  margin-right: -125px;\n  margin-top: -125px;\n  -webkit-transform-origin: 100% 0px;\n      -ms-transform-origin: 100% 0px;\n          transform-origin: 100% 0px;\n  border-radius: 18px;\n  cursor: pointer; }\n  #StartButton #Triangle {\n    opacity: 1;\n    width: 0;\n    height: 0;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    border-top: 75px solid transparent;\n    border-bottom: 75px solid transparent;\n    border-left: 112.5px solid white;\n    font-size: 150px; }\n  #StartButton .PauseBar {\n    opacity: 0;\n    position: absolute;\n    height: 150px;\n    width: 37.5px;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: white; }\n  #StartButton #Pause0 {\n    left: 33%; }\n  #StartButton #Pause1 {\n    left: 66%; }\n\n#StartButton.Playing #Triangle {\n  opacity: 0; }\n\n#StartButton.Playing .PauseBar {\n  opacity: 1; }\n\n#StartButton.Corner {\n  top: 4px;\n  right: 177.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton.Corner:hover {\n  background-color: white; }\n  #StartButton.Corner:hover #Triangle {\n    border-left-color: #1040FF; }\n  #StartButton.Corner:hover .PauseBar {\n    background-color: #1040FF; }\n\n#StartButton.Corner:hover:active {\n  background-color: black; }\n  #StartButton.Corner:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton.Corner:hover:active .PauseBar {\n    background-color: white; }\n\n#StartButton.MobileCorner {\n  top: 4px;\n  right: 132.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton:hover {\n  background-color: #ff00d2; }\n  #StartButton:hover #Triangle {\n    border-left-color: black; }\n  #StartButton:hover .PauseBar {\n    background-color: black; }\n\n#StartButton:hover:active {\n  background-color: black; }\n  #StartButton:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton:hover:active .PauseBar {\n    background-color: white; }\n\n/**\n *  INFO BUTTON\n */\n#InfoContainer {\n  overflow: hidden;\n  position: absolute;\n  top: 4px;\n  right: 65px;\n  background-color: #1040FF;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  color: white;\n  font-family: sans-serif;\n  font-size: 20px;\n  z-index: 101;\n  -webkit-transition: all 0.25s;\n          transition: all 0.25s; }\n  #InfoContainer #Credits {\n    font-family: monospace;\n    position: absolute;\n    top: 10%;\n    left: 10%;\n    width: 80%;\n    height: 80%;\n    opacity: 0;\n    text-align: left;\n    color: white;\n    -webkit-transition: opacity 0.25s;\n            transition: opacity 0.25s; }\n    #InfoContainer #Credits a {\n      font-weight: 900;\n      text-decoration: none;\n      color: white; }\n    #InfoContainer #Credits a:hover {\n      color: #ff00d2; }\n    #InfoContainer #Credits a:hover:active {\n      color: black; }\n  #InfoContainer #InfoButton {\n    width: 35px;\n    height: 35px;\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    z-index: 100;\n    cursor: pointer;\n    font-weight: lighter;\n    border-radius: 3px; }\n  #InfoContainer #InfoButton:hover {\n    background-color: white;\n    color: #1040FF; }\n  #InfoContainer #InfoButton:hover:active {\n    background-color: black;\n    color: white; }\n\n.Mobile #InfoContainer #Credits {\n  width: 90%;\n  height: 90%;\n  left: 5%;\n  top: 10px;\n  font-size: 12px; }\n\n#InfoContainer.Expanded {\n  width: calc(100% - 15px * 2);\n  height: calc(100% - 4px  - 15px);\n  right: 15px;\n  opacity: 0.85;\n  cursor: inherit; }\n  #InfoContainer.Expanded #Credits {\n    opacity: 1; }\n    #InfoContainer.Expanded #Credits .social {\n      position: relative;\n      margin-right: 10px;\n      height: 50px;\n      width: 50px;\n      font-size: 50px;\n      color: #ff00d2;\n      cursor: pointer;\n      text-align: left;\n      float: left; }\n    #InfoContainer.Expanded #Credits .social:hover {\n      color: black; }\n    #InfoContainer.Expanded #Credits .social:hover:active {\n      color: white; }\n\n/**\n *  HD BUTTON\n */\n#HDButton {\n  position: absolute;\n  top: 4px;\n  right: 110px;\n  background-color: transparent;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  font-family: sans-serif;\n  font-weight: lighter;\n  font-size: 20px;\n  z-index: 101;\n  cursor: pointer;\n  box-sizing: border-box;\n  color: #1040FF;\n  border: 2px solid #1040FF; }\n\n#HDButton:hover {\n  background-color: transparent;\n  border-color: white;\n  color: white; }\n\n#HDButton.HD {\n  background-color: #1040FF;\n  color: white; }\n\n#HDButton.HD:hover {\n  background-color: white;\n  border-color: white;\n  color: #1040FF; }\n\n#HDButton:hover:active {\n  background-color: black;\n  color: white; }\n\n/**\n *  NOTIFICATION BUTTON\n */\n#NotificationButton {\n  width: 35px;\n  height: 35px;\n  position: absolute;\n  top: 4px;\n  right: 20px;\n  z-index: 100;\n  cursor: pointer;\n  font-weight: lighter;\n  border-radius: 3px; }\n  #NotificationButton #Flag {\n    bottom: calc(50% + 2px);\n    left: calc(50% + 2px);\n    position: absolute;\n    background-color: #f9ff00;\n    width: 0px;\n    height: 0px;\n    border-radius: 3px;\n    -webkit-transition: width 0.3s, height 0.3s;\n            transition: width 0.3s, height 0.3s;\n    -webkit-transition-delay: 0.5s;\n            transition-delay: 0.5s;\n    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46);\n            transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46); }\n  #NotificationButton #Button {\n    z-index: 1;\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    background-color: #1040FF;\n    cursor: pointer; }\n  #NotificationButton #Button:hover {\n    background-color: white; }\n  #NotificationButton #Button:active:hover {\n    background-color: black; }\n  #NotificationButton #DropDown {\n    position: absolute;\n    right: 0px;\n    top: 45px;\n    width: 200px;\n    height: 180px;\n    text-align: right;\n    padding: 10px;\n    pointer-events: none;\n    z-index: 10000;\n    background-color: rgba(16, 64, 255, 0.8);\n    opacity: 0;\n    overflow: hidden;\n    height: 0px;\n    -webkit-transition: height 0.2s ease-in, opacity 0.2s ease-in;\n            transition: height 0.2s ease-in, opacity 0.2s ease-in; }\n    #NotificationButton #DropDown .Item {\n      width: 100%;\n      height: 60px;\n      position: relative; }\n      #NotificationButton #DropDown .Item #Square {\n        width: 40px;\n        height: 40px;\n        margin-top: 10px;\n        margin-right: 10px;\n        background-color: #f9ff00;\n        float: left; }\n      #NotificationButton #DropDown .Item #Text {\n        width: auto;\n        height: 60px;\n        line-height: 60px;\n        float: left;\n        color: #f9ff00;\n        font-family: sans-serif;\n        font-weight: lighter; }\n\n#NotificationButton.Expanded #DropDown {\n  opacity: 1;\n  height: 180px;\n  -webkit-transition: height 0.2s ease-out, opacity 0.2s ease-out;\n          transition: height 0.2s ease-out, opacity 0.2s ease-out; }\n\n#NotificationButton.Notified #Flag {\n  width: 17.5px;\n  height: 17.5px; }\n\n/**\n *  JC LOGO\n */\n#Logo {\n  position: absolute;\n  top: 4px;\n  left: 40px;\n  background: url("+__webpack_require__(168)+");\n  background-size: 100% 100%;\n  width: 35px;\n  height: 35px; }\n", ""]);
 
 /***/ },
 /* 168 */
@@ -22818,7 +22871,7 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(17)();
-	exports.push([module.id, "@-webkit-keyframes Appear {\n  0% {\n    -webkit-transform: translate(-250px, 0);\n            transform: translate(-250px, 0);\n    opacity: 0; }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 1; }\n  100% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 0; } }\n\n@keyframes Appear {\n  0% {\n    -webkit-transform: translate(-250px, 0);\n            transform: translate(-250px, 0);\n    opacity: 0; }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 1; }\n  100% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 0; } }\n\n.Notification {\n  width: 220px;\n  height: auto;\n  font-family: sans-serif;\n  position: absolute;\n  bottom: 25px;\n  left: 25px;\n  font-size: 20px;\n  background-color: rgba(255, 255, 255, 0.8);\n  border-radius: 4px;\n  padding: 15px;\n  padding-left: 30px;\n  border: 1px solid rgba(180, 180, 180, 0.8);\n  opacity: 0;\n  -webkit-transform: translate(-250px, 0px);\n      -ms-transform: translate(-250px, 0px);\n          transform: translate(-250px, 0px);\n  color: #1040FF; }\n\n.Mobile .Notification {\n  bottom: 60px; }\n\n.Notification.Show {\n  -webkit-animation-name: Appear;\n          animation-name: Appear;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n  -webkit-animation-direction: forwards;\n          animation-direction: forwards; }\n", ""]);
+	exports.push([module.id, "@-webkit-keyframes Appear {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0);\n    opacity: 0; }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 1; }\n  100% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 0; } }\n\n@keyframes Appear {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0);\n    opacity: 0; }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 1; }\n  100% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 0; } }\n\n@-webkit-keyframes AppearMobile {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  90% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  100% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); } }\n\n@keyframes AppearMobile {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  90% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  100% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); } }\n\n.Notification {\n  width: 220px;\n  height: auto;\n  font-family: sans-serif;\n  position: absolute;\n  bottom: 25px;\n  left: 25px;\n  font-size: 24px;\n  background-color: rgba(255, 255, 255, 0.8);\n  border-radius: 4px;\n  padding: 15px;\n  padding-left: 80px;\n  border: 1px solid rgba(180, 180, 180, 0.8);\n  opacity: 0;\n  -webkit-transform: translate(-300px, 0px);\n      -ms-transform: translate(-300px, 0px);\n          transform: translate(-300px, 0px);\n  color: #1040FF; }\n  .Notification img {\n    width: 50px;\n    height: 50px;\n    -webkit-transform: translate(0px, -50%);\n        -ms-transform: translate(0px, -50%);\n            transform: translate(0px, -50%);\n    top: 50%;\n    position: absolute;\n    left: 15px; }\n\n.Notification.Show {\n  -webkit-animation-name: Appear;\n          animation-name: Appear;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n  -webkit-animation-timing-function: cubic-bezier(0.76, 0.02, 0.63, 0.13);\n          animation-timing-function: cubic-bezier(0.76, 0.02, 0.63, 0.13);\n  -webkit-animation-direction: forwards;\n          animation-direction: forwards; }\n\n.Mobile .Notification {\n  opacity: 1;\n  bottom: 60px; }\n\n.Mobile .Notification.Show {\n  -webkit-animation-name: AppearMobile;\n          animation-name: AppearMobile; }\n", ""]);
 
 /***/ },
 /* 171 */
@@ -22906,7 +22959,7 @@ webpackJsonp([1],[
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "jazz.computer is an interactive song by  <a target=\"_blank\" href='http://yotammann.info'>Yotam Mann</a> with visual design by <a target=\"_blank\" href='http://sarahrothberg.com'>Sarah Rothberg</a>.\n<br><br>\n\nSpecial thanks to <a href=\"https://twitter.com/gabeliberti\" target=\"_blank\">Gabe Liberti</a> for production help.\n<br><br>\n\njazz.computer was developed using <a target=\"_blank\" href='http://tonejs.org'>Tone.js</a> and <a target=\"_blank\" href='http://threejs.org'>Three.js</a>\n<br><br>\n\n<a target=\"_blank\" href=\"./info\">more info</a>\n<br><br>\n";
+	module.exports = "Jazz.Computer is an interactive song by  <a target=\"_blank\" href='http://yotammann.info'>Yotam Mann</a> with visual design by <a target=\"_blank\" href='http://sarahrothberg.com'>Sarah Rothberg</a>.\n<br><br>\n\nSpecial thanks to <a href=\"https://twitter.com/gabeliberti\" target=\"_blank\">Gabe Liberti</a> for production help.\n<br><br>\n\njazz.computer was developed using <a target=\"_blank\" href='http://tonejs.org'>Tone.js</a> and <a target=\"_blank\" href='http://threejs.org'>Three.js</a>\n<br><br>\n\n<a target=\"_blank\" href=\"./info\">more info</a>\n<br><br>\n";
 
 /***/ },
 /* 173 */

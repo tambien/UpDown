@@ -7,7 +7,4 @@
 	* jazz.computer
 	* itp class
 
-* Better notifications: 
-	* Just scroll notification when clicking too much.
-	* reminder to "keep scrolling"
-	* "this is your scroll bar"
+email that studio doing VR stuff in williamsburg.

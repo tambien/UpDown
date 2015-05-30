@@ -1,8 +1,8 @@
 @import "common.scss";
 
 $NotificationWidth : 220px;
-$NotificationHeight : 40px;
-$OffscreenLeft : -$NotificationWidth - 30px;
+$NotificationHeight : 46px;
+$OffscreenLeft : -$NotificationWidth - 80px;
 
 @keyframes Appear {
 	0%   {
@@ -19,31 +19,64 @@ $OffscreenLeft : -$NotificationWidth - 30px;
 	}
 }
 
+@keyframes AppearMobile {
+	0%   {
+		transform : translate($OffscreenLeft, 0); 
+	}
+	10%   {
+		transform : translate(0px, 0); 
+	}
+	90%   {
+		transform : translate(0px, 0); 
+	}
+	100%   {
+		transform : translate($OffscreenLeft, 0); 
+	}
+}
+
 .Notification {
+
+	$imgSize : 50px;
+
 	width: $NotificationWidth;
 	height: auto;
 	@include fontFamily;
 	position: absolute;
 	bottom: 25px;
 	left: 25px;
-	font-size: 20px;
+	font-size: 24px;
 	background-color: rgba(255, 255, 255, 0.8);
 	border-radius: 4px;
 	$padding : 15px;
 	padding: $padding;
-	padding-left: $padding * 2;
+	padding-left: $imgSize + $padding * 2;
 	border: 1px solid rgba(180, 180, 180, 0.8);
 	opacity: 0;
 	transform: translate($OffscreenLeft, 0px);
 	color: $blue;
-}
 
-.Mobile .Notification {
-	bottom: 60px;
+	img {
+		width: $imgSize;
+		height: $imgSize;
+		transform: translate(0px, -50%);
+		top: 50%;
+		position: absolute;
+		left: $padding;
+	}
 }
 
 .Notification.Show {
 	animation-name: Appear;
 	animation-duration: 4s;
+	animation-timing-function: cubic-bezier(0.76, 0.02, 0.63, 0.13);
 	animation-direction: forwards;
+}
+
+.Mobile .Notification {
+	opacity: 1;
+	bottom: 60px;
+}
+
+.Mobile .Notification.Show {
+	animation-name: AppearMobile;
 }

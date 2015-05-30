@@ -12,6 +12,8 @@
 	height: 100%;
 	/*z-index: 0;*/
 	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.6);
+	transition: background-color 0.2s;
 
 	#InnerScroll {
 		height: 100%;
@@ -47,6 +49,7 @@
 			/*top: calc(50% - #{$ScrollIndicatorHeight / 2} - #{$RightMargin});*/
 			top: 0px;
 			right: $RightMargin;
+			transition: width 0.4s;
 
 			#Indicator {
 				width: $ScrollIndicatorWidth;

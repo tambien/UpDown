@@ -26,7 +26,7 @@
 		#Text {
 			color: white;
 			position: absolute;
-			@include fontFamily;
+			font-family: "Courier New", monospace;
 			font-size: 36px;
 			text-align: center;
 			width: 80%;

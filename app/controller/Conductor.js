@@ -94,6 +94,8 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		 */
 		this.sectionPosition = 0;
 
+		this.btransitionNotification = false;
+
 
 		Transport.setInterval(this.updateLoop.bind(this), "1m");
 		Transport.setInterval(this.updateSection.bind(this), "3m");
@@ -292,6 +294,7 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		this.measure = 1;
 		this.forceVoice === -1;
 		Mediator.send("B", time);
+		this.btransitionNotification = false;
 		Mediator.send("Movement", time);
 	};
 
@@ -414,6 +417,10 @@ define(["Tone/core/Transport", "controller/Mediator", "Tone/core/Note",
 		if (!Config.MOBILE){
 			var bDiff = this.bDistance - Scroll.getDistance();
 			if (bDiff < transitionDistance){
+				if (!this.btransitionNotification){
+					this.btransitionNotification = true;
+					Mediator.send("BTransitionStart");
+				}
 				return TERP.map(bDiff, transitionDistance, 0, 0, 1);
 			} else {
 				return 0;

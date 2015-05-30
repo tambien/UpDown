@@ -1,6 +1,6 @@
 define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll", 
-	"controller/Analytics", "notification.html", "buttons.scss", "notification.scss"], 
-	function($, Mediator, Window, Scroll, Analytics, notificationHtml, buttonStyle, notificationStyle){
+	"controller/Analytics", "notification.html", "buttons.scss", "notification.scss", "util/Config"], 
+	function($, Mediator, Window, Scroll, Analytics, notificationHtml, buttonStyle, notificationStyle, Config){
 
 	var scrollDirection = 0;
 
@@ -14,6 +14,8 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 		"faster" : false,
 		"nicemoves" : false,
 		"bsection" : false,
+		"bintro" : false,
+		"csection" : false
 	};
 
 	var notificationButton = $(notificationHtml).appendTo(Window.container)
@@ -25,20 +27,48 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 			$(this).removeClass("Expanded");
 		});
 
+	var onScreenNotifications = [];
+
 	function showNotification(text){
-		notificationButton.addClass("Notified");
-		var notificationBox = $("<div>", {
-			"class" : "Notification",
-			"text" : text
-		}).appendTo(Window.container);
+		if (!Config.MOBILE){
+			notificationButton.addClass("Notified");
+			var notificationBox = $("<div>", {
+				"class" : "Notification",
+				"html" : text
+			}).appendTo(Window.container);
 
-		notificationBox.on("animationend", function(){
-			notificationBox.remove();
-		});
+			$("<img>", {
+				"src" : "./images/thumb.png"
+			}).appendTo(notificationBox);
 
-		setTimeout(function(){
-			notificationBox.addClass("Show");
-		}, 10);
+
+			var bottomposition = 25;
+			if (onScreenNotifications.length > 0){
+				var lastNotif = onScreenNotifications[onScreenNotifications.length - 1];
+				bottomposition += parseInt(lastNotif.height()) + parseInt(lastNotif.css("bottom")) + 20;
+				if (bottomposition > Window.height() - notificationBox.height() - 20){
+					bottomposition = 25;
+				}
+			}
+
+			notificationBox.css("bottom", bottomposition);
+
+			onScreenNotifications.push(notificationBox);
+
+			notificationBox.on("animationend webkitAnimationEnd", function(){
+				notificationBox.remove();
+				for (var i = 0; i < onScreenNotifications.length; i++){
+					if (onScreenNotifications[i] === notificationBox){
+						onScreenNotifications.splice(i, 1);
+						break;
+					}
+				}
+			});
+
+			setTimeout(function(){
+				notificationBox.addClass("Show");
+			}, 10);
+		}
 	}
 
 	/**
@@ -49,15 +79,16 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 	var endCount = 0;
 	Mediator.route("scrollEnd", function(){
 		endCount++;
-		if (endCount > 8){
+		if (endCount > 12 && !notifications.changeDirection){
 			endCount = 0;
-			notifications.changeDirection = true;
 			var dir = Scroll.getDirection() > 0 ? "top" : "bottom";
-			showNotification("you hit the "+dir+". scroll the other way!");
+			notifications.changeDirection = true;
+			showNotification("Reminder: You can scroll in both directions.");
 			Analytics.event("user", "notification", "scrollend", dir);
 		}
 	});
 	Mediator.route("half", function(half){
+		endCount = 0;
 		if (half === 0){
 			wentDown = true;
 		} else if (half === 1){
@@ -71,7 +102,8 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 		// }
 		if (wentUp && wentDown && !notifications.nicemoves){
 			notifications.nicemoves = true;
-			showNotification("nice moves");	
+			// showNotification("<strong>Jazz.Computer</strong> commented on your scroll.");
+			// Analytics.event("user", "notification", "nicemoves");
 		}
 	});
 
@@ -80,22 +112,22 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 		started = true;
 		setTimeout(function(){
 			if (Scroll.getDistance() === 0){
-				showNotification("scroll to advance the music");
+				showNotification("Scroll to advance the song.");
 			}
-		}, 1000);
+		}, 1500);
 		setTimeout(function(){
 			if (Scroll.getDistance() === 0){
-				showNotification("SCROLL!");
+				showNotification("Reminder: Don't forget to scroll.");
 			}
-		}, 5000);
+		}, 6000);
 	});
 
 	Mediator.route("play", function(){
-		showNotification("unpaused");
+		showNotification("Unpaused");
 	});
 
 	Mediator.route("pause", function(){
-		showNotification("paused");
+		showNotification("Paused");
 	});
 
 	//clicks
@@ -103,8 +135,8 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 	$("#ScrollContainer").on("mousedown", function(){
 		if (started){
 			clickCount++;
-			if (clickCount > 5){
-				showNotification("don't click. just scroll.");
+			if (clickCount > 3){
+				showNotification("Reminder: Don't forget to scroll.");
 				Analytics.event("user", "notification", "clicks");
 				clickCount = 0;
 			}
@@ -113,35 +145,35 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 
 	//HD
 	Mediator.route("HD", function(hd){
-		showNotification("high definition "+(hd?"ON" : "OFF"));
+		showNotification("High Definition "+(hd?"ON." : "OFF."));
 	});
 
 	//encouraging messages
 	Mediator.route("firstScroll", function(){
 		setTimeout(function(){
 			if (Scroll.getDistance() < 0.1){
-				showNotification("KEEP SCROLLING!");
+				showNotification("Reminder: Keep Scrolling.");
 				Analytics.event("user", "notification", "keepscrolling");
 			} else {
-				showNotification("good pace. keep scrolling.");
+				showNotification("<strong>Jazz.Computer</strong> liked your scroll.");
 			}
 		}, 5000);
 
 		setTimeout(function(){
 			if (Scroll.getDistance() < 0.5){
-				showNotification("there's more. scroll on.");
+				showNotification("<strong>Jazz.Computer</strong> invited you to an event <strong>Scroll Faster</strong>. ");
 				Analytics.event("user", "notification", "scrollon");
 			} else {
-				showNotification("always be scrolling");
+				showNotification("<strong>Jazz.Computer</strong> commented on your scroll: \"nice!\"");
 			}
 		}, 15000);
 
 		setTimeout(function(){
 			if (Scroll.getDistance() < 1){
-				showNotification("more scroll. more song.");
+				showNotification("<strong>Jazz.Computer</strong> shared a link: <strong>www.scrollmore.com</strong>");
 				Analytics.event("user", "notification", "moresong");
 			} else if (Scroll.getDistance() < 2){
-				showNotification("there's more");
+				showNotification("<strong>Jazz.Computer</strong> commented on your scroll: \"there's more.\"");
 				Analytics.event("user", "notification", "theresmore");
 			}
 		}, 40000);
@@ -150,11 +182,21 @@ define(["jquery", "controller/Mediator", "interface/Window", "interface/Scroll",
 	Mediator.route("B", function(){
 		if (!notifications.bsection){
 			notifications.bsection = true;
-			showNotification("woah. new section.");
+			showNotification("Today is <strong>Jazz.Computer</strong>'s Birthday!");
+		}
+	});
+
+	Mediator.route("BTransitionStart", function(){
+		if (!notifications.bintro){
+			notifications.bintro = true;
+			showNotification("You'll never believe what happens next.");
 		}
 	});
 
 	Mediator.route("C", function(){
-		showNotification("back here");
+		if (!notifications.csection){
+			notifications.csection = true;
+			showNotification("<strong>Jazz.Computer</strong> is going to an event <strong>Welcome Back</strong>.");
+		}
 	});
 });

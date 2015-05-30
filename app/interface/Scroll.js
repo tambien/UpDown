@@ -41,7 +41,7 @@ define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquer
 	 */
 	var started = false;
 
-	var scrollHeight = 30000;
+	var scrollHeight = 20000;
 
 	var pageHeight = 0;
 

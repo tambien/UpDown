@@ -104,6 +104,9 @@ define(["visuals/Context","controller/Mediator", "util/Config",
 	FrameVisuals.prototype.resize = function(){
 		//top
 		var topbarHeight = 5;
+		if (Config.MOBILE){
+			topbarHeight = 7;
+		}
 		this.topbar.position.y = Context.height / 2 - topbarHeight / 2;
 		this.topbar.scale.setY(-topbarHeight);
 		this.topbar.scale.setX(Context.width);
