@@ -1,1 +1,3 @@
-Every instrument of this song (except for the voice track) is synthesized live in the browser, this means that you are in complete control of everything. The song that you are creating is uniquely yours. It is nearly impossible for two performances to be the same. 
+Jazz.Computer by Yotam Mann and Sarah Rothberg. 
+
+Uses [Tone.js](https://github.com/TONEnoTONE/Tone.js) for audio and (Three.js)[http://threejs.org] for visuals. 
