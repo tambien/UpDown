@@ -7,6 +7,6 @@ originalimages
 
 node_modules
 
-*.wav
+audio/waves
 
 *.asd
