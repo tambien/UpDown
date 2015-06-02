@@ -5,9 +5,8 @@
 
 originalimages
 
-*.asd
+node_modules
 
 *.wav
 
-
-node_modules
+*.asd

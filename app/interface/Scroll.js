@@ -41,7 +41,7 @@ define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquer
 	 */
 	var started = false;
 
-	var scrollHeight = 20000;
+	var scrollHeight = 10000;
 
 	var pageHeight = 0;
 
@@ -50,7 +50,7 @@ define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquer
 	if (Config.MOBILE){
 		var innerScroll = $("<div>").attr("id", "InnerScroll").appendTo(scrollContainer);
 		var scroller = $("<div>").attr("id", "Scroller").appendTo(innerScroll);
-		scrollHeight = 5000;
+		scrollHeight = 2500;
 		scroller.height(scrollHeight);
 		pageHeight = Window.height();
 		$(function(){	
@@ -66,7 +66,7 @@ define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquer
 
 
 	$(window).mousewheel(function(e, x){
-		var thresh = 400;
+		var thresh = 200;
 		x = Math.min(x, thresh);
 		x = Math.max(x, -thresh);
 		if (started){
