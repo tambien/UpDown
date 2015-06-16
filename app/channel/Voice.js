@@ -2,9 +2,9 @@ define(["Tone/instrument/Sampler", "controller/Mediator",
  "preset/Voice", "controller/Conductor", "Tone/core/Master", 
  "effect/Main", "interface/GUI", "Tone/instrument/PolySynth", 
  "Tone/signal/Signal", "Tone/component/Volume", "util/Config", 
- "Tone/core/Transport", "TERP", "preset/VoiceB", "Tone/component/Filter"], 
+ "Tone/core/Transport", "TERP", "preset/VoiceB", "Tone/component/Filter", "Tone/core/Tone"], 
 function(Sampler, Mediator, Preset, Conductor, Master, Effects, 
-	GUI, PolySynth, Signal, Volume, Config, Transport, TERP, PresetB, Filter){
+	GUI, PolySynth, Signal, Volume, Config, Transport, TERP, PresetB, Filter, Tone){
 
 	var audioFolder = "./audio/";
 
@@ -176,9 +176,9 @@ function(Sampler, Mediator, Preset, Conductor, Master, Effects,
 
 	//GUI
 	if (Config.GUI){
-		var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
+		var reverbControl = new Signal(reverbAmount.gain, Tone.Type.Decibels);
 		reverbControl.value = effectLevels.A.reverb;
-		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+		var delayControl = new Signal(delayAmount.gain, Tone.Type.Decibels);
 		delayControl.value = effectLevels.A.delay;
 		var voiceFolder = GUI.getFolder("Voice");
 		voiceFolder.add(reverbControl, "value", -100, 6).name("reverb");
