@@ -99,10 +99,12 @@
 		__webpack_require__(19), __webpack_require__(80), __webpack_require__(152), __webpack_require__(124), __webpack_require__(175), 
 		__webpack_require__(176), __webpack_require__(164), __webpack_require__(15)]; (function($, Transport, Mediator, Config, Buffer, Window){
 		var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
-		console.log("%c      UP/DOWN      ", coloring);
+		console.log("%c   Jazz.Computer   ", coloring);
 		console.log("%c        2015       ", coloring);
 		console.log("%c     Yotam Mann    ", coloring);
 		console.log("%c  Sarah Rothberg   ", coloring);
+
+		console.log("src: https://github.com/tambien/UpDown");
 
 		if (Config.STATS){
 			setInterval(function(){

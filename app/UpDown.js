@@ -3,10 +3,12 @@ require(["jquery", "Tone/core/Transport", "controller/Mediator", "util/Config", 
 	"interface/StartButton", "controller/Analytics", "main.scss"],
  function($, Transport, Mediator, Config, Buffer, Window){
 	var coloring = "background: rgb(248, 177, 173); color: rgb(63, 172, 203)";
-	console.log("%c      UP/DOWN      ", coloring);
+	console.log("%c   Jazz.Computer   ", coloring);
 	console.log("%c        2015       ", coloring);
 	console.log("%c     Yotam Mann    ", coloring);
 	console.log("%c  Sarah Rothberg   ", coloring);
+
+	console.log("src: https://github.com/tambien/UpDown");
 
 	if (Config.STATS){
 		setInterval(function(){
