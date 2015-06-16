@@ -3046,13 +3046,15 @@ webpackJsonp([1],[
 
 		isMobile = (window.location.hash === "#MOBILE") || isMobile;
 
+		var isFF = (navigator.userAgent.toLowerCase().indexOf("firefox") > -1);
+
 		return {
 			GUI : GUI,
 			MOBILE : isMobile,
 			PRESET_UPDATE : false,
 			STATS : false,
 			PASSWORD : false,
-			SPLASH : isMobile,
+			SPLASH : isMobile || isFF,
 			VISUALS : noVis,
 			ANALYTICS : true,
 			PAUSE_ON_BLUR : false,
@@ -22544,7 +22546,7 @@ webpackJsonp([1],[
 			}
 
 			if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1){
-				secondText.append("works best in Chrome or Safari");
+				secondText.text("works best in Chrome or Safari");
 			}
 
 			Mediator.route("ready", function(){

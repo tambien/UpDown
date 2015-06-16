@@ -10,13 +10,15 @@ define(["jquery"], function($){
 
 	isMobile = (window.location.hash === "#MOBILE") || isMobile;
 
+	var isFF = (navigator.userAgent.toLowerCase().indexOf("firefox") > -1);
+
 	return {
 		GUI : GUI,
 		MOBILE : isMobile,
 		PRESET_UPDATE : false,
 		STATS : false,
 		PASSWORD : false,
-		SPLASH : isMobile,
+		SPLASH : isMobile || isFF,
 		VISUALS : noVis,
 		ANALYTICS : true,
 		PAUSE_ON_BLUR : false,
