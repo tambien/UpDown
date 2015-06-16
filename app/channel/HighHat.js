@@ -1,9 +1,9 @@
 define(["Tone/instrument/NoiseSynth", "preset/HighHatSound", 
 	"controller/Conductor", "Tone/core/Master", "Tone/core/Transport", 
  "Tone/component/Filter", "Tone/component/PanVol", "interface/GUI", 
- "TERP", "Tone/signal/Signal", "Tone/component/Panner", "Tone/component/Mono", "util/Config"], 
+ "TERP", "Tone/signal/Signal", "Tone/component/Panner", "Tone/component/Mono", "util/Config", "Tone/core/Tone"], 
 function(NoiseSynth, Preset, Conductor, Master, Transport, 
-	Filter, PanVol, GUI, TERP, Signal, Panner, Mono, Config){
+	Filter, PanVol, GUI, TERP, Signal, Panner, Mono, Config, Tone){
 
 	var synth = new NoiseSynth({
 		"envelope" : {
@@ -49,7 +49,7 @@ function(NoiseSynth, Preset, Conductor, Master, Transport,
 
 	// GUI
 	if (Config.GUI){
-		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+		var reverbControl = new Signal(revAmount.gain, Tone.Type.Decibels);
 		reverbControl.value = effectLevels.reverb;
 		var hhFolder = GUI.getFolder("High Hat");
 		GUI.addTone2(hhFolder, "synth", synth);

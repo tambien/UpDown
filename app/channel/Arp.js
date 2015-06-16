@@ -1,6 +1,6 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "interface/GUI", "preset/ArpSoundA", "preset/ArpSoundB", 
-	"Tone/signal/Signal", "util/Config", "controller/Conductor"], 
-function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor){
+	"Tone/signal/Signal", "util/Config", "controller/Conductor", "Tone/core/Tone"], 
+function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor, Tone){
 
 	var monoSynth, volume;
 	if (!Config.MOBILE){
@@ -29,8 +29,8 @@ function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor){
 
 		//GUI
 		if (Config.GUI){
-			var reverbControl = new Signal(reverbAmount.gain, Signal.Units.Decibels);
-			var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+			var reverbControl = new Signal(reverbAmount.gain, Tone.Type.Decibels);
+			var delayControl = new Signal(delayAmount.gain, Tone.Type.Decibels);
 			var arpFolder = GUI.getFolder("ARP");
 			GUI.addTone2(arpFolder, "synth", monoSynth);
 			arpFolder.add(reverbControl, "value", -100, 1).name("reverb");

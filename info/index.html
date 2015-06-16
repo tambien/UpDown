@@ -54,21 +54,23 @@
 	</style>
 	<div id="Container">
 		<div>
-			Jazz.Computer is an interactive song that responds to the position and direction of your scrolling. 
+			Jazz.Computer is an interactive song that responds to the position and direction of your scrolling that is generated live in the browser.
 		</div>
 
 		<h3>Interaction</h3>
 		<div>
-			Scrolling is the first thing you do when you wake up and the last thing that you do before you go to sleep. Like our other project <a href="http://scroll-o-meter.club" target="_blank">Scroll-O-Meter</a>, Jazz.Computer makes scrolling the subject.
+			Jazz.Computer gives players the ability to participate in the music: change sections, chords, arrangements and timbres, by doing the thing that most of us are doing on our phones and computers most of the time: scrolling. The song and visuals are about scrolling and how it makes me feel. Sometimes up. Sometimes down.
+			<br><br>
+			Like two of our other projects, <a href="http://scroll-o-meter.club" target="_blank">Scroll-O-Meter</a> and <a href="http://dutchgramophone.com/Richer/" target="_blank">Richer</a>, Jazz.Computer recontextualizes the habits that our technology imposes on us.
 		</div>
 
 		<h3>Music</h3>
 		<div>
-			A typical song will play beginning to end the same way every time, Jazz.Computer is a potentially endless song with infinite variation. Instruments, effects, tempo, chords and sections respond to the distance and direction of your scrolling and your position on the page. 
+			Creating an interactive song like Jazz.Computer is very different from other music production &mdash; sort of like patching together an elaborate modular synth and then letting listeners fiddle with the knobs. I don't have full control over what happens. I set up a structure with which users can improvise and explore. Jazz.Computer is a potentially endless song with infinite variation. 
 			<br><br>
-			At the top of the page, the song is at 130 bpm and 65 bpm at the bottom. Correspondingly, the arrangement of the song also changes with the tempo. The sounds of instruments and effects are interpolated in a similar way, like keyframes or automation points.
+			Instruments, effects, tempo, chords and sections respond to the distance and direction of your scrolling and your position on the page. More specifically, at the top of the page, the song is at 130 bpm and 65 bpm at the bottom. Correspondingly, the arrangement of the song also changes with the tempo. The sounds of instruments and effects are interpolated in a similar way, like keyframes or automation points.
 			<br><br>
-			The chord progression is handled differently in order to feel like the chords always moving forward. A <a target="_blank" href="http://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> describes how chords transition from the current chord to the next (pictured below).
+			The chord progression is handled differently in order to feel like the chords are always moving forward. A <a target="_blank" href="http://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> describes how chords transition from the current chord to the next (pictured below).
 			<br>
 			<img src="./images/UpDownChords.png">
 			<br>
@@ -87,18 +89,12 @@
 
 		<h3>Visuals</h3>
 		<div>
-			The visuals follow the music closely and apply a few of the same techniques. Each instrument has a corresponding visual element which is triggered along with that instrument. The colors, sizes and animation speeds are interpolated in a similar way to the effects using preset interpolation. 
+			The visuals follow the music closely and apply a few of the same techniques. Each instrument has a corresponding visual element which is triggered along with that instrument. The colors, sizes and animation speeds are interpolated in a similar way to the sounds.
 			<br><br>
 			The visuals were created using a combination of generative graphics with <a href="http://threejs.org" target="_blank">three.js</a> and stop motion animation. The color blending was created with a simple custom shader to create unique color combinations where shapes overlap. 
 		</div>
 
-		<h3>Interactive Music</h3>
-		<div>
-			Unlike an "interactive music video", both the visuals <i>and</i> the music affected by the user. Jazz.Computer is just one example of the possibilities of creating music interactively with listeners.
-			<br><br>
-			Future work will focus on producing more interactive music as well as building tools which will lower the barrier of entry and enable other people to create interactive music as the technology and techniques mature. 
-		</div>
-
+		<h4>Thank you for playing.</h4>
 	</div>
 
 	<script>

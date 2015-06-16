@@ -1,7 +1,8 @@
 define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter", 
 	"Tone/component/AmplitudeEnvelope", "interface/GUI", "preset/SnareSound", 
-	"Tone/component/Compressor", "Tone/signal/Signal", "util/Config"], 
-	function(Noise, Master, Filter, AmplitudeEnvelope, GUI, Preset, Compressor, Signal, Config){
+	"Tone/component/Compressor", "Tone/signal/Signal", "util/Config", "Tone/core/Tone"], 
+	function(Noise, Master, Filter, AmplitudeEnvelope, GUI, Preset, 
+		Compressor, Signal, Config, Tone){
 
 	var noise = new Noise({
 		"type" : "pink"
@@ -40,9 +41,9 @@ define(["Tone/source/Noise", "Tone/core/Master", "Tone/component/Filter",
 
 	// GUI
 	if (Config.GUI){
-		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+		var reverbControl = new Signal(revAmount.gain, Tone.Type.Decibels);
 		reverbControl.value = effectLevels.reverb;
-		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+		var delayControl = new Signal(delayAmount.gain, Tone.Type.Decibels);
 		delayControl.value = effectLevels.delay;
 		var snareFolder = GUI.getFolder("Snare");
 		// GUI.addTone2(snareFolder, "compressor", comp);

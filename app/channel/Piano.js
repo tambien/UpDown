@@ -1,9 +1,9 @@
 define(["Tone/instrument/MonoSynth", "Tone/core/Master", "Tone/instrument/PolySynth", 
 	"Tone/component/Panner", "preset/PianoSoundA", "preset/PianoSoundB", "Tone/component/LFO", "interface/GUI", 
 	"Tone/signal/Signal", "controller/Mediator", "controller/Conductor", "util/Config", "Tone/component/Volume", 
-	"Tone/component/Meter", "Tone/core/Bus", "Tone/component/Filter"], 
+	"Tone/component/Meter", "Tone/core/Bus", "Tone/component/Filter", "Tone/core/Tone"], 
 function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signal, 
-	Mediator, Conductor, Config, Volume, Meter, Bus, Filter){
+	Mediator, Conductor, Config, Volume, Meter, Bus, Filter, Tone){
 
 	"use strict";
 
@@ -54,9 +54,9 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 
 	//GUI
 	if (Config.GUI){
-		var reverbControl = new Signal(revAmount.gain, Signal.Units.Decibels);
+		var reverbControl = new Signal(revAmount.gain, Tone.Type.Decibels);
 		reverbControl.value = effectLevels.reverb;
-		var delayControl = new Signal(delayAmount.gain, Signal.Units.Decibels);
+		var delayControl = new Signal(delayAmount.gain, Tone.Type.Decibels);
 		delayControl.value = effectLevels.delay;
 		var pianoFolder = GUI.getFolder("Piano");
 		GUI.addTone2(pianoFolder, "vibrato", vibrato);
