@@ -31,9 +31,11 @@ webpackJsonp([1],[
 		 *          on initialization. Unlike browser-based timing (setInterval, requestAnimationFrame)
 		 *          Tone.Transport timing events pass in the exact time of the scheduled event
 		 *          in the argument of the callback function. Pass that time value to the object
-		 *          you're scheduling. 
+		 *          you're scheduling. <br><br>
+		 *          A single transport is created for you when the library is initialized. 
 		 *
 		 *  @extends {Tone}
+		 *  @singleton
 		 *  @example
 		 * //repeated event every 8th note
 		 * Tone.Transport.setInterval(function(time){
@@ -69,9 +71,13 @@ webpackJsonp([1],[
 			this.loop = false;
 
 			/**
-			 *  the bpm value
+			 *  The Beats Per Minute of the Transport. 
 			 *  @type {BPM}
 			 *  @signal
+			 *  @example
+			 * Tone.Transport.bpm.value = 80;
+			 * //ramp the bpm to 120 over 10 seconds
+			 * Tone.Transport.bpm.rampTo(120, 10);
 			 */
 			this.bpm = new Tone.Signal(120, Tone.Type.BPM);
 
@@ -83,7 +89,7 @@ webpackJsonp([1],[
 			this._bpmMult = new Tone.Multiply(1/60 * tatum);
 
 			/**
-			 * 	The state of the transport. 
+			 * 	The state of the transport. READ ONLY. 
 			 *  @type {Tone.State}
 			 */
 			this.state = Tone.State.Stopped;
@@ -314,7 +320,6 @@ webpackJsonp([1],[
 
 		/**
 		 *  Set a callback for a recurring event.
-		 *
 		 *  @param {function} callback
 		 *  @param {Time}   interval 
 		 *  @return {number} the id of the interval
@@ -332,8 +337,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clear an interval from the processing array
-		 *  @param  {number} rmInterval 	the interval to remove
+		 *  Stop and ongoing interval.
+		 *  @param  {number} intervalID  The ID of interval to remove. The interval
+		 *                               ID is given as the return value in Tone.Transport.setInterval.
 		 *  @return {boolean}            	true if the event was removed
 		 */
 		Tone.Transport.prototype.clearInterval = function(rmInterval){
@@ -348,7 +354,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  removes all of the intervals that are currently set
+		 *  Removes all of the intervals that are currently set. 
 		 *  @return {boolean}            	true if the event was removed
 		 */
 		Tone.Transport.prototype.clearIntervals = function(){
@@ -367,8 +373,8 @@ webpackJsonp([1],[
 		 *  transport is stopped. 
 		 *
 		 *  @param {function} callback 
-		 *  @param {Time}   time     
-		 *  @return {number} the id of the timeout for clearing timeouts
+		 *  @param {Time}   time    The time (from now) that the callback will be invoked.
+		 *  @return {number} The id of the timeout.
 		 *  @example
 		 *  //trigger an event to happen 1 second from now
 		 *  Tone.Transport.setTimeout(function(time){
@@ -392,8 +398,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clear the timeout based on it's ID
-		 *  @param  {number} timeoutID 
+		 *  Clear a timeout using it's ID.
+		 *  @param  {number} intervalID  The ID of timeout to remove. The timeout
+		 *                               ID is given as the return value in Tone.Transport.setTimeout.
 		 *  @return {boolean}           true if the timeout was removed
 		 */
 		Tone.Transport.prototype.clearTimeout = function(timeoutID){
@@ -408,7 +415,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  removes all of the timeouts that are currently set
+		 *  Removes all of the timeouts that are currently set. 
 		 *  @return {boolean}            	true if the event was removed
 		 */
 		Tone.Transport.prototype.clearTimeouts = function(){
@@ -422,7 +429,7 @@ webpackJsonp([1],[
 		///////////////////////////////////////////////////////////////////////////////
 
 		/**
-		 *  Timeline events are synced to the transportTimeline of the Tone.Transport
+		 *  Timeline events are synced to the timeline of the Tone.Transport.
 		 *  Unlike Timeout, Timeline events will restart after the 
 		 *  Tone.Transport has been stopped and restarted. 
 		 *
@@ -452,7 +459,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clear the transportTimeline event from the 
+		 *  Clear the timeline event.
 		 *  @param  {number} timelineID 
 		 *  @return {boolean} true if it was removed
 		 */
@@ -468,7 +475,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  remove all events from the timeline
+		 *  Remove all events from the timeline.
 		 *  @returns {boolean} true if the events were removed
 		 */
 		Tone.Transport.prototype.clearTimelines = function(){
@@ -514,7 +521,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  returns the time of the next beat
+		 *  Returns the time of the next beat.
 		 *  @param  {string} [subdivision="4n"]
 		 *  @return {number} 	the time in seconds of the next subdivision
 		 */
@@ -535,11 +542,13 @@ webpackJsonp([1],[
 		///////////////////////////////////////////////////////////////////////////////
 
 		/**
-		 *  start the transport and all sources synced to the transport
-		 *  
-		 *  @param  {Time} time
-		 *  @param  {Time=} offset the offset position to start
+		 *  Start the transport and all sources synced to the transport.
+		 *  @param  {Time} [time=now] The time when the transport should start.
+		 *  @param  {Time=} offset The timeline offset to start the transport.
 		 *  @returns {Tone.Transport} this
+		 *  @example
+		 * //start the transport in one second starting at beginning of the 5th measure. 
+		 * Tone.Transport.start("+1", "4:0:0");
 		 */
 		Tone.Transport.prototype.start = function(time, offset){
 			if (this.state === Tone.State.Stopped || this.state === Tone.State.Paused){
@@ -561,10 +570,11 @@ webpackJsonp([1],[
 
 
 		/**
-		 *  stop the transport and all sources synced to the transport
-		 *  
-		 *  @param  {Time} time
+		 *  Stop the transport and all sources synced to the transport.
+		 *  @param  {Time} [time=now] The time when the transport should stop. 
 		 *  @returns {Tone.Transport} this
+		 *  @example
+		 * Tone.Transport.stop();
 		 */
 		Tone.Transport.prototype.stop = function(time){
 			if (this.state === Tone.State.Started || this.state === Tone.State.Paused){
@@ -593,9 +603,8 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  pause the transport and all sources synced to the transport
-		 *  
-		 *  @param  {Time} time
+		 *  Pause the transport and all sources synced to the transport.
+		 *  @param  {Time} [time=now]
 		 *  @returns {Tone.Transport} this
 		 */
 		Tone.Transport.prototype.pause = function(time){
@@ -617,11 +626,16 @@ webpackJsonp([1],[
 		///////////////////////////////////////////////////////////////////////////////
 
 		/**
-		 *  Time signature as just the numerator over 4. 
+		 *  The time signature as just the numerator over 4. 
 		 *  For example 4/4 would be just 4 and 6/8 would be 3.
 		 *  @memberOf Tone.Transport#
 		 *  @type {number}
 		 *  @name timeSignature
+		 *  @example
+		 * //common time
+		 * Tone.Transport.timeSignature = 4;
+		 * // 7/8
+		 * Tone.Transport.timeSignature = 3.5;
 		 */
 		Object.defineProperty(Tone.Transport.prototype, "timeSignature", {
 			get : function(){
@@ -634,7 +648,7 @@ webpackJsonp([1],[
 
 
 		/**
-		 * The loop start point
+		 * When the Tone.Transport.loop = true, this is the starting position of the loop.
 		 * @memberOf Tone.Transport#
 		 * @type {Time}
 		 * @name loopStart
@@ -649,7 +663,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 * The loop end point
+		 * When the Tone.Transport.loop = true, this is the ending position of the loop.
 		 * @memberOf Tone.Transport#
 		 * @type {Time}
 		 * @name loopEnd
@@ -664,10 +678,14 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 *  shorthand loop setting
+		 *  Set the loop start and stop at the same time. 
 		 *  @param {Time} startPosition 
 		 *  @param {Time} endPosition   
 		 *  @returns {Tone.Transport} this
+		 *  @example
+		 * //loop over the first measure
+		 * Tone.Transport.setLoopPoints(0, "1m");
+		 * Tone.Transport.loop = true;
 		 */
 		Tone.Transport.prototype.setLoopPoints = function(startPosition, endPosition){
 			this.loopStart = startPosition;
@@ -697,7 +715,6 @@ webpackJsonp([1],[
 		 *  The default values is a 16th note. Value must be less 
 		 *  than a quarter note.
 		 *  
-		 *  
 		 *  @memberOf Tone.Transport#
 		 *  @type {Time}
 		 *  @name swingSubdivision
@@ -718,7 +735,7 @@ webpackJsonp([1],[
 		 *  Setting the value will jump to that position right away. 
 		 *  
 		 *  @memberOf Tone.Transport#
-		 *  @type {string}
+		 *  @type {TransportTime}
 		 *  @name position
 		 */
 		Object.defineProperty(Tone.Transport.prototype, "position", {
@@ -745,6 +762,10 @@ webpackJsonp([1],[
 		 *  @param  {Tone.Source} source the source to sync to the transport
 		 *  @param {Time} delay (optionally) start the source with a delay from the transport
 		 *  @returns {Tone.Transport} this
+		 *  @example
+		 * Tone.Transport.syncSource(player, "1m");
+		 * Tone.Transport.start();
+		 * //the player will start 1 measure after the transport starts
 		 */
 		Tone.Transport.prototype.syncSource = function(source, startDelay){
 			SyncedSources.push({
@@ -755,7 +776,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  remove the source from the list of Synced Sources
+		 *  Unsync the source from the transport. See Tone.Transport.syncSource. 
 		 *  
 		 *  @param  {Tone.Source} source [description]
 		 *  @returns {Tone.Transport} this
@@ -770,7 +791,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  attaches the signal to the tempo control signal so that 
+		 *  Attaches the signal to the tempo control signal so that 
 		 *  any changes in the tempo will change the signal in the same
 		 *  ratio. 
 		 *  
@@ -802,7 +823,8 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Unsyncs a previously synced signal from the transport's control
+		 *  Unsyncs a previously synced signal from the transport's control. 
+		 *  See Tone.Transport.syncSignal.
 		 *  @param  {Tone.Signal} signal 
 		 *  @returns {Tone.Transport} this
 		 */
@@ -819,8 +841,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @returns {Tone.Transport} this
+		 *  @private
 		 */
 		Tone.Transport.prototype.dispose = function(){
 			this._clock.dispose();
@@ -1221,7 +1244,9 @@ webpackJsonp([1],[
 		///////////////////////////////////////////////////////////////////////////
 
 		/**
-		 *  @class  Tone is the base class of all other classes.  
+		 *  @class  Tone is the base class of all other classes. It provides 
+		 *          a lot of methods and functionality to all classes that extend
+		 *          it. 
 		 *  
 		 *  @constructor
 		 *  @alias Tone
@@ -1899,12 +1924,12 @@ webpackJsonp([1],[
 			 */
 			Default : "number",
 			/**
-			 *  Time can be described in a number of ways. Read more <a href="https://github.com/TONEnoTONE/Tone.js/wiki/Time">here</>.
+			 *  Time can be described in a number of ways. Read more <a href="https://github.com/TONEnoTONE/Tone.js/wiki/Time">here</a>.
 			 *
 			 *  <ul>
 			 *  <li>Numbers, which will be taken literally as the time (in seconds).</li>
 			 *  <li>Notation, ("4n", "8t") describes time in BPM and time signature relative values.</li>
-			 *  <li>Transport Time, ("4:3:2") will also provide tempo and time signature relative times 
+			 *  <li>TransportTime, ("4:3:2") will also provide tempo and time signature relative times 
 			 *  in the form BARS:QUARTERS:SIXTEENTHS.</li>
 			 *  <li>Frequency, ("8hz") is converted to the length of the cycle in seconds.</li>
 			 *  <li>Now-Relative, ("+1") prefix any of the above with "+" and it will be interpreted as 
@@ -1967,7 +1992,7 @@ webpackJsonp([1],[
 			 */
 			Positive : "positive",
 			/** 
-			 *  A cent is a hundreth of a semitone. 
+			 *  A cent is a hundredth of a semitone. 
 			 *  @typedef {Cents}
 			 */
 			Cents : "cents",
@@ -1975,7 +2000,18 @@ webpackJsonp([1],[
 			 *  Angle between 0 and 360. 
 			 *  @typedef {Degrees}
 			 */
-			Degrees : "degrees"
+			Degrees : "degrees",
+			/** 
+			 *  A number representing a midi note.
+			 *  @typedef {MIDI}
+			 */
+			MIDI : "midi",
+			/** 
+			 *  A colon-separated representation of time in the form of
+			 *  BARS:QUARTERS:SIXTEENTHS. 
+			 *  @typedef {TransportTime}
+			 */
+			TransportTime : "transporttime"
 		};
 
 		/**
@@ -2081,13 +2117,16 @@ webpackJsonp([1],[
 		"use strict";
 		
 		/**
-		 *  @class  a sample accurate clock built on an oscillator.
-		 *          Invokes the tick method at the set rate
+		 *  @class  A sample accurate clock which provides a callback at the given rate. 
+		 *          While the callback is not sample-accurate (it is still susceptible to
+		 *          loose JS timing), the time passed in as the argument to the callback
+		 *          is precise. For most applications, it is better to use Tone.Transport
+		 *          instead of the clock. 
 		 *
 		 * 	@constructor
 		 * 	@extends {Tone}
-		 * 	@param {Frequency} frequency the rate of the callback
-		 * 	@param {function} callback the callback to be invoked with the time of the audio event
+		 * 	@param {Frequency} frequency The rate of the callback
+		 * 	@param {function} callback The callback to be invoked with the time of the audio event
 		 * 	@example
 		 * //the callback will be invoked approximately once a second
 		 * //and will print the time exactly once a second apart.
@@ -2113,7 +2152,7 @@ webpackJsonp([1],[
 			this._jsNode.onaudioprocess = this._processBuffer.bind(this);
 
 			/**
-			 *  the rate control signal
+			 *  The frequency in which the callback will be invoked.
 			 *  @type {Frequency}
 			 *  @signal
 			 */
@@ -2127,7 +2166,7 @@ webpackJsonp([1],[
 			this._upTick = false;
 
 			/**
-			 *  the callback which is invoked on every tick
+			 *  The callback which is invoked on every tick
 			 *  with the time of that tick as the argument
 			 *  @type {function(number)}
 			 */
@@ -2137,9 +2176,9 @@ webpackJsonp([1],[
 			 * Callback is invoked when the clock is stopped.
 			 * @type {function}
 			 * @example
-			 *  clock.onended = function(){
-			 *  	console.log("the clock is stopped");
-			 *  }
+			 * clock.onended = function(){
+			 * 	console.log("the clock is stopped");
+			 * }
 			 */
 			this.onended = Tone.noOp;
 
@@ -2255,17 +2294,19 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Constant audio-rate signal.
-		 *          Tone.Signal is a core component which allows for sample-accurate 
-		 *          synchronization of many components. Tone.Signal can be scheduled 
-		 *          with all of the functions available to AudioParams
+		 *  @class  A signal is an audio-rate value. Tone.Signal is a core component of the library.
+		 *          Unlike a number, Signals can be scheduled with sample-level accuracy. Tone.Signal
+		 *          has all of the methods available to native Web Audio 
+		 *          <a href="http://webaudio.github.io/web-audio-api/#the-audioparam-interface" target="_blank">AudioParams</a> 
+		 *          as well as additional conveniences. Read more about working with signals 
+		 *          <a href="https://github.com/TONEnoTONE/Tone.js/wiki/Signals" target="_blank">here</a> 
 		 *
 		 *  @constructor
 		 *  @extends {Tone.SignalBase}
-		 *  @param {number|AudioParam} [value=0] initial value or the AudioParam to control
-		 *                                       note that the signal has no output
-		 *                                       if an AudioParam is passed in.
-		 *  @param {Tone.Type} [units=Tone.Type.Default] unit the units the signal is in
+		 *  @param {Number|AudioParam} [value] Initial value of the signal. If an AudioParam
+		 *                                     is passed in, that parameter will be wrapped
+		 *                                     and controlled by the Signal. 
+		 *  @param {string} [units=Number] unit The units the signal is in. 
 		 *  @example
 		 * var signal = new Tone.Signal(10);
 		 */
@@ -2274,7 +2315,7 @@ webpackJsonp([1],[
 			var options = this.optionsObject(arguments, ["value", "units"], Tone.Signal.defaults);
 
 			/**
-			 * the units the signal is in
+			 * The units of the signal.
 			 * @type {string}
 			 */
 			this.units = options.units;
@@ -2293,6 +2334,7 @@ webpackJsonp([1],[
 			 *  a connected signal.
 			 *  @readOnly
 			 *  @type  {boolean}
+			 *  @private
 			 */
 			this.overridden = false;
 
@@ -2342,9 +2384,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 * The value of the signal. 
+		 * The current value of the signal. 
 		 * @memberOf Tone.Signal#
-		 * @type {*}
+		 * @type {Number}
 		 * @name value
 		 */
 		Object.defineProperty(Tone.Signal.prototype, "value", {
@@ -2408,9 +2450,12 @@ webpackJsonp([1],[
 
 		/**
 		 *  Schedules a parameter value change at the given time.
-		 *  @param {number}		value 
-		 *  @param {Time}  time 
+		 *  @param {*}	value The value to set the signal.
+		 *  @param {Time}  time The time when the change should occur.
 		 *  @returns {Tone.Signal} this
+		 *  @example
+		 * //set the frequency to "G4" in exactly 1 second from now. 
+		 * freq.setValueAtTime("G4", "+1");
 		 */
 		Tone.Signal.prototype.setValueAtTime = function(value, time){
 			value = this._fromUnits(value);
@@ -2420,8 +2465,10 @@ webpackJsonp([1],[
 
 		/**
 		 *  Creates a schedule point with the current value at the current time.
+		 *  This is useful for creating an automation anchor point in order to 
+		 *  schedule changes from the current value. 
 		 *
-		 *  @param {number=} now (optionally) pass the now value in
+		 *  @param {number=} now (Optionally) pass the now value in. 
 		 *  @returns {Tone.Signal} this
 		 */
 		Tone.Signal.prototype.setCurrentValueNow = function(now){
@@ -2630,21 +2677,27 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Wraps the WaveShaperNode
+		 *  @class Wraps the native Web Audio API <a href="http://webaudio.github.io/web-audio-api/#the-waveshapernode-interface" target="_blank">WaveShaperNode</a>.
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
-		 *  @param {function(number, number)|Array|number} mapping the function used to define the values. 
+		 *  @param {function|Array|Number} mapping The function used to define the values. 
 		 *                                    The mapping function should take two arguments: 
 		 *                                    the first is the value at the current position 
 		 *                                    and the second is the array position. 
 		 *                                    If the argument is an array, that array will be
-		 *                                    set as the wave shapping function
-		 *  @param {number} [bufferLen=1024] the length of the WaveShaperNode buffer.
+		 *                                    set as the wave shaping function. The input
+		 *                                    signal is an AudioRange [-1, 1] value and the output
+		 *                                    signal can take on any numerical values. 
+		 *                                    
+		 *  @param {Number} [bufferLen=1024] The length of the WaveShaperNode buffer.
 		 *  @example
 		 * var timesTwo = new Tone.WaveShaper(function(val){
 		 * 	return val * 2;
 		 * }, 2048);
+		 *  @example
+		 * //a waveshaper can also be constructed with an array of values
+		 * var invert = new Tone.WaveShaper([1, -1]);
 		 */
 		Tone.WaveShaper = function(mapping, bufferLen){
 
@@ -2675,12 +2728,18 @@ webpackJsonp([1],[
 		Tone.extend(Tone.WaveShaper, Tone.SignalBase);
 
 		/**
-		 *  uses a mapping function to set the value of the curve
-		 *  @param {function(number, number)} mapping the function used to define the values. 
-		 *                                    The mapping function should take two arguments: 
-		 *                                    the first is the value at the current position 
-		 *                                    and the second is the array position
+		 *  Uses a mapping function to set the value of the curve. 
+		 *  @param {function} mapping The function used to define the values. 
+		 *                            The mapping function take two arguments: 
+		 *                            the first is the value at the current position 
+		 *                            which goes from -1 to 1 over the number of elements
+		 *                            in the curve array. The second argument is the array position. 
 		 *  @returns {Tone.WaveShaper} this
+		 *  @example
+		 * //map the input signal from [-1, 1] to [0, 10]
+		 * shaper.setMap(function(val, index){
+		 * 	return (val + 1) * 5;
+		 * })
 		 */
 		Tone.WaveShaper.prototype.setMap = function(mapping){
 			for (var i = 0, len = this._curve.length; i < len; i++){
@@ -2692,7 +2751,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 * The array to set as the waveshaper curve
+		 * The array to set as the waveshaper curve. For linear curves
+		 * array length does not make much difference, but for complex curves
+		 * longer arrays will provide smoother interpolation. 
 		 * @memberOf Tone.WaveShaper#
 		 * @type {Array}
 		 * @name curve
@@ -2713,7 +2774,8 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 * The oversampling. Can either be "none", "2x" or "4x"
+		 * Specifies what type of oversampling (if any) should be used when 
+		 * applying the shaping curve. Can either be "none", "2x" or "4x". 
 		 * @memberOf Tone.WaveShaper#
 		 * @type {string}
 		 * @name oversample
@@ -2738,7 +2800,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.WaveShaper} this
 		 */
 		Tone.WaveShaper.prototype.dispose = function(){
@@ -2761,26 +2823,24 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Base class for all Signals
+		 *  @class  Base class for all Signals. Used Internally. 
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
 		 */
-		Tone.SignalBase = function(){
-
-		};
+		Tone.SignalBase = function(){};
 
 		Tone.extend(Tone.SignalBase);
 
 		/**
 		 *  When signals connect to other signals or AudioParams, 
 		 *  they take over the output value of that signal or AudioParam. 
-		 *  For all other nodes, the behavior is the same as a normal `connect`. 
+		 *  For all other nodes, the behavior is the same as a default <code>connect</code>. 
 		 *
 		 *  @override
 		 *  @param {AudioParam|AudioNode|Tone.Signal|Tone} node 
-		 *  @param {number} [outputNumber=0] 
-		 *  @param {number} [inputNumber=0] 
+		 *  @param {number} [outputNumber=0] The output number to connect from.
+		 *  @param {number} [inputNumber=0] The input number to connect to.
 		 *  @returns {Tone.SignalBase} this
 		 */
 		Tone.SignalBase.prototype.connect = function(node, outputNumber, inputNumber){
@@ -2812,18 +2872,24 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Multiply the incoming signal by a number or Multiply two signals.
-		 *          input 0: multiplicand.
-		 *          input 1: multiplier.
+		 *  @class  Multiply two incoming signals. Or, if a number is given in the constructor, 
+		 *          multiplies the incoming signal by that value. 
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Signal}
-		 *  @param {number=} value constant value to multiple. if no value is provided
-		 *                         it will be multiplied by the value of input 1.
+		 *  @param {number=} value Constant value to multiple. If no value is provided,
+		 *                         it will return the product of the first and second inputs
 		 *  @example
-		 * var mult = new Tone.Multiply(3);
+		 * var mult = new Tone.Multiply();
+		 * var sigA = new Tone.Signal(3);
+		 * var sigB = new Tone.Signal(4);
+		 * sigA.connect(mult, 0, 0);
+		 * sigB.connect(mult, 0, 1);
+		 * //output of mult is 12.
+		 *  @example
+		 * var mult = new Tone.Multiply(10);
 		 * var sig = new Tone.Signal(2).connect(mult);
-		 * //output of mult is 6. 
+		 * //the output of mult is 20. 
 		 */
 		Tone.Multiply = function(value){
 
@@ -2929,11 +2995,11 @@ webpackJsonp([1],[
 		}
 
 		function update(){
-			if (Config.HD){
-				requestAnimationFrame(update);
+			requestAnimationFrame(update);
+			/*if (Config.HD){
 			} else {
 				setTimeout(update, 30);	
-			}
+			}*/
 			Mediator.send("update");
 		}
 
@@ -3078,8 +3144,8 @@ webpackJsonp([1],[
 		 *          <br><br>
 		 *          Aside from load callbacks from individual buffers, Tone.Buffer 
 		 *  		provides static methods which keep track of the loading progress 
-		 *  		of all of the buffers. These methods are <code>onload</code>, <code>onprogress</code>,
-		 *  		and <code>onerror</code>. 
+		 *  		of all of the buffers. These methods are Tone.Buffer.onload, Tone.Buffer.onprogress,
+		 *  		and Tone.Buffer.onerror. 
 		 *
 		 *  @constructor 
 		 *  @extends {Tone}
@@ -3412,7 +3478,7 @@ webpackJsonp([1],[
 		/**
 		 *  Callback when all of the buffers in the queue have loaded
 		 *  @static
-		 *  @type {function}
+		 *  @function
 		 *  @example
 		 * //invoked when all of the queued samples are done loading
 		 * Tone.Buffer.onload = function(){
@@ -3425,7 +3491,8 @@ webpackJsonp([1],[
 		 *  Callback function is invoked with the progress of all of the loads in the queue. 
 		 *  The value passed to the callback is between 0-1.
 		 *  @static
-		 *  @type {function}
+		 *  @param {Number} percent The progress between 0 and 1. 
+		 *  @function
 		 *  @example
 		 * Tone.Buffer.onprogress = function(percent){
 		 * 	console.log("progress:" + (percent * 100).toFixed(1) + "%");
@@ -3437,7 +3504,8 @@ webpackJsonp([1],[
 		 *  Callback if one of the buffers in the queue encounters an error. The error
 		 *  is passed in as the argument. 
 		 *  @static
-		 *  @type {function}
+		 *  @param {Error} err
+		 *  @function
 		 *  @example
 		 * Tone.Buffer.onerror = function(e){
 		 * 	console.log("there was an error while loading the buffers: "+e);
@@ -5151,7 +5219,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Convert a note name (i.e. A4, C#5, etc to a frequency).
+		 *  Convert a frequency to a note name (i.e. A4, C#5).
 		 *  @param  {number} freq
 		 *  @return {string}         
 		 */
@@ -5166,11 +5234,11 @@ webpackJsonp([1],[
 		/**
 		 *  Convert an interval (in semitones) to a frequency ratio.
 		 *
-		 *  @param  {number} interval the number of semitones above the base note
+		 *  @param  {Interval} interval the number of semitones above the base note
 		 *  @return {number}          the frequency ratio
 		 *  @example
-		 *  tone.intervalToFrequencyRatio(0); // returns 1
-		 *  tone.intervalToFrequencyRatio(12); // returns 2
+		 * tone.intervalToFrequencyRatio(0); // returns 1
+		 * tone.intervalToFrequencyRatio(12); // returns 2
 		 */
 		Tone.prototype.intervalToFrequencyRatio = function(interval){
 			return Math.pow(2,(interval/12));
@@ -5179,10 +5247,10 @@ webpackJsonp([1],[
 		/**
 		 *  Convert a midi note number into a note name. 
 		 *
-		 *  @param  {number} midiNumber the midi note number
+		 *  @param  {MIDI} midiNumber the midi note number
 		 *  @return {string}            the note's name and octave
 		 *  @example
-		 *  tone.midiToNote(60); // returns "C3"
+		 * tone.midiToNote(60); // returns "C3"
 		 */
 		Tone.prototype.midiToNote = function(midiNumber){
 			var octave = Math.floor(midiNumber / 12) - 2;
@@ -5194,9 +5262,9 @@ webpackJsonp([1],[
 		 *  Convert a note to it's midi value. 
 		 *
 		 *  @param  {string} note the note name (i.e. "C3")
-		 *  @return {number} the midi value of that note
+		 *  @return {MIDI} the midi value of that note
 		 *  @example
-		 *  tone.noteToMidi("C3"); // returns 60
+		 * tone.noteToMidi("C3"); // returns 60
 		 */
 		Tone.prototype.noteToMidi = function(note){
 			//break apart the note by frequency and octave
@@ -9739,14 +9807,17 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Oscilator with start, stop and sync to Transport methods
+		 *  @class Tone.Oscillator supports a number of features including
+		 *         phase rotation, multiple oscillator types (see Tone.Oscillator.type), 
+		 *         and Transport syncing (see Tone.Oscillator.syncFrequency).
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Source}
-		 *  @param {Frequency} [frequency] starting frequency
+		 *  @param {Frequency} [frequency] Starting frequency
 		 *  @param {string} [type] The oscillator type. Read more about type below.
 		 *  @example
-		 * var osc = new Tone.Oscillator(440, "sine");
+		 * //make and start a 440hz sine tone
+		 * var osc = new Tone.Oscillator(440, "sine").toMaster().start();
 		 */
 		Tone.Oscillator = function(){
 			
@@ -9761,14 +9832,14 @@ webpackJsonp([1],[
 			this._oscillator = null;
 			
 			/**
-			 *  The frequency control signal in hertz.
+			 *  The frequency control.
 			 *  @type {Frequency}
 			 *  @signal
 			 */
 			this.frequency = new Tone.Signal(options.frequency, Tone.Type.Frequency);
 
 			/**
-			 *  The detune control signal in cents. 
+			 *  The detune control signal.
 			 *  @type {Cents}
 			 *  @signal
 			 */
@@ -9853,6 +9924,7 @@ webpackJsonp([1],[
 		 *  @example
 		 * Tone.Transport.bpm.value = 120;
 		 * osc.frequency.value = 440;
+		 * //the ration between the bpm and the frequency will be maintained
 		 * osc.syncFrequency();
 		 * Tone.Transport.bpm.value = 240; 
 		 * // the frequency of the oscillator is doubled to 880
@@ -9875,7 +9947,7 @@ webpackJsonp([1],[
 		/**
 		 * The type of the oscillator: either sine, square, triangle, or sawtooth. Also capable of
 		 * setting the first x number of partials of the oscillator. For example: "sine4" would
-		 * would set be the first 4 partials of the sine wave and "triangle8" would set the first
+		 * set be the first 4 partials of the sine wave and "triangle8" would set the first
 		 * 8 partials of the triangle wave.
 		 * <br><br> 
 		 * Uses PeriodicWave internally even for native types so that it can set the phase. 
@@ -10113,8 +10185,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Start the source.
-		 *  @param  {Time} [time=now]
+		 *  Start the source at the specified time. If no time is given, 
+		 *  start the source now.
+		 *  @param  {Time} [time=now] When the source should be started.
 		 *  @returns {Tone.Source} this
 		 *  @example
 		 * source.start("+0.5"); //starts the source 0.5 seconds from now
@@ -10130,8 +10203,9 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Stop the source.
-		 *  @param  {Time} [time=now]
+		 *  Stop the source at the specified time. If no time is given, 
+		 *  stop the source now.
+		 *  @param  {Time} [time=now] When the source should be stopped. 
 		 *  @returns {Tone.Source} this
 		 *  @example
 		 * source.stop(); // stops the source immediately
@@ -10225,13 +10299,20 @@ webpackJsonp([1],[
 		 *          AudioDestinationNode (aka your speakers). 
 		 *          It provides useful conveniences such as the ability 
 		 *          to set the volume and mute the entire application. 
-		 *          It also gives you the ability to apply master effects like compression, 
-		 *          limiting or effects to your application. <br><br>
-		 *          Like Tone.Transport, Tone.Master is created
-		 *          on initialization. You don't need to constuct it.
+		 *          It also gives you the ability to apply master effects to your application. 
+		 *          <br><br>
+		 *          Like Tone.Transport, A single Tone.Master is created
+		 *          on initialization and you do not need to explicitly construct one.
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
+		 *  @singleton
+		 *  @example
+		 * //the audio will go from the oscillator to the speakers
+		 * oscillator.connect(Tone.Master);
+		 * //a convenience for connecting to the master output is also provided:
+		 * oscillator.toMaster();
+		 * //the above two examples are equivalent.
 		 */
 		Tone.Master = function(){
 			Tone.call(this);
@@ -10251,7 +10332,7 @@ webpackJsonp([1],[
 			this._muted = false;
 
 			/**
-			 * the volume of the output in decibels
+			 * The volume of the master output.
 			 * @type {Decibels}
 			 * @signal
 			 */
@@ -10273,7 +10354,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 * Set `mute` to true to stop all output
+		 * Mute the output. 
 		 * @memberOf Tone.Master#
 		 * @type {boolean}
 		 * @name mute
@@ -10286,7 +10367,6 @@ webpackJsonp([1],[
 				return this._muted;
 			}, 
 			set : function(mute){
-				this._muted = mute;
 				if (!this._muted && mute){
 					this._unmutedVolume = this.volume.value;
 					//maybe it should ramp here?
@@ -10294,12 +10374,13 @@ webpackJsonp([1],[
 				} else if (this._muted && !mute){
 					this.volume.value = this._unmutedVolume;
 				}
+				this._muted = mute;
 			}
 		});
 
 		/**
-		 *  Add a master effects chain. This will disconnect any nodes which were previously 
-		 *  chained. 
+		 *  Add a master effects chain. NOTE: this will disconnect any nodes which were previously 
+		 *  chained in the master effects chain. 
 		 *  @param {AudioNode|Tone...} args All arguments will be connected in a row
 		 *                                  and the Master will be routed through it.
 		 *  @return  {Tone.Master}  this
@@ -10377,14 +10458,18 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class OmniOscillator aggregates Tone.Oscillator, Tone.PulseOscillator,
-		 *         and Tone.PWMOscillator which allows it to have the types: 
-		 *         sine, square, triangle, sawtooth, pulse or pwm. 
+		 *  @class Tone.OmniOscillator aggregates Tone.Oscillator, Tone.PulseOscillator,
+		 *         and Tone.PWMOscillator into one class, allowing it to have the 
+		 *         types: sine, square, triangle, sawtooth, pulse or pwm. Additionally,
+		 *         OmniOscillator is capable of setting the first x number of partials 
+		 *         of the oscillator. For example: "sine4" would set be the first 4 
+		 *         partials of the sine wave and "triangle8" would set the first 
+		 *         8 partials of the triangle wave. 
 		 *
 		 *  @extends {Tone.Oscillator}
 		 *  @constructor
-		 *  @param {Frequency} frequency of the oscillator (meaningless for noise types)
-		 *  @param {string} type the type of the oscillator
+		 *  @param {Frequency} frequency The initial frequency of the oscillator.
+		 *  @param {string} type The type of the oscillator.
 		 *  @example
 		 *  var omniOsc = new Tone.OmniOscillator("C#4", "pwm");
 		 */
@@ -10393,14 +10478,14 @@ webpackJsonp([1],[
 			Tone.Source.call(this, options);
 
 			/**
-			 *  the frequency control
+			 *  The frequency control.
 			 *  @type {Frequency}
 			 *  @signal
 			 */
 			this.frequency = new Tone.Signal(options.frequency, Tone.Type.Frequency);
 
 			/**
-			 *  the detune control
+			 *  The detune control
 			 *  @type {Cents}
 			 *  @signal
 			 */
@@ -10582,7 +10667,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @return {Tone.OmniOscillator} this
 		 */
 		Tone.OmniOscillator.prototype.dispose = function(){
@@ -10610,14 +10695,19 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Pulse Oscillator with control over width. 
+		 *  @class Tone.PulseOscillator is a pulse oscillator with control over pulse width,
+		 *         also known as the duty cycle. At 50% duty cycle (width = 0.5) the wave is 
+		 *         a square and only odd-numbered harmonics are present. At all other widths 
+		 *         even-numbered harmonics are present. Read more 
+		 *         <a href="https://wigglewave.wordpress.com/2014/08/16/pulse-waveforms-and-harmonics/"
+		 *         target="_blank">here</a>.
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Oscillator}
-		 *  @param {Frequency} [frequency=440] the frequency of the oscillator
-		 *  @param {NormalRange} [width = 0.2] the width of the pulse
+		 *  @param {Frequency} [frequency] The frequency of the oscillator
+		 *  @param {NormalRange} [width] The width of the pulse
 		 *  @example
-		 * var pulse = new Tone.PulseOscillator("E5", 0.4);
+		 * var pulse = new Tone.PulseOscillator("E5", 0.4).toMaster().start();
 		 */
 		Tone.PulseOscillator = function(){
 
@@ -10651,7 +10741,7 @@ webpackJsonp([1],[
 			});
 
 			/**
-			 *  The frequency in of the oscillator. 
+			 *  The frequency control.
 			 *  @type {Frequency}
 			 *  @signal
 			 */
@@ -10783,14 +10873,17 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class PWM oscillator modulates the width of the Tone.PulseOscillator at the modulationFrequency.
+		 *  @class Tone.PWMOscillator modulates the width of a Tone.PulseOscillator 
+		 *         at the modulationFrequency. This has the effect of continuously
+		 *         changing the timbre of the oscillator by altering the harmonics 
+		 *         generated.
 		 *
 		 *  @extends {Tone.Oscillator}
 		 *  @constructor
 		 *  @param {Frequency} frequency The starting frequency of the oscillator. 
 		 *  @param {Frequency} modulationFrequency The modulation frequency of the width of the pulse. 
 		 *  @example
-		 *  var pwm = new Tone.PWMOscillator("Ab3", 0.3);
+		 *  var pwm = new Tone.PWMOscillator("Ab3", 0.3).toMaster().start();
 		 */
 		Tone.PWMOscillator = function(){
 			var options = this.optionsObject(arguments, ["frequency", "modulationFrequency"], Tone.PWMOscillator.defaults);
@@ -10945,14 +11038,29 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Noise generator.
-		 *          Uses looped noise buffers to save on performance.
+		 *  @class  Tone.Noise is a noise generator. It uses looped noise buffers to save on performance.
+		 *          Tone.Noise supports the noise types: "pink", "white", and "brown". Read more about
+		 *          colors of noise on 
+		 *          <a href="https://en.wikipedia.org/wiki/Colors_of_noise" target="_blank">Wikipedia</a>.
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Source}
 		 *  @param {string} type the noise type (white|pink|brown)
 		 *  @example
-		 *  var noise = new Tone.Noise("pink");
+		 * //initialize the noise and start
+		 * var noise = new Tone.Noise("pink").start();
+		 * 
+		 * //make an autofilter to shape the noise
+		 * var autoFilter = new Tone.AutoFilter({
+		 * 	"frequency" : "8m", 
+		 * 	"min" : 800, 
+		 * 	"max" : 15000
+		 * }).connect(Tone.Master);
+		 * 
+		 * //connect the noise
+		 * noise.connect(autoFilter);
+		 * //start the autofilter LFO
+		 * autoFilter.start()
 		 */
 		Tone.Noise = function(){
 
@@ -11061,7 +11169,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Dispose all the components.
+		 *  Clean up.
 		 *  @returns {Tone.Noise} this
 		 */
 		Tone.Noise.prototype.dispose = function(){
@@ -11158,17 +11266,18 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Filter object which allows for all of the same native methods
-		 *          as the BiquadFilter (with AudioParams implemented as Tone.Signals)
-		 *          but adds the ability to set the filter rolloff at -12 (default), 
-		 *          -24 and -48. 
+		 *  @class  Tone.Filter is a filter which allows for all of the same native methods
+		 *          as the <a href="http://webaudio.github.io/web-audio-api/#the-biquadfilternode-interface" 
+		 *          target="_blank">BiquadFilterNode</a>. 
+		 *          Tone.Filter has the added ability to set the filter rolloff at -12 
+		 *          (default), -24 and -48. 
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
-		 *  @param {number|Object} [freq=350] the frequency
-		 *  @param {string} [type=lowpass] the type of filter
-		 *  @param {number} [rolloff=-12] the rolloff which is the drop per octave. 
-		 *                                 3 choices: -12, -24, and -48
+		 *  @param {Frequency|Object} [frequency] The cutoff frequency of the filter.
+		 *  @param {string=} type The type of filter.
+		 *  @param {number=} rolloff The drop in decibels per octave after the cutoff frequency.
+		 *                            3 choices: -12, -24, and -48
 		 *  @example
 		 *  var filter = new Tone.Filter(200, "highpass");
 		 */
@@ -11185,21 +11294,21 @@ webpackJsonp([1],[
 			this._filters = [];
 
 			/**
-			 *  the frequency of the filter
+			 *  The cutoff frequency of the filter. 
 			 *  @type {Frequency}
 			 *  @signal
 			 */
 			this.frequency = new Tone.Signal(options.frequency, Tone.Type.Frequency);
 
 			/**
-			 *  the detune parameter
+			 *  The detune parameter
 			 *  @type {Cents}
 			 *  @signal
 			 */
 			this.detune = new Tone.Signal(0, Tone.Type.Cents);
 
 			/**
-			 *  the gain of the filter, only used in certain filter types
+			 *  The gain of the filter, only used in certain filter types
 			 *  @type {Gain}
 			 *  @signal
 			 */
@@ -11210,7 +11319,7 @@ webpackJsonp([1],[
 			});
 
 			/**
-			 *  the Q or Quality of the filter
+			 *  The Q or Quality of the filter
 			 *  @type {Positive}
 			 *  @signal
 			 */
@@ -11258,7 +11367,6 @@ webpackJsonp([1],[
 		 * @type {string}
 		 * @name type
 		 */
-
 		Object.defineProperty(Tone.Filter.prototype, "type", {
 			get : function(){
 				return this._type;
@@ -11283,7 +11391,6 @@ webpackJsonp([1],[
 		 * @type {number}
 		 * @name rolloff
 		 */
-
 		Object.defineProperty(Tone.Filter.prototype, "rolloff", {
 			get : function(){
 				return this._rolloff;
@@ -11320,7 +11427,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @return {Tone.Filter} this
 		 */
 		Tone.Filter.prototype.dispose = function(){
@@ -11355,13 +11462,16 @@ webpackJsonp([1],[
 
 		/**
 		 *  @class  Tone.PolySynth handles voice creation and allocation for any
-		 *          instruments passed in as the second paramter. 
+		 *          instruments passed in as the second paramter. PolySynth is 
+		 *          not a synthesizer by itself, it merely manages voices of 
+		 *          one of the other types of synths, allowing any of the 
+		 *          monophonic synthesizers to be polyphonic. 
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Instrument}
-		 *  @param {number|Object} [polyphony=4] the number of voices to create
-		 *  @param {function} [voice=Tone.MonoSynth] the constructor of the voices
-		 *                                            uses Tone.MonoSynth by default
+		 *  @param {number|Object} [polyphony=4] The number of voices to create
+		 *  @param {function} [voice=Tone.MonoSynth] The constructor of the voices
+		 *                                            uses Tone.MonoSynth by default. 
 		 *  @example
 		 * //a polysynth composed of 6 Voices of MonoSynth
 		 * var synth = new Tone.PolySynth(6, Tone.MonoSynth).toMaster();
@@ -11422,24 +11532,22 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 * Pull properties from the 
-		 */
-
-		/**
-		 *  trigger the attack
-		 *  @param  {string|number|Object|Array} value the value of the note(s) to start.
-		 *                                             if the value is an array, it will iterate
-		 *                                             over the array to play each of the notes
-		 *  @param  {Time} [time=now]  the start time of the note
-		 *  @param {number} [velocity=1] the velocity of the note
+		 *  Trigger the attack portion of the note
+		 *  @param  {Frequency|Array} notes The notes to play. Accepts a single
+		 *                                  Frequency or an array of frequencies.
+		 *  @param  {Time} [time=now]  The start time of the note.
+		 *  @param {number} [velocity=1] The velocity of the note.
 		 *  @returns {Tone.PolySynth} this
+		 *  @example
+		 * //trigger a chord immediately with a velocity of 0.2
+		 * poly.triggerAttack(["Ab3", "C4", "F5"], undefined, 0.2);
 		 */
-		Tone.PolySynth.prototype.triggerAttack = function(value, time, velocity){
-			if (!Array.isArray(value)){
-				value = [value];
+		Tone.PolySynth.prototype.triggerAttack = function(notes, time, velocity){
+			if (!Array.isArray(notes)){
+				notes = [notes];
 			}
-			for (var i = 0; i < value.length; i++){
-				var val = value[i];
+			for (var i = 0; i < notes.length; i++){
+				var val = notes[i];
 				var stringified = JSON.stringify(val);
 				if (this._activeVoices[stringified]){
 					this._activeVoices[stringified].triggerAttack(val, time, velocity);
@@ -11453,38 +11561,42 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  trigger the attack and release after the specified duration
+		 *  Trigger the attack and release after the specified duration
 		 *  
-		 *  @param  {string|number|Object|Array} value the note(s).
-		 *                                             if the value is an array, it will iterate
-		 *                                             over the array to play each of the notes
+		 *  @param  {Frequency|Array} notes The notes to play. Accepts a single
+		 *                                  Frequency or an array of frequencies.
 		 *  @param  {Time} duration the duration of the note
 		 *  @param  {Time} [time=now]     if no time is given, defaults to now
 		 *  @param  {number} [velocity=1] the velocity of the attack (0-1)
 		 *  @returns {Tone.PolySynth} this
+		 *  @example
+		 * //trigger a chord for a duration of a half note 
+		 * poly.triggerAttackRelease(["Eb3", "G4", "C5"], "2n");
 		 */
-		Tone.PolySynth.prototype.triggerAttackRelease = function(value, duration, time, velocity){
+		Tone.PolySynth.prototype.triggerAttackRelease = function(notes, duration, time, velocity){
 			time = this.toSeconds(time);
-			this.triggerAttack(value, time, velocity);
-			this.triggerRelease(value, time + this.toSeconds(duration));
+			this.triggerAttack(notes, time, velocity);
+			this.triggerRelease(notes, time + this.toSeconds(duration));
 			return this;
 		};
 
 		/**
-		 *  trigger the release of a note
-		 *  @param  {string|number|Object|Array} value the value of the note(s) to release.
-		 *                                             if the value is an array, it will iterate
-		 *                                             over the array to play each of the notes
-		 *  @param  {Time} [time=now]  the release time of the note
+		 *  Trigger the release of the note. Unlike monophonic instruments, 
+		 *  a note (or array of notes) needs to be passed in as the first argument.
+		 *  @param  {Frequency|Array} notes The notes to play. Accepts a single
+		 *                                  Frequency or an array of frequencies.
+		 *  @param  {Time} [time=now]  When the release will be triggered. 
 		 *  @returns {Tone.PolySynth} this
+		 *  @example
+		 * poly.triggerAttack(["Ab3", "C4", "F5"]);
 		 */
-		Tone.PolySynth.prototype.triggerRelease = function(value, time){
-			if (!Array.isArray(value)){
-				value = [value];
+		Tone.PolySynth.prototype.triggerRelease = function(notes, time){
+			if (!Array.isArray(notes)){
+				notes = [notes];
 			}
-			for (var i = 0; i < value.length; i++){
+			for (var i = 0; i < notes.length; i++){
 				//get the voice
-				var stringified = JSON.stringify(value[i]);
+				var stringified = JSON.stringify(notes[i]);
 				var voice = this._activeVoices[stringified];
 				if (voice){
 					voice.triggerRelease(time);
@@ -11497,11 +11609,20 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  set the options on all of the voices
+		 *  Set a member/attribute of the voices. 
 		 *  @param {Object|string} params
 		 *  @param {number=} value
 		 *  @param {Time=} rampTime
 		 *  @returns {Tone.PolySynth} this
+		 *  @example
+		 * poly.set({
+		 * 	"filter" : {
+		 * 		"type" : "highpass"
+		 * 	},
+		 * 	"envelope" : {
+		 * 		"attack" : 0.25
+		 * 	}
+		 * });
 		 */
 		Tone.PolySynth.prototype.set = function(params, value, rampTime){
 			for (var i = 0; i < this.voices.length; i++){
@@ -11511,7 +11632,11 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  get a group of parameters
+		 *  Get the synth's attributes. Given no arguments get
+		 *  will return all available object properties and their corresponding
+		 *  values. Pass in a single attribute to retrieve or an array
+		 *  of attributes. The attribute strings can also include a "."
+		 *  to access deeper properties.
 		 *  @param {Array=} params the parameters to get, otherwise will return 
 		 *  					   all available.
 		 */
@@ -11522,6 +11647,7 @@ webpackJsonp([1],[
 		/**
 		 *  @param {string} presetName the preset name
 		 *  @returns {Tone.PolySynth} this
+		 *  @private
 		 */
 		Tone.PolySynth.prototype.setPreset = function(presetName){
 			for (var i = 0; i < this.voices.length; i++){
@@ -11531,7 +11657,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.PolySynth} this
 		 */
 		Tone.PolySynth.prototype.dispose = function(){
@@ -11562,13 +11688,21 @@ webpackJsonp([1],[
 		 *  @class  Tone.MonoSynth is composed of one oscillator, one filter, and two envelopes.
 		 *          The amplitude of the Tone.Oscillator and the cutoff frequency of the 
 		 *          Tone.Filter are controlled by Tone.Envelopes. 
+		 *          <img src="https://docs.google.com/drawings/d/1gaY1DF9_Hzkodqf8JI1Cg2VZfwSElpFQfI94IQwad38/pub?w=924&h=240">
 		 *          
 		 *  @constructor
 		 *  @extends {Tone.Monophonic}
 		 *  @param {Object} [options] the options available for the synth 
 		 *                          see defaults below
 		 *  @example
-		 * var synth = new Tone.MonoSynth().toMaster();
+		 * var synth = new Tone.MonoSynth({
+		 * 	"oscillator" : {
+		 * 		"type" : "square"
+		 *  },
+		 *  "envelope" : {
+		 *  	"attack" : 0.1
+		 *  }
+		 * }).toMaster();
 		 * synth.triggerAttackRelease("C4", "8n");
 		 */
 		Tone.MonoSynth = function(options){
@@ -11718,7 +11852,11 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  An Envelope connected to a gain node which can be used as an amplitude envelope.
+		 *  @class  Tone.AmplitudeEnvelope is a Tone.Envelope connected to a gain node. 
+		 *          Unlike Tone.Envelope, which outputs the envelope's value, Tone.AmplitudeEnvelope accepts
+		 *          an audio signal as the input and will apply the envelope to the amplitude
+		 *          of the signal. Read more about ADSR Envelopes on 
+		 *          <a href="https://en.wikipedia.org/wiki/Synthesizer#ADSR_envelope" target="_blank">Wikipedia</a>.
 		 *  
 		 *  @constructor
 		 *  @extends {Tone.Envelope}
@@ -11730,10 +11868,16 @@ webpackJsonp([1],[
 		 *                                	the release is triggered. 
 		 *  @param {Time} [release]	The amount of time after the release is triggered it takes to reach 0. 
 		 *  @example
-		 * var ampEnv = new Tone.AmplitudeEnvelope(0.1, 0.2, 1, 0.8);
-		 * var osc = new Tone.Oscillator();
-		 * //or with an object
-		 * osc.chain(ampEnv, Tone.Master);
+		 * var ampEnv = new Tone.AmplitudeEnvelope({
+		 * 	"attack": 0.1,
+		 * 	"decay": 0.2,
+		 * 	"sustain": 1.0,
+		 * 	"release": 0.8
+		 * }).toMaster();
+		 * //create an oscillator and connect it
+		 * var osc = new Tone.Oscillator().connect(ampEnv).start();
+		 * //trigger the envelopes attack and release "8t" apart
+		 * ampEnv.triggerAttackRelease("8t");
 		 */
 		Tone.AmplitudeEnvelope = function(){
 
@@ -11763,18 +11907,22 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  ADSR envelope generator attaches to an AudioParam or Signal. 
+		 *  @class  Tone.Envelope is an <a href="https://en.wikipedia.org/wiki/Synthesizer#ADSR_envelope" 
+		 *          target="_blank">ADSR</a> envelope generator. Tone.Envelope outputs a signal which 
+		 *          can be connected to an AudioParam or Tone.Signal. 
+		 *          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/ADSR_parameter.svg">
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
-		 *  @param {Time|Object} [attack] The amount of time it takes for the envelope to go from 
-		 *                               0 to it's maximum value. 
+		 *  @param {Time} [attack] The amount of time it takes for the envelope to go from 
+		 *                         0 to it's maximum value. 
 		 *  @param {Time} [decay]	The period of time after the attack that it takes for the envelope
 		 *                       	to fall to the sustain value. 
 		 *  @param {NormalRange} [sustain]	The percent of the maximum value that the envelope rests at until
 		 *                                	the release is triggered. 
 		 *  @param {Time} [release]	The amount of time after the release is triggered it takes to reach 0. 
 		 *  @example
+		 * //an amplitude envelope
 		 * var gainNode = Tone.context.createGain();
 		 * var env = new Tone.Envelope({
 		 * 	"attack" : 0.1,
@@ -11790,25 +11938,31 @@ webpackJsonp([1],[
 			var options = this.optionsObject(arguments, ["attack", "decay", "sustain", "release"], Tone.Envelope.defaults);
 
 			/** 
-			 *  The attack time
+			 *  When triggerAttack is called, the attack time is the amount of
+			 *  time it takes for the envelope to reach it's maximum value. 
 			 *  @type {Time}
 			 */
 			this.attack = options.attack;
 
 			/**
-			 *  The decay time
+			 *  After the attack portion of the envelope, the value will fall
+			 *  over the duration of the decay time to it's sustain value. 
 			 *  @type {Time}
 			 */
 			this.decay = options.decay;
 			
 			/**
-			 *  the sustain is a value between 0-1
+			 * 	The sustain value is the value 
+			 * 	which the envelope rests at after triggerAttack is
+			 * 	called, but before triggerRelease is invoked. 
 			 *  @type {NormalRange}
 			 */
 			this.sustain = options.sustain;
 
 			/**
-			 *  The release time
+			 *  After triggerRelease is called, the envelope's
+			 *  value will fall to it's miminum value over the
+			 *  duration of the release time. 
 			 *  @type {Time}
 			 */
 			this.release = options.release;
@@ -12001,8 +12155,8 @@ webpackJsonp([1],[
 
 		/**
 		 *  Trigger the attack/decay portion of the ADSR envelope. 
-		 *  @param  {Time} [time=now]
-		 *  @param {number} [velocity=1] the velocity of the envelope scales the vales.
+		 *  @param  {Time} [time=now] When the attack should start.
+		 *  @param {NormalRange} [velocity=1] The velocity of the envelope scales the vales.
 		 *                               number between 0-1
 		 *  @returns {Tone.Envelope} this
 		 *  @example
@@ -12044,7 +12198,7 @@ webpackJsonp([1],[
 		
 		/**
 		 *  Triggers the release of the envelope.
-		 *  @param  {Time} [time=now]
+		 *  @param  {Time} [time=now] When the release portion of the envelope should start. 
 		 *  @returns {Tone.Envelope} this
 		 *  @example
 		 *  //trigger release immediately
@@ -12081,14 +12235,15 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Trigger the attack and release after a sustain time
-		 *  @param {Time} duration the duration of the note
-		 *  @param {Time} [time=now] the time of the attack
-		 *  @param {number} [velocity=1] the velocity of the note
+		 *  triggerAttackRelease is shorthand for triggerAttack, then waiting
+		 *  some duration, then triggerRelease. 
+		 *  @param {Time} duration The duration of the sustain.
+		 *  @param {Time} [time=now] When the attack should be triggered.
+		 *  @param {number} [velocity=1] The velocity of the envelope. 
 		 *  @returns {Tone.Envelope} this
 		 *  @example
-		 *  //trigger the attack and then the release after 0.6 seconds.
-		 *  env.triggerAttackRelease(0.6);
+		 * //trigger the attack and then the release after 0.6 seconds.
+		 * env.triggerAttackRelease(0.6);
 		 */
 		Tone.Envelope.prototype.triggerAttackRelease = function(duration, time, velocity) {
 			time = this.toSeconds(time);
@@ -12100,11 +12255,12 @@ webpackJsonp([1],[
 		/**
 		 *  Borrows the connect method from Tone.Signal. 
 		 *  @function
+		 *  @private
 		 */
 		Tone.Envelope.prototype.connect = Tone.Signal.prototype.connect;
 
 		/**
-		 *  disconnect and dispose
+		 *  Disconnect and dispose.
 		 *  @returns {Tone.Envelope} this
 		 */
 		Tone.Envelope.prototype.dispose = function(){
@@ -12149,11 +12305,11 @@ webpackJsonp([1],[
 
 		/**
 		 *  @class Pow applies an exponent to the incoming signal. The incoming signal
-		 *         must be in the range -1,1
+		 *         must be AudioRange.
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
-		 *  @param {number} exp the exponent to apply to the incoming signal, must be at least 2. 
+		 *  @param {number} exp The exponent to apply to the incoming signal, must be at least 2. 
 		 *  @example
 		 * var pow = new Tone.Pow(2);
 		 * var sig = new Tone.Signal(0.5).connect(pow);
@@ -12178,7 +12334,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Pow, Tone.SignalBase);
 
 		/**
-		 * The value of the exponent
+		 * The value of the exponent.
 		 * @memberOf Tone.Pow#
 		 * @type {number}
 		 * @name value
@@ -12207,7 +12363,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.Pow} this
 		 */
 		Tone.Pow.prototype.dispose = function(){
@@ -12229,15 +12385,17 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class An envelope which can be scaled to any range. 
-		 *         Useful for applying an envelope to a filter
+		 *  @class Tone.ScaledEnvelop is an envelope which can be scaled 
+		 *         to any range. It's useful for applying an envelope 
+		 *         to a frequency or any other non-NormalRange signal 
+		 *         parameter. 
 		 *
 		 *  @extends {Tone.Envelope}
 		 *  @constructor
-		 *  @param {Time|Object} [attack=0.01]	the attack time in seconds
-		 *  @param {Time} [decay=0.1]	the decay time in seconds
-		 *  @param {number} [sustain=0.5] 	a percentage (0-1) of the full amplitude
-		 *  @param {Time} [release=1]	the release time in seconds
+		 *  @param {Time|Object} [attack]	the attack time in seconds
+		 *  @param {Time} [decay]	the decay time in seconds
+		 *  @param {number} [sustain] 	a percentage (0-1) of the full amplitude
+		 *  @param {Time} [release]	the release time in seconds
 		 *  @example
 		 *  var scaledEnv = new Tone.ScaledEnvelope({
 		 *  	"attack" : 0.2,
@@ -12355,13 +12513,13 @@ webpackJsonp([1],[
 		
 		/**
 		 *  @class  Performs a linear scaling on an input signal.
-		 *          Scales a normal gain input range [0,1] to between
-		 *          outputMin and outputMax
+		 *          Scales a NormalRange input to between
+		 *          outputMin and outputMax.
 		 *
 		 *  @constructor
 		 *  @extends {Tone.SignalBase}
-		 *  @param {number} [outputMin=0]
-		 *  @param {number} [outputMax=1]
+		 *  @param {number} [outputMin=0] The output value when the input is 0. 
+		 *  @param {number} [outputMax=1]	The output value when the input is 1. 
 		 *  @example
 		 * var scale = new Tone.Scale(50, 100);
 		 * var signal = new Tone.Signal(0.5).connect(scale);
@@ -12403,7 +12561,8 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Scale, Tone.SignalBase);
 
 		/**
-		 * The minimum output value.
+		 * The minimum output value. This number is output when 
+		 * the value input value is 0. 
 		 * @memberOf Tone.Scale#
 		 * @type {number}
 		 * @name min
@@ -12419,7 +12578,8 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 * The maximum output value.
+		 * The maximum output value. This number is output when 
+		 * the value input value is 1. 
 		 * @memberOf Tone.Scale#
 		 * @type {number}
 		 * @name max
@@ -12444,7 +12604,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.Scale} this
 		 */
 		Tone.Scale.prototype.dispose = function(){
@@ -12469,15 +12629,14 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Add a signal and a number or two signals. <br><br>
-		 *         input 0: augend. input 1: addend. <br><br>
-		 *         Add can be used in two ways, either constructed with a value,
-		 *         or constructed with no initial value and with signals connected
-		 *         to each of its two inputs. 
-		 *
+		 *  @class Add a signal and a number or two signals. When no value is
+		 *         passed into the constructor, Tone.Add will sum <code>input[0]</code>
+		 *         and <code>input[1]</code>. If a value is passed into the constructor, 
+		 *         the it will be added to the input.
+		 *  
 		 *  @constructor
 		 *  @extends {Tone.Signal}
-		 *  @param {number=} value if no value is provided, Tone.Add will sum the first
+		 *  @param {number=} value If no value is provided, Tone.Add will sum the first
 		 *                         and second inputs. 
 		 *  @example
 		 * var signal = new Tone.Signal(2);
@@ -12515,7 +12674,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Add, Tone.Signal);
 		
 		/**
-		 *  dispose method
+		 *  Clean up.
 		 *  @returns {Tone.Add} this
 		 */
 		Tone.Add.prototype.dispose = function(){
@@ -12539,8 +12698,7 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  this is a base class for monophonic instruments. 
-		 *          it defines their interfaces
+		 *  @class  This is a base class for monophonic instruments. 
 		 *
 		 *  @constructor
 		 *  @abstract
@@ -12548,10 +12706,10 @@ webpackJsonp([1],[
 		 */
 		Tone.Monophonic = function(options){
 
-			Tone.Instrument.call(this);
-
 			//get the defaults
 			options = this.defaultArg(options, Tone.Monophonic.defaults);
+
+			Tone.Instrument.call(this, options);
 
 			/**
 			 *  The glide time between notes. 
@@ -12572,14 +12730,20 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  Trigger the attack. Start the note, at the time with the velocity
+		 *  Trigger the attack of the note optionally with a given velocity. 
 		 *  
-		 *  @param  {Frequency} note     the note
-		 *  @param  {Time} [time=now]     the time, if not given is now
-		 *  @param  {number} [velocity=1] velocity defaults to 1
+		 *  
+		 *  @param  {Frequency} note     The note to trigger.
+		 *  @param  {Time} [time=now]     When the note should start.
+		 *  @param  {number} [velocity=1] velocity The velocity scaler 
+		 *                                determines how "loud" the note 
+		 *                                will be triggered.
 		 *  @returns {Tone.Monophonic} this
 		 *  @example
 		 * synth.triggerAttack("C4");
+		 *  @example
+		 * //trigger the note a half second from now at half velocity
+		 * synth.triggerAttack("C4", "+0.5", 0.5);
 		 */
 		Tone.Monophonic.prototype.triggerAttack = function(note, time, velocity) {
 			time = this.toSeconds(time);
@@ -12590,7 +12754,7 @@ webpackJsonp([1],[
 
 		/**
 		 *  Trigger the release portion of the envelope
-		 *  @param  {Time} [time=now] if no time is given, the release happens immediatly
+		 *  @param  {Time} [time=now] If no time is given, the release happens immediatly
 		 *  @returns {Tone.Monophonic} this
 		 *  @example
 		 * synth.triggerRelease();
@@ -12615,12 +12779,17 @@ webpackJsonp([1],[
 		Tone.Monophonic.prototype._triggerEnvelopeRelease = function() {};
 
 		/**
-		 *  set the note to happen at a specific time
-		 *  @param {Frequency} note if the note is a string, it will be 
-		 *                              parsed as (NoteName)(Octave) i.e. A4, C#3, etc
-		 *                              otherwise it will be considered as the frequency
+		 *  Set the note at the given time. If no time is given, the note
+		 *  will set immediately. 
+		 *  @param {Frequency} note The note to change to.
 		 *  @param  {Time} [time=now] The time when the note should be set. 
 		 *  @returns {Tone.Monophonic} this
+		 * @example
+		 * //change to F#6 in one quarter note from now.
+		 * synth.setNote("F#6", "+4n");
+		 * @example
+		 * //change to Bb4 right now
+		 * synth.setNote("Bb4");
 		 */
 		Tone.Monophonic.prototype.setNote = function(note, time){
 			time = this.toSeconds(time);
@@ -12652,7 +12821,10 @@ webpackJsonp([1],[
 		 *  @constructor
 		 *  @extends {Tone}
 		 */
-		Tone.Instrument = function(){
+		Tone.Instrument = function(options){
+
+			//get the defaults
+			options = this.defaultArg(options, Tone.Instrument.defaults);
 
 			/**
 			 *  the output
@@ -12662,11 +12834,15 @@ webpackJsonp([1],[
 			this.output = this.context.createGain();
 
 			/**
-			 * the volume of the output in decibels
+			 * The volume of the instrument.
 			 * @type {Decibels}
 			 * @signal
 			 */
-			this.volume = new Tone.Signal(this.output.gain, Tone.Type.Decibels);
+			this.volume = new Tone.Signal({
+				"param" : this.output.gain, 
+				"units" : Tone.Type.Decibels,
+				"value" : options.volume
+			});
 			this._readOnly(["volume"]);
 		};
 
@@ -12697,10 +12873,11 @@ webpackJsonp([1],[
 
 		/**
 		 *  Trigger the attack and then the release after the duration. 
-		 *  @param  {string|number} note     the note to trigger
-		 *  @param  {Time} duration the duration of the note
-		 *  @param {Time} [time=now]     the time of the attack
-		 *  @param  {NormalRange} [velocity=1] the velocity
+		 *  @param  {Frequency} note     The note to trigger.
+		 *  @param  {Time} duration How long the note should be held for before
+		 *                          triggering the release.
+		 *  @param {Time} [time=now]  When the note should be triggered.
+		 *  @param  {NormalRange} [velocity=1] The velocity the note should be triggered at.
 		 *  @returns {Tone.Instrument} this
 		 *  @example
 		 * //trigger "C4" for the duration of an 8th note
@@ -15701,16 +15878,18 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class A thin wrapper around the DynamicsCompressorNode. Compression reduces the 
-		 *         volume of loud sounds or amplifies quiet sounds by narrowing or "compressing" 
-		 *         an audio signal's dynamic range. [<a href="https://en.wikipedia.org/wiki/Dynamic_range_compression">Wikipedia</a>]
+		 *  @class Tone.Compressor is a thin wrapper around the Web Audio 
+		 *         <a href="http://webaudio.github.io/web-audio-api/#the-dynamicscompressornode-interface" target="_blank">DynamicsCompressorNode</a>. 
+		 *         Compression reduces the volume of loud sounds or amplifies quiet sounds 
+		 *         by narrowing or "compressing" an audio signal's dynamic range. 
+		 *         Read more on <a href="https://en.wikipedia.org/wiki/Dynamic_range_compression">Wikipedia</a>.
 		 *
 		 *  @extends {Tone}
 		 *  @constructor
-		 *  @param {Decibels=} threshold The value above which the compression starts to be applied.
-		 *  @param {Positive=} ratio The gain reduction ratio.
+		 *  @param {Decibels|Object} [threshold] The value above which the compression starts to be applied.
+		 *  @param {Positive} [ratio] The gain reduction ratio.
 		 *  @example
-		 *  var comp = new Tone.Compressor(-30, 3);
+		 * var comp = new Tone.Compressor(-30, 3);
 		 */
 		Tone.Compressor = function(){
 
@@ -15990,29 +16169,30 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  The Low Frequency Oscillator produces an output signal 
+		 *  @class  LFO stands for low frequency oscillator. Tone.LFO produces an output signal 
 		 *          which can be attached to an AudioParam or Tone.Signal 
-		 *          for constant control over that parameter. the LFO can 
-		 *          also be synced to the transport to start/stop/pause
-		 *          and change when the tempo changes. The LFO starts at 
-		 *          it's minimal value.
+		 *          in order to modulate that parameter with an oscillator. The LFO can 
+		 *          also be synced to the transport to start/stop and change when the tempo changes.
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Oscillator}
-		 *  @param {Time} [frequency="4n"]
-		 *  @param {number} [outputMin=0]
-		 *  @param {number} [outputMax=1]
+		 *  @param {Frequency|Object} [frequency] The frequency of the oscillation. Typically, LFOs will be
+		 *                               in the frequency range of 0.1 to 10 hertz. 
+		 *  @param {number=} min The minimum output value of the LFO. The LFO starts 
+		 *                      at it's minimum value. 
+		 *  @param {number=} max The maximum value of the LFO. 
 		 *  @example
-		 *  var lfo = new Tone.LFO("4n", 400, 4000);
-		 *  lfo.connect(filter.frequency);
+		 * var lfo = new Tone.LFO("4n", 400, 4000);
+		 * lfo.connect(filter.frequency);
 		 */
 		Tone.LFO = function(){
 
 			var options = this.optionsObject(arguments, ["frequency", "min", "max"], Tone.LFO.defaults);
 
 			/** 
-			 *  the oscillator
+			 *  The oscillator. 
 			 *  @type {Tone.Oscillator}
+			 *  @private
 			 */
 			this.oscillator = new Tone.Oscillator({
 				"frequency" : options.frequency, 
@@ -16111,8 +16291,8 @@ webpackJsonp([1],[
 		 *  @example
 		 *  lfo.frequency.value = "8n";
 		 *  lfo.sync();
-		 *  // the rate of the LFO will always be an eighth note, 
-		 *  // even as the tempo changes
+		 *  //the rate of the LFO will always be an eighth note, 
+		 *  //even as the tempo changes
 		 */
 		Tone.LFO.prototype.sync = function(delay){
 			this.oscillator.sync(delay);
@@ -16178,7 +16358,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 * The phase of the LFO
+		 * The phase of the LFO.
 		 * @memberOf Tone.LFO#
 		 * @type {number}
 		 * @name phase
@@ -16193,7 +16373,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 * The output units of the LFO
+		 * The output units of the LFO.
 		 * @memberOf Tone.LFO#
 		 * @type {Tone.Type}
 		 * @name units
@@ -16219,6 +16399,7 @@ webpackJsonp([1],[
 		 *  @param {number} [outputNum=0] optionally which output to connect from
 		 *  @param {number} [inputNum=0] optionally which input to connect to
 		 *  @returns {Tone.LFO} this
+		 *  @private
 		 */
 		Tone.LFO.prototype.connect = function(node){
 			if (node.constructor === Tone.Signal){
@@ -16275,7 +16456,8 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class AudioToGain converts an input range of -1,1 to 0,1
+		 *  @class AudioToGain converts an input in AudioRange [-1,1] to NormalRange [0,1]. 
+		 *         See Tone.GainToAudio.
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
@@ -16322,15 +16504,15 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class evaluate an expression at audio rate. 
-		 *         parsing code modified from https://code.google.com/p/tapdigit/
+		 *  @class Evaluate an expression at audio rate. <br><br>
+		 *         Parsing code modified from https://code.google.com/p/tapdigit/
 		 *         Copyright 2011 2012 Ariya Hidayat, New BSD License
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
 		 *  @param {string} expr the expression to generate
 		 *  @example
-		 * //adds the signals from input 0 and input 1.
+		 * //adds the signals from input[0] and input[1].
 		 * var expr = new Tone.Expr("$0 + $1");
 		 */
 		Tone.Expr = function(){
@@ -16829,7 +17011,7 @@ webpackJsonp([1],[
 		 *  
 		 *  @constructor
 		 *  @extends {Tone.SignalBase}
-		 *  @param {number} value the number to compare the incoming signal to
+		 *  @param {number=} value The number to compare the incoming signal to
 		 *  @example
 		 * var eq = new Tone.Equal(3);
 		 * var sig = new Tone.Signal(3).connect(eq);
@@ -16875,7 +17057,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 *  dispose method
+		 *  Clean up.
 		 *  @returns {Tone.Equal} this
 		 */
 		Tone.Equal.prototype.dispose = function(){
@@ -16899,7 +17081,8 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  EqualZero outputs 1 when the input is strictly greater than zero
+		 *  @class  EqualZero outputs 1 when the input is equal to 
+		 *          0 and outputs 0 otherwise. 
 		 *  
 		 *  @constructor
 		 *  @extends {Tone.SignalBase}
@@ -16943,7 +17126,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.EqualZero, Tone.SignalBase);
 
 		/**
-		 *  dispose method
+		 *  Clean up.
 		 *  @returns {Tone.EqualZero} this
 		 */
 		Tone.EqualZero.prototype.dispose = function(){
@@ -17033,18 +17216,25 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Subtract a signal and a number or two signals. 
-		 *         input 0 : minuend.
-		 *         input 1 : subtrahend
+		 *  @class Subtract the signal connected to <code>input[1]</code> from the signal connected 
+		 *         to <code>input[0]</code>. If an argument is provided in the constructor, the 
+		 *         signals <code>.value</code> will be subtracted from the incoming signal.
 		 *
 		 *  @extends {Tone.Signal}
 		 *  @constructor
-		 *  @param {number=} value value to subtract from the incoming signal. If the value
-		 *                         is omitted, it will subtract the second signal from the first
+		 *  @param {number=} value The value to subtract from the incoming signal. If the value
+		 *                         is omitted, it will subtract the second signal from the first.
 		 *  @example
 		 * var sub = new Tone.Subtract(1);
 		 * var sig = new Tone.Signal(4).connect(sub);
 		 * //the output of sub is 3. 
+		 *  @example
+		 * var sub = new Tone.Subtract();
+		 * var sigA = new Tone.Signal(10);
+		 * var sigB = new Tone.Signal(2.5);
+		 * sigA.connect(sub, 0, 0);
+		 * sigB.connect(sub, 0, 1);
+		 * //output of sub is 7.5
 		 */
 		Tone.Subtract = function(value){
 
@@ -17078,7 +17268,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Subtract, Tone.Signal);
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.SignalBase} this
 		 */
 		Tone.Subtract.prototype.dispose = function(){
@@ -17156,12 +17346,12 @@ webpackJsonp([1],[
 		 *  @constructor
 		 *  @example
 		 * var ifThenElse = new Tone.IfThenElse();
-		 * var ifSignal = new Tone.Signal(1).connect(ifThenElse, 0, 0);
-		 * var thenSignal = new Tone.PWMOscillator().connect(ifThenElse, 0, 1);
-		 * var elseSignal = new Tone.PulseOscillator().connect(ifThenElse, 0, 2);
-		 * //ifThenElse outputs thenSignal
+		 * var ifSignal = new Tone.Signal(1).connect(ifThenElse.if);
+		 * var pwmOsc = new Tone.PWMOscillator().connect(ifThenElse.then);
+		 * var pulseOsc = new Tone.PulseOscillator().connect(ifThenElse.else);
+		 * //ifThenElse outputs pwmOsc
 		 * signal.value = 0;
-		 * //now ifThenElse outputs elseSignal
+		 * //now ifThenElse outputs pulseOsc
 		 */
 		Tone.IfThenElse = function(){
 
@@ -17249,13 +17439,13 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Select, Tone.SignalBase);
 
 		/**
-		 *  open one of the inputs and close the other
-		 *  @param {number} which open one of the gates (closes the other)
-		 *  @param {Time=} time the time when the switch will open
+		 *  Open a specific input and close the others.
+		 *  @param {number} which The gate to open. 
+		 *  @param {Time} [time=now] The time when the switch will open
 		 *  @returns {Tone.Select} this
 		 *  @example
-		 *  //open input 1 in a half second from now
-		 *  sel.select(1, "+0.5");
+		 * //open input 1 in a half second from now
+		 * sel.select(1, "+0.5");
 		 */
 		Tone.Select.prototype.select = function(which, time){
 			//make sure it's an integer
@@ -17265,7 +17455,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  dispose method
+		 *  Clean up.
 		 *  @returns {Tone.Select} this
 		 */
 		Tone.Select.prototype.dispose = function(){
@@ -17335,11 +17525,12 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class OR the inputs together. True if at least one of the inputs is true. 
+		 *  @class <a href="https://en.wikipedia.org/wiki/OR_gate" target="_blank">OR</a> 
+		 *         the inputs together. True if at least one of the inputs is true. 
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
-		 *  @param {number} inputCount the input count
+		 *  @param {number} [inputCount=2] the input count
 		 *  @example
 		 * var or = new Tone.OR(2);
 		 * var sigA = new Tone.Signal(0)connect(or, 0, 0);
@@ -17399,17 +17590,18 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class and returns 1 when all the inputs are equal to 1
+		 *  @class <a href="https://en.wikipedia.org/wiki/Logical_conjunction" target="_blank">AND</a>
+		 *         returns 1 when all the inputs are equal to 1 and returns 0 otherwise.
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
 		 *  @param {number} [inputCount=2] the number of inputs. NOTE: all inputs are
 		 *                                 connected to the single AND input node
 		 *  @example
-		 *  var and = new Tone.AND(2);
-		 *  var sigA = new Tone.Signal(0).connect(and, 0, 0);
-		 *  var sigB = new Tone.Signal(1).connect(and, 0, 1);
-		 *  //the output of and is 0. 
+		 * var and = new Tone.AND(2);
+		 * var sigA = new Tone.Signal(0).connect(and, 0, 0);
+		 * var sigB = new Tone.Signal(1).connect(and, 0, 1);
+		 * //the output of and is 0. 
 		 */
 		Tone.AND = function(inputCount){
 
@@ -17454,7 +17646,7 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Just an alias for EqualZero. but has the same effect as a NOT operator. 
+		 *  @class  Just an alias for Tone.EqualZero, but has the same effect as a NOT operator. 
 		 *          Outputs 1 when input equals 0. 
 		 *  
 		 *  @constructor
@@ -17542,17 +17734,17 @@ webpackJsonp([1],[
 
 		/**
 		 *  @class  Output 1 if the signal is less than the value, otherwise outputs 0.
-		 *          Can compare two signals or a signal and a number. <br><br>
-		 *          input 0: left hand side of comparison.<br><br>
-		 *          input 1: right hand side of comparison.
+		 *          Can compare two signals or a signal and a number. 
 		 *  
 		 *  @constructor
 		 *  @extends {Tone.Signal}
-		 *  @param {number} [value=0] the value to compare to the incoming signal
+		 *  @param {number=} value The value to compare to the incoming signal. 
+		 *                            If no value is provided, it will compare 
+		 *                            <code>input[0]</code> and <code>input[1]</code>
 		 *  @example
 		 * var lt = new Tone.LessThan(2);
 		 * var sig = new Tone.Signal(-1).connect(lt);
-		 * //lt outputs 1 because sig < 2
+		 * //if (sig < 2) lt outputs 1
 		 */
 		Tone.LessThan = function(value){
 
@@ -17595,7 +17787,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.LessThan, Tone.Signal);
 
 		/**
-		 *  dispose method
+		 *  Clean up.
 		 *  @returns {Tone.LessThan} this
 		 */
 		Tone.LessThan.prototype.dispose = function(){
@@ -17623,7 +17815,8 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class return the absolute value of an incoming signal
+		 *  @class Return the absolute value of an incoming signal. 
+		 *  
 		 *  @constructor
 		 *  @extends {Tone.SignalBase}
 		 *  @example
@@ -17691,12 +17884,12 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 * 	@class  outputs the greater of two signals. If a number is provided in the constructor
+		 * 	@class  Outputs the greater of two signals. If a number is provided in the constructor
 		 * 	        it will use that instead of the signal. 
 		 * 	
 		 *  @constructor
 		 *  @extends {Tone.Signal}
-		 *  @param {number=} max max value if provided. if not provided, it will use the
+		 *  @param {number=} max Max value if provided. if not provided, it will use the
 		 *                       signal value from input 1. 
 		 *  @example
 		 * var max = new Tone.Max(2);
@@ -17704,6 +17897,13 @@ webpackJsonp([1],[
 		 * //max outputs 3
 		 * sig.value = 1;
 		 * //max outputs 2
+		 *  @example
+		 * var max = new Tone.Max();
+		 * var sigA = new Tone.Signal(3);
+		 * var sigB = new Tone.Signal(4);
+		 * sigA.connect(max, 0, 0);
+		 * sigB.connect(max, 0, 1);
+		 * //output of max is 4.
 		 */
 		Tone.Max = function(max){
 
@@ -17739,7 +17939,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Max, Tone.Signal);
 
 		/**
-		 *  clean up
+		 * 	Clean up.
 		 *  @returns {Tone.Max} this
 		 */
 		Tone.Max.prototype.dispose = function(){
@@ -17770,13 +17970,20 @@ webpackJsonp([1],[
 		 * 	
 		 *  @constructor
 		 *  @extends {Tone.Signal}
-		 *  @param {number} min the minimum to compare to the incoming signal
+		 *  @param {number} min The minimum to compare to the incoming signal
 		 *  @example
 		 * var min = new Tone.Min(2);
 		 * var sig = new Tone.Signal(3).connect(min);
 		 * //min outputs 2
 		 * sig.value = 1;
 		 * //min outputs 1
+		 * 	 @example
+		 * var min = new Tone.Min();
+		 * var sigA = new Tone.Signal(3);
+		 * var sigB = new Tone.Signal(4);
+		 * sigA.connect(min, 0, 0);
+		 * sigB.connect(min, 0, 1);
+		 * //output of min is 3.
 		 */
 		Tone.Min = function(min){
 
@@ -17838,12 +18045,12 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Signal-rate modulo operator. Only works in audio range [-1, 1] and for modulus
-		 *         values less than 1. 
+		 *  @class Signal-rate modulo operator. Only works in AudioRange [-1, 1] and for modulus
+		 *         values in the NormalRange. 
 		 *
 		 *  @constructor
 		 *  @extends {Tone.SignalBase}
-		 *  @param {number} modulus the modulus to apply
+		 *  @param {NormalRange} modulus The modulus to apply.
 		 *  @example
 		 * var mod = new Tone.Modulo(0.2)
 		 * var sig = new Tone.Signal(0.5).connect(mod);
@@ -17906,7 +18113,7 @@ webpackJsonp([1],[
 		/**
 		 * The modulus value.
 		 * @memberOf Tone.Modulo#
-		 * @type {number}
+		 * @type {NormalRange}
 		 * @name value
 		 */
 		Object.defineProperty(Tone.Modulo.prototype, "value", {
@@ -18155,18 +18362,15 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  Panner. 
-		 *  
-		 *  @class  Equal Power Gain L/R Panner. Not 3D. 
-		 *          0 = 100% Left
-		 *          1 = 100% Right
+		 *  @class  Tone.Panner is an equal power Left/Right Panner and does not
+		 *  support 3D. Panner uses the StereoPannerNode when available. 
 		 *  
 		 *  @constructor
 		 *  @extends {Tone}
-		 *  @param {number} [initialPan=0.5] the initail panner value (defaults to 0.5 = center)
+		 *  @param {NormalRange} [initialPan=0.5] The initail panner value (defaults to 0.5 = center)
 		 *  @example
+		 *  //pan the input signal hard right. 
 		 *  var panner = new Tone.Panner(1);
-		 *  // ^ pan the input signal hard right. 
 		 */
 		Tone.Panner = function(initialPan){
 
@@ -18189,7 +18393,7 @@ webpackJsonp([1],[
 				this._panner = this.input = this.output = this.context.createStereoPanner();
 
 				/**
-				 *  the pan control
+				 *  The pan control. 0 = hard left, 1 = hard right. 
 				 *  @type {NormalRange}
 				 *  @signal
 				 */	
@@ -18227,7 +18431,7 @@ webpackJsonp([1],[
 				this._splitter = this.input = new Tone.Split();
 				
 				/**
-				 *  the pan control
+				 *  The pan control. 0 = hard left, 1 = hard right. 
 				 *  @type {NormalRange}
 				 *  @signal
 				 */	
@@ -18250,7 +18454,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Panner);
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.Panner} this
 		 */
 		Tone.Panner.prototype.dispose = function(){
@@ -18287,16 +18491,21 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 * @class  Equal power fading control values:<br>
-		 * 	       0 = 100% input 0<br>
-		 * 	       1 = 100% input 1<br>
+		 * @class  Tone.Crossfade provides equal power fading between two inputs. 
+		 *         More on crossfading technique 
+		 *         <a href="https://en.wikipedia.org/wiki/Fade_(audio_engineering)#Crossfading"
+		 *         target="_blank">here</a>.
 		 *
 		 * @constructor
 		 * @extends {Tone}
-		 * @param {number} [initialFade=0.5]
+		 * @param {NormalRange} [initialFade=0.5]
 		 * @example
 		 * var crossFade = new Tone.CrossFade(0.5);
+		 * //connect effect A to crossfade from
+		 * //effect output 0 to crossfade input 0
 		 * effectA.connect(crossFade, 0, 0);
+		 * //connect effect B to crossfade from
+		 * //effect output 0 to crossfade input 1
 		 * effectB.connect(crossFade, 0, 1);
 		 * crossFade.fade.value = 0;
 		 * // ^ only effectA is output
@@ -18310,21 +18519,21 @@ webpackJsonp([1],[
 			Tone.call(this, 2, 1);
 
 			/**
-			 *  the first input. input "a".
+			 *  Alias for <code>input[0]</code>. 
 			 *  @type {GainNode}
 			 */
 			this.a = this.input[0] = this.context.createGain();
 
 			/**
-			 *  the second input. input "b"
+			 *  Alias for <code>input[1]</code>. 
 			 *  @type {GainNode}
 			 */
 			this.b = this.input[1] = this.context.createGain();
 
 			/**
-			 *  0 is 100% signal `a` (input 0) and 1 is 100% signal `b` (input 1).
-			 *  Values between 0-1.
-			 *  
+			 * 	The mix between the two inputs. A fade value of 0
+			 * 	will output 100% <code>input[0]</code> and 
+			 * 	a value of 1 will output 100% <code>input[1]</code>. 
 			 *  @type {NormalRange}
 			 *  @signal
 			 */
@@ -18444,14 +18653,20 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Merge a left and a right channel into a single stereo channel.
+		 *  @class  Tone.Merge brings two signals into the left and right 
+		 *          channels of a single stereo channel.
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
 		 *  @example
-		 *  var merge = new Tone.Merge();
-		 *  sigLeft.connect(merge.left);
-		 *  sigRight.connect(merge.right);
+		 * var merge = new Tone.Merge().toMaster();
+		 * //routing a sine tone in the left channel
+		 * //and noise in the right channel
+		 * var osc = new Tone.Oscillator().connect(merge.left);
+		 * var noise = new Tone.Noise().connect(merge.right);
+		 * //starting our oscillators
+		 * noise.start();
+		 * osc.start();
 		 */
 		Tone.Merge = function(){
 
@@ -18459,14 +18674,14 @@ webpackJsonp([1],[
 
 			/**
 			 *  The left input channel.
-			 *  Alias for input 0
+			 *  Alias for <code>input[0]</code>
 			 *  @type {GainNode}
 			 */
 			this.left = this.input[0] = this.context.createGain();
 
 			/**
 			 *  The right input channel.
-			 *  Alias for input 1.
+			 *  Alias for <code>input[1]</code>.
 			 *  @type {GainNode}
 			 */
 			this.right = this.input[1] = this.context.createGain();
@@ -18486,7 +18701,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Merge);
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.Merge} this
 		 */
 		Tone.Merge.prototype.dispose = function(){
@@ -18513,7 +18728,7 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *	@class  Split the incoming signal into left and right channels
+		 *	@class  Tone.Split splits an incoming signal into left and right channels.
 		 *	
 		 *  @constructor
 		 *  @extends {Tone}
@@ -18532,15 +18747,15 @@ webpackJsonp([1],[
 			this._splitter = this.input = this.context.createChannelSplitter(2);
 
 			/** 
-			 *  left channel output
-			 *  alais for the first output
+			 *  Left channel output. 
+			 *  Alias for <code>output[0]</code>
 			 *  @type {GainNode}
 			 */
 			this.left = this.output[0] = this.context.createGain();
 
 			/**
-			 *  the right channel output
-			 *  alais for the second output
+			 *  Right channel output.
+			 *  Alias for <code>output[1]</code>
 			 *  @type {GainNode}
 			 */
 			this.right = this.output[1] = this.context.createGain();
@@ -18553,7 +18768,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.Split);
 
 		/**
-		 *  dispose method
+		 *  Clean up. 
 		 *  @returns {Tone.Split} this
 		 */
 		Tone.Split.prototype.dispose = function(){
@@ -18579,7 +18794,8 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Maps a gain value [0, 1] to an audio value [-1, 1]
+		 *  @class Maps a NormalRange [0, 1] to an AudioRange [-1, 1]. 
+		 *         See also Tone.AudioToGain. 
 		 *
 		 *  @extends {Tone.SignalBase}
 		 *  @constructor
@@ -18765,11 +18981,11 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class A simple volume node. Volume value in decibels. 
+		 *  @class Tone.Volume is a simple volume node, useful for creating a volume fader. 
 		 *
 		 *  @extends {Tone}
 		 *  @constructor
-		 *  @param {number} [volume=0] the initial volume
+		 *  @param {Decibels} [volume=0] the initial volume
 		 *  @example
 		 * var vol = new Tone.Volume(-12);
 		 * instrument.chain(vol, Tone.Master);
@@ -18785,7 +19001,8 @@ webpackJsonp([1],[
 
 			/**
 			 *  The volume control in decibels. 
-			 *  @type {Tone.Signal}
+			 *  @type {Decibels}
+			 *  @signal
 			 */
 			this.volume = new Tone.Signal(this.output.gain, Tone.Type.Decibels);
 			this.volume.value = this.defaultArg(volume, 0);
@@ -18819,17 +19036,29 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Get the rms of the input signal with some averaging.
-		 *          Can also just get the value of the signal
-		 *          or the value in dB. inspired by https://github.com/cwilso/volume-meter/blob/master/volume-meter.js<br><br>
-		 *          Note that for signal processing, it's better to use Tone.Follower which will produce
-		 *          an audio-rate envelope follower instead of needing to poll the Meter to get the output.
+		 *  @class  Tone.Meter gets the <a href="https://en.wikipedia.org/wiki/Root_mean_square" 
+		 *          target="blank">RMS</a> of an input signal with some averaging applied. 
+		 *          It can also get the raw value of the signal or the value in dB. For signal 
+		 *          processing, it's better to use Tone.Follower which will produce an audio-rate 
+		 *          envelope follower instead of needing to poll the Meter to get the output.
+		 *          <br><br>
+		 *          Meter was inspired by 
+		 *          <a href=" https://github.com/cwilso/volume-meter/blob/master/volume-meter.js" 
+		 *          target="_blank">Chris Wilsons Volume Meter</a>
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
 		 *  @param {number} [channels=1] number of channels being metered
 		 *  @param {number} [smoothing=0.8] amount of smoothing applied to the volume
 		 *  @param {number} [clipMemory=0.5] number in seconds that a "clip" should be remembered
+		 *  @example
+		 * var meter = new Tone.Meter();
+		 * var mic = new Tone.Microphone().start();
+		 * //connect mic to the meter
+		 * mic.connect(meter);
+		 * //use getLevel or getDb 
+		 * //to access meter level
+		 * meter.getLevel();
 		 */
 		Tone.Meter = function(channels, smoothing, clipMemory){
 			//extends Unit
@@ -18930,8 +19159,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  get the rms of the signal
-		 *  	
+		 *  Get the rms of the signal.
 		 *  @param  {number} [channel=0] which channel
 		 *  @return {number}         the value
 		 */
@@ -18946,7 +19174,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  get the value of the signal
+		 *  Get the raw value of the signal. 
 		 *  @param  {number=} channel 
 		 *  @return {number}         
 		 */
@@ -18956,23 +19184,24 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  get the volume of the signal in dB
+		 *  Get the volume of the signal in dB
 		 *  @param  {number=} channel 
-		 *  @return {number}         
+		 *  @return {Decibels}         
 		 */
 		Tone.Meter.prototype.getDb = function(channel){
 			return this.gainToDb(this.getLevel(channel));
 		};
 
 		/**
-		 * @returns {boolean} if the audio has clipped in the last 500ms
+		 * @returns {boolean} if the audio has clipped. The value resets
+		 *                       based on the clipMemory defined. 
 		 */
 		Tone.Meter.prototype.isClipped = function(){
 			return Date.now() - this._lastClip < this._clipMemory;
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.Meter} this
 		 */
 		Tone.Meter.prototype.dispose = function(){
@@ -19400,9 +19629,12 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class A simple sampler instrument which plays an audio buffer 
-		 *         through an amplitude envelope and a filter envelope. Nested
-		 *         lists will be flattened.
+		 *  @class A sampler instrument which plays an audio buffer 
+		 *         through an amplitude envelope and a filter envelope. The sampler takes
+		 *         an Object in the constructor which maps a sample name to the URL 
+		 *         of the sample. Nested Objects will be flattened and can be accessed using
+		 *         a dot notation (see the example).
+		 *         <img src="https://docs.google.com/drawings/d/1UK-gi_hxzKDz9Dh4ByyOptuagMOQxv52WxN12HwvtW8/pub?w=931&h=241">
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Instrument}
@@ -19428,7 +19660,7 @@ webpackJsonp([1],[
 			options = this.defaultArg(options, Tone.Sampler.defaults);
 
 			/**
-			 *  the sample player
+			 *  The sample player.
 			 *  @type {Tone.Player}
 			 */
 			this.player = new Tone.Player(options.player);
@@ -19534,8 +19766,8 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  flatten an object into a single depth object
-		 *  https://gist.github.com/penguinboy/762197
+		 *  Flatten an object into a single depth object. 
+		 *  thanks to https://gist.github.com/penguinboy/762197
 		 *  @param   {Object} ob 	
 		 *  @return  {Object}    
 		 *  @private
@@ -19558,12 +19790,14 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  start the sample.
-		 *  @param {string=} sample the name of the samle to trigger, defaults to
-		 *                          the last sample used
-		 *  @param {Time} [time=now] the time when the note should start
-		 *  @param {number} [velocity=1] the velocity of the note
+		 *  Start the sample and simultaneously trigger the envelopes. 
+		 *  @param {string=} sample The name of the sample to trigger, defaults to
+		 *                          the last sample used. 
+		 *  @param {Time} [time=now] The time when the sample should start
+		 *  @param {number} [velocity=1] The velocity of the note
 		 *  @returns {Tone.Sampler} this
+		 *  @example
+		 * sampler.triggerAttack("B.1");
 		 */
 		Tone.Sampler.prototype.triggerAttack = function(name, time, velocity){
 			time = this.toSeconds(time);
@@ -19577,10 +19811,13 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  start the release portion of the sample
+		 *  Start the release portion of the sample. Will stop the sample once the 
+		 *  envelope has fully released. 
 		 *  
-		 *  @param {Time} [time=now] the time when the note should release
+		 *  @param {Time} [time=now] The time when the note should release
 		 *  @returns {Tone.Sampler} this
+		 *  @example
+		 * sampler.triggerRelease();
 		 */
 		Tone.Sampler.prototype.triggerRelease = function(time){
 			time = this.toSeconds(time);
@@ -19595,6 +19832,9 @@ webpackJsonp([1],[
 		 * @memberOf Tone.Sampler#
 		 * @type {number|string}
 		 * @name sample
+		 * @example
+		 * //set the sample to "A.2" for next time the sample is triggered
+		 * sampler.sample = "A.2";
 		 */
 		Object.defineProperty(Tone.Sampler.prototype, "sample", {
 			get : function(){
@@ -19633,7 +19873,7 @@ webpackJsonp([1],[
 		 * Repitch the sampled note by some interval (measured
 		 * in semi-tones). 
 		 * @memberOf Tone.Sampler#
-		 * @type {number}
+		 * @type {Interval}
 		 * @name pitch
 		 * @example
 		 * sampler.pitch = -12; //down one octave
@@ -19650,7 +19890,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.Sampler} this
 		 */
 		Tone.Sampler.prototype.dispose = function(){
@@ -19685,7 +19925,7 @@ webpackJsonp([1],[
 		"use strict";
 		
 		/**
-		 *  @class  Audio file player with start, loop, stop.
+		 *  @class  Tone.Player is an audio file player with start, loop, and stop functions.
 		 *  
 		 *  @constructor
 		 *  @extends {Tone.Source} 
@@ -19694,7 +19934,10 @@ webpackJsonp([1],[
 		 *  @param {function=} onload The function to invoke when the buffer is loaded. 
 		 *                            Recommended to use Tone.Buffer.onload instead.
 		 *  @example
-		 * var player = new Tone.Player("./path/to/sample.mp3");
+		 * var player = new Tone.Player("./path/to/sample.mp3").toMaster();
+		 * Tone.Buffer.onload = function(){
+		 * 	player.start();
+		 * }
 		 */
 		Tone.Player = function(){
 			
@@ -19711,6 +19954,12 @@ webpackJsonp([1],[
 			 *  If the file should play as soon
 			 *  as the buffer is loaded. 
 			 *  @type {boolean}
+			 *  @example
+			 * //will play as soon as it's loaded
+			 * var player = new Tone.Player({
+			 * 	"url" : "./path/to/sample.mp3",
+			 * 	"autostart" : true,
+			 * }).toMaster();
 			 */
 			this.autostart = options.autostart;
 			
@@ -19755,7 +20004,9 @@ webpackJsonp([1],[
 
 			/**
 			 *  Enabling retrigger will allow a player to be restarted
-			 *  before the the previous 'start' is done playing.
+			 *  before the the previous 'start' is done playing. Otherwise, 
+			 *  successive calls to Tone.Player.start will only start
+			 *  the sample if it had played all the way through. 
 			 *  @type {boolean}
 			 */
 			this.retrigger = options.retrigger;
@@ -19788,9 +20039,10 @@ webpackJsonp([1],[
 		 *  was passed in to the constructor. Only use this
 		 *  if you want to manually load a new url. 
 		 * @param {string} url The url of the buffer to load.
-		 *                     filetype support depends on the
+		 *                     Filetype support depends on the
 		 *                     browser.
-		 *  @param  {function(Tone.Player)=} callback
+		 *  @param  {function=} callback The function to invoke once
+		 *                               the sample is loaded.
 		 *  @returns {Tone.Player} this
 		 */
 		Tone.Player.prototype.load = function(url, callback){
@@ -19882,6 +20134,7 @@ webpackJsonp([1],[
 		 *  @param {Time} loopEnd The loop end time
 		 *  @returns {Tone.Player} this
 		 *  @example
+		 * //loop 0.1 seconds of the file. 
 		 * player.setLoopPoints(0.2, 0.3);
 		 * player.loop = true;
 		 */
@@ -20132,13 +20385,25 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  ConvolverNode wrapper for reverb and emulation.
+		 *  @class  Tone.Convolver is a wrapper around the Native Web Audio 
+		 *          <a href="http://webaudio.github.io/web-audio-api/#the-convolvernode-interface" target="_blank">ConvolverNode</a>. 
+		 *          Convolution is useful for reverb and filter emulation. Read more about convolution reverb on
+		 *          <a href="https://en.wikipedia.org/wiki/Convolution_reverb" target="_blank">Wikipedia</a>
 		 *  
 		 *  @constructor
 		 *  @extends {Tone.Effect}
-		 *  @param {string|AudioBuffer=} url
+		 *  @param {string|Tone.Buffer|Object} [url] The URL of the impulse response or the Tone.Buffer
+		 *                                           contianing the impulse response. 
 		 *  @example
-		 *  var convolver = new Tone.Convolver("./path/to/ir.wav");
+		 * //initializing the convolver with an impulse response
+		 * var convolver = new Tone.Convolver("./path/to/ir.wav");
+		 * convolver.toMaster();
+		 * //after the buffer has loaded
+		 * Tone.Buffer.onload = function(){
+		 * 	//testing out convolution with a noise burst
+		 * 	var burst = new Tone.NoiseSynth().connect(convolver);
+		 * 	burst.triggerAttackRelease("16n");
+		 * };
 		 */
 		Tone.Convolver = function(){
 
@@ -20197,7 +20462,7 @@ webpackJsonp([1],[
 		 *  Load an impulse response url as an audio buffer.
 		 *  Decodes the audio asynchronously and invokes
 		 *  the callback once the audio buffer loads.
-		 *  @param {string} url the url of the buffer to load.
+		 *  @param {string} url The url of the buffer to load.
 		 *                      filetype support depends on the
 		 *                      browser.
 		 *  @param  {function=} callback
@@ -20214,7 +20479,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  dispose and disconnect
+		 *  Clean up. 
 		 *  @returns {Tone.Convolver} this
 		 */
 		Tone.Convolver.prototype.dispose = function(){
@@ -20238,14 +20503,13 @@ webpackJsonp([1],[
 		"use strict";
 		
 		/**
-		 * 	@class  Effect is the base class for effects. connect the effect between
-		 * 	        the effectSend and effectReturn GainNodes. then control the amount of
-		 * 	        effect which goes to the output using the dry/wet control.
+		 * 	@class  Tone.Effect is the base class for effects. Connect the effect between
+		 * 	        the effectSend and effectReturn GainNodes, then control the amount of
+		 * 	        effect which goes to the output using the wet control.
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
-		 *  @param {number} [initialWet=0] the starting wet value
-		 *                                 defaults to 100% wet
+		 *  @param {NormalRange|Object} [wet] The starting wet value. 
 		 */
 		Tone.Effect = function(){
 
@@ -20262,8 +20526,9 @@ webpackJsonp([1],[
 			this._dryWet = new Tone.CrossFade(options.wet);
 
 			/**
-			 *  The wet control, i.e. how much of the effected
-			 *  will pass through to the output. 
+			 *  The wet control is how much of the effected
+			 *  will pass through to the output. 1 = 100% effected
+			 *  signal, 0 = 100% dry signal. 
 			 *  @type {NormalRange}
 			 *  @signal
 			 */
@@ -20271,7 +20536,6 @@ webpackJsonp([1],[
 
 			/**
 			 *  connect the effectSend to the input of hte effect
-			 *  
 			 *  @type {GainNode}
 			 *  @private
 			 */
@@ -20279,7 +20543,6 @@ webpackJsonp([1],[
 
 			/**
 			 *  connect the output of the effect to the effectReturn
-			 *  
 			 *  @type {GainNode}
 			 *  @private
 			 */
@@ -20304,15 +20567,6 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  bypass the effect
-		 *  @returns {Tone.Effect} this
-		 */
-		Tone.Effect.prototype.bypass = function(){
-			this.wet.value = 0;
-			return this;
-		};
-
-		/**
 		 *  chains the effect in between the effectSend and effectReturn
 		 *  @param  {Tone} effect
 		 *  @private
@@ -20324,7 +20578,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  tear down
+		 *  Clean up. 
 		 *  @returns {Tone.Effect} this
 		 */
 		Tone.Effect.prototype.dispose = function(){
@@ -20375,16 +20629,23 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  PingPongDelay is a dual delay effect where the echo is heard
-		 *          first in one channel and next in the opposite channel
+		 *  @class  Tone.PingPongDelay is a feedback delay effect where the echo is heard
+		 *          first in one channel and next in the opposite channel. In a stereo
+		 *          system these are the right and left channels.
+		 *          PingPongDelay in more simplified terms is two Tone.FeedbackDelays 
+		 *          with independent delay values. Each delay is routed to one channel
+		 *          (left or right), and the channel triggered second will always 
+		 *          trigger at the same interval after the first.
 		 *
 		 * 	@constructor
 		 * 	@extends {Tone.StereoXFeedbackEffect}
-		 *  @param {Time|Object} [delayTime=0.25] is the interval between consecutive echos
-		 *  @param {number=} feedback The amount of the effected signal which 
-		 *                            is fed back through the delay.
+		 *  @param {Time|Object} [delayTime] The delayTime between consecutive echos.
+		 *  @param {NormalRange=} feedback The amount of the effected signal which 
+		 *                                 is fed back through the delay.
 		 *  @example
-		 *  var pingPong = new Tone.PingPongDelay("4n", 0.2);
+		 * var pingPong = new Tone.PingPongDelay("4n", 0.2).toMaster();
+		 * var drum = new Tone.DrumSynth().connect(pingPong);
+		 * drum.triggerAttackRelease("C4", "32n");
 		 */
 		Tone.PingPongDelay = function(){
 			
@@ -20441,7 +20702,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @returns {Tone.PingPongDelay} this
 		 */
 		Tone.PingPongDelay.prototype.dispose = function(){
@@ -20482,10 +20743,13 @@ webpackJsonp([1],[
 			Tone.StereoEffect.call(this, options);
 
 			/**
-			 *  controls the amount of feedback
-			 *  @type {Tone.Signal}
+			 *  The amount of feedback from the output
+			 *  back into the input of the effect (routed
+			 *  across left and right channels).
+			 *  @type {NormalRange}
+			 *  @signal
 			 */
-			this.feedback = new Tone.Signal(options.feedback);
+			this.feedback = new Tone.Signal(options.feedback, Tone.Type.NormalRange);
 
 			/**
 			 *  the left side feeback
@@ -20539,7 +20803,7 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Creates an effect with an effectSendL/R and effectReturnL/R
+		 *  @class Base class for Stereo effects. Provides effectSendL/R and effectReturnL/R. 
 		 *
 		 *	@constructor
 		 *	@extends {Tone.Effect}
@@ -20619,7 +20883,7 @@ webpackJsonp([1],[
 		Tone.extend(Tone.StereoEffect, Tone.Effect);
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @returns {Tone.StereoEffect} this
 		 */
 		Tone.StereoEffect.prototype.dispose = function(){
@@ -20651,11 +20915,13 @@ webpackJsonp([1],[
 		"use strict";
 		
 		/**
-		 * 	@class  Feedback Effect (a sound loop between an audio source and its own output)
+		 * 	@class  Tone.FeedbackEffect provides a loop between an 
+		 * 	        audio source and its own output. This is a base-class
+		 * 	        for feedback effects. 
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Effect}
-		 *  @param {number|Object} [initialFeedback=0.125] the initial feedback value
+		 *  @param {NormalRange|Object} [feedback] The initial feedback value.
 		 */
 		Tone.FeedbackEffect = function(){
 
@@ -20665,7 +20931,7 @@ webpackJsonp([1],[
 			Tone.Effect.call(this, options);
 
 			/**
-			 *  controls the amount of feedback
+			 *  The amount of signal which is fed back into the effect input. 
 			 *  @type {NormalRange}
 			 *  @signal
 			 */
@@ -20695,7 +20961,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @returns {Tone.FeedbackEffect} this
 		 */
 		Tone.FeedbackEffect.prototype.dispose = function(){
@@ -20808,17 +21074,17 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class A 3 band EQ with control over low, mid, and high gain as
-		 *         well as the low and high crossover frequencies. 
+		 *  @class Tone.EQ3 is a three band EQ with control over low, mid, and high gain as
+		 *         well as the low and high crossover frequencies.
 		 *
 		 *  @constructor
 		 *  @extends {Tone}
 		 *  
-		 *  @param {number|object} [lowLevel=0] the gain applied to the lows (in db)
-		 *  @param {number} [midLevel=0] the gain applied to the mid (in db)
-		 *  @param {number} [highLevel=0] the gain applied to the high (in db)
+		 *  @param {Decibels|Object} [lowLevel] The gain applied to the lows.
+		 *  @param {Decibels} [midLevel] The gain applied to the mid.
+		 *  @param {Decibels} [highLevel] The gain applied to the high.
 		 *  @example
-		 *  var eq = new Tone.EQ3(-10, 3, -20);
+		 * var eq = new Tone.EQ3(-10, 3, -20);
 		 */
 		Tone.EQ3 = function(){
 
@@ -20884,21 +21150,21 @@ webpackJsonp([1],[
 			this.high = new Tone.Signal(this._highGain.gain, Tone.Type.Decibels);
 
 			/**
-			 *  the Q value
+			 *  The Q value for all of the filters. 
 			 *  @type {Positive}
 			 *  @signal
 			 */
 			this.Q = this._multibandSplit.Q;
 
 			/**
-			 *  the low/mid crossover frequency
+			 *  The low/mid crossover frequency. 
 			 *  @type {Frequency}
 			 *  @signal
 			 */
 			this.lowFrequency = this._multibandSplit.lowFrequency;
 
 			/**
-			 *  the mid/high crossover frequency
+			 *  The mid/high crossover frequency. 
 			 *  @type {Frequency}
 			 *  @signal
 			 */
@@ -20972,8 +21238,8 @@ webpackJsonp([1],[
 		 *
 		 *  @extends {Tone}
 		 *  @constructor
-		 *  @param {number} lowFrequency the low/mid crossover frequency
-		 *  @param {number} highFrequency the mid/high crossover frequency
+		 *  @param {Frequency|Object} [lowFrequency] the low/mid crossover frequency
+		 *  @param {Frequency} [highFrequency] the mid/high crossover frequency
 		 */
 		Tone.MultibandSplit = function(){
 			var options = this.optionsObject(arguments, ["lowFrequency", "highFrequency"], Tone.MultibandSplit.defaults);
@@ -20993,7 +21259,7 @@ webpackJsonp([1],[
 			this.output = new Array(3);
 
 			/**
-			 *  the low band
+			 *  The low band. Alias for <code>output[0]</code>
 			 *  @type {Tone.Filter}
 			 */
 			this.low = this.output[0] = new Tone.Filter(0, "lowpass");
@@ -21006,33 +21272,33 @@ webpackJsonp([1],[
 			this._lowMidFilter = new Tone.Filter(0, "highpass");
 
 			/**
-			 *  the mid band
+			 *  The mid band output. Alias for <code>output[1]</code>
 			 *  @type {Tone.Filter}
 			 */
 			this.mid = this.output[1] = new Tone.Filter(0, "lowpass");
 
 			/**
-			 *  the high band
+			 *  The high band output. Alias for <code>output[2]</code>
 			 *  @type {Tone.Filter}
 			 */
 			this.high = this.output[2] = new Tone.Filter(0, "highpass");
 
 			/**
-			 *  the low/mid crossover frequency
+			 *  The low/mid crossover frequency.
 			 *  @type {Frequency}
 			 *  @signal
 			 */
 			this.lowFrequency = new Tone.Signal(options.lowFrequency, Tone.Type.Frequency);
 
 			/**
-			 *  the mid/high crossover frequency
+			 *  The mid/high crossover frequency.
 			 *  @type {Frequency}
 			 *  @signal
 			 */
 			this.highFrequency = new Tone.Signal(options.highFrequency, Tone.Type.Frequency);
 
 			/**
-			 *  the quality of all the fitlers
+			 *  The quality of all the filters
 			 *  @type {Number}
 			 *  @signal
 			 */
@@ -21068,7 +21334,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up.
 		 *  @returns {Tone.MultibandSplit} this
 		 */
 		Tone.MultibandSplit.prototype.dispose = function(){
@@ -21103,14 +21369,18 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class A simple distortion effect using the waveshaper node
-		 *         algorithm from <a href="http://stackoverflow.com/a/22313408">a stackoverflow answer</a>.
+		 *  @class Tone.Distortion is a simple distortion effect using Tone.WaveShaper.
+		 *         Algorithm from <a href="http://stackoverflow.com/a/22313408"
+		 *         target="_blank">a stackoverflow answer</a>.
 		 *
 		 *  @extends {Tone.Effect}
 		 *  @constructor
-		 *  @param {number} distortion the amount of distortion (nominal range of 0-1)
+		 *  @param {Number|Object} [distortion] The amount of distortion (nominal range of 0-1)
 		 *  @example
-		 *  var dist = new Tone.Distortion(0.8);
+		 * var dist = new Tone.Distortion(0.8).toMaster();
+		 * var fm = new Tone.SimpleFM().connect(dist);
+		 * //this sounds good on bass notes
+		 * fm.triggerAttackRelease("A1", "8n");
 		 */
 		Tone.Distortion = function(){
 
@@ -21189,7 +21459,7 @@ webpackJsonp([1],[
 		});
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @returns {Tone.Distortion} this
 		 */
 		Tone.Distortion.prototype.dispose = function(){
@@ -21555,9 +21825,10 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class  Tone.NoiseSynth is composed of a noise generator, one filter, and two envelopes.
-		 *          The amplitude of the Tone.Noise and the cutoff frequency of the 
-		 *          Tone.Filter are controlled by Tone.Envelopes. 
+		 *  @class  Tone.NoiseSynth is composed of a noise generator (Tone.Noise), one filter (Tone.Filter), 
+		 *          and two envelopes (Tone.Envelop). One envelope controls the amplitude
+		 *          of the noise and the other is controls the cutoff frequency of the filter. 
+		 *          <img src="https://docs.google.com/drawings/d/1rqzuX9rBlhT50MRvD2TKml9bnZhcZmzXF1rf_o7vdnE/pub?w=918&h=242">
 		 *
 		 *  @constructor
 		 *  @extends {Tone.Instrument}
@@ -21574,14 +21845,15 @@ webpackJsonp([1],[
 			Tone.Instrument.call(this);
 
 			/**
-			 *  The noise source. Set the type by setting
-			 *  `noiseSynth.noise.type`. 
+			 *  The noise source.
 			 *  @type {Tone.Noise}
+			 *  @example
+			 * noiseSynth.set("noise.type", "brown");
 			 */
 			this.noise = new Tone.Noise();
 
 			/**
-			 *  The filter .
+			 *  The filter. 
 			 *  @type {Tone.Filter}
 			 */
 			this.filter = new Tone.Filter(options.filter);
@@ -21640,10 +21912,13 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  start the attack portion of the envelope
+		 *  Start the attack portion of the envelopes. Unlike other 
+		 *  instruments, Tone.NoiseSynth doesn't have a note. 
 		 *  @param {Time} [time=now] the time the attack should start
 		 *  @param {number} [velocity=1] the velocity of the note (0-1)
 		 *  @returns {Tone.NoiseSynth} this
+		 *  @example
+		 * noiseSynth.triggerAttack();
 		 */
 		Tone.NoiseSynth.prototype.triggerAttack = function(time, velocity){
 			//the envelopes
@@ -21653,7 +21928,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  start the release portion of the envelope
+		 *  Start the release portion of the envelopes.
 		 *  @param {Time} [time=now] the time the release should start
 		 *  @returns {Tone.NoiseSynth} this
 		 */
@@ -21664,7 +21939,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  trigger the attack and then the release
+		 *  Trigger the attack and then the release. 
 		 *  @param  {Time} duration the duration of the note
 		 *  @param  {Time} [time=now]     the time of the attack
 		 *  @param  {number} [velocity=1] the velocity
@@ -21679,7 +21954,7 @@ webpackJsonp([1],[
 		};
 
 		/**
-		 *  clean up
+		 *  Clean up. 
 		 *  @returns {Tone.NoiseSynth} this
 		 */
 		Tone.NoiseSynth.prototype.dispose = function(){
@@ -21708,34 +21983,36 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class A Panner and volume in one.
+		 *  @class Tone.PanVol is a Tone.Panner and Tone.Volume in one.
 		 *
 		 *  @extends {Tone}
 		 *  @constructor
-		 *  @param {number} pan the initial pan
-		 *  @param {number} volume the volume
+		 *  @param {NormalRange} pan the initial pan
+		 *  @param {number} volume The output volume. 
 		 *  @example
-		 *  var panVol = new Tone.PanVol(0.25, -12);
+		 * //pan the incoming signal left and drop the volume
+		 * var panVol = new Tone.PanVol(0.25, -12);
 		 */
 		Tone.PanVol = function(pan, volume){
 			
 			/**
-			 *  the panning node
+			 *  The panning node
 			 *  @type {Tone.Panner}
 			 *  @private
 			 */
 			this._panner = this.input = new Tone.Panner(pan);
 
 			/**
-			 *  the panning control
-			 *  @type {Tone.Panner}
-			 *  @private
+			 *  The L/R panning control.
+			 *  @type {NormalRange}
+			 *  @signal
 			 */
 			this.pan = this._panner.pan;
 
 			/**
-			 * the volume control
+			 * The volume object. 
 			 * @type {Tone.Volume}
+			 * @signal
 			 * @private
 			 */
 			this._volume = this.output = new Tone.Volume(volume);
@@ -21819,8 +22096,10 @@ webpackJsonp([1],[
 		"use strict";
 
 		/**
-		 *  @class Coerces the incoming mono or stereo signal into a mono signal
-		 *         where both left and right channels have the same value. 
+		 *  @class Tone.Mono coerces the incoming mono or stereo signal into a mono signal
+		 *         where both left and right channels have the same value. This is useful 
+		 *         for <a href="https://en.wikipedia.org/wiki/Stereo_imaging" target="_blank">
+		 *         stereo imaging</a>.
 		 *
 		 *  @extends {Tone}
 		 *  @constructor
@@ -23241,7 +23520,7 @@ webpackJsonp([1],[
 			startButton.fadeTo(500, 1);
 		});
 
-		startButton.one("mousedown touchstart", function(e){
+		startButton.one("mousedown touchend", function(e){
 			e.preventDefault();
 			Mediator.send("start");
 			if (Config.MOBILE){
@@ -23268,4 +23547,3 @@ webpackJsonp([1],[
 
 /***/ }
 ]);
-//# sourceMappingURL=1.js.map
