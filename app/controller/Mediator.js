@@ -57,11 +57,11 @@ define(["requestAnimationFrame", "util/Config", "jquery"], function(requestAnima
 	}
 
 	function update(){
-		if (Config.HD){
-			requestAnimationFrame(update);
+		requestAnimationFrame(update);
+		/*if (Config.HD){
 		} else {
 			setTimeout(update, 30);	
-		}
+		}*/
 		Mediator.send("update");
 	}
 

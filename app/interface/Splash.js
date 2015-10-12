@@ -21,7 +21,7 @@ define(["jquery", "controller/Mediator", "util/Config", "splash.scss"], function
 		}
 
 		if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1){
-			secondText.append("works best in Chrome or Safari");
+			secondText.text("works best in Chrome or Safari");
 		}
 
 		Mediator.route("ready", function(){
