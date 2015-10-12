@@ -69,7 +69,7 @@ function($, Mediator, Config, Tone, Window){
 		startButton.fadeTo(500, 1);
 	});
 
-	startButton.one("mousedown touchstart", function(e){
+	startButton.one("mousedown touchend", function(e){
 		e.preventDefault();
 		Mediator.send("start");
 		if (Config.MOBILE){
