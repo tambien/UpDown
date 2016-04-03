@@ -24,7 +24,7 @@ define(["jquery"], function($){
 		VISUALS : noVis,
 		ANALYTICS : true,
 		PAUSE_ON_BLUR : false,
-		HD : isInstallation || false,
+		HD : false,
 		SLOW_UPDATE : isMobile ? 0.8: 0.5,
 		INSTALLATION : isInstallation
 	};
