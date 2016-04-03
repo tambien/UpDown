@@ -3112,6 +3112,8 @@ webpackJsonp([1],[
 
 		isMobile = (window.location.hash === "#MOBILE") || isMobile;
 
+		var isInstallation = window.location.hash === "#INSTALLATION";
+
 		var isFF = (navigator.userAgent.toLowerCase().indexOf("firefox") > -1);
 
 		return {
@@ -3124,8 +3126,9 @@ webpackJsonp([1],[
 			VISUALS : noVis,
 			ANALYTICS : true,
 			PAUSE_ON_BLUR : false,
-			HD : false,
-			SLOW_UPDATE : isMobile ? 0.8: 0.5
+			HD : isInstallation || false,
+			SLOW_UPDATE : isMobile ? 0.8: 0.5,
+			INSTALLATION : isInstallation
 		};
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -5540,6 +5543,7 @@ webpackJsonp([1],[
 
 		var directionSwitchDelta = scrollHeight * 0.05;
 
+		var lastTouchedTimeout = -1;
 
 		$(window).mousewheel(function(e, x){
 			var thresh = 200;
@@ -5548,6 +5552,11 @@ webpackJsonp([1],[
 			if (started){
 				scrollTop = lastPosition - x;
 			}
+			clearTimeout(lastTouchedTimeout);
+			//restart if not touched in the last 20 seconds
+			lastTouchedTimeout = setTimeout(function(){
+				window.location.reload();
+			}, 60000);
 		});
 
 		$(window).on("keydown", function(e){
@@ -23543,6 +23552,13 @@ webpackJsonp([1],[
 				}
 			});
 		});
+
+		Mediator.route("loaded", function(){
+			setTimeout(function(){
+				startButton.trigger("mousedown");
+			}, 1000);
+		});
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }

@@ -10,6 +10,8 @@ define(["jquery"], function($){
 
 	isMobile = (window.location.hash === "#MOBILE") || isMobile;
 
+	var isInstallation = window.location.hash === "#INSTALLATION";
+
 	var isFF = (navigator.userAgent.toLowerCase().indexOf("firefox") > -1);
 
 	return {
@@ -22,7 +24,8 @@ define(["jquery"], function($){
 		VISUALS : noVis,
 		ANALYTICS : true,
 		PAUSE_ON_BLUR : false,
-		HD : false,
-		SLOW_UPDATE : isMobile ? 0.8: 0.5
+		HD : isInstallation || false,
+		SLOW_UPDATE : isMobile ? 0.8: 0.5,
+		INSTALLATION : isInstallation
 	};
 });

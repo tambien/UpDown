@@ -64,6 +64,7 @@ define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquer
 
 	var directionSwitchDelta = scrollHeight * 0.05;
 
+	var lastTouchedTimeout = -1;
 
 	$(window).mousewheel(function(e, x){
 		var thresh = 200;
@@ -71,6 +72,13 @@ define(["controller/Mediator", "util/Config", "interface/Window", "TERP", "jquer
 		x = Math.max(x, -thresh);
 		if (started){
 			scrollTop = lastPosition - x;
+		}
+		if (Config.INSTALLATION){
+			clearTimeout(lastTouchedTimeout);
+			//restart if not touched in the last 60 seconds
+			lastTouchedTimeout = setTimeout(function(){
+				window.location.reload();
+			}, 60000);
 		}
 	});
 

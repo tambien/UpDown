@@ -92,4 +92,13 @@ function($, Mediator, Config, Tone, Window){
 			}
 		});
 	});
+
+	Mediator.route("loaded", function(){
+		if (Config.INSTALLATION){
+			setTimeout(function(){
+				startButton.trigger("mousedown");
+			}, 1000);
+		}
+	});
+
 });
