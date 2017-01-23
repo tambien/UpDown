@@ -21,7 +21,7 @@ webpackJsonp([1],[
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(5), __webpack_require__(6), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(5), __webpack_require__(7), __webpack_require__(13)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -2112,7 +2112,7 @@ webpackJsonp([1],[
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -2286,10 +2286,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -2669,10 +2670,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -2815,7 +2816,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
@@ -2864,10 +2865,13 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 9 */
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -2933,10 +2937,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 10 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(11), __webpack_require__(12), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(requestAnimationFrame, Config, $){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(15), __webpack_require__(16), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(requestAnimationFrame, Config, $){
 		
 		/**
 		 * MicroEvent - to make any js object an event emitter (server or browser)
@@ -3019,7 +3023,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 11 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -3097,7 +3101,7 @@ webpackJsonp([1],[
 	} )( window );
 
 /***/ },
-/* 12 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function($){
@@ -3112,7 +3116,7 @@ webpackJsonp([1],[
 
 		isMobile = (window.location.hash === "#MOBILE") || isMobile;
 
-		var isInstallation = window.location.hash === "#INSTALLATION";
+		var isInstallation = window.location.hash.toLowerCase() === "#installation";
 
 		var isFF = (navigator.userAgent.toLowerCase().indexOf("firefox") > -1);
 
@@ -3126,14 +3130,14 @@ webpackJsonp([1],[
 			VISUALS : noVis,
 			ANALYTICS : true,
 			PAUSE_ON_BLUR : false,
-			HD : isInstallation || false,
+			HD : false,
 			SLOW_UPDATE : isMobile ? 0.8: 0.5,
 			INSTALLATION : isInstallation
 		};
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 13 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
@@ -3520,10 +3524,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 14 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(10), __webpack_require__(15)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Config, Mediator, mainStyle){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(16), __webpack_require__(14), __webpack_require__(19)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Config, Mediator, mainStyle){
 
 		var container = $("#Container");
 
@@ -3573,16 +3577,16 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 15 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(16);
+	var content = __webpack_require__(20);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -3599,14 +3603,14 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 16 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(17)();
+	exports = module.exports = __webpack_require__(21)();
 	exports.push([module.id, ".dg.ac {\n  z-index: 10000 !important; }\n\nhtml, body {\n  height: 100%;\n  overflow: hidden; }\n\n#Container {\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  background-color: white;\n  font-family: sans-serif;\n  overflow: hidden;\n  width: calc(100% - 20px - 4px); }\n  #Container canvas {\n    opacity: 1;\n    width: 100% !important;\n    height: 100% !important; }\n  #Container #CoverAll {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: white;\n    top: 0px;\n    left: 0px;\n    opacity: 0; }\n\n#FrameContainer {\n  position: absolute;\n  height: 240%;\n  top: 50%;\n  left: 50%;\n  margin-left: -320px;\n  margin-top: -120%;\n  width: 640px; }\n  #FrameContainer .Frame {\n    height: calc(100% / 3);\n    left: 10%;\n    width: 80%;\n    top: 0px;\n    position: absolute;\n    position: absolute;\n    z-index: 1000; }\n    #FrameContainer .Frame #Content {\n      height: 80%;\n      position: absolute;\n      left: 10%;\n      width: 80%;\n      top: 10%;\n      background-color: #aaaaaa; }\n\n#NoSupport {\n  font-family: sans-serif;\n  width: 80%;\n  left: 10%;\n  position: absolute;\n  top: 40%;\n  text-align: center;\n  color: black;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 48px; }\n\n/* $notificationSize : 100px;\n\n@keyframes UpAndDown {\n  0%   {transform : translate(-50%, -100%); }\n  100%   { transform : translate(-50%, 0%); }\n}\n\n#Notification {\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 50%;\n\ttransform : translate(-50%, -50%);\n\twidth: 0px; \n\theight: 0px; \n\t@include fontFamily;\n\tfont-size: $notificationSize * 0.75;\n\tcolor: white;\n\ttext-align: center;\n\topacity: 0;\n}\n\n#Notification.Up {\n\ttop: 70%;\n\tborder-left: 2 * $notificationSize/3 solid transparent;\n\tborder-right: 2 * $notificationSize/3 solid transparent;\n\tborder-top: $notificationSize solid black;\n}\n\n#Notification.Down {\n\ttop: 30%;\n\tborder-left: 2 * $notificationSize/3 solid transparent;\n\tborder-right: 2 * $notificationSize/3 solid transparent;\n\tborder-bottom: $notificationSize solid black;\n}\n\n#Notification.Animate {\n\tanimation-name: UpAndDown;\n\tanimation-duration: 0.5s;\n\tanimation-iteration-count: infinite;\n\tanimation-direction: alternate;\n\tanimation-timing-function: ease-in-out;\n}\n\n.Mobile #Notification {\n\t\n} */\n#AlwaysBeScrolling {\n  display: none;\n  position: absolute;\n  top: 13px;\n  left: 20px;\n  width: auto;\n  line-height: 40px;\n  height: 40px;\n  font-family: sans-serif;\n  font-size: 18px;\n  color: white;\n  font-weight: lighter;\n  pointer-events: none; }\n\n#AlwaysBeScrolling.Mobile {\n  bottom: 20px;\n  top: inherit; }\n", ""]);
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3662,7 +3666,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3887,12 +3891,12 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(59), __webpack_require__(74), __webpack_require__(61), __webpack_require__(63), 
-		__webpack_require__(65), __webpack_require__(70), __webpack_require__(20), __webpack_require__(76), __webpack_require__(12), 
-		__webpack_require__(32), __webpack_require__(78), __webpack_require__(79)], __WEBPACK_AMD_DEFINE_RESULT__ = function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(63), __webpack_require__(78), __webpack_require__(65), __webpack_require__(67), 
+		__webpack_require__(69), __webpack_require__(74), __webpack_require__(24), __webpack_require__(80), __webpack_require__(16), 
+		__webpack_require__(36), __webpack_require__(82), __webpack_require__(83)], __WEBPACK_AMD_DEFINE_RESULT__ = function(BassVisuals, VoiceVisuals, Pictures, PianoVisuals, 
 		KickVisuals, SnareVisuals, ArpVisuals, HighHatVisuals, Config, 
 		Scroll, FrameVisuals, BackgroundImages){
 
@@ -3921,11 +3925,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(14), __webpack_require__(25), 
-		__webpack_require__(56), __webpack_require__(29), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Window, TWEEN, Preset, Conductor, THREE){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(18), __webpack_require__(29), 
+		__webpack_require__(60), __webpack_require__(33), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Window, TWEEN, Preset, Conductor, THREE){
 
 		"use strict";
 
@@ -4024,12 +4028,12 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14), __webpack_require__(1), __webpack_require__(25), __webpack_require__(26), 
-		__webpack_require__(10), __webpack_require__(27), __webpack_require__(22), 
-		__webpack_require__(12), __webpack_require__(29), __webpack_require__(54), __webpack_require__(55)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(18), __webpack_require__(1), __webpack_require__(29), __webpack_require__(30), 
+		__webpack_require__(14), __webpack_require__(31), __webpack_require__(26), 
+		__webpack_require__(16), __webpack_require__(33), __webpack_require__(58), __webpack_require__(59)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Window, $, TWEEN, Stats, Mediator, ColorShiftShader, 
 		NoiseShader, Config, Conductor, THREE, THREEShaders){
 
 		/**
@@ -4224,10 +4228,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(23),  __webpack_require__(24)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(27),  __webpack_require__(28)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader){
 
 		var ColorShader = {
 
@@ -4248,26 +4252,26 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "uniform sampler2D tDiffuse;\nuniform float amount;\n\nvarying vec2 vUv;\n\nvoid main() {\n\n\t// // sample the source\n\tvec4 cTextureScreen = texture2D( tDiffuse, vUv );\n\n\t// // make some noise\n\tfloat x = vUv.x * vUv.y * 5.0 *  1000.0;\n\tx = mod( x, 13.0 ) * mod( x, 123.0 );\n\tfloat dx = mod( x, 0.01 );\n\n\t// // add noise\n\tvec3 cResult = cTextureScreen.rgb + cTextureScreen.rgb * clamp( 0.1 + dx * amount, 0.0, 1.0 );\n\n\tgl_FragColor =  vec4( cResult, cTextureScreen.a );\n\n}"
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "varying vec2 vUv;\n\nvoid main() {\n\n\tvUv = uv;\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}"
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// tween.js v.0.15.0 https://github.com/sole/tween.js
 	void 0===Date.now&&(Date.now=function(){return(new Date).valueOf()});var TWEEN=TWEEN||function(){var n=[];return{REVISION:"14",getAll:function(){return n},removeAll:function(){n=[]},add:function(t){n.push(t)},remove:function(t){var r=n.indexOf(t);-1!==r&&n.splice(r,1)},update:function(t){if(0===n.length)return!1;var r=0;for(t=void 0!==t?t:"undefined"!=typeof window&&void 0!==window.performance&&void 0!==window.performance.now?window.performance.now():Date.now();r<n.length;)n[r].update(t)?r++:n.splice(r,1);return!0}}}();TWEEN.Tween=function(n){var t=n,r={},i={},u={},o=1e3,e=0,a=!1,f=!1,c=!1,s=0,h=null,l=TWEEN.Easing.Linear.None,p=TWEEN.Interpolation.Linear,E=[],d=null,v=!1,I=null,w=null,M=null;for(var O in n)r[O]=parseFloat(n[O],10);this.to=function(n,t){return void 0!==t&&(o=t),i=n,this},this.start=function(n){TWEEN.add(this),f=!0,v=!1,h=void 0!==n?n:"undefined"!=typeof window&&void 0!==window.performance&&void 0!==window.performance.now?window.performance.now():Date.now(),h+=s;for(var o in i){if(i[o]instanceof Array){if(0===i[o].length)continue;i[o]=[t[o]].concat(i[o])}r[o]=t[o],r[o]instanceof Array==!1&&(r[o]*=1),u[o]=r[o]||0}return this},this.stop=function(){return f?(TWEEN.remove(this),f=!1,null!==M&&M.call(t),this.stopChainedTweens(),this):this},this.stopChainedTweens=function(){for(var n=0,t=E.length;t>n;n++)E[n].stop()},this.delay=function(n){return s=n,this},this.repeat=function(n){return e=n,this},this.yoyo=function(n){return a=n,this},this.easing=function(n){return l=n,this},this.interpolation=function(n){return p=n,this},this.chain=function(){return E=arguments,this},this.onStart=function(n){return d=n,this},this.onUpdate=function(n){return I=n,this},this.onComplete=function(n){return w=n,this},this.onStop=function(n){return M=n,this},this.update=function(n){var f;if(h>n)return!0;v===!1&&(null!==d&&d.call(t),v=!0);var M=(n-h)/o;M=M>1?1:M;var O=l(M);for(f in i){var m=r[f]||0,N=i[f];N instanceof Array?t[f]=p(N,O):("string"==typeof N&&(N=m+parseFloat(N,10)),"number"==typeof N&&(t[f]=m+(N-m)*O))}if(null!==I&&I.call(t,O),1==M){if(e>0){isFinite(e)&&e--;for(f in u){if("string"==typeof i[f]&&(u[f]=u[f]+parseFloat(i[f],10)),a){var T=u[f];u[f]=i[f],i[f]=T}r[f]=u[f]}return a&&(c=!c),h=n+s,!0}null!==w&&w.call(t);for(var g=0,W=E.length;W>g;g++)E[g].start(n);return!1}return!0}},TWEEN.Easing={Linear:{None:function(n){return n}},Quadratic:{In:function(n){return n*n},Out:function(n){return n*(2-n)},InOut:function(n){return(n*=2)<1?.5*n*n:-.5*(--n*(n-2)-1)}},Cubic:{In:function(n){return n*n*n},Out:function(n){return--n*n*n+1},InOut:function(n){return(n*=2)<1?.5*n*n*n:.5*((n-=2)*n*n+2)}},Quartic:{In:function(n){return n*n*n*n},Out:function(n){return 1- --n*n*n*n},InOut:function(n){return(n*=2)<1?.5*n*n*n*n:-.5*((n-=2)*n*n*n-2)}},Quintic:{In:function(n){return n*n*n*n*n},Out:function(n){return--n*n*n*n*n+1},InOut:function(n){return(n*=2)<1?.5*n*n*n*n*n:.5*((n-=2)*n*n*n*n+2)}},Sinusoidal:{In:function(n){return 1-Math.cos(n*Math.PI/2)},Out:function(n){return Math.sin(n*Math.PI/2)},InOut:function(n){return.5*(1-Math.cos(Math.PI*n))}},Exponential:{In:function(n){return 0===n?0:Math.pow(1024,n-1)},Out:function(n){return 1===n?1:1-Math.pow(2,-10*n)},InOut:function(n){return 0===n?0:1===n?1:(n*=2)<1?.5*Math.pow(1024,n-1):.5*(-Math.pow(2,-10*(n-1))+2)}},Circular:{In:function(n){return 1-Math.sqrt(1-n*n)},Out:function(n){return Math.sqrt(1- --n*n)},InOut:function(n){return(n*=2)<1?-.5*(Math.sqrt(1-n*n)-1):.5*(Math.sqrt(1-(n-=2)*n)+1)}},Elastic:{In:function(n){var t,r=.1,i=.4;return 0===n?0:1===n?1:(!r||1>r?(r=1,t=i/4):t=i*Math.asin(1/r)/(2*Math.PI),-(r*Math.pow(2,10*(n-=1))*Math.sin(2*(n-t)*Math.PI/i)))},Out:function(n){var t,r=.1,i=.4;return 0===n?0:1===n?1:(!r||1>r?(r=1,t=i/4):t=i*Math.asin(1/r)/(2*Math.PI),r*Math.pow(2,-10*n)*Math.sin(2*(n-t)*Math.PI/i)+1)},InOut:function(n){var t,r=.1,i=.4;return 0===n?0:1===n?1:(!r||1>r?(r=1,t=i/4):t=i*Math.asin(1/r)/(2*Math.PI),(n*=2)<1?-.5*r*Math.pow(2,10*(n-=1))*Math.sin(2*(n-t)*Math.PI/i):r*Math.pow(2,-10*(n-=1))*Math.sin(2*(n-t)*Math.PI/i)*.5+1)}},Back:{In:function(n){var t=1.70158;return n*n*((t+1)*n-t)},Out:function(n){var t=1.70158;return--n*n*((t+1)*n+t)+1},InOut:function(n){var t=2.5949095;return(n*=2)<1?.5*n*n*((t+1)*n-t):.5*((n-=2)*n*((t+1)*n+t)+2)}},Bounce:{In:function(n){return 1-TWEEN.Easing.Bounce.Out(1-n)},Out:function(n){return 1/2.75>n?7.5625*n*n:2/2.75>n?7.5625*(n-=1.5/2.75)*n+.75:2.5/2.75>n?7.5625*(n-=2.25/2.75)*n+.9375:7.5625*(n-=2.625/2.75)*n+.984375},InOut:function(n){return.5>n?.5*TWEEN.Easing.Bounce.In(2*n):.5*TWEEN.Easing.Bounce.Out(2*n-1)+.5}}},TWEEN.Interpolation={Linear:function(n,t){var r=n.length-1,i=r*t,u=Math.floor(i),o=TWEEN.Interpolation.Utils.Linear;return 0>t?o(n[0],n[1],i):t>1?o(n[r],n[r-1],r-i):o(n[u],n[u+1>r?r:u+1],i-u)},Bezier:function(n,t){var r,i=0,u=n.length-1,o=Math.pow,e=TWEEN.Interpolation.Utils.Bernstein;for(r=0;u>=r;r++)i+=o(1-t,u-r)*o(t,r)*n[r]*e(u,r);return i},CatmullRom:function(n,t){var r=n.length-1,i=r*t,u=Math.floor(i),o=TWEEN.Interpolation.Utils.CatmullRom;return n[0]===n[r]?(0>t&&(u=Math.floor(i=r*(1+t))),o(n[(u-1+r)%r],n[u],n[(u+1)%r],n[(u+2)%r],i-u)):0>t?n[0]-(o(n[0],n[0],n[1],n[1],-i)-n[0]):t>1?n[r]-(o(n[r],n[r],n[r-1],n[r-1],i-r)-n[r]):o(n[u?u-1:0],n[u],n[u+1>r?r:u+1],n[u+2>r?r:u+2],i-u)},Utils:{Linear:function(n,t,r){return(t-n)*r+n},Bernstein:function(n,t){var r=TWEEN.Interpolation.Utils.Factorial;return r(n)/r(t)/r(n-t)},Factorial:function(){var n=[1];return function(t){var r,i=1;if(n[t])return n[t];for(r=t;r>1;r--)i*=r;return n[t]=i}}(),CatmullRom:function(n,t,r,i,u){var o=.5*(r-n),e=.5*(i-t),a=u*u,f=u*a;return(2*t-2*r+o+e)*f+(-3*t+3*r-2*o-e)*a+o*u+t}}},"undefined"!=typeof module&&module.exports&&(module.exports=TWEEN);
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4421,10 +4425,10 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(28),  __webpack_require__(24)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(32),  __webpack_require__(28)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader){
 
 		var ColorShader = {
 
@@ -4444,17 +4448,17 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "uniform sampler2D tDiffuse;\n\nvarying vec2 vUv;\n\nconst vec4 black = vec4(0.0, 0.0, 0.0, 1.0);\nconst vec4 white = vec4(1.0, 1.0, 1.0, 1.0);\n\nvoid main() {\n\tvec4 color = texture2D(tDiffuse, vUv);\n\tif (!all(equal(color, black))){\n\t\tgl_FragColor = white - color;\n\t} else {\n\t\tgl_FragColor = white;\n\t}\n}"
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3), __webpack_require__(10), __webpack_require__(30), 
-		__webpack_require__(31), __webpack_require__(12), __webpack_require__(32)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Transport, Mediator, Note, TERP, Config, Scroll){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3), __webpack_require__(14), __webpack_require__(34), 
+		__webpack_require__(35), __webpack_require__(16), __webpack_require__(36)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Transport, Mediator, Note, TERP, Config, Scroll){
 
 		Transport.loop = true;
 
@@ -4965,7 +4969,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
@@ -5285,7 +5289,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
@@ -5475,10 +5479,10 @@ webpackJsonp([1],[
 	}));
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10), __webpack_require__(12), __webpack_require__(14), __webpack_require__(31), __webpack_require__(33), __webpack_require__(34), __webpack_require__(1), __webpack_require__(15)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, Config, Window, TERP, mousewheel, GUI, $, mainStyle){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14), __webpack_require__(16), __webpack_require__(18), __webpack_require__(35), __webpack_require__(37), __webpack_require__(38), __webpack_require__(1), __webpack_require__(19)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, Config, Window, TERP, mousewheel, GUI, $, mainStyle){
 
 		/**
 		 *  the total distance traveled by scrolling
@@ -5552,11 +5556,13 @@ webpackJsonp([1],[
 			if (started){
 				scrollTop = lastPosition - x;
 			}
-			clearTimeout(lastTouchedTimeout);
-			//restart if not touched in the last 20 seconds
-			lastTouchedTimeout = setTimeout(function(){
-				window.location.reload();
-			}, 60000);
+			if (Config.INSTALLATION){
+				clearTimeout(lastTouchedTimeout);
+				//restart if not touched in the last 60 seconds
+				lastTouchedTimeout = setTimeout(function(){
+					window.location.reload();
+				}, 60000);
+			}
 		});
 
 		$(window).on("keydown", function(e){
@@ -5693,7 +5699,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
@@ -5900,12 +5906,12 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(35), __webpack_require__(6), __webpack_require__(4), __webpack_require__(36), 
-		__webpack_require__(39), __webpack_require__(42), __webpack_require__(43), 
-		__webpack_require__(44), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(dat, Signal, Tone, Oscillator, OmniOscillator, Noise, Filter, PolySynth, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(39), __webpack_require__(7), __webpack_require__(4), __webpack_require__(40), 
+		__webpack_require__(43), __webpack_require__(46), __webpack_require__(47), 
+		__webpack_require__(48), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(dat, Signal, Tone, Oscillator, OmniOscillator, Noise, Filter, PolySynth, Config){
 
 		var GUI;
 		if (Config.GUI){
@@ -6063,7 +6069,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9808,10 +9814,10 @@ webpackJsonp([1],[
 	module.exports = dat;
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6), __webpack_require__(37), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(41), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -10079,10 +10085,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(3), __webpack_require__(38)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(3), __webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -10296,10 +10302,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -10458,11 +10464,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 39 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(37), __webpack_require__(36), 
-		__webpack_require__(40), __webpack_require__(41)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(41), __webpack_require__(40), 
+		__webpack_require__(44), __webpack_require__(45)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -10696,10 +10702,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 40 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(37), __webpack_require__(36), __webpack_require__(6), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(41), __webpack_require__(40), __webpack_require__(7), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -10874,10 +10880,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 41 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(37), __webpack_require__(40), __webpack_require__(36), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(41), __webpack_require__(44), __webpack_require__(40), __webpack_require__(13)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -11039,10 +11045,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 42 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(37)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(41)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -11267,10 +11273,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 43 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -11462,10 +11468,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 44 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(45), __webpack_require__(37)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(49), __webpack_require__(41)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -11685,11 +11691,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 45 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(46), __webpack_require__(49), 
-		__webpack_require__(39), __webpack_require__(6), __webpack_require__(43), __webpack_require__(52)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(50), __webpack_require__(53), 
+		__webpack_require__(43), __webpack_require__(7), __webpack_require__(47), __webpack_require__(56)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -11853,10 +11859,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 46 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(47)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(51)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -11908,10 +11914,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 47 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6), __webpack_require__(48)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(52)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -12305,10 +12311,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 48 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -12386,10 +12392,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 49 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(47), __webpack_require__(50)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(51), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -12513,10 +12519,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 50 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(51), __webpack_require__(9), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(55), __webpack_require__(13), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -12630,10 +12636,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 51 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -12699,10 +12705,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 52 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(53), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(57), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -12817,10 +12823,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 53 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(38), __webpack_require__(30)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(42), __webpack_require__(34)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -12916,7 +12922,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 54 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// threejs.org/license
@@ -13757,10 +13763,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 55 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var THREE = __webpack_require__(54);
+	var THREE = __webpack_require__(58);
 	THREE.CopyShader={uniforms:{tDiffuse:{type:"t",value:null},opacity:{type:"f",value:1}},vertexShader:"varying vec2 vUv;\nvoid main() {\nvUv = uv;\ngl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}",fragmentShader:"uniform float opacity;\nuniform sampler2D tDiffuse;\nvarying vec2 vUv;\nvoid main() {\nvec4 texel = texture2D( tDiffuse, vUv );\ngl_FragColor = opacity * texel;\n}"};THREE.EffectComposer=function(a,c){this.renderer=a;if(void 0===c){var d=a.getPixelRatio();c=new THREE.WebGLRenderTarget(Math.floor(a.context.canvas.width/d)||1,Math.floor(a.context.canvas.height/d)||1,{minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,format:THREE.RGBFormat,stencilBuffer:!1})}this.renderTarget1=c;this.renderTarget2=c.clone();this.writeBuffer=this.renderTarget1;this.readBuffer=this.renderTarget2;this.passes=[];void 0===THREE.CopyShader&&console.error("THREE.EffectComposer relies on THREE.CopyShader");
 	this.copyPass=new THREE.ShaderPass(THREE.CopyShader)};
 	THREE.EffectComposer.prototype={swapBuffers:function(){var a=this.readBuffer;this.readBuffer=this.writeBuffer;this.writeBuffer=a},addPass:function(a){this.passes.push(a)},insertPass:function(a,c){this.passes.splice(c,0,a)},render:function(a){this.writeBuffer=this.renderTarget1;this.readBuffer=this.renderTarget2;var c=!1,d,b,e=this.passes.length;for(b=0;b<e;b++)if(d=this.passes[b],d.enabled){d.render(this.renderer,this.writeBuffer,this.readBuffer,a,c);if(d.needsSwap){if(c){var f=this.renderer.context;
@@ -13772,10 +13778,10 @@ webpackJsonp([1],[
 	THREE.ShaderPass.prototype={render:function(a,c,d,b){this.uniforms[this.textureID]&&(this.uniforms[this.textureID].value=d);this.quad.material=this.material;this.renderToScreen?a.render(this.scene,this.camera):a.render(this.scene,this.camera,c,this.clear)}};
 
 /***/ },
-/* 56 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -13803,10 +13809,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 57 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(31), __webpack_require__(10), __webpack_require__(29), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(TERP, Mediator, Conductor, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(35), __webpack_require__(14), __webpack_require__(33), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(TERP, Mediator, Conductor, Config){
 
 		"use strict";
 
@@ -13954,10 +13960,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 58 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(35), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(dat, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(39), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(dat, Config){
 
 		var VISUALS;
 		if (Config.GUI){
@@ -14037,10 +14043,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 59 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(60), __webpack_require__(29), __webpack_require__(54), __webpack_require__(25)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, BassPreset, Conductor, THREE, TWEEN){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(64), __webpack_require__(33), __webpack_require__(58), __webpack_require__(29)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, BassPreset, Conductor, THREE, TWEEN){
 
 		"use strict";
 
@@ -14140,10 +14146,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 60 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -14187,12 +14193,12 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 61 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(31), __webpack_require__(10), 
-		__webpack_require__(25), __webpack_require__(12), __webpack_require__(32), __webpack_require__(62), 
-		__webpack_require__(14), __webpack_require__(29), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, TERP, Mediator, TWEEN, Config, Scroll, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(35), __webpack_require__(14), 
+		__webpack_require__(29), __webpack_require__(16), __webpack_require__(36), __webpack_require__(66), 
+		__webpack_require__(18), __webpack_require__(33), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, TERP, Mediator, TWEEN, Config, Scroll, 
 			PictureFramePreset, Window, Conductor, THREE){
 
 		"use strict";
@@ -14469,10 +14475,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));			
 
 /***/ },
-/* 62 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -14516,11 +14522,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 63 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10), __webpack_require__(21), __webpack_require__(14), 
-		__webpack_require__(31), __webpack_require__(64), __webpack_require__(29), __webpack_require__(12), __webpack_require__(54), __webpack_require__(25)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, Context, Window, TERP, Preset, Conductor, Config, THREE, TWEEN){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14), __webpack_require__(25), __webpack_require__(18), 
+		__webpack_require__(35), __webpack_require__(68), __webpack_require__(33), __webpack_require__(16), __webpack_require__(58), __webpack_require__(29)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, Context, Window, TERP, Preset, Conductor, Config, THREE, TWEEN){
 
 		"use strict";
 
@@ -14668,10 +14674,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 64 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -14712,11 +14718,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 65 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(66), 
-		__webpack_require__(25), __webpack_require__(14), __webpack_require__(69), __webpack_require__(29), __webpack_require__(12), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, KickMaterial, TWEEN, Window, Preset, Conductor, Config, THREE){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(70), 
+		__webpack_require__(29), __webpack_require__(18), __webpack_require__(73), __webpack_require__(33), __webpack_require__(16), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, KickMaterial, TWEEN, Window, Preset, Conductor, Config, THREE){
 
 		"use strict";
 
@@ -14837,10 +14843,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 66 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(67),  __webpack_require__(68), __webpack_require__(21), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader, Context, THREE){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(71),  __webpack_require__(72), __webpack_require__(25), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader, Context, THREE){
 
 		return new THREE.ShaderMaterial({
 
@@ -14867,22 +14873,22 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 67 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "uniform vec3 color;\n\nvoid main() {\n\tgl_FragColor = vec4(color, 1.0);\n}"
 
 /***/ },
-/* 68 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "uniform lowp float amplitude;\nuniform lowp float time;\n\nvoid main() {\n\tvec3 squiggle = vec3(position.x + sin(position.y * 9.0 + time) * amplitude, position.y, position.z);\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(squiggle, 1.0 );\n}"
 
 /***/ },
-/* 69 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -14906,11 +14912,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 70 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(71), 
-		__webpack_require__(25), __webpack_require__(14), __webpack_require__(73), __webpack_require__(29), __webpack_require__(12), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor, Config, THREE){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(75), 
+		__webpack_require__(29), __webpack_require__(18), __webpack_require__(77), __webpack_require__(33), __webpack_require__(16), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, SnareMaterial, TWEEN, Window, Preset, Conductor, Config, THREE){
 
 		"use strict";
 
@@ -15021,10 +15027,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 71 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(67),  __webpack_require__(72), __webpack_require__(21), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader, Context, THREE){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(71),  __webpack_require__(76), __webpack_require__(25), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(fragShader, vertShader, Context, THREE){
 
 		return new THREE.ShaderMaterial({
 
@@ -15051,16 +15057,16 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 72 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "uniform lowp float amplitude;\nuniform lowp float time;\n\n\nvoid main() {\n\tvec3 squiggle = position;\n\tfloat sinAmp = sin(time) * amplitude;\n\tif (mod(position.y, 0.0625) == 0.0){\n\t\tsquiggle.x += sinAmp;\n\t} else {\n\t\tsquiggle.x -= sinAmp;\n\t}\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(squiggle, 1.0 );\n}"
 
 /***/ },
-/* 73 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -15086,10 +15092,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 74 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(75), __webpack_require__(29), __webpack_require__(54), __webpack_require__(25)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, VoicePreset, Conductor, THREE, TWEEN){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(79), __webpack_require__(33), __webpack_require__(58), __webpack_require__(29)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, VoicePreset, Conductor, THREE, TWEEN){
 
 		"use strict";
 
@@ -15178,10 +15184,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 75 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -15216,11 +15222,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 76 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(14), 
-		__webpack_require__(31), __webpack_require__(77), __webpack_require__(29), __webpack_require__(54), __webpack_require__(25)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Window, TERP, Preset, Conductor, THREE, TWEEN){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(18), 
+		__webpack_require__(35), __webpack_require__(81), __webpack_require__(33), __webpack_require__(58), __webpack_require__(29)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Window, TERP, Preset, Conductor, THREE, TWEEN){
 
 		"use strict";
 
@@ -15316,10 +15322,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 77 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -15354,11 +15360,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 78 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21),__webpack_require__(10), __webpack_require__(12), 
-		__webpack_require__(14), __webpack_require__(62), __webpack_require__(25), __webpack_require__(54), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Config, Window, PicturePreset, TWEEN, THREE, $){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25),__webpack_require__(14), __webpack_require__(16), 
+		__webpack_require__(18), __webpack_require__(66), __webpack_require__(29), __webpack_require__(58), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Config, Window, PicturePreset, TWEEN, THREE, $){
 
 		"use strict";
 
@@ -15503,12 +15509,12 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));			
 
 /***/ },
-/* 79 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(21), __webpack_require__(10), __webpack_require__(12), 
-		__webpack_require__(14), __webpack_require__(29), __webpack_require__(32), 
-		__webpack_require__(31), __webpack_require__(25), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Config, Window, Conductor, Scroll, TERP, TWEEN, THREE){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(25), __webpack_require__(14), __webpack_require__(16), 
+		__webpack_require__(18), __webpack_require__(33), __webpack_require__(36), 
+		__webpack_require__(35), __webpack_require__(29), __webpack_require__(58)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Context, Mediator, Config, Window, Conductor, Scroll, TERP, TWEEN, THREE){
 
 		"use strict";
 
@@ -15701,18 +15707,18 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));			
 
 /***/ },
-/* 80 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(81), __webpack_require__(106), __webpack_require__(119), __webpack_require__(138), __webpack_require__(148)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bass, Piano, Voice, Drums, Arp){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(85), __webpack_require__(110), __webpack_require__(123), __webpack_require__(142), __webpack_require__(152)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bass, Piano, Voice, Drums, Arp){
 		
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 81 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(82), __webpack_require__(29), __webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bass, Conductor, Mediator){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(86), __webpack_require__(33), __webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bass, Conductor, Mediator){
 
 		var bassSynth = [
 
@@ -15778,12 +15784,12 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 82 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(45), __webpack_require__(38), __webpack_require__(43), 
-		__webpack_require__(84), __webpack_require__(86), __webpack_require__(29), __webpack_require__(34), __webpack_require__(83), 
-		__webpack_require__(87), __webpack_require__(89), __webpack_require__(36), __webpack_require__(10), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(MonoSynth, Master, Filter, PresetA, PresetB, Conductor, GUI, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(49), __webpack_require__(42), __webpack_require__(47), 
+		__webpack_require__(88), __webpack_require__(90), __webpack_require__(33), __webpack_require__(38), __webpack_require__(87), 
+		__webpack_require__(91), __webpack_require__(93), __webpack_require__(40), __webpack_require__(14), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(MonoSynth, Master, Filter, PresetA, PresetB, Conductor, GUI, 
 		Compressor, LFO, Expr, Oscillator, Mediator, Config){
 
 		var filter = new Filter({
@@ -15879,10 +15885,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 83 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -15989,10 +15995,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 84 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(82), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(86), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
 
 		return new Interpolator(
 		[
@@ -16044,10 +16050,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 85 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(35), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(dat, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(39), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(dat, Config){
 
 		var PRESETS;
 		if (Config.GUI){
@@ -16115,10 +16121,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 86 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(82), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(86), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
 
 		return new Interpolator(
 		[
@@ -16170,10 +16176,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 87 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(36), __webpack_require__(50), __webpack_require__(6), __webpack_require__(88)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(40), __webpack_require__(54), __webpack_require__(7), __webpack_require__(92)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -16457,10 +16463,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 88 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -16501,14 +16507,14 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 89 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(51), __webpack_require__(93), __webpack_require__(9), 
-		__webpack_require__(95), __webpack_require__(97), __webpack_require__(98), __webpack_require__(99), 
-		__webpack_require__(100), __webpack_require__(101), __webpack_require__(90), __webpack_require__(91), 
-		__webpack_require__(92), __webpack_require__(102), __webpack_require__(94), __webpack_require__(103), 
-		__webpack_require__(104), __webpack_require__(105), __webpack_require__(48)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(55), __webpack_require__(97), __webpack_require__(13), 
+		__webpack_require__(99), __webpack_require__(101), __webpack_require__(102), __webpack_require__(103), 
+		__webpack_require__(104), __webpack_require__(105), __webpack_require__(94), __webpack_require__(95), 
+		__webpack_require__(96), __webpack_require__(106), __webpack_require__(98), __webpack_require__(107), 
+		__webpack_require__(108), __webpack_require__(109), __webpack_require__(52)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17007,10 +17013,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 90 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(91), __webpack_require__(93), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(95), __webpack_require__(97), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17082,10 +17088,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 91 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6), __webpack_require__(92), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(96), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17153,10 +17159,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 92 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6), __webpack_require__(9), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(13), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17217,10 +17223,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 93 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(51), __webpack_require__(94), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(55), __webpack_require__(98), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17295,10 +17301,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 94 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(9), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(13), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17338,10 +17344,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 95 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(96), __webpack_require__(90)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(100), __webpack_require__(94)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17399,10 +17405,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 96 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(90), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(94), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17526,10 +17532,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 97 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(92)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(96)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17591,10 +17597,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 98 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(90)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(94)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17647,10 +17653,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 99 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(91)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(95)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17673,10 +17679,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 100 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(92), __webpack_require__(93), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(96), __webpack_require__(97), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17734,10 +17740,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 101 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(100), __webpack_require__(94), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(104), __webpack_require__(98), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17816,10 +17822,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 102 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(96), __webpack_require__(94), __webpack_require__(101), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(100), __webpack_require__(98), __webpack_require__(105), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17885,10 +17891,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 103 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(100), __webpack_require__(95), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(104), __webpack_require__(99), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -17966,10 +17972,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 104 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(101), __webpack_require__(95), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(105), __webpack_require__(99), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -18046,10 +18052,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 105 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(9), __webpack_require__(93)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8), __webpack_require__(13), __webpack_require__(97)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -18156,10 +18162,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 106 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(107), __webpack_require__(29), __webpack_require__(10), __webpack_require__(30), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Piano, Conductor, Mediator, Note, Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(111), __webpack_require__(33), __webpack_require__(14), __webpack_require__(34), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Piano, Conductor, Mediator, Note, Tone){
 
 		var pianoNotes = [
 			["0:0", "4n + 8n"], ["0:2", "4n + 8n"],
@@ -18223,13 +18229,13 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 107 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(45), __webpack_require__(38), __webpack_require__(44), 
-		__webpack_require__(108), __webpack_require__(114), __webpack_require__(115), __webpack_require__(87), __webpack_require__(34), 
-		__webpack_require__(6), __webpack_require__(10), __webpack_require__(29), __webpack_require__(12), __webpack_require__(116), 
-		__webpack_require__(117), __webpack_require__(118), __webpack_require__(43), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signal, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(49), __webpack_require__(42), __webpack_require__(48), 
+		__webpack_require__(112), __webpack_require__(118), __webpack_require__(119), __webpack_require__(91), __webpack_require__(38), 
+		__webpack_require__(7), __webpack_require__(14), __webpack_require__(33), __webpack_require__(16), __webpack_require__(120), 
+		__webpack_require__(121), __webpack_require__(122), __webpack_require__(47), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signal, 
 		Mediator, Conductor, Config, Volume, Meter, Bus, Filter, Tone){
 
 		"use strict";
@@ -18317,10 +18323,10 @@ webpackJsonp([1],[
 					"release" : "4n"
 				}
 			});
-			monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"], 0, 0.8);
+			monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"], "+0.05", 0.8);
 			vibratoParams = pre.vibrato;
-			vibrato.amplitude.setValueAtTime(0, 0);
-			vibrato.amplitude.linearRampToValueAtTime(vibratoParams.amount, vibratoParams.amount);
+			vibrato.amplitude.setValueAtTime(0, "+0.05");
+			vibrato.amplitude.linearRampToValueAtTime(vibratoParams.amount, "+0.2");
 		});
 
 		Mediator.route("firstScroll", function(){
@@ -18362,11 +18368,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 108 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(109), __webpack_require__(111), 
-		__webpack_require__(112), __webpack_require__(6), __webpack_require__(113)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(113), __webpack_require__(115), 
+		__webpack_require__(116), __webpack_require__(7), __webpack_require__(117)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -18492,10 +18498,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 109 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6), __webpack_require__(89), __webpack_require__(110)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(93), __webpack_require__(114)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -18606,10 +18612,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 110 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -18654,7 +18660,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 111 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
@@ -18729,7 +18735,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 112 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
@@ -18795,10 +18801,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 113 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(8), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -18839,10 +18845,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 114 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator([
 			{
@@ -18921,10 +18927,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 115 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -18982,10 +18988,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 116 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(6), __webpack_require__(38)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(7), __webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -19037,10 +19043,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 117 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(38)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -19226,7 +19232,7 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 118 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
@@ -19293,10 +19299,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 119 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(120), __webpack_require__(29)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Voice, Conductor){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(124), __webpack_require__(33)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Voice, Conductor){
 
 		var voiceScore = [
 
@@ -19342,14 +19348,14 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 120 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(121), __webpack_require__(10),
-	 __webpack_require__(123), __webpack_require__(29), __webpack_require__(38), 
-	 __webpack_require__(124), __webpack_require__(34), __webpack_require__(44), 
-	 __webpack_require__(6), __webpack_require__(116), __webpack_require__(12), 
-	 __webpack_require__(3), __webpack_require__(31), __webpack_require__(137), __webpack_require__(43), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Sampler, Mediator, Preset, Conductor, Master, Effects, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(125), __webpack_require__(14),
+	 __webpack_require__(127), __webpack_require__(33), __webpack_require__(42), 
+	 __webpack_require__(128), __webpack_require__(38), __webpack_require__(48), 
+	 __webpack_require__(7), __webpack_require__(120), __webpack_require__(16), 
+	 __webpack_require__(3), __webpack_require__(35), __webpack_require__(141), __webpack_require__(47), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Sampler, Mediator, Preset, Conductor, Master, Effects, 
 		GUI, PolySynth, Signal, Volume, Config, Transport, TERP, PresetB, Filter, Tone){
 
 		var audioFolder = "./audio/";
@@ -19629,11 +19635,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 121 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(122), __webpack_require__(46), __webpack_require__(49),
-		__webpack_require__(43), __webpack_require__(53)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(126), __webpack_require__(50), __webpack_require__(53),
+		__webpack_require__(47), __webpack_require__(57)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -19926,10 +19932,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 122 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(13), __webpack_require__(37)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(17), __webpack_require__(41)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -20278,10 +20284,10 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 123 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -20358,11 +20364,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 124 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(125), __webpack_require__(118), __webpack_require__(34), 
-		__webpack_require__(127), __webpack_require__(12), __webpack_require__(132), __webpack_require__(136), __webpack_require__(43), __webpack_require__(38)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Reverb, Bus, GUI, Delay, Config, MasterEffects, Drums, Filter, Master){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(129), __webpack_require__(122), __webpack_require__(38), 
+		__webpack_require__(131), __webpack_require__(16), __webpack_require__(136), __webpack_require__(140), __webpack_require__(47), __webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Reverb, Bus, GUI, Delay, Config, MasterEffects, Drums, Filter, Master){
 
 		//reverb
 		if (!Config.MOBILE){
@@ -20386,10 +20392,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 125 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(13), __webpack_require__(126)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(17), __webpack_require__(130)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -20504,10 +20510,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 126 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(109)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(113)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -20607,11 +20613,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 127 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(118), __webpack_require__(34), __webpack_require__(128), __webpack_require__(3), 
-		__webpack_require__(10), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bus, GUI, PingPongDelay, Transport, Mediator, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(122), __webpack_require__(38), __webpack_require__(132), __webpack_require__(3), 
+		__webpack_require__(14), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bus, GUI, PingPongDelay, Transport, Mediator, Config){
 
 	/*	if (!Config.MOBILE){
 			var delayTime = "16n";
@@ -20630,10 +20636,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 128 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(129), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(133), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -20732,10 +20738,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 129 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(130), __webpack_require__(131)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(134), __webpack_require__(135)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -20803,11 +20809,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 130 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(126), __webpack_require__(112), 
-		__webpack_require__(111), __webpack_require__(109)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(130), __webpack_require__(116), 
+		__webpack_require__(115), __webpack_require__(113)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -20916,10 +20922,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 131 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(126), __webpack_require__(6), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(130), __webpack_require__(7), __webpack_require__(13)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 		
@@ -20988,12 +20994,12 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 132 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(38), __webpack_require__(12), __webpack_require__(43), __webpack_require__(10), 
-		__webpack_require__(83), __webpack_require__(34), __webpack_require__(31), __webpack_require__(29) ,__webpack_require__(133), 
-		__webpack_require__(87), __webpack_require__(135)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Master, Config, Filter, Mediator, Compressor, GUI, TERP, Conductor, EQ3, LFO, Distortion){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(42), __webpack_require__(16), __webpack_require__(47), __webpack_require__(14), 
+		__webpack_require__(87), __webpack_require__(38), __webpack_require__(35), __webpack_require__(33) ,__webpack_require__(137), 
+		__webpack_require__(91), __webpack_require__(139)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Master, Config, Filter, Mediator, Compressor, GUI, TERP, Conductor, EQ3, LFO, Distortion){
 
 		if (!Config.MOBILE){
 			var compressor = new Compressor({
@@ -21075,10 +21081,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 133 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(134), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(138), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -21234,10 +21240,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 134 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(43), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(47), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -21370,10 +21376,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 135 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(126), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(130), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -21482,11 +21488,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 136 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(118), __webpack_require__(34), __webpack_require__(83), 
-		__webpack_require__(10), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bus, GUI, Compressor, Mediator, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(122), __webpack_require__(38), __webpack_require__(87), 
+		__webpack_require__(14), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bus, GUI, Compressor, Mediator, Config){
 
 		var comp = new Compressor({
 			"attack": 0.29,
@@ -21503,10 +21509,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 137 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -21552,11 +21558,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 138 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(139), __webpack_require__(29), __webpack_require__(10), 
-		__webpack_require__(144), __webpack_require__(146), __webpack_require__(31), __webpack_require__(30), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(HighHat, Conductor, Mediator, Kick, Snare, TERP, Note, Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(143), __webpack_require__(33), __webpack_require__(14), 
+		__webpack_require__(148), __webpack_require__(150), __webpack_require__(35), __webpack_require__(34), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(HighHat, Conductor, Mediator, Kick, Snare, TERP, Note, Tone){
 
 		//generate highhat patterns
 		var highhat = [];
@@ -21747,13 +21753,13 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 139 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(140), __webpack_require__(142), 
-		__webpack_require__(29), __webpack_require__(38), __webpack_require__(3), 
-	 __webpack_require__(43), __webpack_require__(141), __webpack_require__(34), 
-	 __webpack_require__(31), __webpack_require__(6), __webpack_require__(108), __webpack_require__(143), __webpack_require__(12), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(NoiseSynth, Preset, Conductor, Master, Transport, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(144), __webpack_require__(146), 
+		__webpack_require__(33), __webpack_require__(42), __webpack_require__(3), 
+	 __webpack_require__(47), __webpack_require__(145), __webpack_require__(38), 
+	 __webpack_require__(35), __webpack_require__(7), __webpack_require__(112), __webpack_require__(147), __webpack_require__(16), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(NoiseSynth, Preset, Conductor, Master, Transport, 
 		Filter, PanVol, GUI, TERP, Signal, Panner, Mono, Config, Tone){
 
 		var synth = new NoiseSynth({
@@ -21825,11 +21831,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 140 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(46), __webpack_require__(49), 
-		__webpack_require__(42), __webpack_require__(6), __webpack_require__(43), __webpack_require__(53)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(50), __webpack_require__(53), 
+		__webpack_require__(46), __webpack_require__(7), __webpack_require__(47), __webpack_require__(57)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -21984,10 +21990,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 141 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(108), __webpack_require__(116)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(112), __webpack_require__(120)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -22061,10 +22067,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 142 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator([
 			{
@@ -22097,10 +22103,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 143 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(111)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(115)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Tone){
 
 		"use strict";
 
@@ -22145,13 +22151,13 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 144 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(36), __webpack_require__(10),
-	 __webpack_require__(145), __webpack_require__(29), __webpack_require__(38), __webpack_require__(83), 
-	 __webpack_require__(34), __webpack_require__(43), __webpack_require__(46),
-	  __webpack_require__(49), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filter,
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(40), __webpack_require__(14),
+	 __webpack_require__(149), __webpack_require__(33), __webpack_require__(42), __webpack_require__(87), 
+	 __webpack_require__(38), __webpack_require__(47), __webpack_require__(50),
+	  __webpack_require__(53), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Oscillator, Mediator, Preset, Conductor, Master, Compressor, GUI, Filter,
 	 AmplitudeEnvelope, ScaledEnvelope, Config){
 
 		var filter = new Filter({
@@ -22215,10 +22221,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 145 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator([
 			{
@@ -22235,12 +22241,12 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 146 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(42), __webpack_require__(38), __webpack_require__(43), 
-		__webpack_require__(46), __webpack_require__(34), __webpack_require__(147), 
-		__webpack_require__(83), __webpack_require__(6), __webpack_require__(12), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Noise, Master, Filter, AmplitudeEnvelope, GUI, Preset, 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(46), __webpack_require__(42), __webpack_require__(47), 
+		__webpack_require__(50), __webpack_require__(38), __webpack_require__(151), 
+		__webpack_require__(87), __webpack_require__(7), __webpack_require__(16), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Noise, Master, Filter, AmplitudeEnvelope, GUI, Preset, 
 			Compressor, Signal, Config, Tone){
 
 		var noise = new Noise({
@@ -22311,10 +22317,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 147 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, GUI){
 
 		return new Interpolator(
 		[
@@ -22334,10 +22340,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 148 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(149), __webpack_require__(29), __webpack_require__(10), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Arp, Conductor, Mediator, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(153), __webpack_require__(33), __webpack_require__(14), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Arp, Conductor, Mediator, Config){
 
 		var arpSynth = [];
 
@@ -22411,11 +22417,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 149 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(45), __webpack_require__(38), __webpack_require__(34), __webpack_require__(150), __webpack_require__(151), 
-		__webpack_require__(6), __webpack_require__(12), __webpack_require__(29), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor, Tone){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(49), __webpack_require__(42), __webpack_require__(38), __webpack_require__(154), __webpack_require__(155), 
+		__webpack_require__(7), __webpack_require__(16), __webpack_require__(33), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function(MonoSynth, Master, GUI, PresetA, PresetB, Signal, Config, Conductor, Tone){
 
 		var monoSynth, volume;
 		if (!Config.MOBILE){
@@ -22478,10 +22484,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 150 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(82), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(86), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
 
 		return new Interpolator(
 			[
@@ -22541,10 +22547,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 151 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(82), __webpack_require__(85)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61), __webpack_require__(86), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Interpolator, Bass, GUI){
 
 		return new Interpolator(
 			[
@@ -22604,21 +22610,21 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 152 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(153), __webpack_require__(156), __webpack_require__(159), 
-		__webpack_require__(162), __webpack_require__(163), __webpack_require__(171), __webpack_require__(174)], __WEBPACK_AMD_DEFINE_RESULT__ = function(ScrollIndicator, Loading, Splash, Password, Notification, Info, HD){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(157), __webpack_require__(160), __webpack_require__(163), 
+		__webpack_require__(166), __webpack_require__(167), __webpack_require__(175), __webpack_require__(178)], __WEBPACK_AMD_DEFINE_RESULT__ = function(ScrollIndicator, Loading, Splash, Password, Notification, Info, HD){
 
 		
 		
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 153 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10), __webpack_require__(31), __webpack_require__(14), __webpack_require__(1), __webpack_require__(32), __webpack_require__(12), __webpack_require__(154)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, TERP, Window, $, Scroll, Config, scrollStyle){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14), __webpack_require__(35), __webpack_require__(18), __webpack_require__(1), __webpack_require__(36), __webpack_require__(16), __webpack_require__(158)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, TERP, Window, $, Scroll, Config, scrollStyle){
 
 		var scrollContainer = $("#ScrollContainer");
 		var scrollChannel = $("<div>", {"id" : "Channel"}).appendTo(scrollContainer);
@@ -22702,16 +22708,16 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 154 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(155);
+	var content = __webpack_require__(159);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22728,17 +22734,17 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 155 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(17)();
+	exports = module.exports = __webpack_require__(21)();
 	exports.push([module.id, "/**\n *  SCROLL STUFF\n */\n#ScrollContainer {\n  width: 100%;\n  position: absolute;\n  left: 0px;\n  top: 0px;\n  height: 100%;\n  /*z-index: 0;*/\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.6);\n  -webkit-transition: background-color 0.2s;\n          transition: background-color 0.2s; }\n  #ScrollContainer #InnerScroll {\n    height: 100%;\n    width: calc(100% + 20px);\n    overflow-y: scroll;\n    /*-webkit-overflow-scrolling: touch;*/ }\n    #ScrollContainer #InnerScroll #Scroller {\n      /*height: 100000px;*/\n      height: 100%;\n      width: 100%; }\n  #ScrollContainer #Channel {\n    width: 24px;\n    height: 100%;\n    position: absolute;\n    top: 0px;\n    right: 0;\n    background-color: #ff00d2;\n    /*border-left: 1px dotted black;*/ }\n    #ScrollContainer #Channel #IndicatorContainer {\n      cursor: pointer;\n      width: 20px;\n      height: 30px;\n      border-radius: 2px;\n      position: absolute;\n      /*top: calc(50% - 15px - 2px);*/\n      top: 0px;\n      right: 2px;\n      -webkit-transition: width 0.4s;\n              transition: width 0.4s; }\n      #ScrollContainer #Channel #IndicatorContainer #Indicator {\n        width: 20px;\n        height: 100%;\n        border-radius: 2px;\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        background-color: #ff00d2;\n        opacity: 0.8;\n        width: 100%; }\n      #ScrollContainer #Channel #IndicatorContainer #Bubble {\n        width: 20px;\n        height: 30px;\n        border-radius: 2px;\n        position: absolute;\n        top: 0px;\n        right: 0px;\n        background-color: #1040FF;\n        opacity: 1; }\n    #ScrollContainer #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer #Channel #IndicatorContainer:hover #Bubble {\n      background-color: white; }\n    #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer #Channel #IndicatorContainer.Dragging #Indicator #Bubble {\n      background-color: black; }\n  #ScrollContainer #Channel.Highlight {\n    background-color: white; }\n    #ScrollContainer #Channel.Highlight #IndicatorContainer #Bubble {\n      background-color: black; }\n\n#ScrollContainer.B #Channel {\n  background-color: black;\n  /*border-left: 1px dotted black;*/ }\n  #ScrollContainer.B #Channel #IndicatorContainer #Indicator, #ScrollContainer.B #Channel #IndicatorContainer #Bubble {\n    background-color: white; }\n  #ScrollContainer.B #Channel #IndicatorContainer:hover #Indicator, #ScrollContainer.B #Channel #IndicatorContainer:hover #Bubble {\n    background-color: #1040FF; }\n  #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Indicator, #ScrollContainer.B #Channel #IndicatorContainer.Dragging #Indicator #Bubble {\n    background-color: #ff00d2; }\n\n#ScrollContainer.B #Channel.Highlight #IndicatorContainer #Bubble {\n  background-color: white; }\n", ""]);
 
 /***/ },
-/* 156 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(13), __webpack_require__(157)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Buffer, loadingStyle){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(17), __webpack_require__(161)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Buffer, loadingStyle){
 
 		var loadingScreen = $("<div>").attr("id", "LoadingScreen").appendTo("body");
 		var loadingBar = $("<div>").attr("id", "LoadingBar").appendTo(loadingScreen);
@@ -22775,16 +22781,16 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 157 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(158);
+	var content = __webpack_require__(162);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22801,17 +22807,17 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 158 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(17)();
+	exports = module.exports = __webpack_require__(21)();
 	exports.push([module.id, "/**\n *  LOADING\n */\n#LoadingScreen {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: #1040FF;\n  z-index: 100; }\n  #LoadingScreen #LoadingBar {\n    -webkit-transform: translate(-50%, -50%);\n    -ms-transform: translate(-50%, -50%);\n        transform: translate(-50%, -50%);\n    width: 60%;\n    height: 70px;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    border: 4px solid white; }\n    #LoadingScreen #LoadingBar #Progress {\n      width: 20px;\n      height: 100%;\n      position: absolute;\n      left: 0px;\n      top: 0px;\n      background-color: white; }\n", ""]);
 
 /***/ },
-/* 159 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(12), __webpack_require__(160)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Config, splashStyle){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(16), __webpack_require__(164)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Config, splashStyle){
 
 		if (Config.SPLASH){
 
@@ -22866,16 +22872,16 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 160 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(161);
+	var content = __webpack_require__(165);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22892,17 +22898,17 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 161 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(17)();
+	exports = module.exports = __webpack_require__(21)();
 	exports.push([module.id, "/**\n *  SPLASH\n */\n#SplashBackground {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: white;\n  z-index: 1000;\n  opacity: 1; }\n  #SplashBackground .SplashPage {\n    position: absolute;\n    left: 0px;\n    top: 0px;\n    opacity: 0;\n    width: 100%;\n    height: 100%; }\n    #SplashBackground .SplashPage #Text {\n      color: white;\n      position: absolute;\n      font-family: \"Courier New\", monospace;\n      font-size: 36px;\n      text-align: center;\n      width: 80%;\n      left: 50%;\n      top: 50%;\n      height: auto;\n      -webkit-transform: translate(-50%, -50%);\n      -ms-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%); }\n      #SplashBackground .SplashPage #Text .arrow {\n        display: block; }\n    #SplashBackground .SplashPage #MobileDisclaimer {\n      font-size: 0.6em; }\n  #SplashBackground #First {\n    background-color: #ff00d2; }\n  #SplashBackground #Second {\n    background-color: #ff00d2; }\n\n/**\n *  PASSWORD SCREEN\n */\n#PassWordScreen {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100%;\n  background-color: black;\n  z-index: 1000; }\n  #PassWordScreen #Text {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 200px;\n    height: 60px;\n    font-family: sans-serif;\n    font-size: 24px;\n    -webkit-transform: translate(-50%, -50%);\n    -ms-transform: translate(-50%, -50%);\n        transform: translate(-50%, -50%); }\n\n#TransportPosition {\n  color: #aaaaaa;\n  position: absolute;\n  left: 10px;\n  bottom: 100px; }\n", ""]);
 
 /***/ },
-/* 162 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Config){
 
 		if (Config.PASSWORD){
 
@@ -22920,11 +22926,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 163 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(14), __webpack_require__(32), 
-		__webpack_require__(164), __webpack_require__(165), __webpack_require__(166), __webpack_require__(169), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Window, Scroll, Analytics, notificationHtml, buttonStyle, notificationStyle, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(18), __webpack_require__(36), 
+		__webpack_require__(168), __webpack_require__(169), __webpack_require__(170), __webpack_require__(173), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Window, Scroll, Analytics, notificationHtml, buttonStyle, notificationStyle, Config){
 
 		var scrollDirection = 0;
 
@@ -23126,10 +23132,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 164 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10), __webpack_require__(32), __webpack_require__(29), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, Scroll, Conductor, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14), __webpack_require__(36), __webpack_require__(33), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Mediator, Scroll, Conductor, Config){
 
 		(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -23206,22 +23212,22 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 165 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "<div id=\"NotificationButton\">\n\t<div id=\"Button\">\n\t\t<div id=\"Flag\"></div>\n\t</div>\n\n\t<div id=\"DropDown\">\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tkeep scrolling\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tsometimes up\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"Item\">\n\t\t\t<div id=\"Square\"></div>\n\t\t\t<div id=\"Text\">\n\t\t\t\tsometimes down\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>";
 
 /***/ },
-/* 166 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(167);
+	var content = __webpack_require__(171);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23238,29 +23244,29 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 167 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(17)();
-	exports.push([module.id, "#StartButton {\n  width: 250px;\n  height: 250px;\n  background-color: #1040FF;\n  position: absolute;\n  top: 50%;\n  right: 50%;\n  margin-right: -125px;\n  margin-top: -125px;\n  -webkit-transform-origin: 100% 0px;\n      -ms-transform-origin: 100% 0px;\n          transform-origin: 100% 0px;\n  border-radius: 18px;\n  cursor: pointer; }\n  #StartButton #Triangle {\n    opacity: 1;\n    width: 0;\n    height: 0;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    border-top: 75px solid transparent;\n    border-bottom: 75px solid transparent;\n    border-left: 112.5px solid white;\n    font-size: 150px; }\n  #StartButton .PauseBar {\n    opacity: 0;\n    position: absolute;\n    height: 150px;\n    width: 37.5px;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: white; }\n  #StartButton #Pause0 {\n    left: 33%; }\n  #StartButton #Pause1 {\n    left: 66%; }\n\n#StartButton.Playing #Triangle {\n  opacity: 0; }\n\n#StartButton.Playing .PauseBar {\n  opacity: 1; }\n\n#StartButton.Corner {\n  top: 4px;\n  right: 177.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton.Corner:hover {\n  background-color: white; }\n  #StartButton.Corner:hover #Triangle {\n    border-left-color: #1040FF; }\n  #StartButton.Corner:hover .PauseBar {\n    background-color: #1040FF; }\n\n#StartButton.Corner:hover:active {\n  background-color: black; }\n  #StartButton.Corner:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton.Corner:hover:active .PauseBar {\n    background-color: white; }\n\n#StartButton.MobileCorner {\n  top: 4px;\n  right: 132.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton:hover {\n  background-color: #ff00d2; }\n  #StartButton:hover #Triangle {\n    border-left-color: black; }\n  #StartButton:hover .PauseBar {\n    background-color: black; }\n\n#StartButton:hover:active {\n  background-color: black; }\n  #StartButton:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton:hover:active .PauseBar {\n    background-color: white; }\n\n/**\n *  INFO BUTTON\n */\n#InfoContainer {\n  overflow: hidden;\n  position: absolute;\n  top: 4px;\n  right: 65px;\n  background-color: #1040FF;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  color: white;\n  font-family: sans-serif;\n  font-size: 20px;\n  z-index: 101;\n  -webkit-transition: all 0.25s;\n          transition: all 0.25s; }\n  #InfoContainer #Credits {\n    font-family: monospace;\n    position: absolute;\n    top: 10%;\n    left: 10%;\n    width: 80%;\n    height: 80%;\n    opacity: 0;\n    text-align: left;\n    color: white;\n    -webkit-transition: opacity 0.25s;\n            transition: opacity 0.25s; }\n    #InfoContainer #Credits a {\n      font-weight: 900;\n      text-decoration: none;\n      color: white; }\n    #InfoContainer #Credits a:hover {\n      color: #ff00d2; }\n    #InfoContainer #Credits a:hover:active {\n      color: black; }\n  #InfoContainer #InfoButton {\n    width: 35px;\n    height: 35px;\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    z-index: 100;\n    cursor: pointer;\n    font-weight: lighter;\n    border-radius: 3px; }\n  #InfoContainer #InfoButton:hover {\n    background-color: white;\n    color: #1040FF; }\n  #InfoContainer #InfoButton:hover:active {\n    background-color: black;\n    color: white; }\n\n.Mobile #InfoContainer #Credits {\n  width: 90%;\n  height: 90%;\n  left: 5%;\n  top: 10px;\n  font-size: 12px; }\n\n#InfoContainer.Expanded {\n  width: calc(100% - 15px * 2);\n  height: calc(100% - 4px  - 15px);\n  right: 15px;\n  opacity: 0.85;\n  cursor: inherit; }\n  #InfoContainer.Expanded #Credits {\n    opacity: 1; }\n    #InfoContainer.Expanded #Credits .social {\n      position: relative;\n      margin-right: 10px;\n      height: 50px;\n      width: 50px;\n      font-size: 50px;\n      color: #ff00d2;\n      cursor: pointer;\n      text-align: left;\n      float: left; }\n    #InfoContainer.Expanded #Credits .social:hover {\n      color: black; }\n    #InfoContainer.Expanded #Credits .social:hover:active {\n      color: white; }\n\n/**\n *  HD BUTTON\n */\n#HDButton {\n  position: absolute;\n  top: 4px;\n  right: 110px;\n  background-color: transparent;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  font-family: sans-serif;\n  font-weight: lighter;\n  font-size: 20px;\n  z-index: 101;\n  cursor: pointer;\n  box-sizing: border-box;\n  color: #1040FF;\n  border: 2px solid #1040FF; }\n\n#HDButton:hover {\n  background-color: transparent;\n  border-color: white;\n  color: white; }\n\n#HDButton.HD {\n  background-color: #1040FF;\n  color: white; }\n\n#HDButton.HD:hover {\n  background-color: white;\n  border-color: white;\n  color: #1040FF; }\n\n#HDButton:hover:active {\n  background-color: black;\n  color: white; }\n\n/**\n *  NOTIFICATION BUTTON\n */\n#NotificationButton {\n  width: 35px;\n  height: 35px;\n  position: absolute;\n  top: 4px;\n  right: 20px;\n  z-index: 100;\n  cursor: pointer;\n  font-weight: lighter;\n  border-radius: 3px; }\n  #NotificationButton #Flag {\n    bottom: calc(50% + 2px);\n    left: calc(50% + 2px);\n    position: absolute;\n    background-color: #f9ff00;\n    width: 0px;\n    height: 0px;\n    border-radius: 3px;\n    -webkit-transition: width 0.3s, height 0.3s;\n            transition: width 0.3s, height 0.3s;\n    -webkit-transition-delay: 0.5s;\n            transition-delay: 0.5s;\n    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46);\n            transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46); }\n  #NotificationButton #Button {\n    z-index: 1;\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    background-color: #1040FF;\n    cursor: pointer; }\n  #NotificationButton #Button:hover {\n    background-color: white; }\n  #NotificationButton #Button:active:hover {\n    background-color: black; }\n  #NotificationButton #DropDown {\n    position: absolute;\n    right: 0px;\n    top: 45px;\n    width: 200px;\n    height: 180px;\n    text-align: right;\n    padding: 10px;\n    pointer-events: none;\n    z-index: 10000;\n    background-color: rgba(16, 64, 255, 0.8);\n    opacity: 0;\n    overflow: hidden;\n    height: 0px;\n    -webkit-transition: height 0.2s ease-in, opacity 0.2s ease-in;\n            transition: height 0.2s ease-in, opacity 0.2s ease-in; }\n    #NotificationButton #DropDown .Item {\n      width: 100%;\n      height: 60px;\n      position: relative; }\n      #NotificationButton #DropDown .Item #Square {\n        width: 40px;\n        height: 40px;\n        margin-top: 10px;\n        margin-right: 10px;\n        background-color: #f9ff00;\n        float: left; }\n      #NotificationButton #DropDown .Item #Text {\n        width: auto;\n        height: 60px;\n        line-height: 60px;\n        float: left;\n        color: #f9ff00;\n        font-family: sans-serif;\n        font-weight: lighter; }\n\n#NotificationButton.Expanded #DropDown {\n  opacity: 1;\n  height: 180px;\n  -webkit-transition: height 0.2s ease-out, opacity 0.2s ease-out;\n          transition: height 0.2s ease-out, opacity 0.2s ease-out; }\n\n#NotificationButton.Notified #Flag {\n  width: 17.5px;\n  height: 17.5px; }\n\n/**\n *  JC LOGO\n */\n#Logo {\n  position: absolute;\n  top: 4px;\n  left: 40px;\n  background: url("+__webpack_require__(168)+");\n  background-size: 100% 100%;\n  width: 35px;\n  height: 35px; }\n", ""]);
+	exports = module.exports = __webpack_require__(21)();
+	exports.push([module.id, "#StartButton {\n  width: 250px;\n  height: 250px;\n  background-color: #1040FF;\n  position: absolute;\n  top: 50%;\n  right: 50%;\n  margin-right: -125px;\n  margin-top: -125px;\n  -webkit-transform-origin: 100% 0px;\n      -ms-transform-origin: 100% 0px;\n          transform-origin: 100% 0px;\n  border-radius: 18px;\n  cursor: pointer; }\n  #StartButton #Triangle {\n    opacity: 1;\n    width: 0;\n    height: 0;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    border-top: 75px solid transparent;\n    border-bottom: 75px solid transparent;\n    border-left: 112.5px solid white;\n    font-size: 150px; }\n  #StartButton .PauseBar {\n    opacity: 0;\n    position: absolute;\n    height: 150px;\n    width: 37.5px;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n        -ms-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: white; }\n  #StartButton #Pause0 {\n    left: 33%; }\n  #StartButton #Pause1 {\n    left: 66%; }\n\n#StartButton.Playing #Triangle {\n  opacity: 0; }\n\n#StartButton.Playing .PauseBar {\n  opacity: 1; }\n\n#StartButton.Corner {\n  top: 4px;\n  right: 177.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton.Corner:hover {\n  background-color: white; }\n  #StartButton.Corner:hover #Triangle {\n    border-left-color: #1040FF; }\n  #StartButton.Corner:hover .PauseBar {\n    background-color: #1040FF; }\n\n#StartButton.Corner:hover:active {\n  background-color: black; }\n  #StartButton.Corner:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton.Corner:hover:active .PauseBar {\n    background-color: white; }\n\n#StartButton.MobileCorner {\n  top: 4px;\n  right: 132.5px;\n  -webkit-transform: scale(0.14);\n      -ms-transform: scale(0.14);\n          transform: scale(0.14);\n  margin-right: 0px;\n  margin-top: 0px;\n  -webkit-transition: all 0.2s;\n          transition: all 0.2s; }\n\n#StartButton:hover {\n  background-color: #ff00d2; }\n  #StartButton:hover #Triangle {\n    border-left-color: black; }\n  #StartButton:hover .PauseBar {\n    background-color: black; }\n\n#StartButton:hover:active {\n  background-color: black; }\n  #StartButton:hover:active #Triangle {\n    border-left-color: white; }\n  #StartButton:hover:active .PauseBar {\n    background-color: white; }\n\n/**\n *  INFO BUTTON\n */\n#InfoContainer {\n  overflow: hidden;\n  position: absolute;\n  top: 4px;\n  right: 65px;\n  background-color: #1040FF;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  color: white;\n  font-family: sans-serif;\n  font-size: 20px;\n  z-index: 101;\n  -webkit-transition: all 0.25s;\n          transition: all 0.25s; }\n  #InfoContainer #Credits {\n    font-family: monospace;\n    position: absolute;\n    top: 10%;\n    left: 10%;\n    width: 80%;\n    height: 80%;\n    opacity: 0;\n    text-align: left;\n    color: white;\n    -webkit-transition: opacity 0.25s;\n            transition: opacity 0.25s; }\n    #InfoContainer #Credits a {\n      font-weight: 900;\n      text-decoration: none;\n      color: white; }\n    #InfoContainer #Credits a:hover {\n      color: #ff00d2; }\n    #InfoContainer #Credits a:hover:active {\n      color: black; }\n  #InfoContainer #InfoButton {\n    width: 35px;\n    height: 35px;\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    z-index: 100;\n    cursor: pointer;\n    font-weight: lighter;\n    border-radius: 3px; }\n  #InfoContainer #InfoButton:hover {\n    background-color: white;\n    color: #1040FF; }\n  #InfoContainer #InfoButton:hover:active {\n    background-color: black;\n    color: white; }\n\n.Mobile #InfoContainer #Credits {\n  width: 90%;\n  height: 90%;\n  left: 5%;\n  top: 10px;\n  font-size: 12px; }\n\n#InfoContainer.Expanded {\n  width: calc(100% - 15px * 2);\n  height: calc(100% - 4px  - 15px);\n  right: 15px;\n  opacity: 0.85;\n  cursor: inherit; }\n  #InfoContainer.Expanded #Credits {\n    opacity: 1; }\n    #InfoContainer.Expanded #Credits .social {\n      position: relative;\n      margin-right: 10px;\n      height: 50px;\n      width: 50px;\n      font-size: 50px;\n      color: #ff00d2;\n      cursor: pointer;\n      text-align: left;\n      float: left; }\n    #InfoContainer.Expanded #Credits .social:hover {\n      color: black; }\n    #InfoContainer.Expanded #Credits .social:hover:active {\n      color: white; }\n\n/**\n *  HD BUTTON\n */\n#HDButton {\n  position: absolute;\n  top: 4px;\n  right: 110px;\n  background-color: transparent;\n  width: 35px;\n  height: 35px;\n  border-radius: 3px;\n  line-height: 35px;\n  text-align: center;\n  font-family: sans-serif;\n  font-weight: lighter;\n  font-size: 20px;\n  z-index: 101;\n  cursor: pointer;\n  box-sizing: border-box;\n  color: #1040FF;\n  border: 2px solid #1040FF; }\n\n#HDButton:hover {\n  background-color: transparent;\n  border-color: white;\n  color: white; }\n\n#HDButton.HD {\n  background-color: #1040FF;\n  color: white; }\n\n#HDButton.HD:hover {\n  background-color: white;\n  border-color: white;\n  color: #1040FF; }\n\n#HDButton:hover:active {\n  background-color: black;\n  color: white; }\n\n/**\n *  NOTIFICATION BUTTON\n */\n#NotificationButton {\n  width: 35px;\n  height: 35px;\n  position: absolute;\n  top: 4px;\n  right: 20px;\n  z-index: 100;\n  cursor: pointer;\n  font-weight: lighter;\n  border-radius: 3px; }\n  #NotificationButton #Flag {\n    bottom: calc(50% + 2px);\n    left: calc(50% + 2px);\n    position: absolute;\n    background-color: #f9ff00;\n    width: 0px;\n    height: 0px;\n    border-radius: 3px;\n    -webkit-transition: width 0.3s, height 0.3s;\n            transition: width 0.3s, height 0.3s;\n    -webkit-transition-delay: 0.5s;\n            transition-delay: 0.5s;\n    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46);\n            transition-timing-function: cubic-bezier(0, 0, 0.56, 1.46); }\n  #NotificationButton #Button {\n    z-index: 1;\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    background-color: #1040FF;\n    cursor: pointer; }\n  #NotificationButton #Button:hover {\n    background-color: white; }\n  #NotificationButton #Button:active:hover {\n    background-color: black; }\n  #NotificationButton #DropDown {\n    position: absolute;\n    right: 0px;\n    top: 45px;\n    width: 200px;\n    height: 180px;\n    text-align: right;\n    padding: 10px;\n    pointer-events: none;\n    z-index: 10000;\n    background-color: rgba(16, 64, 255, 0.8);\n    opacity: 0;\n    overflow: hidden;\n    height: 0px;\n    -webkit-transition: height 0.2s ease-in, opacity 0.2s ease-in;\n            transition: height 0.2s ease-in, opacity 0.2s ease-in; }\n    #NotificationButton #DropDown .Item {\n      width: 100%;\n      height: 60px;\n      position: relative; }\n      #NotificationButton #DropDown .Item #Square {\n        width: 40px;\n        height: 40px;\n        margin-top: 10px;\n        margin-right: 10px;\n        background-color: #f9ff00;\n        float: left; }\n      #NotificationButton #DropDown .Item #Text {\n        width: auto;\n        height: 60px;\n        line-height: 60px;\n        float: left;\n        color: #f9ff00;\n        font-family: sans-serif;\n        font-weight: lighter; }\n\n#NotificationButton.Expanded #DropDown {\n  opacity: 1;\n  height: 180px;\n  -webkit-transition: height 0.2s ease-out, opacity 0.2s ease-out;\n          transition: height 0.2s ease-out, opacity 0.2s ease-out; }\n\n#NotificationButton.Notified #Flag {\n  width: 17.5px;\n  height: 17.5px; }\n\n/**\n *  JC LOGO\n */\n#Logo {\n  position: absolute;\n  top: 4px;\n  left: 40px;\n  background: url("+__webpack_require__(172)+");\n  background-size: 100% 100%;\n  width: 35px;\n  height: 35px; }\n", ""]);
 
 /***/ },
-/* 168 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 169 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(170);
+	var content = __webpack_require__(174);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23277,18 +23283,18 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 170 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(17)();
+	exports = module.exports = __webpack_require__(21)();
 	exports.push([module.id, "@-webkit-keyframes Appear {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0);\n    opacity: 0; }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 1; }\n  100% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 0; } }\n\n@keyframes Appear {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0);\n    opacity: 0; }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 1; }\n  100% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0);\n    opacity: 0; } }\n\n@-webkit-keyframes AppearMobile {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  90% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  100% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); } }\n\n@keyframes AppearMobile {\n  0% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); }\n  10% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  90% {\n    -webkit-transform: translate(0px, 0);\n            transform: translate(0px, 0); }\n  100% {\n    -webkit-transform: translate(-300px, 0);\n            transform: translate(-300px, 0); } }\n\n.Notification {\n  width: 220px;\n  height: auto;\n  font-family: sans-serif;\n  position: absolute;\n  bottom: 25px;\n  left: 25px;\n  font-size: 24px;\n  background-color: rgba(255, 255, 255, 0.8);\n  border-radius: 4px;\n  padding: 15px;\n  padding-left: 80px;\n  border: 1px solid rgba(180, 180, 180, 0.8);\n  opacity: 0;\n  -webkit-transform: translate(-300px, 0px);\n      -ms-transform: translate(-300px, 0px);\n          transform: translate(-300px, 0px);\n  color: #1040FF; }\n  .Notification img {\n    width: 50px;\n    height: 50px;\n    -webkit-transform: translate(0px, -50%);\n        -ms-transform: translate(0px, -50%);\n            transform: translate(0px, -50%);\n    top: 50%;\n    position: absolute;\n    left: 15px; }\n\n.Notification.Show {\n  -webkit-animation-name: Appear;\n          animation-name: Appear;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n  -webkit-animation-timing-function: cubic-bezier(0.76, 0.02, 0.63, 0.13);\n          animation-timing-function: cubic-bezier(0.76, 0.02, 0.63, 0.13);\n  -webkit-animation-direction: forwards;\n          animation-direction: forwards; }\n\n.Mobile .Notification {\n  opacity: 1;\n  bottom: 60px; }\n\n.Mobile .Notification.Show {\n  -webkit-animation-name: AppearMobile;\n          animation-name: AppearMobile; }\n", ""]);
 
 /***/ },
-/* 171 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(14), __webpack_require__(164), 
-		__webpack_require__(38), __webpack_require__(12), __webpack_require__(172), __webpack_require__(173)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(18), __webpack_require__(168), 
+		__webpack_require__(42), __webpack_require__(16), __webpack_require__(176), __webpack_require__(177)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Window, Analytics, Master, Config, infoFrag, detailedFrag){
 
 		var expanded = false;
 
@@ -23366,22 +23372,22 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 172 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "Jazz.Computer is an interactive song by  <a target=\"_blank\" href='http://yotammann.info'>Yotam Mann</a> with visual design by <a target=\"_blank\" href='http://sarahrothberg.com'>Sarah Rothberg</a>.\n<br><br>\n\nSpecial thanks to <a href=\"https://twitter.com/gabeliberti\" target=\"_blank\">Gabe Liberti</a> for production help.\n<br><br>\n\njazz.computer was developed using <a target=\"_blank\" href='http://tonejs.org'>Tone.js</a> and <a target=\"_blank\" href='http://threejs.org'>Three.js</a>\n<br><br>\n\n<a target=\"_blank\" href=\"./info\">more info</a>\n<br><br>\n";
 
 /***/ },
-/* 173 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = "Up/Down is an interactive song by  <a href='http://yotammann.info'>Yotam Mann</a> with visual design by <a href='http://sarahrothberg.com'>Sarah Rothberg</a>.\n<br><br>\n\nSpecial thanks to Gabe Liberti for production help.\n<br><br>\n\nUp/Down was developed using <a href='http://tonejs.org'>Tone.js</a> and <a href='http://threejs.org'>Three.js</a>";
 
 /***/ },
-/* 174 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(12), __webpack_require__(14), __webpack_require__(166)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($, Mediator, Config, Window, buttonStyle) {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(16), __webpack_require__(18), __webpack_require__(170)], __WEBPACK_AMD_DEFINE_RESULT__ = function ($, Mediator, Config, Window, buttonStyle) {
 
 		if (!Config.MOBILE){
 			var button = $("<div>").prop("id", "HDButton").appendTo(Window.container).text("HD");
@@ -23404,11 +23410,11 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 175 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(82), __webpack_require__(107), __webpack_require__(120), __webpack_require__(139), __webpack_require__(144), 
-		__webpack_require__(34), __webpack_require__(146), __webpack_require__(149), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(86), __webpack_require__(111), __webpack_require__(124), __webpack_require__(143), __webpack_require__(148), 
+		__webpack_require__(38), __webpack_require__(150), __webpack_require__(153), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Bass, Piano, Voice, HH, Kick, GUI, Snare, Arp, Config){
 
 		var volumes = {
 			Bass : -8,
@@ -23456,10 +23462,10 @@ webpackJsonp([1],[
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 176 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(12), __webpack_require__(4), __webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Config, Tone, Window){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(14), __webpack_require__(16), __webpack_require__(4), __webpack_require__(18)], __WEBPACK_AMD_DEFINE_RESULT__ = function($, Mediator, Config, Tone, Window){
 
 		//start button
 		var startButton = $("<div>").attr("id", "StartButton").appendTo("body");
@@ -23554,9 +23560,11 @@ webpackJsonp([1],[
 		});
 
 		Mediator.route("loaded", function(){
-			setTimeout(function(){
-				startButton.trigger("mousedown");
-			}, 1000);
+			if (Config.INSTALLATION){
+				setTimeout(function(){
+					startButton.trigger("mousedown");
+				}, 1000);
+			}
 		});
 
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
