@@ -10,7 +10,7 @@ define(["jquery"], function($){
 
 	isMobile = (window.location.hash === "#MOBILE") || isMobile;
 
-	var isInstallation = window.location.hash === "#INSTALLATION";
+	var isInstallation = window.location.hash.toLowerCase() === "#installation";
 
 	var isFF = (navigator.userAgent.toLowerCase().indexOf("firefox") > -1);
 
