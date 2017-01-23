@@ -90,10 +90,10 @@ function(MonoSynth, Master, PolySynth, Panner, PresetA, PresetB, LFO, GUI, Signa
 				"release" : "4n"
 			}
 		});
-		monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"], 0, 0.8);
+		monoSynth.triggerAttack(["C4", "A#4", "E4", "F#4"], "+0.05", 0.8);
 		vibratoParams = pre.vibrato;
-		vibrato.amplitude.setValueAtTime(0, 0);
-		vibrato.amplitude.linearRampToValueAtTime(vibratoParams.amount, vibratoParams.amount);
+		vibrato.amplitude.setValueAtTime(0, "+0.05");
+		vibrato.amplitude.linearRampToValueAtTime(vibratoParams.amount, "+0.2");
 	});
 
 	Mediator.route("firstScroll", function(){
